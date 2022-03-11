@@ -50,7 +50,7 @@ namespace HopStep::Reflection
 		 */
 		template <class TType>
 		HType(Internal::HTypeGenerator<TType>&& Generator)
-			: Name(Generator.Name)
+			: Name(std::move(Generator.Name))
 		{
 
 		}
