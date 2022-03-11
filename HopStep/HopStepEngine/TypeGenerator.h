@@ -1,5 +1,4 @@
 #pragma once
-#include "Type.h"
 
 namespace HopStep::Reflection::Internal
 {
@@ -8,14 +7,16 @@ namespace HopStep::Reflection::Internal
 	{
 	public:
 		
-		HTypeGenerator(std::wstring_view ClassName)
+		HTypeGenerator(std::wstring_view ClassName) 
+			requires requires { TType::StaticClass(); }
 			: Name(ClassName)
 		{
-
 		}
 
 	protected:
 
 		std::wstring Name;
+
+		uint8 bNative : 1 = false;
 	};
 }

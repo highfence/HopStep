@@ -1,4 +1,5 @@
 #pragma once
+#include "TypeGenerator.h"
 
 namespace HopStep::Reflection
 {
@@ -43,6 +44,16 @@ namespace HopStep::Reflection
 		 * 
 		 */
 		const std::vector<class HProperty*> GetProperties(bool bIncludeSuper = true);
+
+		/**
+		 * 
+		 */
+		template <class TType>
+		HType(Internal::HTypeGenerator<TType>&& Generator)
+			: Name(Generator.Name)
+		{
+
+		}
 
 	private:
 

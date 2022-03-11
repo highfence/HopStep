@@ -146,9 +146,11 @@
     <ClInclude Include="HopStep.h" />
     <ClInclude Include="MetadataLibrary.h" />
     <ClInclude Include="PrimitiveType.h" />
+    <ClInclude Include="PrimitiveTypeDefines.h" />
     <ClInclude Include="Property.h" />
     <ClInclude Include="ReflectionMarco.h" />
     <ClInclude Include="Type.h" />
+    <ClInclude Include="TypeGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Field.cpp" />
@@ -160,6 +162,7 @@
     <ClCompile Include="PrimitiveType.cpp" />
     <ClCompile Include="Property.cpp" />
     <ClCompile Include="Type.cpp" />
+    <ClCompile Include="TypeGenerator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

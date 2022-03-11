@@ -25,6 +25,10 @@
     <ClInclude Include="ReflectionMarco.h">
       <Filter>Reflection</Filter>
     </ClInclude>
+    <ClInclude Include="TypeGenerator.h">
+      <Filter>Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimitiveTypeDefines.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp" />
@@ -41,6 +45,9 @@
       <Filter>Reflection</Filter>
     </ClCompile>
     <ClCompile Include="Type.cpp">
+      <Filter>Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeGenerator.cpp">
       <Filter>Reflection</Filter>
     </ClCompile>
   </ItemGroup>
