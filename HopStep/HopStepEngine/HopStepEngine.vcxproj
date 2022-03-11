@@ -144,9 +144,10 @@
   <ItemGroup>
     <ClInclude Include="Field.h" />
     <ClInclude Include="HopStep.h" />
-    <ClInclude Include="MetaData.h" />
+    <ClInclude Include="MetadataLibrary.h" />
     <ClInclude Include="PrimitiveType.h" />
     <ClInclude Include="Property.h" />
+    <ClInclude Include="ReflectionMarco.h" />
     <ClInclude Include="Type.h" />
   </ItemGroup>
   <ItemGroup>
@@ -155,7 +156,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">HopStep.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="MetaData.cpp" />
+    <ClCompile Include="MetadataLibrary.cpp" />
     <ClCompile Include="PrimitiveType.cpp" />
     <ClCompile Include="Property.cpp" />
     <ClCompile Include="Type.cpp" />

@@ -16,10 +16,13 @@
     <ClInclude Include="PrimitiveType.h">
       <Filter>Reflection</Filter>
     </ClInclude>
-    <ClInclude Include="MetaData.h">
+    <ClInclude Include="MetadataLibrary.h">
       <Filter>Reflection</Filter>
     </ClInclude>
     <ClInclude Include="Type.h">
+      <Filter>Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionMarco.h">
       <Filter>Reflection</Filter>
     </ClInclude>
   </ItemGroup>
@@ -34,7 +37,7 @@
     <ClCompile Include="PrimitiveType.cpp">
       <Filter>Reflection</Filter>
     </ClCompile>
-    <ClCompile Include="MetaData.cpp">
+    <ClCompile Include="MetadataLibrary.cpp">
       <Filter>Reflection</Filter>
     </ClCompile>
     <ClCompile Include="Type.cpp">
