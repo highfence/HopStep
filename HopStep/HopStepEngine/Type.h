@@ -57,11 +57,6 @@ namespace HopStep::Reflection
 		/**
 		 * 
 		 */
-		size_t TypeHash;
-
-		/**
-		 * 
-		 */
 		size_t Size;
 
 		/**
@@ -79,4 +74,5 @@ namespace HopStep::Reflection
 		 */
 		std::vector<class HProperty*> Properties;
 	};
+
 }

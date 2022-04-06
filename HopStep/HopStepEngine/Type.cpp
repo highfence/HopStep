@@ -4,7 +4,7 @@
 
 namespace HopStep::Reflection
 {
-	extern HMetadataLibrary MetaLibrary;
+	extern HMetadataLibrary Library;
 
 	const std::wstring& HType::GetName() const
 	{
@@ -40,6 +40,6 @@ namespace HopStep::Reflection
 
 	void HType::RegisterTypeMetaData()
 	{
-		MetaLibrary.RegisterNewType(this);
+		Library.RegisterNewType(this);
 	}
 }

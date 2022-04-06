@@ -13,6 +13,7 @@ namespace HopStepTest
 			std::cout << "MetadataLibraryAccessTest started" << std::endl;
 
 			auto& Library = HopStep::Reflection::HMetadataLibrary::Get();
+
 			auto Types = Library.GetTypes();
 
 			Assert::AreEqual(Types.size(), std::size_t{ 0 });

@@ -3,11 +3,11 @@
 
 namespace HopStep::Reflection
 {
-	HMetadataLibrary MetaLibrary;
+	HMetadataLibrary Library;
 
 	HMetadataLibrary& HMetadataLibrary::Get()
 	{
-		return MetaLibrary;
+		return Library;
 	}
 
 	std::vector<class HType*> HMetadataLibrary::GetTypes()

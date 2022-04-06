@@ -1,14 +1,14 @@
 #pragma once
+#include "ReflectionConcepts.h"
 
 namespace HopStep::Reflection::Internal
 {
-	template <class TDerivedType>
+	template <StaticClassGetable TDerivedType>
 	class HTypeGenerator
 	{
 	public:
 		
 		HTypeGenerator(std::wstring_view ClassName) 
-			requires requires { TDerivedType::StaticClass(); }
 			: Name(ClassName)
 		{
 		}
