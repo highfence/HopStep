@@ -28,11 +28,6 @@ namespace HopStep::Reflection
 		/**
 		 * 
 		 */
-		size_t GetTypeHash() const;
-
-		/**
-		 * 
-		 */
 		size_t GetSize() const;
 
 		/**
@@ -48,14 +43,16 @@ namespace HopStep::Reflection
 		/**
 		 * 
 		 */
-		template <class TType>
-		HType(Internal::HTypeGenerator<TType>&& Generator)
+		template <class TDerivedType>
+		HType(Internal::HTypeGenerator<TDerivedType>&& Generator)
 			: Name(std::move(Generator.Name))
 		{
 
 		}
 
 	private:
+
+		void RegisterTypeMetaData();
 
 		/**
 		 * 

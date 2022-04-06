@@ -2,13 +2,13 @@
 
 namespace HopStep::Reflection::Internal
 {
-	template <class TType>
+	template <class TDerivedType>
 	class HTypeGenerator
 	{
 	public:
 		
 		HTypeGenerator(std::wstring_view ClassName) 
-			requires requires { TType::StaticClass(); }
+			requires requires { TDerivedType::StaticClass(); }
 			: Name(ClassName)
 		{
 		}

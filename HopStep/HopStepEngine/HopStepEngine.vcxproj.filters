@@ -4,6 +4,12 @@
     <Filter Include="Reflection">
       <UniqueIdentifier>{28130bd1-9a9e-4e73-bade-9b61bb00ea40}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{5ce0fb36-d3d6-4c45-a733-0312eab2637d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CoreObject">
+      <UniqueIdentifier>{153419c5-bedc-479c-a433-3ccc06b7315e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HopStep.h" />

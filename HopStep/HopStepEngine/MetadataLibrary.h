@@ -9,7 +9,11 @@ namespace HopStep::Reflection
 	{
 	public:
 
+		static HMetadataLibrary& Get();
+
 		std::vector<class HType*> GetTypes();
+
+		void RegisterNewType(class HType* InType);
 
 	protected:
 

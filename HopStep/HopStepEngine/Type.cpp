@@ -4,14 +4,11 @@
 
 namespace HopStep::Reflection
 {
+	extern HMetadataLibrary MetaLibrary;
+
 	const std::wstring& HType::GetName() const
 	{
 		return Name;
-	}
-
-	size_t HType::GetTypeHash() const
-	{
-		return TypeHash;
 	}
 
 	size_t HType::GetSize() const
@@ -39,5 +36,10 @@ namespace HopStep::Reflection
 		Result.reserve(Properties.size());
 		Result.insert(Result.end(), Properties.begin(), Properties.end());
 		return Result;
+	}
+
+	void HType::RegisterTypeMetaData()
+	{
+		MetaLibrary.RegisterNewType(this);
 	}
 }

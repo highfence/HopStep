@@ -10,11 +10,12 @@ namespace HopStepTest
 	public:
 		TEST_METHOD(MetadataLibraryAccessTest)
 		{
-			HopStep::Reflection::HMetadataLibrary* Library = nullptr;
-
 			std::cout << "MetadataLibraryAccessTest started" << std::endl;
 
+			auto& Library = HopStep::Reflection::HMetadataLibrary::Get();
+			auto Types = Library.GetTypes();
 
+			Assert::AreEqual(Types.size(), std::size_t{ 0 });
 		}
 	};
 }
