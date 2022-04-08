@@ -14,8 +14,12 @@ namespace HopStepTest
 
 			auto& Library = HMetadataLibrary::Get();
 
+			HType* ObjectType = HObject::StaticClass();
 			auto Types = Library.GetTypes();
-			Assert::AreEqual(Types.size(), std::size_t{ 0 });
+			Assert::IsFalse(Types.size() == 0);
+			auto Iter = std::find(Types.begin(), Types.end(), ObjectType);
+			Assert::IsFalse(Iter == Types.end());
+			Assert::AreEqual((*Iter)->GetName(), ObjectType->GetName());
 		}
 
 		TEST_METHOD(GameTypeAccessTest)
@@ -30,6 +34,7 @@ namespace HopStepTest
 
 			HType* GameType = HObject::StaticClass();
 			Assert::AreEqual(GameObject->FriendlyName, std::wstring_view(GameType->GetName()));
+			Assert::AreEqual(GameObject->FriendlyName, std::wstring_view(L"HObject"));
 
 			delete GameObject;
 		}

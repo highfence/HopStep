@@ -5,6 +5,7 @@
 #include <memory>
 #include <vector>
 #include <utility>
+#include <algorithm>
 
 #include "PrimitiveTypeDefines.h"
 #include "MetadataLibrary.h"

@@ -3,6 +3,11 @@
 
 HMetadataLibrary Library;
 
+HMetadataLibrary::~HMetadataLibrary()
+{
+	Types.clear();
+}
+
 HMetadataLibrary& HMetadataLibrary::Get()
 {
 	return Library;
