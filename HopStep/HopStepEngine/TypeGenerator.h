@@ -1,22 +1,17 @@
 #pragma once
 #include "ReflectionConcepts.h"
 
-namespace HopStep::Reflection::Internal
+template <class TType>
+class HTypeGenerator
 {
-	template <StaticClassGetable TDerivedType>
-	class HTypeGenerator
+public:
+
+	HTypeGenerator(std::wstring_view ClassName)
+		: Name(ClassName)
 	{
-	public:
-		
-		HTypeGenerator(std::wstring_view ClassName) 
-			: Name(ClassName)
-		{
-		}
+	}
 
-	protected:
+	std::wstring Name;
 
-		std::wstring Name;
-
-		uint8 bNative : 1 = false;
-	};
-}
+	uint8 bNative : 1 = false;
+};

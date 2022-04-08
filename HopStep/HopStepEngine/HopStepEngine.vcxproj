@@ -143,17 +143,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Field.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="HopStep.h" />
     <ClInclude Include="MetadataLibrary.h" />
     <ClInclude Include="PrimitiveType.h" />
     <ClInclude Include="PrimitiveTypeDefines.h" />
     <ClInclude Include="Property.h" />
+    <ClInclude Include="ReflectionConcepts.h" />
     <ClInclude Include="ReflectionMarco.h" />
     <ClInclude Include="Type.h" />
     <ClInclude Include="TypeGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Field.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="HopStep.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">HopStep.h</PrecompiledHeaderFile>

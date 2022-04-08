@@ -1,24 +1,23 @@
 #include "HopStep.h"
 #include "MetadataLibrary.h"
 
-namespace HopStep::Reflection
+HMetadataLibrary Library;
+
+HMetadataLibrary& HMetadataLibrary::Get()
 {
-	HMetadataLibrary Library;
-
-	HMetadataLibrary& HMetadataLibrary::Get()
-	{
-		return Library;
-	}
-
-	std::vector<class HType*> HMetadataLibrary::GetTypes()
-	{
-		return Types;
-	}
-
-	void HMetadataLibrary::RegisterNewType(HType* InType)
-	{
-		if (InType == nullptr) return;
-
-		Types.emplace_back(InType);
-	}
+	return Library;
 }
+
+std::vector<class HType*> HMetadataLibrary::GetTypes()
+{
+	return Types;
+}
+
+void HMetadataLibrary::RegisterNewType(HType* InType)
+{
+	if (InType == nullptr) return;
+
+	Types.emplace_back(InType);
+}
+	
+

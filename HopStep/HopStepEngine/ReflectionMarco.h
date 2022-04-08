@@ -1,8 +1,6 @@
 #pragma once
 #include "TypeGenerator.h"
 
-namespace HopStep::Reflection
-{
 #define DECLARE_TYPEHASH \
 	size_t GetTypeHash() const \
 	{ \
@@ -10,19 +8,18 @@ namespace HopStep::Reflection
 		return reinterpret_cast<size_t>(&UniquePointer); \
 	}							
 
-
-#define GENERATED_CLASS_BODY(Class, ...) \
+#define DECLARE_CLASS_BODY(Class, ...) \
+	DECLARE_TYPEHASH \
 	friend class HType; \
 	using This = Class; \
 	\
-	inline static HType* StaticClass(); \
+	inline static class HType* StaticClass(); \
 	inline static constexpr std::wstring_view FriendlyName = L ## #Class; \
 
 
-#define GENERATE_BODY(Class, ...) \
+#define IMPLEMENT_CLASS_BODY(Class, ...) \
 	HType* Class::StaticClass() \
 	{ \
-		static HType ClassType(HTypeGenerator<Class>(FriendlyName)); \
+		static HType ClassType = HType(HTypeGenerator<This>(FriendlyName)); \
 		return &ClassType; \
 	}
-}

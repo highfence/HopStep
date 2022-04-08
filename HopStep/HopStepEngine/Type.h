@@ -1,78 +1,69 @@
 #pragma once
+#include "ReflectionConcepts.h"
 #include "TypeGenerator.h"
 
-namespace HopStep::Reflection
-{
 	/**
 	 * 
 	 */
-	class HType
+class HType
+{
+	HType() = delete;
+	HType(const HType&) = delete;
+
+public:
+
+	/**
+	 *
+	 */
+	template <class TType> requires StaticClassGetable<TType>
+	HType(HTypeGenerator<TType>&& Generator)
+		: Name(std::move(Generator.Name)), Size(sizeof(TType))
 	{
-		HType() = delete;
-		HType(const HType&) = delete;
+		RegisterTypeMetaData();
+	}
 
-	public:
+	/**
+	 *
+	 */
+	const std::wstring& GetName() const;
 
-		template <class TType>
-		HType()
-			: Size(sizeof(TType))
-		{
+	/**
+	 *
+	 */
+	size_t GetSize() const;
 
-		}
+	/**
+	 *
+	 */
+	HType* GetSuper() const;
 
-		/**
-		 * 
-		 */
-		const std::wstring& GetName() const;
+	/**
+	 *
+	 */
+	const std::vector<class HProperty*> GetProperties(bool bIncludeSuper = true);
 
-		/**
-		 * 
-		 */
-		size_t GetSize() const;
+	
+private:
 
-		/**
-		 * 
-		 */
-		HType* GetSuper() const;
+	void RegisterTypeMetaData();
 
-		/**
-		 * 
-		 */
-		const std::vector<class HProperty*> GetProperties(bool bIncludeSuper = true);
+	/**
+	 *
+	 */
+	size_t Size;
 
-		/**
-		 * 
-		 */
-		template <class TDerivedType>
-		HType(Internal::HTypeGenerator<TDerivedType>&& Generator)
-			: Name(std::move(Generator.Name))
-		{
+	/**
+	 *
+	 */
+	std::wstring Name;
 
-		}
+	/**
+	 *
+	 */
+	HType* Super = nullptr;
 
-	private:
-
-		void RegisterTypeMetaData();
-
-		/**
-		 * 
-		 */
-		size_t Size;
-
-		/**
-		 * 
-		 */
-		std::wstring Name;
-
-		/**
-		 * 
-		 */
-		HType* Super = nullptr;
-
-		/**
-		 * 
-		 */
-		std::vector<class HProperty*> Properties;
-	};
-
-}
+	/**
+	 *
+	 */
+	std::vector<class HProperty*> Properties;
+};

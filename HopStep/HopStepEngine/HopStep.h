@@ -8,3 +8,4 @@
 
 #include "PrimitiveTypeDefines.h"
 #include "MetadataLibrary.h"
+#include "Type.h"

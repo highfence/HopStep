@@ -12,7 +12,7 @@ namespace HopStepTest
 		{
 			std::cout << "MetadataLibraryAccessTest started" << std::endl;
 
-			auto& Library = HopStep::Reflection::HMetadataLibrary::Get();
+			auto& Library = HMetadataLibrary::Get();
 
 			auto Types = Library.GetTypes();
 

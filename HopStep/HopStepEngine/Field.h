@@ -1,10 +1,7 @@
 #pragma once
 
-namespace HopStep::Reflection
+class HField
 {
-	class HField
-	{
-	public:
-		std::wstring Name;
-	};
-}
+public:
+	std::wstring Name;
+};
