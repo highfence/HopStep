@@ -2,15 +2,19 @@
 #include "ReflectionConcepts.h"
 #include "TypeGenerator.h"
 
-	/**
-	 * 
-	 */
+/**
+ * 
+ */
 class HType
 {
+public:
+
+	/**
+	 * Type can't not created by default or copy ctor.
+	 * It must be unique.
+	 */
 	HType() = delete;
 	HType(const HType&) = delete;
-
-public:
 
 	/**
 	 *

@@ -12,10 +12,8 @@
 	DECLARE_TYPEHASH \
 	friend class HType; \
 	using This = Class; \
-	\
-	inline static class HType* StaticClass(); \
+	static class HType* StaticClass(); \
 	inline static constexpr std::wstring_view FriendlyName = L ## #Class; \
-
 
 #define IMPLEMENT_CLASS_BODY(Class, ...) \
 	HType* Class::StaticClass() \
