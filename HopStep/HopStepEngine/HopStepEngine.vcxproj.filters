@@ -13,6 +13,9 @@
     <Filter Include="CoreObject\Object">
       <UniqueIdentifier>{d701136b-1a3e-4739-bfea-76b93252e549}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Logger">
+      <UniqueIdentifier>{218df021-74ba-48a3-84b7-159f99e6a149}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HopStep.h" />
@@ -45,6 +48,12 @@
     </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>CoreObject\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleLogger.h">
+      <Filter>Core\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggerBase.h">
+      <Filter>Core\Logger</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
