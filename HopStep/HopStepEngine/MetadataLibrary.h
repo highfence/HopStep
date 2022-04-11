@@ -9,7 +9,7 @@ public:
 
 	~HMetadataLibrary();
 
-	static HMetadataLibrary& Get();
+	static HMetadataLibrary* Get();
 
 	std::vector<class HType*> GetTypes();
 

@@ -2,8 +2,6 @@
 #include "Property.h"
 #include "Type.h"
 
-extern HMetadataLibrary Library;
-
 const std::wstring& HType::GetName() const
 {
 	return Name;
@@ -36,8 +34,9 @@ const std::vector<HProperty*> HType::GetProperties(bool bIncludeSuper /*= true*/
 	return Result;
 }
 
-void HType::RegisterTypeMetaData()
+void HType::RegisterToMetaData()
 {
-	Library.RegisterNewType(this);
+	auto* Library = HMetadataLibrary::Get();
+	Library->RegisterNewType(this);
 }
 

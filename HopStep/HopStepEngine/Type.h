@@ -21,9 +21,10 @@ public:
 	 */
 	template <class TType> requires StaticClassGetable<TType>
 	HType(HTypeGenerator<TType>&& Generator)
-		: Name(std::move(Generator.Name)), Size(sizeof(TType))
+		: Name(std::move(Generator.Name))
+		, Size(sizeof(TType))
 	{
-		RegisterTypeMetaData();
+		RegisterToMetaData();
 	}
 
 	/**
@@ -49,7 +50,7 @@ public:
 	
 private:
 
-	void RegisterTypeMetaData();
+	void RegisterToMetaData();
 
 	/**
 	 *

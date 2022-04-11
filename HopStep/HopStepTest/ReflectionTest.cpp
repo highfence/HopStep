@@ -12,10 +12,11 @@ namespace HopStepTest
 		{
 			std::cout << "MetadataLibraryAccessTest started" << std::endl;
 
-			auto& Library = HMetadataLibrary::Get();
+			auto* Library = HMetadataLibrary::Get();
+			Assert::IsNotNull(Library);
 
 			HType* ObjectType = HObject::StaticClass();
-			auto Types = Library.GetTypes();
+			auto Types = Library->GetTypes();
 			Assert::IsFalse(Types.size() == 0);
 			auto Iter = std::find(Types.begin(), Types.end(), ObjectType);
 			Assert::IsFalse(Iter == Types.end());

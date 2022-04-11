@@ -1,16 +1,16 @@
 #include "HopStep.h"
 #include "MetadataLibrary.h"
 
-HMetadataLibrary Library;
 
 HMetadataLibrary::~HMetadataLibrary()
 {
 	Types.clear();
 }
 
-HMetadataLibrary& HMetadataLibrary::Get()
+HMetadataLibrary* HMetadataLibrary::Get()
 {
-	return Library;
+	static HMetadataLibrary Library;
+	return &Library;
 }
 
 std::vector<class HType*> HMetadataLibrary::GetTypes()
