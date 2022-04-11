@@ -1,6 +1,8 @@
 #pragma once
 #include "TypeGenerator.h"
 
+using namespace HopStep::CoreObject::Reflection;
+
 #define DECLARE_TYPEHASH \
 	size_t GetTypeHash() const \
 	{ \

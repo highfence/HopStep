@@ -1,21 +1,24 @@
 #pragma once
 
-class HPrimitiveType
+namespace HopStep::CoreObject::Reflection
 {
-public:
-
-	enum class HType : int8_t
+	class HPrimitiveType
 	{
-		Numeric,
-		Boolean,
-		String
+	public:
+
+		enum class HType : int8_t
+		{
+			Numeric,
+			Boolean,
+			String
+		};
+
+		explicit HPrimitiveType(HType InType)
+			: Type(InType)
+		{
+
+		}
+
+		HType Type;
 	};
-
-	explicit HPrimitiveType(HType InType)
-		: Type(InType)
-	{
-
-	}
-
-	HType Type;
-};
+}

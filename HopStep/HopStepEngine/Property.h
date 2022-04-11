@@ -1,11 +1,14 @@
 #pragma once
 #include "Field.h"
 
-class HProperty : public HField
+namespace HopStep::CoreObject::Reflection
 {
-public:
+	class HProperty : public HField
+	{
+	public:
 
 
 
-};
+	};
 
+}
