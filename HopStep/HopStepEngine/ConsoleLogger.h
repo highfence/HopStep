@@ -1,5 +1,6 @@
 #pragma once
 #include "LoggerBase.h"
+#include "HopStepOverrides.h"
 
 namespace HopStep::Core::Logger
 {
@@ -12,7 +13,7 @@ namespace HopStep::Core::Logger
 
 	protected:
 
-		void ConsoleOut(const ConsoleColor Color, const wchar_t* InLogHead, const std::wstring_view& InStringView)
+		void ConsoleOut(const ConsoleColor Color, const wchar_t* InLogHead, const HStringView& InStringView)
 		{
 			std::lock_guard<std::mutex> WriteLock(Lock);
 			SetConsoleOutColor(Color);
@@ -27,27 +28,27 @@ namespace HopStep::Core::Logger
 #endif
 		}
 
-		virtual void Trace(std::wstring_view& InText)
+		virtual void Trace(HStringView& InText)
 		{
 			ConsoleOut(ConsoleColor::Blue, L"[TRACE] ", InText);
 		}
 
-		virtual void Info(std::wstring_view& InText)
+		virtual void Info(HStringView& InText)
 		{
 			ConsoleOut(ConsoleColor::Green, L"[INFO] ", InText);
 		}
 
-		virtual void Error(std::wstring_view& InText)
+		virtual void Error(HStringView& InText)
 		{
 			ConsoleOut(ConsoleColor::Red, L"[ERROR] ", InText);
 		}
 
-		virtual void Warn(std::wstring_view& InText)
+		virtual void Warn(HStringView& InText)
 		{
 			ConsoleOut(ConsoleColor::Yellow, L"[WARN] ", InText);
 		}
 
-		virtual void Debug(std::wstring_view& InText)
+		virtual void Debug(HStringView& InText)
 		{
 #if _DEBUG
 			ConsoleOut(ConsoleColor::White, L"[DEBUG] ", InText);

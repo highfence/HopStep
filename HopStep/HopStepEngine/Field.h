@@ -1,4 +1,5 @@
 #pragma once
+#include "HopStepOverrides.h"
 
 namespace HopStep::CoreObject::Reflection
 {
@@ -9,14 +10,14 @@ namespace HopStep::CoreObject::Reflection
 	{
 	public:
 
-		HField(std::wstring& InName) : Name(InName) {}
+		HField(HString& InName) : Name(InName) {}
 
 		virtual ~HField() {}
 
-		const std::wstring& GetName() const { return Name; }
+		const HString& GetName() const { return Name; }
 
 	protected:
 
-		std::wstring Name;
+		HString Name;
 	};
 }

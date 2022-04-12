@@ -1,8 +1,6 @@
 #pragma once
 #include "PrimitiveTypeDefines.h"
-#include <mutex>
-#include <string>
-#include <wchar.h>
+#include "CoreStandardIncludes.h"
 
 namespace HopStep::Core::Logger
 {
@@ -24,16 +22,16 @@ namespace HopStep::Core::Logger
 		HLoggerBase() {};
 		virtual ~HLoggerBase() {};
 
-		virtual void Write(const LogType Type, const wchar_t* ArgFormat, ...)
+		virtual void Write(const LogType Type, const HChar* ArgFormat, ...)
 		{
-			wchar_t LogText[ConsoleLogMaxLength]{};
+			HChar LogText[ConsoleLogMaxLength]{};
 
 			va_list Args = nullptr;
 			__va_start(&Args, ArgFormat);
 			vswprintf_s(LogText, ConsoleLogMaxLength, ArgFormat, Args);
 			__crt_va_end(Args);
 
-			std::wstring_view LogTextView(LogText);
+			HStringView LogTextView(LogText);
 
 			switch (Type)
 			{
@@ -73,10 +71,10 @@ namespace HopStep::Core::Logger
 
 		std::mutex Lock;
 
-		virtual void Trace(std::wstring_view& InText) abstract;
-		virtual void Info(std::wstring_view& InText) abstract;
-		virtual void Error(std::wstring_view& InText) abstract;
-		virtual void Warn(std::wstring_view& InText) abstract;
-		virtual void Debug(std::wstring_view& InText) abstract;
+		virtual void Trace(HStringView& InText) abstract;
+		virtual void Info(HStringView& InText) abstract;
+		virtual void Error(HStringView& InText) abstract;
+		virtual void Warn(HStringView& InText) abstract;
+		virtual void Debug(HStringView& InText) abstract;
 	};
 }

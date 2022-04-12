@@ -1,5 +1,6 @@
 #pragma once
 #include "ReflectionConcepts.h"
+#include "HopStepOverrides.h"
 
 namespace HopStep::CoreObject::Reflection
 {
@@ -8,12 +9,12 @@ namespace HopStep::CoreObject::Reflection
 	{
 	public:
 
-		HTypeGenerator(std::wstring_view ClassName)
+		HTypeGenerator(HStringView ClassName)
 			: Name(ClassName)
 		{
 		}
 
-		std::wstring Name;
+		HString Name;
 
 		uint8 bNative : 1 = false;
 	};

@@ -10,5 +10,4 @@ namespace HopStep::CoreObject::Reflection
 
 
 	};
-
 }

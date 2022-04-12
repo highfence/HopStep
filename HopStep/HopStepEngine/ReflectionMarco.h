@@ -1,5 +1,6 @@
 #pragma once
 #include "TypeGenerator.h"
+#include "HopStepOverrides.h"
 
 using namespace HopStep::CoreObject::Reflection;
 
@@ -15,7 +16,7 @@ using namespace HopStep::CoreObject::Reflection;
 	friend class HType; \
 	using This = Class; \
 	static class HType* StaticClass(); \
-	inline static constexpr std::wstring_view FriendlyName = L ## #Class; \
+	inline static constexpr HopStep::HStringView FriendlyName = L ## #Class; \
 
 #define IMPLEMENT_CLASS_BODY(Class, ...) \
 	HType* Class::StaticClass() \
