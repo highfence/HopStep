@@ -4,11 +4,6 @@
 
 namespace HopStep::CoreObject::Reflection
 {
-	const std::wstring& HType::GetName() const
-	{
-		return Name;
-	}
-
 	size_t HType::GetSize() const
 	{
 		return Size;

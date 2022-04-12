@@ -1,13 +1,14 @@
 #pragma once
 #include "ReflectionConcepts.h"
 #include "TypeGenerator.h"
+#include "Field.h"
 
 namespace HopStep::CoreObject::Reflection
 {
 	/**
 	 *
 	 */
-	class HType
+	class HType : public HField
 	{
 	public:
 
@@ -23,16 +24,11 @@ namespace HopStep::CoreObject::Reflection
 		 */
 		template <class TType> requires StaticClassGetable<TType>
 		HType(HTypeGenerator<TType>&& Generator)
-			: Name(std::move(Generator.Name))
+			: HField(Generator.Name)
 			, Size(sizeof(TType))
 		{
 			RegisterToMetaData();
 		}
-
-		/**
-		 *
-		 */
-		const std::wstring& GetName() const;
 
 		/**
 		 *
@@ -58,11 +54,6 @@ namespace HopStep::CoreObject::Reflection
 		 *
 		 */
 		size_t Size;
-
-		/**
-		 *
-		 */
-		std::wstring Name;
 
 		/**
 		 *

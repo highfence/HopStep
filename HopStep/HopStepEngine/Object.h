@@ -4,6 +4,7 @@
 class HObject
 {
 public:
+
 	DECLARE_CLASS_BODY(HObject);
 
 };
