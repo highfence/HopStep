@@ -8,4 +8,7 @@ namespace HopStep
 	using HString = std::basic_string<wchar_t>;
 	
 	using HStringView = std::basic_string_view<wchar_t>;
+
+	template <class ValueType>
+	using TOptional = std::optional<ValueType>;
 }

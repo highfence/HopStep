@@ -6,7 +6,8 @@
 namespace HopStep::CoreObject::Reflection
 {
 	/**
-	 *
+	 * HType.
+	 * Object with their own properties, inheritances and methods
 	 */
 	class HType : public HField
 	{
@@ -23,7 +24,7 @@ namespace HopStep::CoreObject::Reflection
 		 *
 		 */
 		template <class TType> requires StaticClassGetable<TType>
-		HType(HTypeGenerator<TType>&& Generator)
+		explicit HType(HTypeGenerator<TType>&& Generator)
 			: HField(Generator.Name)
 			, Size(sizeof(TType))
 		{

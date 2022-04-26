@@ -3,8 +3,11 @@
 
 class HObject
 {
+	DECLARE_CLASS_BODY(HObject);
+
 public:
 
-	DECLARE_CLASS_BODY(HObject);
+	HPROPERTY();
+	int32 a;
 
 };

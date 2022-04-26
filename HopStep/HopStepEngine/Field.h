@@ -10,7 +10,7 @@ namespace HopStep::CoreObject::Reflection
 	{
 	public:
 
-		HField(HString& InName) : Name(InName) {}
+		HField(const HString& InName) : Name(InName) {}
 
 		virtual ~HField() {}
 

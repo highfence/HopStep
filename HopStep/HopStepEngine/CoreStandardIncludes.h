@@ -8,6 +8,9 @@
 #include <algorithm>
 #include <mutex>
 #include <wchar.h>
+#include <optional>
+#include <iostream>
+#include <cstddef>
 
 
 #include "HopStepDefine.h"
