@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="ConsoleLogger.h" />
     <ClInclude Include="CoreStandardIncludes.h" />
+    <ClInclude Include="Enum.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="HopStepDefine.h" />
     <ClInclude Include="HopStepOverrides.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="HopStep.h" />
     <ClInclude Include="MetadataLibrary.h" />
+    <ClInclude Include="PrimitiveProperty.h" />
     <ClInclude Include="PrimitiveType.h" />
     <ClInclude Include="PrimitiveTypeDefines.h" />
     <ClInclude Include="Property.h" />
@@ -160,6 +162,7 @@
     <ClInclude Include="TypeGenerator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Enum.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="HopStep.cpp">
@@ -167,6 +170,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">HopStep.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="MetadataLibrary.cpp" />
+    <ClCompile Include="PrimitiveProperty.cpp" />
     <ClCompile Include="PrimitiveType.cpp" />
     <ClCompile Include="Property.cpp" />
     <ClCompile Include="Type.cpp" />

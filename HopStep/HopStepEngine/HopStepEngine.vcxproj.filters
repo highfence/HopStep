@@ -64,6 +64,12 @@
     <ClInclude Include="CoreStandardIncludes.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="PrimitiveProperty.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp" />
@@ -87,6 +93,12 @@
     </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>CoreObject\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PrimitiveProperty.cpp">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="Enum.cpp">
+      <Filter>CoreObject\Reflection</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

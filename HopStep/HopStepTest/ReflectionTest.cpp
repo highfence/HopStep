@@ -72,7 +72,7 @@ namespace HopStepTest
 				Assert::AreEqual((int32)16, COffset);
 			}
 
-#pragma pack(4)
+#pragma pack(push, 4)
 			struct PackedTestStruct
 			{
 				int32 A;
@@ -93,7 +93,6 @@ namespace HopStepTest
 				int32 COffset = HopStep::CoreObject::Reflection::GetOffsetOf<PackedTestStruct, int32>(&PackedTestStruct::C);
 				Assert::AreEqual((int32)12, COffset);
 			}
-
 		};
 	};
 }
