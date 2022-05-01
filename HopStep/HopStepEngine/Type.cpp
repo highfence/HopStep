@@ -33,7 +33,7 @@ namespace HopStep::CoreObject::Reflection
 
 	void HType::RegisterToMetaData()
 	{
-		auto* Library = HMetadataLibrary::Get();
+		auto* Library = HTypeLibrary::Get();
 		Library->RegisterNewType(this);
 	}
 

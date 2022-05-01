@@ -5,13 +5,13 @@ namespace HopStep::CoreObject::Reflection
 	/**
 	 * 현재 모듈의 Type을 보관하고, 접근할 수 있도록 하는 인터페이스
 	 */
-	class HMetadataLibrary final
+	class HTypeLibrary final
 	{
 	public:
 
-		~HMetadataLibrary();
+		~HTypeLibrary();
 
-		static HMetadataLibrary* Get();
+		static HTypeLibrary* Get();
 
 		std::vector<class HType*> GetTypes();
 

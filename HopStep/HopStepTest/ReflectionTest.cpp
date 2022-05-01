@@ -9,11 +9,11 @@ namespace HopStepTest
 	TEST_CLASS(ReflectionTest)
 	{
 	public:
-		TEST_METHOD(MetadataLibraryAccessTest)
+		TEST_METHOD(TypeLibraryAccessTest)
 		{
-			std::cout << "MetadataLibraryAccessTest started" << std::endl;
+			std::cout << "TypeLibraryAccessTest started" << std::endl;
 
-			auto* Library = HMetadataLibrary::Get();
+			auto* Library = HTypeLibrary::Get();
 			Assert::IsNotNull(Library);
 
 			HType* ObjectType = HObject::StaticClass();

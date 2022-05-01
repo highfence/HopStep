@@ -6,8 +6,7 @@
 namespace HopStep::CoreObject::Reflection
 {
 	/**
-	 * HType.
-	 * Object with their own properties, inheritances and methods
+	 * Providing interface to TypeLibrary.
 	 */
 	class HType : public HField
 	{

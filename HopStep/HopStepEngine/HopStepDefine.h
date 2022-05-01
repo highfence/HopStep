@@ -8,4 +8,6 @@
 
 #define HopStep_On_Windows HopStep_Windows64 | HopStep_Windows32
 
+#define HopStep_UnitTest 1
+
 

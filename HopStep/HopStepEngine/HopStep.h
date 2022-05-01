@@ -4,7 +4,7 @@
 #include "HopStepOverrides.h"
 
 #include "PrimitiveTypeDefines.h"
-#include "MetadataLibrary.h"
+#include "TypeLibrary.h"
 #include "Type.h"
 #include "Object.h"
 #include "ReflectionMarco.h"
