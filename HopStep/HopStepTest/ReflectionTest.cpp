@@ -72,7 +72,7 @@ namespace HopStepTest
 				Assert::AreEqual((int32)16, COffset);
 			}
 
-#pragma pack(push, 4)
+#pragma pack(push,	4)
 			struct PackedTestStruct
 			{
 				int32 A;
