@@ -159,8 +159,7 @@
     <ClInclude Include="ReflectionConcepts.h" />
     <ClInclude Include="ReflectionMarco.h" />
     <ClInclude Include="ReflectionTest.h" />
-    <ClInclude Include="Type.h" />
-    <ClInclude Include="TypeGenerator.h" />
+    <ClInclude Include="Struct.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Enum.cpp" />
@@ -175,8 +174,7 @@
     <ClCompile Include="PrimitiveType.cpp" />
     <ClCompile Include="Property.cpp" />
     <ClCompile Include="ReflectionTest.cpp" />
-    <ClCompile Include="Type.cpp" />
-    <ClCompile Include="TypeGenerator.cpp" />
+    <ClCompile Include="Struct.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

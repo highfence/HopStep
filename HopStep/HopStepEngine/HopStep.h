@@ -5,7 +5,7 @@
 
 #include "PrimitiveTypeDefines.h"
 #include "TypeLibrary.h"
-#include "Type.h"
+#include "Struct.h"
 #include "Object.h"
 #include "ReflectionMarco.h"
 

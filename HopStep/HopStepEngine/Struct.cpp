@@ -1,25 +1,20 @@
 #include "HopStep.h"
 #include "Property.h"
-#include "Type.h"
+#include "Struct.h"
 
 namespace HopStep::CoreObject::Reflection
 {
-	size_t HType::GetSize() const
-	{
-		return Size;
-	}
-
-	HType* HType::GetSuper() const
+	HStruct* HStruct::GetSuper() const
 	{
 		return Super;
 	}
 
-	const std::vector<HProperty*> HType::GetProperties(bool bIncludeSuper /*= true*/)
+	const std::vector<HProperty*> HStruct::GetProperties(bool bIncludeSuper /*= true*/)
 	{
 		std::vector<HProperty*> Result;
 		if (bIncludeSuper)
 		{
-			for (HType* SuperIter = Super; SuperIter; SuperIter = SuperIter->Super)
+			for (HStruct* SuperIter = Super; SuperIter; SuperIter = SuperIter->Super)
 			{
 				Result.reserve(Super->Properties.size());
 				Result.insert(Result.end(), Super->Properties.begin(), Super->Properties.end());
@@ -31,7 +26,7 @@ namespace HopStep::CoreObject::Reflection
 		return Result;
 	}
 
-	void HType::RegisterToMetaData()
+	void HStruct::RegisterToLibrary()
 	{
 		auto* Library = HTypeLibrary::Get();
 		Library->RegisterNewType(this);

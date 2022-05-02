@@ -31,13 +31,10 @@
     <ClInclude Include="TypeLibrary.h">
       <Filter>CoreObject\Reflection</Filter>
     </ClInclude>
-    <ClInclude Include="Type.h">
+    <ClInclude Include="Struct.h">
       <Filter>CoreObject\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="ReflectionMarco.h">
-      <Filter>CoreObject\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="TypeGenerator.h">
       <Filter>CoreObject\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="ReflectionConcepts.h">
@@ -88,10 +85,7 @@
     <ClCompile Include="TypeLibrary.cpp">
       <Filter>CoreObject\Reflection</Filter>
     </ClCompile>
-    <ClCompile Include="Type.cpp">
-      <Filter>CoreObject\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="TypeGenerator.cpp">
+    <ClCompile Include="Struct.cpp">
       <Filter>CoreObject\Reflection</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">

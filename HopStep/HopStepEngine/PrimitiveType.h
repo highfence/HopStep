@@ -6,19 +6,19 @@ namespace HopStep::CoreObject::Reflection
 	{
 	public:
 
-		enum class HType : int8_t
+		enum class HStruct : int8_t
 		{
 			Numeric,
 			Boolean,
 			String
 		};
 
-		explicit HPrimitiveType(HType InType)
+		explicit HPrimitiveType(HStruct InType)
 			: Type(InType)
 		{
 
 		}
 
-		HType Type;
+		HStruct Type;
 	};
 }

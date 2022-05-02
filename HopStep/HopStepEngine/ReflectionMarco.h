@@ -1,5 +1,4 @@
 #pragma once
-#include "TypeGenerator.h"
 #include "HopStepOverrides.h"
 
 using namespace HopStep::CoreObject::Reflection;
@@ -17,18 +16,18 @@ using namespace HopStep::CoreObject::Reflection;
 public: \
 	DECLARE_TYPEHASH \
 \
-	friend class HType; \
+	friend class HStruct; \
 	using This = Class; \
 	inline static constexpr HopStep::HStringView FriendlyName = L ## #Class; \
 \
-	static class HType* StaticClass(); \
+	static class HStruct* StaticClass(); \
 \
 private: 
 	
 
 #define IMPLEMENT_CLASS_BODY(Class, ...) \
-	HType* Class::StaticClass() \
+	HStruct* Class::StaticClass() \
 	{ \
-		static HType ClassType = HType(HTypeGenerator<This>(FriendlyName)); \
+		static HStruct ClassType(FriendlyName.data()); \
 		return &ClassType; \
 	}
