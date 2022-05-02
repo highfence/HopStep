@@ -13,12 +13,12 @@ namespace HopStep::CoreObject::Reflection
 
 		static HTypeLibrary* Get();
 
-		std::vector<class HStruct*> GetTypes();
+		std::vector<class HType*> GetTypes();
 
-		void RegisterNewType(class HStruct* InType);
+		void RegisterNewType(class HType* InType);
 
 	protected:
 
-		std::vector<class HStruct*> Types;
+		std::vector<class HType*> Types;
 	};
 }

@@ -26,10 +26,5 @@ namespace HopStep::CoreObject::Reflection
 		return Result;
 	}
 
-	void HStruct::RegisterToLibrary()
-	{
-		auto* Library = HTypeLibrary::Get();
-		Library->RegisterNewType(this);
-	}
 
 }

@@ -15,12 +15,12 @@ namespace HopStep::CoreObject::Reflection
 		return &Library;
 	}
 
-	std::vector<class HStruct*> HTypeLibrary::GetTypes()
+	std::vector<class HType*> HTypeLibrary::GetTypes()
 	{
 		return Types;
 	}
 
-	void HTypeLibrary::RegisterNewType(HStruct* InType)
+	void HTypeLibrary::RegisterNewType(HType* InType)
 	{
 		if (InType == nullptr) return;
 

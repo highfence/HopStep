@@ -1,16 +1,16 @@
 #pragma once
 #include "ReflectionConcepts.h"
-#include "Field.h"
+#include "Type.h"
 
 namespace HopStep::CoreObject::Reflection
 {
 	/**
 	 */
-	class HStruct : public HField
+	class HStruct : public HType
 	{
 	public:
 
-		HStruct(const HString& InName) : HField(InName) 
+		HStruct(const HString& InName) : HType(InName) 
 		{
 			RegisterToLibrary();
 		};
@@ -34,8 +34,6 @@ namespace HopStep::CoreObject::Reflection
 
 
 	private:
-
-		void RegisterToLibrary();
 
 		/**
 		 *
