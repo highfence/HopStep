@@ -5,6 +5,7 @@ namespace HopStep::CoreObject::Reflection
 {
 	/**
 	* Object that has name on it.
+	* + Metadata managing (todo)
 	*/
 	class HField
 	{

@@ -73,6 +73,7 @@
     <ClInclude Include="Type.h">
       <Filter>CoreObject\Reflection</Filter>
     </ClInclude>
+    <ClInclude Include="Class.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp" />
@@ -106,5 +107,6 @@
     <ClCompile Include="Type.cpp">
       <Filter>CoreObject\Reflection</Filter>
     </ClCompile>
+    <ClCompile Include="Class.cpp" />
   </ItemGroup>
 </Project>

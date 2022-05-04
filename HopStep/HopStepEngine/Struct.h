@@ -5,6 +5,7 @@
 namespace HopStep::CoreObject::Reflection
 {
 	/**
+	 * Manage inheritance & properties
 	 */
 	class HStruct : public HType
 	{
@@ -12,6 +13,7 @@ namespace HopStep::CoreObject::Reflection
 
 		HStruct(const HString& InName) : HType(InName) 
 		{
+			// todo : must call in StaticClass()
 			RegisterToLibrary();
 		};
 

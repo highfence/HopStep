@@ -25,7 +25,7 @@ namespace HopStep::CoreObject::Reflection
 	template <class TClass, class TField>
 	int32 GetOffsetOf(TField TClass::* InClassField)
 	{
-		return (int32)((int8*)&((TClass*)nullptr->*InClassField) - (int8*)nullptr);
 		// return offsetof(TClass, InClassField);
+		return (int32)((int8*)&((TClass*)nullptr->*InClassField) - (int8*)nullptr);
 	}
 }

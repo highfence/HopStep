@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Class.h" />
     <ClInclude Include="ConsoleLogger.h" />
     <ClInclude Include="CoreStandardIncludes.h" />
     <ClInclude Include="Enum.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="Struct.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Class.cpp" />
     <ClCompile Include="Enum.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Object.cpp" />
