@@ -3,11 +3,14 @@ using System.IO;
 
 namespace HopStepHeaderTool
 {
-	internal class HopStepSolutionParser : ISolutionParser
+	public class HopStepSolutionParser : ISolutionParser
 	{
-		public SolutionSchema SolutionSchema => throw new System.NotImplementedException();
+		public SolutionSchema SolutionSchema { get; private set; } = null;
+
 		public void Parse(string path)
 		{
+			SolutionSchema = new SolutionSchema();
+
 			try
             {
 				var fullPath = Path.GetFullPath(path);
@@ -19,11 +22,13 @@ namespace HopStepHeaderTool
 				foreach (var headerFile in headerFiles)
                 {
 					Console.WriteLine(headerFile.FullName);
+					SolutionSchema.HeaderDirectories.Add(headerFile.FullName);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-				throw new NotImplementedException();
+				Console.WriteLine(ex);
+				throw new InvalidDataException(path);
             }
 		}
 	}

@@ -1,6 +1,9 @@
-﻿namespace HopStepHeaderTool
+﻿using System.Collections.Generic;
+
+namespace HopStepHeaderTool
 {
-	internal class SolutionSchema
-	{
-	}
+    public class SolutionSchema
+    {
+        public List<string> HeaderDirectories { get; internal set; } = new List<string>();
+    }
 }
