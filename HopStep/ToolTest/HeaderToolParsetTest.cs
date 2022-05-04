@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using System;
+using System.IO;
 
 namespace ToolTest
 {
@@ -20,7 +22,9 @@ namespace ToolTest
         public void ParseHeader()
         {
             var parser = new HopStepHeaderTool.HopStepSolutionParser();
-            parser.Parse("../HopStepEngine/");
+            var currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            var enginePath = Path.Combine(currentDirectory, @"..\..\..\..\HopStepEngine\");
+            parser.Parse(enginePath);
         }
     }
 }
