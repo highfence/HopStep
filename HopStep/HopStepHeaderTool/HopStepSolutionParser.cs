@@ -7,29 +7,56 @@ namespace HopStepHeaderTool
 	{
 		public SolutionSchema SolutionSchema { get; private set; } = null;
 
-		public void Parse(string path)
-		{
-			SolutionSchema = new SolutionSchema();
+		private string _modulePath = string.Empty;
 
+		public HopStepSolutionParser(string modulePath)
+        {
+			_modulePath = modulePath;
+			SolutionSchema = new SolutionSchema();
+        }
+
+		public void Parse()
+		{
+			TryFetchTargetFiles();
+			ParseHeader();
+		}
+
+		public bool TryFetchTargetFiles()
+        {
 			try
             {
-				var fullPath = Path.GetFullPath(path);
-				Console.WriteLine($"Solution path : {fullPath}");
-
+				var fullPath = Path.GetFullPath(_modulePath);
 				var dirInfo = new DirectoryInfo(fullPath);
 				var headerFiles = dirInfo.GetFiles("*.h");
 
 				foreach (var headerFile in headerFiles)
                 {
-					Console.WriteLine(headerFile.FullName);
 					SolutionSchema.HeaderDirectories.Add(headerFile.FullName);
                 }
             }
             catch (Exception ex)
             {
-				Console.WriteLine(ex);
-				throw new InvalidDataException(path);
+                Console.WriteLine(ex);
+				return false;
             }
-		}
+
+			return true;
+        }
+
+		public void ParseHeader()
+        {
+            foreach (var headerPath in SolutionSchema.HeaderDirectories)
+            {
+				var headerLines = File.ReadAllLines(headerPath);
+				
+				foreach (var line in headerLines)
+                {
+
+
+                }
+            }
+        }
+
+
 	}
 }

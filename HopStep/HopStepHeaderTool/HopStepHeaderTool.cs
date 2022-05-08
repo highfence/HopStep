@@ -8,12 +8,12 @@
 		public HopStepHeaderTool(string path)
 		{
 			_path = path;
-			_parser = new HopStepSolutionParser();
+			_parser = new HopStepSolutionParser(path);
 		}
 
 		public bool Process()
 		{
-			_parser?.Parse(_path);
+			_parser?.Parse();
 			return true;
 		}
 	}

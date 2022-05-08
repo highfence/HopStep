@@ -2,7 +2,7 @@
 {
 	internal interface ISolutionParser
 	{
-		void Parse(string path);
+		void Parse();
 
 		SolutionSchema SolutionSchema { get; }
 	}

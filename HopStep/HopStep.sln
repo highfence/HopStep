@@ -9,7 +9,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HopStepTest", "HopStepTest\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HopStepHeaderTool", "HopStepHeaderTool\HopStepHeaderTool.csproj", "{D181260A-B5B7-4FF7-AB7F-F7AFE9402D1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolTest", "ToolTest\ToolTest.csproj", "{FE5AACF5-1320-44C9-A6F2-9F31A01B9DB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolTest", "ToolTest\ToolTest.csproj", "{FE5AACF5-1320-44C9-A6F2-9F31A01B9DB2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HopStep", "HopStep", "{23B9FA71-D895-4CE0-9F2B-55022B6C1889}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{E2761787-12DB-461E-8E59-244FE4248496}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,6 +76,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A2137975-0CAB-4FE1-A3DD-41CBD2B7D097} = {23B9FA71-D895-4CE0-9F2B-55022B6C1889}
+		{A68CBA6D-8392-410D-8096-124C8ACBBC35} = {23B9FA71-D895-4CE0-9F2B-55022B6C1889}
+		{D181260A-B5B7-4FF7-AB7F-F7AFE9402D1E} = {E2761787-12DB-461E-8E59-244FE4248496}
+		{FE5AACF5-1320-44C9-A6F2-9F31A01B9DB2} = {E2761787-12DB-461E-8E59-244FE4248496}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D056C7A0-DA3F-4213-AF65-29339302B759}
