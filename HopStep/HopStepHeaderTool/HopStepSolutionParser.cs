@@ -53,7 +53,13 @@ namespace HopStepHeaderTool
 
 				foreach (var line in headerLines)
 				{
+					var isObjectEnd = _parseContext.ParseStringLine(line);
 
+					if (isObjectEnd)
+                    {
+						SolutionSchema.AddTypeInfo(_parseContext.TypeName, _parseContext.ObjectType, _parseContext.Properties);
+						_parseContext.Reset();
+                    }
 				}
 			}
 		}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace HopStepHeaderTool
@@ -14,10 +15,11 @@ namespace HopStepHeaderTool
 		}
 
 		public ParsingState State { get; private set; } = ParsingState.None;
-
         public SolutionSchema.ObjectType ObjectType = SolutionSchema.ObjectType.None;
+        public string TypeName { get; private set; } = string.Empty;
+        public List<SolutionSchema.PropertyInfo> Properties { get; internal set; } = new List<SolutionSchema.PropertyInfo>();
 
-		private Dictionary<string, SolutionSchema.ObjectType> _objectTypeDefines = new Dictionary<string, SolutionSchema.ObjectType>
+        private Dictionary<string, SolutionSchema.ObjectType> _objectTypeDefines = new Dictionary<string, SolutionSchema.ObjectType>
 		{
 			{ "HOBJECT", SolutionSchema.ObjectType.Object },
 			{ "HSTRUCT", SolutionSchema.ObjectType.Struct },
@@ -56,5 +58,13 @@ namespace HopStepHeaderTool
 
 			return SolutionSchema.ObjectType.None;
 		}
-	}
+
+        internal void Reset()
+        {
+			State = ParsingState.None;
+			ObjectType = SolutionSchema.ObjectType.None;
+			TypeName = string.Empty;
+			Properties.Clear();
+        }
+    }
 }
