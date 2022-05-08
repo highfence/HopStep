@@ -3,6 +3,7 @@
 
 using namespace HopStep::CoreObject::Reflection;
 
+#define HCLASS(...)
 #define HPROPERTY(...)
 
 #define DECLARE_TYPEHASH \

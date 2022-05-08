@@ -1,12 +1,13 @@
 ﻿using NUnit.Framework;
 using System;
 using System.IO;
+using HopStepHeaderTool;
 
 namespace ToolTest
 {
     internal class HeaderToolParsetTest
     {
-        private HopStepHeaderTool.HopStepSolutionParser _parser = null;
+        private HopStepSolutionParser _parser = null;
         private string _enginePath = string.Empty;
         private string _intermediatePath = string.Empty;
 
@@ -16,7 +17,7 @@ namespace ToolTest
             var currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             _enginePath = Path.Combine(currentDirectory, @"..\..\..\..\HopStepEngine\");
             _intermediatePath = Path.Combine(_enginePath, @"Intermeditate\");
-            _parser = new HopStepHeaderTool.HopStepSolutionParser(_enginePath);
+            _parser = new HopStepSolutionParser(_enginePath);
         }
 
         [TearDown]
@@ -38,6 +39,17 @@ namespace ToolTest
 
             var types = _parser.SolutionSchema.Types;
             Assert.IsTrue(types.Count > 0);
+        }
+
+        [Test]
+        public void TestParsingContext()
+        {
+            var parseContext = new ParsingStateContext();
+            Assert.IsTrue(parseContext.State == ParsingStateContext.ParsingState.None);
+
+            Assert.IsFalse(parseContext.ParseStringLine("HOBJECT();"));
+            Assert.AreEqual(parseContext.State, ParsingStateContext.ParsingState.WaitForObjectName);
+            Assert.AreEqual(parseContext.ObjectType, SolutionSchema.ObjectType.Object);
         }
     }
 }
