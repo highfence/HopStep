@@ -1,7 +1,7 @@
 #pragma once
 #include "ReflectionMarco.h"
 
-HCLASS(...);
+HCLASS();
 class HObject
 {
 	DECLARE_CLASS_BODY(HObject);

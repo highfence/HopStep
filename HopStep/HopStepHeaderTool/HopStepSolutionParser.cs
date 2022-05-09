@@ -3,7 +3,7 @@ using System.IO;
 
 namespace HopStepHeaderTool
 {
-    public partial class HopStepSolutionParser : ISolutionParser
+    public class HopStepSolutionParser : ISolutionParser
 	{
 		public SolutionSchema SolutionSchema { get; private set; } = null;
 

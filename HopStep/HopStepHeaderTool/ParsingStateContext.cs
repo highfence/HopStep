@@ -11,6 +11,7 @@ namespace HopStepHeaderTool
 			None,
 			WaitForObjectName,
 			WaitForObjectEnd,
+			WaitForPropertyName,
 			Done
 		}
 
@@ -21,7 +22,7 @@ namespace HopStepHeaderTool
 
         private Dictionary<string, SolutionSchema.ObjectType> _objectTypeDefines = new Dictionary<string, SolutionSchema.ObjectType>
 		{
-			{ "HOBJECT", SolutionSchema.ObjectType.Object },
+			{ "HCLASS", SolutionSchema.ObjectType.Class },
 			{ "HSTRUCT", SolutionSchema.ObjectType.Struct },
 			{ "HPROPERTY", SolutionSchema.ObjectType.Property },
 		};
@@ -38,6 +39,28 @@ namespace HopStepHeaderTool
 					return false;
                 }
             }
+			else if (State == ParsingState.WaitForObjectName)
+			{
+				string[] tokens = line.Split(' ');
+
+				var findClassDeclare = false;
+
+				foreach (string token in tokens)
+				{
+					if (findClassDeclare)
+					{
+						TypeName = token;
+						break;
+					}
+
+					if (token == "class" || token == "struct")
+					{
+						findClassDeclare = true;
+					}
+				}
+
+				State = ParsingState.WaitForObjectEnd;
+			}
 
 			return false;
         }
@@ -59,7 +82,7 @@ namespace HopStepHeaderTool
 			return SolutionSchema.ObjectType.None;
 		}
 
-        internal void Reset()
+        public void Reset()
         {
 			State = ParsingState.None;
 			ObjectType = SolutionSchema.ObjectType.None;

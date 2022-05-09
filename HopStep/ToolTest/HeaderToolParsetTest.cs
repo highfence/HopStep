@@ -7,8 +7,8 @@ namespace ToolTest
 {
     internal class HeaderToolParsetTest
     {
-        private HopStepSolutionParser _parser = null;
-        private string _enginePath = string.Empty;
+        private HopStepSolutionParser? _parser;
+		private string _enginePath = string.Empty;
         private string _intermediatePath = string.Empty;
 
         [SetUp]
@@ -16,7 +16,7 @@ namespace ToolTest
         {
             var currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             _enginePath = Path.Combine(currentDirectory, @"..\..\..\..\HopStepEngine\");
-            _intermediatePath = Path.Combine(_enginePath, @"Intermeditate\");
+            _intermediatePath = Path.Combine(_enginePath, @"Intermediate\");
             _parser = new HopStepSolutionParser(_enginePath);
         }
 
@@ -29,6 +29,12 @@ namespace ToolTest
         [Test]
         public void TestParseHeader()
         {
+            if (_parser == null)
+			{
+                Assert.Fail();
+                return;
+			}
+
             _parser.Parse();
             Assert.IsTrue(_parser.SolutionSchema.HeaderDirectories.Count > 0);
 
@@ -47,9 +53,15 @@ namespace ToolTest
             var parseContext = new ParsingStateContext();
             Assert.IsTrue(parseContext.State == ParsingStateContext.ParsingState.None);
 
-            Assert.IsFalse(parseContext.ParseStringLine("HOBJECT();"));
+            Assert.IsFalse(parseContext.ParseStringLine("HCLASS();"));
             Assert.AreEqual(parseContext.State, ParsingStateContext.ParsingState.WaitForObjectName);
-            Assert.AreEqual(parseContext.ObjectType, SolutionSchema.ObjectType.Object);
+            Assert.AreEqual(parseContext.ObjectType, SolutionSchema.ObjectType.Class);
+
+            Assert.IsFalse(parseContext.ParseStringLine("class HObject"));
+            Assert.AreEqual(parseContext.State, ParsingStateContext.ParsingState.WaitForObjectEnd);
+            Assert.AreEqual(parseContext.TypeName, "HObject");
+
+
         }
     }
 }

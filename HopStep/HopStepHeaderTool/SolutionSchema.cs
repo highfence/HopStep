@@ -7,7 +7,7 @@ namespace HopStepHeaderTool
         public enum ObjectType
         {
             None,
-            Object,
+            Class,
             Struct,
             Property,
         }
