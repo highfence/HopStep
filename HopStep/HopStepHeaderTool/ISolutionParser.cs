@@ -1,9 +1,9 @@
 ﻿namespace HopStepHeaderTool
 {
-	internal interface ISolutionParser
-	{
-		void Parse();
+    internal interface ISolutionParser
+    {
+        void Parse();
 
-		SolutionSchema SolutionSchema { get; }
-	}
+        SolutionSchema SolutionSchema { get; }
+    }
 }

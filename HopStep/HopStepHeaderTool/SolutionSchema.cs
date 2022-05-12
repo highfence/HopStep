@@ -39,7 +39,7 @@ namespace HopStepHeaderTool
             Types.Add(name, new TypeInfo
             {
                 Type = type,
-                Name = name, 
+                Name = name,
                 Fields = fields
             });
         }
