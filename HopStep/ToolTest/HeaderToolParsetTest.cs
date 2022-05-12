@@ -54,14 +54,59 @@ namespace ToolTest
             Assert.IsTrue(parseContext.State == ParsingStateContext.ParsingState.None);
 
             Assert.IsFalse(parseContext.ParseStringLine("HCLASS();"));
-            Assert.AreEqual(parseContext.State, ParsingStateContext.ParsingState.WaitForObjectName);
-            Assert.AreEqual(parseContext.ObjectType, SolutionSchema.ObjectType.Class);
+            Assert.AreEqual(ParsingStateContext.ParsingState.WaitForObjectName, parseContext.State);
+            Assert.AreEqual(SolutionSchema.ObjectType.Class, parseContext.ObjectType);
 
             Assert.IsFalse(parseContext.ParseStringLine("class HObject"));
-            Assert.AreEqual(parseContext.State, ParsingStateContext.ParsingState.WaitForObjectEnd);
-            Assert.AreEqual(parseContext.TypeName, "HObject");
+            Assert.AreEqual(ParsingStateContext.ParsingState.WaitForObjectEnd, parseContext.State);
+            Assert.AreEqual("HObject", parseContext.TypeName);
 
+            Assert.AreEqual(0, parseContext.BracketStack);
+            Assert.IsFalse(parseContext.ParseStringLine("{"));
+            Assert.AreEqual(1, parseContext.BracketStack);
 
+            Assert.IsFalse(parseContext.ParseStringLine("   HPROPERTY();"));
+            Assert.AreEqual(ParsingStateContext.ParsingState.WaitForPropertyName, parseContext.State);
+
+            Assert.IsFalse(parseContext.ParseStringLine("   int32 TestProperty;"));
+            Assert.AreEqual(ParsingStateContext.ParsingState.WaitForObjectEnd, parseContext.State);
+            Assert.IsTrue(parseContext.Properties.Count > 0);
+            Assert.AreEqual("int32", parseContext.Properties[0].PropertyType);
+            Assert.AreEqual("TestProperty", parseContext.Properties[0].Name);
+
+            // Annotation test
+            Assert.IsFalse(parseContext.ParseStringLine("// { is emtpy."));
+            Assert.AreEqual(1, parseContext.BracketStack);
+            Assert.IsFalse(parseContext.ParseStringLine("/*"));
+            Assert.AreEqual(1, parseContext.BracketStack);
+            Assert.IsFalse(parseContext.ParseStringLine("HPROPERTY();"));
+            Assert.AreEqual(ParsingStateContext.ParsingState.WaitForObjectEnd, parseContext.State);
+            Assert.IsFalse(parseContext.ParseStringLine("{"));
+            Assert.AreEqual(1, parseContext.BracketStack);
+            Assert.IsFalse(parseContext.ParseStringLine("}"));
+            Assert.AreEqual(1, parseContext.BracketStack);
+            Assert.IsFalse(parseContext.ParseStringLine("*/"));
+
+            // Obejct end test
+            Assert.AreEqual(1, parseContext.BracketStack);
+            Assert.IsTrue(parseContext.ParseStringLine("}"));
+            Assert.AreEqual(0, parseContext.BracketStack);
+        }
+
+        [Test]
+        public void TestAnnotationTest()
+        {
+            var parseContext = new ParsingStateContext();
+
+            // single line annotation
+            Assert.AreEqual(parseContext.FilteringAnnotationString("class Test"), "class Test");
+            Assert.AreEqual(parseContext.FilteringAnnotationString("// class Test"), string.Empty);
+            Assert.AreEqual(parseContext.FilteringAnnotationString(" // class Test"), string.Empty);
+
+            // multiline annotation
+            Assert.AreEqual(parseContext.FilteringAnnotationString(" /*"), string.Empty);
+            Assert.AreEqual(parseContext.FilteringAnnotationString("class MultiLineTest"), string.Empty);
+            Assert.AreEqual(parseContext.FilteringAnnotationString("Test */"), string.Empty);
         }
     }
 }
