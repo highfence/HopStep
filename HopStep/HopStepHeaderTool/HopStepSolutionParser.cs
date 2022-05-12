@@ -3,7 +3,7 @@ using System.IO;
 
 namespace HopStepHeaderTool
 {
-    public class HopStepSolutionParser : ISolutionParser
+	public class HopStepSolutionParser : ISolutionParser
 	{
 		public SolutionSchema SolutionSchema { get; private set; } = null;
 
@@ -56,10 +56,10 @@ namespace HopStepHeaderTool
 					var isObjectEnd = _parseContext.ParseStringLine(line);
 
 					if (isObjectEnd)
-                    {
+					{
 						SolutionSchema.AddTypeInfo(_parseContext.TypeName, _parseContext.ObjectType, _parseContext.Properties);
 						_parseContext.Reset();
-                    }
+					}
 				}
 			}
 		}
