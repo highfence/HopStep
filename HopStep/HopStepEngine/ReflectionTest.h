@@ -5,6 +5,7 @@ namespace HopStep::CoreObject::Reflection
 {
 #if HopStep_UnitTest
 
+	HCLASS()
 	class HReflectionObjectTest
 	{
 		HPROPERTY();
