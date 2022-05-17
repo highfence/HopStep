@@ -12,7 +12,6 @@ namespace ToolTest
         [Test]
         public void Test1()
         {
-            Assert.Pass();
         }
     }
 }

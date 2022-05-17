@@ -9,14 +9,12 @@ namespace ToolTest
     {
         private HopStepSolutionParser? _parser;
 		private string _enginePath = string.Empty;
-        private string _intermediatePath = string.Empty;
 
         [SetUp]
         public void Setup()
         {
             var currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             _enginePath = Path.Combine(currentDirectory, @"..\..\..\..\HopStepEngine\");
-            _intermediatePath = Path.Combine(_enginePath, @"Intermediate\");
             _parser = new HopStepSolutionParser(_enginePath);
         }
 

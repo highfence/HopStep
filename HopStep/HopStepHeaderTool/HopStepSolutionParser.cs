@@ -57,7 +57,13 @@ namespace HopStepHeaderTool
 
                     if (isObjectEnd)
                     {
-                        SolutionSchema.AddTypeInfo(_parseContext.TypeName, _parseContext.ObjectType, _parseContext.Properties);
+                        SolutionSchema.AddTypeInfo(
+                            _parseContext.TypeName,
+                            _parseContext.ObjectType,
+                            headerPath,
+                            _parseContext.Properties
+                        );
+
                         _parseContext.Reset();
                     }
                 }

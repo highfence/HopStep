@@ -16,6 +16,7 @@ namespace HopStepHeaderTool
         {
             public ObjectType Type = ObjectType.None;
             public string Name = string.Empty;
+            public string HeaderDirectory = string.Empty;
             public List<PropertyInfo> Fields = new List<PropertyInfo>();
         }
 
@@ -29,7 +30,7 @@ namespace HopStepHeaderTool
 
         public Dictionary<string, TypeInfo> Types = new Dictionary<string, TypeInfo>();
 
-        public void AddTypeInfo(string name, ObjectType type, List<PropertyInfo> fields)
+        public void AddTypeInfo(string name, ObjectType type, string headerDirectory, List<PropertyInfo> fields)
         {
             if (Types.ContainsKey(name))
             {
@@ -40,6 +41,7 @@ namespace HopStepHeaderTool
             {
                 Type = type,
                 Name = name,
+                HeaderDirectory = headerDirectory,
                 Fields = fields
             });
         }
