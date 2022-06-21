@@ -62,6 +62,8 @@ namespace ToolTest
             Int32 Index = 0;
             Assert.AreEqual(lines[Index++], "#pragma once");
             Assert.AreEqual(lines[Index++], "#include \"ObjectMacro.h\"");
+            Assert.AreEqual(lines[Index++], "");
+            Assert.AreEqual(lines[Index++], "");
 		}
 	}
 }

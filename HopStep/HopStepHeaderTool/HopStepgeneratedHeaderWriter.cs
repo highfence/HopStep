@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -29,14 +30,29 @@ namespace HopStepHeaderTool
 
 				var objectName = fileToken.Remove(fileToken.Length - 2);
 				var generatedPath = Path.Combine(intermediatePath, $"{objectName}.generated.h");
-				using (var handle = new StreamWriter(generatedPath, false, Encoding.UTF8))
-				{
-					handle.WriteLine("#pragma once");
-					handle.WriteLine("#include \"ObjectMacro.h\"");
+				var schemasInHeader = solutionSchema.Types
+					.Where(s => s.Value.HeaderDirectory == headerPath)
+					.Select(s => s.Value).ToList();
 
-					// dispose
-					handle.Close();
+				WriteHeader(generatedPath, schemasInHeader);
+			}
+		}
+
+		private void WriteHeader(string generatedPath, List<SolutionSchema.TypeInfo> schemasInHeader)
+		{
+			using (var handle = new StreamWriter(generatedPath, false, Encoding.UTF8))
+			{
+				handle.WriteLine("#pragma once");
+				handle.WriteLine("#include \"ObjectMacro.h\"");
+				handle.WriteLine("");
+
+				foreach (var typeInfo in schemasInHeader)
+				{
+					handle.WriteLine($"");
 				}
+
+				// dispose
+				handle.Close();
 			}
 		}
 
