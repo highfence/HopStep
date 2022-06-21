@@ -57,6 +57,11 @@ namespace ToolTest
 
             var targetFile = Path.Combine(_intermediatePath, "Object.generated.h");
             Assert.IsTrue(File.Exists(targetFile));
+
+            string[] lines = File.ReadAllLines(targetFile);
+            Int32 Index = 0;
+            Assert.AreEqual(lines[Index++], "#pragma once");
+            Assert.AreEqual(lines[Index++], "#include \"ObjectMacro.h\"");
 		}
 	}
 }

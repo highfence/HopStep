@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace HopStepHeaderTool
 {
@@ -28,8 +29,11 @@ namespace HopStepHeaderTool
 
 				var objectName = fileToken.Remove(fileToken.Length - 2);
 				var generatedPath = Path.Combine(intermediatePath, $"{objectName}.generated.h");
-				using (var handle = File.Create(generatedPath))
+				using (var handle = new StreamWriter(generatedPath, false, Encoding.UTF8))
 				{
+					handle.WriteLine("#pragma once");
+					handle.WriteLine("#include \"ObjectMacro.h\"");
+
 					// dispose
 					handle.Close();
 				}
