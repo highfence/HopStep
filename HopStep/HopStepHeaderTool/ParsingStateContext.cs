@@ -102,7 +102,13 @@ namespace HopStepHeaderTool
 
         private int GetPropertySize(string typeName)
         {
-            
+            switch (typeName)
+            {
+                case "Int32":
+                    return 4;
+            }
+
+            return 0;
         }
 
         private void UpdateBraketStack(string line)

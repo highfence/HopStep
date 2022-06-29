@@ -37,6 +37,11 @@ namespace HopStep::CoreObject::Reflection
 		 */
 		void AddProperty(HUniquePtr<HProperty>& InProperty);
 
+		/**
+		 *
+		 */
+		void AddProperty(HUniquePtr<HProperty>& InProperty);
+
 	private:
 
 		/**
