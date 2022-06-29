@@ -14,4 +14,7 @@ namespace HopStep
 
 	template <class TValueType>
 	using HArray = std::vector<TValueType>;
+
+	template <class TType>
+	using HUniquePtr = std::unique_ptr<TType>;
 }

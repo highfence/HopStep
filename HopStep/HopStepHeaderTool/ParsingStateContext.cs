@@ -94,10 +94,15 @@ namespace HopStepHeaderTool
                 }
 
                 State = ParsingState.WaitForObjectEnd;
-                Properties.Add(new SolutionSchema.PropertyInfo { PropertyType = propertyToken[0], Name = propertyToken[1] });
+                Properties.Add(new SolutionSchema.PropertyInfo { PropertyType = propertyToken[0], Name = propertyToken[1], PropertySize = GetPropertySize(propertyToken[0]) });
             }
 
             return State == ParsingState.WaitForObjectEnd && BracketStack is 0 && _isObjectStarted;
+        }
+
+        private int GetPropertySize(string typeName)
+        {
+            
         }
 
         private void UpdateBraketStack(string line)

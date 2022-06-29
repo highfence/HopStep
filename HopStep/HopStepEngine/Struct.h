@@ -13,8 +13,6 @@ namespace HopStep::CoreObject::Reflection
 
 		HStruct(const HString& InName) : HType(InName) 
 		{
-			// todo : must call in StaticClass()
-			RegisterToLibrary();
 		};
 
 		/**
@@ -32,8 +30,12 @@ namespace HopStep::CoreObject::Reflection
 		/**
 		 *
 		 */
-		const std::vector<class HProperty*> GetProperties(bool bIncludeSuper = true);
+		const HArray<class HProperty*> GetProperties(bool bIncludeSuper = true);
 
+		/**
+		 *
+		 */
+		void AddProperty(HUniquePtr<HProperty>& InProperty);
 
 	private:
 
@@ -45,6 +47,6 @@ namespace HopStep::CoreObject::Reflection
 		/**
 		 *
 		 */
-		std::vector<class HProperty*> Properties;
+		std::vector<HUniquePtr<HProperty>> Properties;
 	};
 }

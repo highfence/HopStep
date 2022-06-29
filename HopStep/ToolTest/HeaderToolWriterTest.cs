@@ -63,7 +63,10 @@ namespace ToolTest
             Assert.AreEqual(lines[Index++], "#pragma once");
             Assert.AreEqual(lines[Index++], "#include \"ObjectMacro.h\"");
             Assert.AreEqual(lines[Index++], "");
-            Assert.AreEqual(lines[Index++], "");
+            Assert.AreEqual(lines[Index++], "void __Fill_Class_Property_HObject(HopStep::CoreObject::Reflection::HClass* InStaticClass)");
+            Assert.AreEqual(lines[Index++], "{");
+            Assert.AreEqual(lines[Index++], "   InStaticClass.AddProperty(TEXT(\"a\"), 0, 4);");
+            Assert.AreEqual(lines[Index++], "}");
 		}
 	}
 }

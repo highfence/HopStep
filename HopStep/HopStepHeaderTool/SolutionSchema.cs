@@ -24,6 +24,7 @@ namespace HopStepHeaderTool
         {
             public string Name = string.Empty;
             public string PropertyType = string.Empty;
+            public int PropertySize = 0;
         }
 
         public List<string> HeaderDirectories { get; internal set; } = new List<string>();

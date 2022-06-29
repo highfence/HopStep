@@ -152,6 +152,7 @@
     <ClInclude Include="LoggerBase.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="HopStep.h" />
+    <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="ObjectMacro.h" />
     <ClInclude Include="Type.h" />
     <ClInclude Include="TypeLibrary.h" />
@@ -173,6 +174,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">HopStep.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="Type.cpp" />
     <ClCompile Include="TypeLibrary.cpp" />
     <ClCompile Include="PrimitiveProperty.cpp" />

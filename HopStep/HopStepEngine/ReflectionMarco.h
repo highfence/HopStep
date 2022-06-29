@@ -21,14 +21,6 @@ public: \
 	using This = Class; \
 	inline static constexpr HopStep::HStringView FriendlyName = L ## #Class; \
 \
-	static class HStruct* StaticClass(); \
+	static class HClass* StaticClass(); \
 \
-private: 
-	
-
-#define IMPLEMENT_CLASS_BODY(Class, ...) \
-	HStruct* Class::StaticClass() \
-	{ \
-		static HStruct ClassType(FriendlyName.data()); \
-		return &ClassType; \
-	}
+private: \

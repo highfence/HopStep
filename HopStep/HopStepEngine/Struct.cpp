@@ -9,9 +9,9 @@ namespace HopStep::CoreObject::Reflection
 		return Super;
 	}
 
-	const std::vector<HProperty*> HStruct::GetProperties(bool bIncludeSuper /*= true*/)
+	const HArray<HProperty*> HStruct::GetProperties(bool bIncludeSuper /*= true*/)
 	{
-		std::vector<HProperty*> Result;
+		HArray<HProperty*> Result;
 		if (bIncludeSuper)
 		{
 			for (HStruct* SuperIter = Super; SuperIter; SuperIter = SuperIter->Super)
@@ -26,5 +26,8 @@ namespace HopStep::CoreObject::Reflection
 		return Result;
 	}
 
-
+	void HStruct::AddProperty(HUniquePtr<HProperty>& InProperty)
+	{
+		Properties.emplace_back(std::move(InProperty));
+	}
 }

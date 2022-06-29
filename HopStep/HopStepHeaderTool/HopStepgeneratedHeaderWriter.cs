@@ -48,7 +48,16 @@ namespace HopStepHeaderTool
 
 				foreach (var typeInfo in schemasInHeader)
 				{
-					handle.WriteLine($"");
+					handle.WriteLine($"void __Fill_Class_Property_{typeInfo.Name}(HopStep::CoreObject::Reflection::HClass* InStaticClass)");
+					handle.WriteLine("{");
+
+					var offset = 0;
+					foreach (var propertyInfo in typeInfo.Fields)
+					{
+						handle.WriteLine($"\tInStaticClass.AddProperty(TEXT(\"{propertyInfo.Name}\"), {offset}, {propertyInfo.PropertySize})");
+						offset += propertyInfo.PropertySize;
+					}
+					handle.WriteLine("}");
 				}
 
 				// dispose

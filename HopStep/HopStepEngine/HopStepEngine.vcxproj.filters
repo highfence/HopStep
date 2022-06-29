@@ -77,6 +77,9 @@
     <ClInclude Include="ObjectMacro.h">
       <Filter>CoreObject\Object</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectBase.h">
+      <Filter>CoreObject\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp" />
@@ -111,5 +114,8 @@
       <Filter>CoreObject\Reflection</Filter>
     </ClCompile>
     <ClCompile Include="Class.cpp" />
+    <ClCompile Include="ObjectBase.cpp">
+      <Filter>CoreObject\Object</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
