@@ -1,6 +1,7 @@
 #pragma once
 #include "ObjectBase.h"
 #include "Class.h"
+#include "StructBuilder.h"
 
 // writing class implement in Class.generated.cpp
 #define IMPLEMENT_CLASS(TClass) \

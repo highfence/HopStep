@@ -1,5 +1,6 @@
 #pragma once
 #include "ReflectionConcepts.h"
+#include "Property.h"
 #include "Type.h"
 
 namespace HopStep::CoreObject::Reflection
@@ -30,17 +31,7 @@ namespace HopStep::CoreObject::Reflection
 		/**
 		 *
 		 */
-		const HArray<class HProperty*> GetProperties(bool bIncludeSuper = true);
-
-		/**
-		 *
-		 */
-		void AddProperty(HUniquePtr<HProperty>& InProperty);
-
-		/**
-		 *
-		 */
-		void AddProperty(HUniquePtr<HProperty>& InProperty);
+		const HArray<HProperty*> GetProperties(bool bIncludeSuper = true);
 
 	private:
 
@@ -52,6 +43,8 @@ namespace HopStep::CoreObject::Reflection
 		/**
 		 *
 		 */
-		std::vector<HUniquePtr<HProperty>> Properties;
+		HArray<HUniquePtr<HProperty>> Properties;
+
+		friend struct HStructBuilder;
 	};
 }

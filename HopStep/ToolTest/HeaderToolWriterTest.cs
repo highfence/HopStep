@@ -65,7 +65,7 @@ namespace ToolTest
             Assert.AreEqual(lines[Index++], "");
             Assert.AreEqual(lines[Index++], "void __Fill_Class_Property_HObject(HopStep::CoreObject::Reflection::HClass* InStaticClass)");
             Assert.AreEqual(lines[Index++], "{");
-            Assert.AreEqual(lines[Index++], "   InStaticClass.AddProperty(TEXT(\"a\"), 0, 4);");
+            Assert.AreEqual(lines[Index++], "   HStructBuilder::AddProperty<HObject, int32>(InStaticClass, \"a\", &HObject::a);");
             Assert.AreEqual(lines[Index++], "}");
 		}
 	}

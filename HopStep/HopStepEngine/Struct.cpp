@@ -17,17 +17,20 @@ namespace HopStep::CoreObject::Reflection
 			for (HStruct* SuperIter = Super; SuperIter; SuperIter = SuperIter->Super)
 			{
 				Result.reserve(Super->Properties.size());
-				Result.insert(Result.end(), Super->Properties.begin(), Super->Properties.end());
+				
+				for (int32 Index = 0; Index < Super->Properties.size(); ++Index)
+				{
+					Result.push_back(Super->Properties[Index].get());
+				}
 			}
 		}
 
 		Result.reserve(Properties.size());
-		Result.insert(Result.end(), Properties.begin(), Properties.end());
-		return Result;
-	}
+		for (int32 Index = 0; Index < Properties.size(); ++Index)
+		{
+			Result.push_back(Properties[Index].get());
+		}
 
-	void HStruct::AddProperty(HUniquePtr<HProperty>& InProperty)
-	{
-		Properties.emplace_back(std::move(InProperty));
+		return Result;
 	}
 }

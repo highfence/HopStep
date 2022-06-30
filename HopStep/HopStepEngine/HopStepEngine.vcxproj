@@ -154,6 +154,7 @@
     <ClInclude Include="HopStep.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="ObjectMacro.h" />
+    <ClInclude Include="StructBuilder.h" />
     <ClInclude Include="Type.h" />
     <ClInclude Include="TypeLibrary.h" />
     <ClInclude Include="PrimitiveProperty.h" />

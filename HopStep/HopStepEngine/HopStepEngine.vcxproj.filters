@@ -80,6 +80,9 @@
     <ClInclude Include="ObjectBase.h">
       <Filter>CoreObject\Object</Filter>
     </ClInclude>
+    <ClInclude Include="StructBuilder.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp" />

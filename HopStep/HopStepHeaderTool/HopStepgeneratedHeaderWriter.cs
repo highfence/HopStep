@@ -29,37 +29,50 @@ namespace HopStepHeaderTool
 				}
 
 				var objectName = fileToken.Remove(fileToken.Length - 2);
-				var generatedPath = Path.Combine(intermediatePath, $"{objectName}.generated.h");
+				var generatedHeaderPath = Path.Combine(intermediatePath, $"{objectName}.generated.h");
 				var schemasInHeader = solutionSchema.Types
 					.Where(s => s.Value.HeaderDirectory == headerPath)
 					.Select(s => s.Value).ToList();
 
-				WriteHeader(generatedPath, schemasInHeader);
+				WriteHeader(generatedHeaderPath, schemasInHeader);
+
+				var generatedCppPath = Path.Combine(intermediatePath, $"{objectName}.generated.cpp");
+				WriteCpp(generatedCppPath, $"{objectName}.generated.h", schemasInHeader);
 			}
 		}
 
-		private void WriteHeader(string generatedPath, List<SolutionSchema.TypeInfo> schemasInHeader)
+        private void WriteCpp(string generatedCppPath, string includeHeaderPath, List<SolutionSchema.TypeInfo> schemasInHeader)
+        {
+			using (var handle = new StreamWriter(generatedCppPath, false, Encoding.UTF8))
+			{
+				handle.WriteLine($"#include {includeHeaderPath}");
+
+				foreach (var typeInfo in schemasInHeader)
+				{
+					handle.WriteLine("");
+					handle.WriteLine($"IMPLEMENT_CLASS({typeInfo.Name});");
+					handle.WriteLine($"void __Fill_Class_Property_{typeInfo.Name}(HopStep::CoreObject::Reflection::HClass* InStaticClass)");
+					handle.WriteLine("{");
+
+					foreach (var propertyInfo in typeInfo.Fields)
+					{
+						handle.WriteLine($"\tHStructBuilder::AddProperty<{typeInfo.Name}, {propertyInfo.PropertyType}>(InStaticClass, \"{propertyInfo.Name}\", &{typeInfo.Name}::{propertyInfo.Name});");
+					}
+					handle.WriteLine("}");
+				}
+
+				// dispose
+				handle.Close();
+			}
+        }
+
+        private void WriteHeader(string generatedPath, List<SolutionSchema.TypeInfo> schemasInHeader)
 		{
 			using (var handle = new StreamWriter(generatedPath, false, Encoding.UTF8))
 			{
 				handle.WriteLine("#pragma once");
 				handle.WriteLine("#include \"ObjectMacro.h\"");
 				handle.WriteLine("");
-
-				foreach (var typeInfo in schemasInHeader)
-				{
-					handle.WriteLine($"void __Fill_Class_Property_{typeInfo.Name}(HopStep::CoreObject::Reflection::HClass* InStaticClass)");
-					handle.WriteLine("{");
-
-					var offset = 0;
-					foreach (var propertyInfo in typeInfo.Fields)
-					{
-						handle.WriteLine($"\tInStaticClass.AddProperty(TEXT(\"{propertyInfo.Name}\"), {offset}, {propertyInfo.PropertySize})");
-						offset += propertyInfo.PropertySize;
-					}
-					handle.WriteLine("}");
-				}
-
 				// dispose
 				handle.Close();
 			}

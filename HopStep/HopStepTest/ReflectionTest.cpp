@@ -16,7 +16,7 @@ namespace HopStepTest
 			auto* Library = HTypeLibrary::Get();
 			Assert::IsNotNull(Library);
 
-			HStruct* ObjectType = HObject::StaticClass();
+			HClass* ObjectType = HObject::StaticClass();
 			auto Types = Library->GetTypes();
 			Assert::IsFalse(Types.size() == 0);
 			auto Iter = std::find(Types.begin(), Types.end(), ObjectType);
@@ -26,7 +26,7 @@ namespace HopStepTest
 
 		TEST_METHOD(GameTypeAccessTest)
 		{
-			HStruct* GameType = HObject::StaticClass();
+			HClass* GameType = HObject::StaticClass();
 			Assert::IsNotNull(GameType);
 		}
 
@@ -34,7 +34,7 @@ namespace HopStepTest
 		{
 			HObject* GameObject = new HObject();
 
-			HStruct* GameType = HObject::StaticClass();
+			HClass* GameType = HObject::StaticClass();
 			Assert::AreEqual(GameObject->FriendlyName, std::wstring_view(GameType->GetName()));
 			Assert::AreEqual(GameObject->FriendlyName, std::wstring_view(L"HObject"));
 
@@ -45,7 +45,7 @@ namespace HopStepTest
 		{
 			HObject* GameObject = new HObject();
 
-			HStruct* GameType = HObject::StaticClass();
+			HClass* GameType = HObject::StaticClass();
 
 			delete GameObject;
 		}
