@@ -1,4 +1,5 @@
 #pragma once
+#include "ReflectionConcepts.h"
 
 /**
  * Type register interface.
