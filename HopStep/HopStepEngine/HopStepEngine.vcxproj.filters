@@ -83,6 +83,9 @@
     <ClInclude Include="StructBuilder.h">
       <Filter>CoreObject\Reflection</Filter>
     </ClInclude>
+    <ClInclude Include="Intermediate_Test\ReflectionTest.generated.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp" />
@@ -119,6 +122,9 @@
     <ClCompile Include="Class.cpp" />
     <ClCompile Include="ObjectBase.cpp">
       <Filter>CoreObject\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Intermediate_Test\ReflectionTest.generated.cpp">
+      <Filter>CoreObject\Reflection</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
