@@ -24,3 +24,5 @@ public: \
 	static class HClass* StaticClass(); \
 \
 private: \
+	friend void __Fill_Class_Property_##Class(class HClass*); \
+	friend struct HStructBuilder;

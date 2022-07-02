@@ -1,3 +1,3 @@
 ﻿#pragma once
-#include "ObjectMacro.h"
+#include "..\ObjectMacro.h"
 

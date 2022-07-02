@@ -45,13 +45,17 @@ namespace HopStepHeaderTool
         {
 			using (var handle = new StreamWriter(generatedCppPath, false, Encoding.UTF8))
 			{
-				handle.WriteLine($"#include {includeHeaderPath}");
+				handle.WriteLine($"#include \"..\\\"HopStep.h\"");
+				handle.WriteLine($"#include \"{includeHeaderPath}\"");
+				handle.WriteLine($"#include \"ReflectionTest.generated.h\"");
+				handle.WriteLine($"using namespace HopStep::CoreObject::Reflection;");
 
 				foreach (var typeInfo in schemasInHeader)
 				{
+					var typeNameWithoutPrefix = RemoveFilePrefix(typeInfo.Name);
+					handle.WriteLine($"#include \"..\\\"{typeNameWithoutPrefix}.h\"");
 					handle.WriteLine("");
-					handle.WriteLine($"IMPLEMENT_CLASS({typeInfo.Name});");
-					handle.WriteLine($"void __Fill_Class_Property_{typeInfo.Name}(HopStep::CoreObject::Reflection::HClass* InStaticClass)");
+					handle.WriteLine($"void __Fill_Class_Property_{typeInfo.Name}(HClass* InStaticClass)");
 					handle.WriteLine("{");
 
 					foreach (var propertyInfo in typeInfo.Fields)
@@ -59,6 +63,7 @@ namespace HopStepHeaderTool
 						handle.WriteLine($"\tHStructBuilder::AddProperty<{typeInfo.Name}, {propertyInfo.PropertyType}>(InStaticClass, \"{propertyInfo.Name}\", &{typeInfo.Name}::{propertyInfo.Name});");
 					}
 					handle.WriteLine("}");
+					handle.WriteLine($"IMPLEMENT_CLASS({typeInfo.Name});");
 				}
 
 				// dispose
@@ -71,12 +76,19 @@ namespace HopStepHeaderTool
 			using (var handle = new StreamWriter(generatedPath, false, Encoding.UTF8))
 			{
 				handle.WriteLine("#pragma once");
-				handle.WriteLine("#include \"ObjectMacro.h\"");
+				handle.WriteLine("#include \"..\\ObjectMacro.h\"");
 				handle.WriteLine("");
 				// dispose
 				handle.Close();
 			}
 		}
+
+		private string RemoveFilePrefix(string fileDirectory)
+        {
+			if (string.IsNullOrEmpty(fileDirectory) || fileDirectory.StartsWith("H") == false) return fileDirectory;
+
+			return fileDirectory.Substring(1);
+        }
 
 		private void ClearIntermediatePath(string intermediatePath)
 		{
