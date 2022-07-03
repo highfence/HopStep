@@ -6,9 +6,9 @@ namespace HopStep::CoreObject::Reflection
 #if HopStep_UnitTest
 
 	HCLASS()
-	class HReflectionObjectTest
+	class HReflectionTest
 	{
-		DECLARE_CLASS_BODY(HReflectionObjectTest);
+		DECLARE_CLASS_BODY(HReflectionTest);
 
 		HPROPERTY();
 		int32 A;

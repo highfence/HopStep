@@ -171,9 +171,7 @@
     <ClCompile Include="Class.cpp" />
     <ClCompile Include="Enum.cpp" />
     <ClCompile Include="Field.cpp" />
-    <ClCompile Include="Intermediate_Test\ReflectionTest.generated.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\HopStep.h</PrecompiledHeaderFile>
-    </ClCompile>
+    <ClCompile Include="Intermediate_Test\ReflectionTest.generated.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="HopStep.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

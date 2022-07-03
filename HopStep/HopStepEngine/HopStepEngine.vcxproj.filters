@@ -16,6 +16,9 @@
     <Filter Include="Core\Logger">
       <UniqueIdentifier>{218df021-74ba-48a3-84b7-159f99e6a149}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Intermediate">
+      <UniqueIdentifier>{03b61a76-d1ff-4a7b-96da-2ae456bbb6e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HopStep.h" />
@@ -84,7 +87,7 @@
       <Filter>CoreObject\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="Intermediate_Test\ReflectionTest.generated.h">
-      <Filter>CoreObject\Reflection</Filter>
+      <Filter>Intermediate</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -124,7 +127,7 @@
       <Filter>CoreObject\Object</Filter>
     </ClCompile>
     <ClCompile Include="Intermediate_Test\ReflectionTest.generated.cpp">
-      <Filter>CoreObject\Reflection</Filter>
+      <Filter>Intermediate</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

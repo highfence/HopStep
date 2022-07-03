@@ -28,7 +28,7 @@ namespace HopStepHeaderTool
 					throw new System.Exception($"Invalid header path! header must end with \".h\" : {headerPath}");
 				}
 
-				var objectName = fileToken.Remove(fileToken.Length - 2);
+				var objectName = RemoveFilePrefix(fileToken.Remove(fileToken.Length - 2));
 				var generatedHeaderPath = Path.Combine(intermediatePath, $"{objectName}.generated.h");
 				var schemasInHeader = solutionSchema.Types
 					.Where(s => s.Value.HeaderDirectory == headerPath)
@@ -45,13 +45,13 @@ namespace HopStepHeaderTool
         {
 			using (var handle = new StreamWriter(generatedCppPath, false, Encoding.UTF8))
 			{
-				handle.WriteLine($"#include \"..\\\"HopStep.h\"");
+				handle.WriteLine($"#include \"..\\HopStep.h\"");
 				handle.WriteLine($"#include \"{includeHeaderPath}\"");
 
 				foreach (var typeInfo in schemasInHeader)
                 {
 					var typeNameWithoutPrefix = RemoveFilePrefix(typeInfo.Name);
-					handle.WriteLine($"#include \"..\\\"{typeNameWithoutPrefix}.h\"");
+					handle.WriteLine($"#include \"..\\{typeNameWithoutPrefix}.h\"");
                 }
 
 				handle.WriteLine("");
@@ -65,7 +65,7 @@ namespace HopStepHeaderTool
 
 					foreach (var propertyInfo in typeInfo.Fields)
 					{
-						handle.WriteLine($"\tHStructBuilder::AddProperty<{typeInfo.Name}, {propertyInfo.PropertyType}>(InStaticClass, \"{propertyInfo.Name}\", &{typeInfo.Name}::{propertyInfo.Name});");
+						handle.WriteLine($"\tHStructBuilder::AddProperty<{typeInfo.Name}, {propertyInfo.PropertyType}>(InStaticClass, TEXT(\"{propertyInfo.Name}\"), &{typeInfo.Name}::{propertyInfo.Name});");
 					}
 					handle.WriteLine("}");
 					handle.WriteLine($"IMPLEMENT_CLASS({typeInfo.Name});");

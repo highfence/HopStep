@@ -1,13 +1,13 @@
 ﻿#include "..\HopStep.h"
-#include "..\ReflectionTest.h"
 #include "ReflectionTest.generated.h"
+#include "..\ReflectionTest.h"
 
 using namespace HopStep::CoreObject::Reflection;
 
-void HReflectionObjectTest::__Fill_Class_Property_HReflectionObjectTest(HClass* InStaticClass)
+void HReflectionTest::__Fill_Class_Property_HReflectionTest(HClass* InStaticClass)
 {
-	HStructBuilder::AddProperty<HReflectionObjectTest, int32>(InStaticClass, TEXT("A"), &HReflectionObjectTest::A);
-	HStructBuilder::AddProperty<HReflectionObjectTest, int32>(InStaticClass, TEXT("B"), &HReflectionObjectTest::B);
-	HStructBuilder::AddProperty<HReflectionObjectTest, int32>(InStaticClass, TEXT("C"), &HReflectionObjectTest::C);
+	HStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT("A"), &HReflectionTest::A);
+	HStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT("B"), &HReflectionTest::B);
+	HStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT("C"), &HReflectionTest::C);
 }
-IMPLEMENT_CLASS(HReflectionObjectTest);
+IMPLEMENT_CLASS(HReflectionTest);
