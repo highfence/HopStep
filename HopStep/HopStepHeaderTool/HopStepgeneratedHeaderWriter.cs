@@ -47,15 +47,20 @@ namespace HopStepHeaderTool
 			{
 				handle.WriteLine($"#include \"..\\\"HopStep.h\"");
 				handle.WriteLine($"#include \"{includeHeaderPath}\"");
-				handle.WriteLine($"#include \"ReflectionTest.generated.h\"");
+
+				foreach (var typeInfo in schemasInHeader)
+                {
+					var typeNameWithoutPrefix = RemoveFilePrefix(typeInfo.Name);
+					handle.WriteLine($"#include \"..\\\"{typeNameWithoutPrefix}.h\"");
+                }
+
+				handle.WriteLine("");
 				handle.WriteLine($"using namespace HopStep::CoreObject::Reflection;");
 
 				foreach (var typeInfo in schemasInHeader)
 				{
-					var typeNameWithoutPrefix = RemoveFilePrefix(typeInfo.Name);
-					handle.WriteLine($"#include \"..\\\"{typeNameWithoutPrefix}.h\"");
 					handle.WriteLine("");
-					handle.WriteLine($"void __Fill_Class_Property_{typeInfo.Name}(HClass* InStaticClass)");
+					handle.WriteLine($"void {typeInfo.Name}::__Fill_Class_Property_{typeInfo.Name}(HClass* InStaticClass)");
 					handle.WriteLine("{");
 
 					foreach (var propertyInfo in typeInfo.Fields)

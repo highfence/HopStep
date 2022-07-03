@@ -57,7 +57,7 @@ namespace ToolTest
 		{
 			if (Directory.Exists(_intermediatePath))
 			{
-				Directory.Delete(_intermediatePath, true);
+				// Directory.Delete(_intermediatePath, true);
 			}
 		}
 
@@ -75,15 +75,19 @@ namespace ToolTest
 
             string[] lines = File.ReadAllLines(targetCppFile);
             Int32 Index = 0;
-            Assert.AreEqual(lines[Index++], "#pragma once");
-            Assert.AreEqual(lines[Index++], "#include \"HReflectionObjectTest.h\"");
+            Assert.AreEqual(lines[Index++], "#include \"..\\HopStep.h\"");
+            Assert.AreEqual(lines[Index++], "#include \"..\\ReflectionTest.h\"");
+            Assert.AreEqual(lines[Index++], "#include \"ReflectionTest.generated.h\"");
             Assert.AreEqual(lines[Index++], "");
-            Assert.AreEqual(lines[Index++], "void __Fill_Class_Property_HReflectionObjectTest(HopStep::CoreObject::Reflection::HClass* InStaticClass)");
+            Assert.AreEqual(lines[Index++], "using namespace HopStep::CoreObject::Reflection;");
+            Assert.AreEqual(lines[Index++], "");
+            Assert.AreEqual(lines[Index++], "void HReflectionObjectTest::__Fill_Class_Property_HReflectionObjectTest(HClass* InStaticClass)");
             Assert.AreEqual(lines[Index++], "{");
             Assert.AreEqual(lines[Index++], "   HStructBuilder::AddProperty<HReflectionObjectTest, int32>(InStaticClass, \"A\", &HReflectionObjectTest::A);");
             Assert.AreEqual(lines[Index++], "   HStructBuilder::AddProperty<HReflectionObjectTest, int32>(InStaticClass, \"B\", &HReflectionObjectTest::B);");
             Assert.AreEqual(lines[Index++], "   HStructBuilder::AddProperty<HReflectionObjectTest, int32>(InStaticClass, \"C\", &HReflectionObjectTest::C);");
             Assert.AreEqual(lines[Index++], "}");
+            Assert.AreEqual(lines[Index++], "IMPLEMENT_CLASS(HReflectionObjectTest);");
 		}
 	}
 }
