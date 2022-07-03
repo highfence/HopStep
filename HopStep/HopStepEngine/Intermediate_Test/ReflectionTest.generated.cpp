@@ -4,7 +4,7 @@
 
 using namespace HopStep::CoreObject::Reflection;
 
-void __Fill_Class_Property_HReflectionObjectTest(HClass* InStaticClass)
+void HReflectionObjectTest::__Fill_Class_Property_HReflectionObjectTest(HClass* InStaticClass)
 {
 	HStructBuilder::AddProperty<HReflectionObjectTest, int32>(InStaticClass, TEXT("A"), &HReflectionObjectTest::A);
 	HStructBuilder::AddProperty<HReflectionObjectTest, int32>(InStaticClass, TEXT("B"), &HReflectionObjectTest::B);

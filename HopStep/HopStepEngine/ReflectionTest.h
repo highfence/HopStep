@@ -8,7 +8,6 @@ namespace HopStep::CoreObject::Reflection
 	HCLASS()
 	class HReflectionObjectTest
 	{
-	public:
 		DECLARE_CLASS_BODY(HReflectionObjectTest);
 
 		HPROPERTY();
@@ -19,8 +18,6 @@ namespace HopStep::CoreObject::Reflection
 
 		HPROPERTY();
 		int32 C;
-
-		friend void __Fill_Class_Property_HReflectionObjectTest(HClass* InStaticClass);
 	};
 
 #endif
