@@ -67,27 +67,43 @@ namespace ToolTest
             _writer?.GenerateContent(_intermediatePath, _schema);
             Assert.IsTrue(Directory.Exists(_intermediatePath));
 
+            // check header file generated
             var targetHeaderFile = Path.Combine(_intermediatePath, "ReflectionTest.generated.h");
             Assert.IsTrue(File.Exists(targetHeaderFile), $"Header file doesn't exist! : {Path.GetFullPath(targetHeaderFile)}");
+            {
+                string[] headerLines = File.ReadAllLines(targetHeaderFile);
+                var headerIndex = 0;
+                Assert.AreEqual(headerLines[headerIndex++], "#pragma once");
+                Assert.AreEqual(headerLines[headerIndex++], "#include \"..\\ObjectMacro.h\"");
 
+            }
+
+            // check cpp file generated
             var targetCppFile = Path.Combine(_intermediatePath, "ReflectionTest.generated.cpp");
             Assert.IsTrue(File.Exists(targetCppFile));
-
-            string[] lines = File.ReadAllLines(targetCppFile);
-            Int32 Index = 0;
-            Assert.AreEqual(lines[Index++], "#include \"..\\HopStep.h\"");
-            Assert.AreEqual(lines[Index++], "#include \"ReflectionTest.generated.h\"");
-            Assert.AreEqual(lines[Index++], "#include \"..\\ReflectionTest.h\"");
-            Assert.AreEqual(lines[Index++], "");
-            Assert.AreEqual(lines[Index++], "using namespace HopStep::CoreObject::Reflection;");
-            Assert.AreEqual(lines[Index++], "");
-            Assert.AreEqual(lines[Index++], "void HReflectionTest::__Fill_Class_Property_HReflectionTest(HClass* InStaticClass)");
-            Assert.AreEqual(lines[Index++], "{");
-            Assert.AreEqual(lines[Index++], "\tHStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT(\"A\"), &HReflectionTest::A);");
-            Assert.AreEqual(lines[Index++], "\tHStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT(\"B\"), &HReflectionTest::B);");
-            Assert.AreEqual(lines[Index++], "\tHStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT(\"C\"), &HReflectionTest::C);");
-            Assert.AreEqual(lines[Index++], "}");
-            Assert.AreEqual(lines[Index++], "IMPLEMENT_CLASS(HReflectionTest);");
+            {
+                string[] cppLines = File.ReadAllLines(targetCppFile);
+                var cppIndex = 0;
+                Assert.AreEqual(cppLines[cppIndex++], "#include \"..\\HopStep.h\"");
+                Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest.generated.h\"");
+                Assert.AreEqual(cppLines[cppIndex++], "#include \"..\\ReflectionTest.h\"");
+                Assert.AreEqual(cppLines[cppIndex++], "");
+                Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep::CoreObject::Reflection;");
+                Assert.AreEqual(cppLines[cppIndex++], "");
+                Assert.AreEqual(cppLines[cppIndex++], "void HReflectionTest::__Fill_Class_Property_HReflectionTest(HClass* InStaticClass)");
+                Assert.AreEqual(cppLines[cppIndex++], "{");
+                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT(\"A\"), &HReflectionTest::A);");
+                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT(\"B\"), &HReflectionTest::B);");
+                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT(\"C\"), &HReflectionTest::C);");
+                Assert.AreEqual(cppLines[cppIndex++], "}");
+                Assert.AreEqual(cppLines[cppIndex++], "IMPLEMENT_CLASS(HReflectionTest);");
+            }
 		}
+
+        [Test]
+        public void TestFileWellSolutionInCludeded()
+        {
+            
+        }
 	}
 }
