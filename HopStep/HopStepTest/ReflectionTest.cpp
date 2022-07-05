@@ -11,8 +11,6 @@ namespace HopStepTest
 	public:
 		TEST_METHOD(TypeLibraryAccessTest)
 		{
-			std::cout << "TypeLibraryAccessTest started" << std::endl;
-
 			auto* Library = HTypeLibrary::Get();
 			Assert::IsNotNull(Library);
 
