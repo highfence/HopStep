@@ -5,11 +5,31 @@ using System.Text;
 
 namespace HopStepHeaderTool
 {
-	public class HopStepGeneratedHeaderWriter : ISolutionHeaderWriter
-	{
-		public void GenerateHeader(string intermediatePath, SolutionSchema solutionSchema)
+    public static class GeneratedContentHelper
+    {
+		public static string RemovePrefix(string fileDirectory)
+        {
+			if (string.IsNullOrEmpty(fileDirectory) || fileDirectory.StartsWith("H") == false) return fileDirectory;
+			return fileDirectory.Substring(1);
+        }
+
+		public static void ClearIntermediatePath(string intermediatePath)
 		{
-			ClearIntermediatePath(intermediatePath);
+			if (Directory.Exists(intermediatePath))
+			{
+				Directory.Delete(intermediatePath, true);
+			}
+
+			Directory.CreateDirectory(intermediatePath);
+		}
+	}
+
+    public class HopStepGeneratedContentWriter : ISolutionContentGenerator
+	{
+		public void GenerateContent(string intermediatePath, SolutionSchema solutionSchema)
+		{
+			GeneratedContentHelper.ClearIntermediatePath(intermediatePath);
+
 			MakeFiles(intermediatePath, solutionSchema);
 		} 
 
@@ -28,7 +48,7 @@ namespace HopStepHeaderTool
 					throw new System.Exception($"Invalid header path! header must end with \".h\" : {headerPath}");
 				}
 
-				var objectName = RemoveFilePrefix(fileToken.Remove(fileToken.Length - 2));
+				var objectName = GeneratedContentHelper.RemovePrefix(fileToken.Remove(fileToken.Length - 2));
 				var generatedHeaderPath = Path.Combine(intermediatePath, $"{objectName}.generated.h");
 				var schemasInHeader = solutionSchema.Types
 					.Where(s => s.Value.HeaderDirectory == headerPath)
@@ -50,7 +70,7 @@ namespace HopStepHeaderTool
 
 				foreach (var typeInfo in schemasInHeader)
                 {
-					var typeNameWithoutPrefix = RemoveFilePrefix(typeInfo.Name);
+					var typeNameWithoutPrefix = GeneratedContentHelper.RemovePrefix(typeInfo.Name);
 					handle.WriteLine($"#include \"..\\{typeNameWithoutPrefix}.h\"");
                 }
 
@@ -88,21 +108,6 @@ namespace HopStepHeaderTool
 			}
 		}
 
-		private string RemoveFilePrefix(string fileDirectory)
-        {
-			if (string.IsNullOrEmpty(fileDirectory) || fileDirectory.StartsWith("H") == false) return fileDirectory;
-
-			return fileDirectory.Substring(1);
-        }
-
-		private void ClearIntermediatePath(string intermediatePath)
-		{
-			if (Directory.Exists(intermediatePath))
-			{
-				Directory.Delete(intermediatePath, true);
-			}
-
-			Directory.CreateDirectory(intermediatePath);
-		}
+		
 	}
 }

@@ -8,7 +8,7 @@ namespace ToolTest
 {
 	internal class HeaderToolWriterTest
 	{
-		private HopStepGeneratedHeaderWriter? _writer;
+		private HopStepGeneratedContentWriter? _writer;
 		private string _enginePath = string.Empty;
         private string _intermediatePath = string.Empty;
         private SolutionSchema? _schema;
@@ -19,7 +19,7 @@ namespace ToolTest
             var currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             _enginePath = Path.Combine(currentDirectory, @"..\..\..\..\HopStepEngine\");
             _intermediatePath = Path.Combine(_enginePath, @"Intermediate_Test\");
-            _writer = new HopStepGeneratedHeaderWriter();
+            _writer = new HopStepGeneratedContentWriter();
 
             // schema setting
             _schema = new SolutionSchema();
@@ -64,7 +64,7 @@ namespace ToolTest
         [Test]
         public void TestFilesWellGenerated()
 		{
-            _writer?.GenerateHeader(_intermediatePath, _schema);
+            _writer?.GenerateContent(_intermediatePath, _schema);
             Assert.IsTrue(Directory.Exists(_intermediatePath));
 
             var targetHeaderFile = Path.Combine(_intermediatePath, "HReflectionObjectTest.generated.h");
