@@ -25,7 +25,7 @@ namespace ToolTest
             _schema = new SolutionSchema();
             var objectHeaderPath = @$"{_enginePath}\\HReflectionTest.h";
             _schema.HeaderDirectories.Add(objectHeaderPath);
-            _schema.AddTypeInfo("HReflectionObjectTest", SolutionSchema.ObjectType.Class, objectHeaderPath, new List<SolutionSchema.PropertyInfo>()
+            _schema.AddTypeInfo("HReflectionTest", SolutionSchema.ObjectType.Class, objectHeaderPath, new List<SolutionSchema.PropertyInfo>()
             {
                 new SolutionSchema.PropertyInfo
                 {
@@ -67,27 +67,27 @@ namespace ToolTest
             _writer?.GenerateContent(_intermediatePath, _schema);
             Assert.IsTrue(Directory.Exists(_intermediatePath));
 
-            var targetHeaderFile = Path.Combine(_intermediatePath, "HReflectionObjectTest.generated.h");
-            Assert.IsTrue(File.Exists(targetHeaderFile));
+            var targetHeaderFile = Path.Combine(_intermediatePath, "ReflectionTest.generated.h");
+            Assert.IsTrue(File.Exists(targetHeaderFile), $"Header file doesn't exist! : {Path.GetFullPath(targetHeaderFile)}");
 
-            var targetCppFile = Path.Combine(_intermediatePath, "HReflectionObjectTest.generated.cpp");
+            var targetCppFile = Path.Combine(_intermediatePath, "ReflectionTest.generated.cpp");
             Assert.IsTrue(File.Exists(targetCppFile));
 
             string[] lines = File.ReadAllLines(targetCppFile);
             Int32 Index = 0;
             Assert.AreEqual(lines[Index++], "#include \"..\\HopStep.h\"");
-            Assert.AreEqual(lines[Index++], "#include \"..\\ReflectionTest.h\"");
             Assert.AreEqual(lines[Index++], "#include \"ReflectionTest.generated.h\"");
+            Assert.AreEqual(lines[Index++], "#include \"..\\ReflectionTest.h\"");
             Assert.AreEqual(lines[Index++], "");
             Assert.AreEqual(lines[Index++], "using namespace HopStep::CoreObject::Reflection;");
             Assert.AreEqual(lines[Index++], "");
-            Assert.AreEqual(lines[Index++], "void HReflectionObjectTest::__Fill_Class_Property_HReflectionObjectTest(HClass* InStaticClass)");
+            Assert.AreEqual(lines[Index++], "void HReflectionTest::__Fill_Class_Property_HReflectionTest(HClass* InStaticClass)");
             Assert.AreEqual(lines[Index++], "{");
-            Assert.AreEqual(lines[Index++], "   HStructBuilder::AddProperty<HReflectionObjectTest, int32>(InStaticClass, \"A\", &HReflectionObjectTest::A);");
-            Assert.AreEqual(lines[Index++], "   HStructBuilder::AddProperty<HReflectionObjectTest, int32>(InStaticClass, \"B\", &HReflectionObjectTest::B);");
-            Assert.AreEqual(lines[Index++], "   HStructBuilder::AddProperty<HReflectionObjectTest, int32>(InStaticClass, \"C\", &HReflectionObjectTest::C);");
+            Assert.AreEqual(lines[Index++], "\tHStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT(\"A\"), &HReflectionTest::A);");
+            Assert.AreEqual(lines[Index++], "\tHStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT(\"B\"), &HReflectionTest::B);");
+            Assert.AreEqual(lines[Index++], "\tHStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT(\"C\"), &HReflectionTest::C);");
             Assert.AreEqual(lines[Index++], "}");
-            Assert.AreEqual(lines[Index++], "IMPLEMENT_CLASS(HReflectionObjectTest);");
+            Assert.AreEqual(lines[Index++], "IMPLEMENT_CLASS(HReflectionTest);");
 		}
 	}
 }
