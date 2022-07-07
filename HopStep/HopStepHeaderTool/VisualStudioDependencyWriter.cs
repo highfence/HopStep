@@ -1,14 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.IO;
 
 namespace HopStepHeaderTool
 {
-    internal class VisualStudioDependencyWriter : ISolutionDependencyModifier
+    public class VisualStudioDependencyWriter : ISolutionDependencyModifier
     {
+        public string VCXExtension => ".vcxproj";
+        public string VCXFilterExtension => ".vcxproj.filters";
+
         public void InjectFileDependency(string solutionRootPath, SolutionSchema solutionSchema)
         {
-            throw new NotImplementedException();
+        }
+
+        public bool IsTargetVCSFileExist(string solutionRootPath, string solutionName)
+        {
+            var targetFile = @$"{solutionName}\{solutionName}";
+            var absSolutionRootPath = Path.GetFullPath(solutionRootPath);
+            var vscFilePath = Path.Combine(absSolutionRootPath, $@"{targetFile}{VCXExtension}");
+
+            if (File.Exists(vscFilePath) == false) return false;
+
+            var vcsFilterFilePath = Path.Combine(absSolutionRootPath, $@"{targetFile}{VCXFilterExtension}");
+
+            if (File.Exists(vcsFilterFilePath) == false) return false;
+
+            return true;
         }
     }
 }

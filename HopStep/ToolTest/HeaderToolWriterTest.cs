@@ -9,8 +9,10 @@ namespace ToolTest
 	internal class HeaderToolWriterTest
 	{
 		private HopStepGeneratedContentWriter? _writer;
+        private VisualStudioDependencyWriter? _dependencyWriter;
 		private string _enginePath = string.Empty;
         private string _intermediatePath = string.Empty;
+        private string _solutionPath = string.Empty;
         private SolutionSchema? _schema;
 
         [SetUp]
@@ -18,8 +20,10 @@ namespace ToolTest
         {
             var currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             _enginePath = Path.Combine(currentDirectory, @"..\..\..\..\HopStepEngine\");
+            _solutionPath = Path.Combine(_enginePath, @"..\");
             _intermediatePath = Path.Combine(_enginePath, @"Intermediate_Test\");
             _writer = new HopStepGeneratedContentWriter();
+            _dependencyWriter = new VisualStudioDependencyWriter();
 
             // schema setting
             _schema = new SolutionSchema();
@@ -103,7 +107,8 @@ namespace ToolTest
         [Test]
         public void TestFileWellSolutionInCludeded()
         {
-            
+            // check project file exist
+            Assert.IsTrue(_dependencyWriter?.IsTargetVCSFileExist(_solutionPath, "HopStepEngine"));
         }
 	}
 }

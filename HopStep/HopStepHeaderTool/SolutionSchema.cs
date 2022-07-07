@@ -4,6 +4,8 @@ namespace HopStepHeaderTool
 {
     public class SolutionSchema
     {
+        public string SolutionName = string.Empty;
+
         public enum ObjectType
         {
             None,
