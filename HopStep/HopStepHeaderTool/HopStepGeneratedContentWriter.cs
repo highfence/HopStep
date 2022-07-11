@@ -61,49 +61,53 @@ namespace HopStepHeaderTool
 			}
 		}
 
-        private void WriteCpp(string generatedCppPath, string includeHeaderPath, List<SolutionSchema.TypeInfo> schemasInHeader)
-        {
+		private void WriteCpp(string generatedCppPath, string includeHeaderPath, List<SolutionSchema.TypeInfo> schemasInHeader)
+		{
+			var sb = new StringBuilder();
+			sb.AppendLine($"#include \"..\\HopStep.h\"");
+			sb.AppendLine($"#include \"{includeHeaderPath}\"");
+
+			foreach (var typeInfo in schemasInHeader)
+			{
+				var typeNameWithoutPrefix = GeneratedContentHelper.RemovePrefix(typeInfo.Name);
+				sb.AppendLine($"#include \"..\\{typeNameWithoutPrefix}.h\"");
+			}
+
+			sb.AppendLine();
+			sb.AppendLine($"using namespace HopStep::CoreObject::Reflection;");
+
+			foreach (var typeInfo in schemasInHeader)
+			{
+				sb.AppendLine();
+				sb.AppendLine($"void {typeInfo.Name}::__Fill_Class_Property_{typeInfo.Name}(HClass* InStaticClass)");
+				sb.AppendLine("{");
+
+				foreach (var propertyInfo in typeInfo.Fields)
+				{
+					sb.AppendLine($"\tHStructBuilder::AddProperty<{typeInfo.Name}, {propertyInfo.PropertyType}>(InStaticClass, TEXT(\"{propertyInfo.Name}\"), &{typeInfo.Name}::{propertyInfo.Name});");
+				}
+				sb.AppendLine("}");
+				sb.AppendLine($"IMPLEMENT_CLASS({typeInfo.Name});");
+			}
+
 			using (var handle = new StreamWriter(generatedCppPath, false, Encoding.UTF8))
 			{
-				handle.WriteLine($"#include \"..\\HopStep.h\"");
-				handle.WriteLine($"#include \"{includeHeaderPath}\"");
-
-				foreach (var typeInfo in schemasInHeader)
-                {
-					var typeNameWithoutPrefix = GeneratedContentHelper.RemovePrefix(typeInfo.Name);
-					handle.WriteLine($"#include \"..\\{typeNameWithoutPrefix}.h\"");
-                }
-
-				handle.WriteLine("");
-				handle.WriteLine($"using namespace HopStep::CoreObject::Reflection;");
-
-				foreach (var typeInfo in schemasInHeader)
-				{
-					handle.WriteLine("");
-					handle.WriteLine($"void {typeInfo.Name}::__Fill_Class_Property_{typeInfo.Name}(HClass* InStaticClass)");
-					handle.WriteLine("{");
-
-					foreach (var propertyInfo in typeInfo.Fields)
-					{
-						handle.WriteLine($"\tHStructBuilder::AddProperty<{typeInfo.Name}, {propertyInfo.PropertyType}>(InStaticClass, TEXT(\"{propertyInfo.Name}\"), &{typeInfo.Name}::{propertyInfo.Name});");
-					}
-					handle.WriteLine("}");
-					handle.WriteLine($"IMPLEMENT_CLASS({typeInfo.Name});");
-				}
-
-				// dispose
+				handle.Write(sb.ToString());
 				handle.Close();
 			}
-        }
+		}
 
-        private void WriteHeader(string generatedPath, List<SolutionSchema.TypeInfo> schemasInHeader)
+		private void WriteHeader(string generatedPath, List<SolutionSchema.TypeInfo> schemasInHeader)
 		{
+			var sb = new StringBuilder();
+
+			sb.AppendLine("#pragma once");
+			sb.AppendLine("#include \"..\\ObjectMacro.h\"");
+			sb.AppendLine();
+
 			using (var handle = new StreamWriter(generatedPath, false, Encoding.UTF8))
 			{
-				handle.WriteLine("#pragma once");
-				handle.WriteLine("#include \"..\\ObjectMacro.h\"");
-				handle.WriteLine("");
-				// dispose
+				handle.Write(sb.ToString());
 				handle.Close();
 			}
 		}
