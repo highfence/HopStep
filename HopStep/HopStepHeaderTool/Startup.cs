@@ -4,8 +4,6 @@ namespace HopStepHeaderTool
 {
 	public class StartUp
 	{
-		static string _solutionPath = string.Empty;
-
 		static void Main(string[] args)
 		{
 			var parser = new CommandParser();

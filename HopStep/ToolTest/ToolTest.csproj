@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HopStepHeaderTool\HopStepHeaderTool.csproj" />
+    <ProjectReference Include="..\SolutionGenerator\SolutionGenerator.csproj" />
   </ItemGroup>
 
 </Project>
