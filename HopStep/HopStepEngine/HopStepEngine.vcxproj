@@ -149,7 +149,6 @@
     <ClInclude Include="Field.h" />
     <ClInclude Include="HopStepDefine.h" />
     <ClInclude Include="HopStepOverrides.h" />
-    <ClInclude Include="Intermediate_Test\ReflectionTest.generated.h" />
     <ClInclude Include="LoggerBase.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="HopStep.h" />
@@ -171,9 +170,6 @@
     <ClCompile Include="Class.cpp" />
     <ClCompile Include="Enum.cpp" />
     <ClCompile Include="Field.cpp" />
-    <ClCompile Include="Intermediate_Test\ReflectionTest.generated.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\HopStep.h</PrecompiledHeaderFile>
-    </ClCompile>
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="HopStep.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

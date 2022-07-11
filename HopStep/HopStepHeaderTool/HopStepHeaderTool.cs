@@ -2,18 +2,23 @@
 {
     internal class HopStepHeaderTool
     {
-        private readonly string _path;
+        private readonly HeaderToolConfig _config;
         private readonly ISolutionParser _parser;
+        private readonly ISolutionContentGenerator _writer;
 
-        public HopStepHeaderTool(string path)
+        public HopStepHeaderTool(HeaderToolConfig Config)
         {
-            _path = path;
-            _parser = new HopStepSolutionParser(_path);
+            _config = Config;
+
+            _parser = new HopStepSolutionParser(_config.EnginePath);
+            _writer = new HopStepGeneratedContentWriter();
         }
 
         public bool Process()
         {
             _parser?.Parse();
+            _writer?.GenerateContent(_config.IntermediatePath, _parser.SolutionSchema);
+
             return true;
         }
     }
