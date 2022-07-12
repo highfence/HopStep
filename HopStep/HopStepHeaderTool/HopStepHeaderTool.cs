@@ -10,13 +10,13 @@
         {
             _config = Config;
 
-            _parser = new HopStepSolutionParser(_config.EnginePath);
+            _parser = new HopStepSolutionParser();
             _writer = new HopStepGeneratedContentWriter();
         }
 
         public bool Process()
         {
-            _parser?.Parse();
+            _parser?.Parse(_config.EnginePath);
             _writer?.GenerateContent(_config.IntermediatePath, _parser.SolutionSchema);
 
             return true;

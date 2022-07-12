@@ -15,7 +15,7 @@ namespace ToolTest
         {
             var currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             _enginePath = Path.Combine(currentDirectory, @"..\..\..\..\HopStepEngine\");
-            _parser = new HopStepSolutionParser(_enginePath);
+            _parser = new HopStepSolutionParser();
         }
 
         [TearDown]
@@ -33,7 +33,7 @@ namespace ToolTest
                 return;
 			}
 
-            _parser.Parse();
+            _parser.Parse(_enginePath);
             Assert.IsTrue(_parser.SolutionSchema.HeaderDirectories.Count > 0);
 
             foreach (var header in _parser.SolutionSchema.HeaderDirectories)

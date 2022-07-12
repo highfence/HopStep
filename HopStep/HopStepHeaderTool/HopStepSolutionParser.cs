@@ -7,18 +7,18 @@ namespace HopStepHeaderTool
     {
         public SolutionSchema SolutionSchema { get; private set; } = null;
 
-        private readonly string _modulePath = string.Empty;
+        private string _modulePath = string.Empty;
         private readonly ParsingStateContext _parseContext = null;
 
-        public HopStepSolutionParser(string modulePath)
+        public HopStepSolutionParser()
         {
-            _modulePath = modulePath;
             _parseContext = new ParsingStateContext();
             SolutionSchema = new SolutionSchema();
         }
 
-        public void Parse()
+        public void Parse(string modulePath)
         {
+            _modulePath = modulePath;
             TryFetchTargetFiles();
             ParseHeader();
         }
