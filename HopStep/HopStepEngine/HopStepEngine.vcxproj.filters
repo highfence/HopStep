@@ -49,12 +49,6 @@
     <ClInclude Include="Object.h">
       <Filter>CoreObject\Object</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleLogger.h">
-      <Filter>Core\Logger</Filter>
-    </ClInclude>
-    <ClInclude Include="LoggerBase.h">
-      <Filter>Core\Logger</Filter>
-    </ClInclude>
     <ClInclude Include="HopStepOverrides.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -85,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="StructBuilder.h">
       <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Logger\ConsoleLogger.h">
+      <Filter>Core\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Logger\LoggerBase.h">
+      <Filter>Core\Logger</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
