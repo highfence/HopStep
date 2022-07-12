@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace HopStepHeaderTool
 {
@@ -29,7 +30,7 @@ namespace HopStepHeaderTool
             {
                 var fullPath = Path.GetFullPath(_modulePath);
                 var dirInfo = new DirectoryInfo(fullPath);
-                var headerFiles = dirInfo.GetFiles("*.h");
+                var headerFiles = dirInfo.GetFiles("*.h", SearchOption.AllDirectories).Where(di => di.FullName.Contains("generated.") == false);
 
                 foreach (var headerFile in headerFiles)
                 {

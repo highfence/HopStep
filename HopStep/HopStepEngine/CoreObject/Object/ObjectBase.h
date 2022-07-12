@@ -1,5 +1,6 @@
 #pragma once
-#include "ReflectionConcepts.h"
+#include "..\..\Core\HopStepOverrides.h"
+#include "..\Reflection\ReflectionConcepts.h"
 
 /**
  * Type register interface.

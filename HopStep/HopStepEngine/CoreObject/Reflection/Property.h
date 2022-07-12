@@ -1,7 +1,7 @@
 #pragma once
 #include "Field.h"
-#include "HopStepOverrides.h"
-#include "PrimitiveTypeDefines.h"
+#include "Core/HopStepOverrides.h"
+#include "Core/PrimitiveTypeDefines.h"
 
 namespace HopStep::CoreObject::Reflection
 {

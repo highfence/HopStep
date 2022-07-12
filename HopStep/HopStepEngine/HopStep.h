@@ -1,12 +1,13 @@
 #pragma once
 
-#include "CoreStandardIncludes.h"
-#include "HopStepOverrides.h"
+#include "Core/CoreStandardIncludes.h"
+#include "Core/HopStepOverrides.h"
+#include "Core/PrimitiveTypeDefines.h"
 
-#include "PrimitiveTypeDefines.h"
-#include "TypeLibrary.h"
-#include "Struct.h"
-#include "Class.h"
-#include "Type.h"
-#include "Object.h"
-#include "ReflectionMarco.h"
+#include "CoreObject/Reflection/TypeLibrary.h"
+#include "CoreObject/Reflection/Struct.h"
+#include "CoreObject/Reflection/Class.h"
+#include "CoreObject/Reflection/Type.h"
+#include "CoreObject/Reflection/ReflectionMarco.h"
+
+#include "CoreObject/Object/Object.h"

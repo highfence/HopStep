@@ -27,7 +27,7 @@ namespace ToolTest
             _schema = new SolutionSchema();
             var objectHeaderPath = @$"{_enginePath}\\ReflectionTest.h";
             _schema.HeaderDirectories.Add(objectHeaderPath);
-            _schema.AddTypeInfo("ReflectionTest", SolutionSchema.ObjectType.Class, objectHeaderPath, new List<SolutionSchema.PropertyInfo>()
+            _schema.AddTypeInfo("HReflectionTest", SolutionSchema.ObjectType.Class, objectHeaderPath, new List<SolutionSchema.PropertyInfo>()
             {
                 new SolutionSchema.PropertyInfo
                 {

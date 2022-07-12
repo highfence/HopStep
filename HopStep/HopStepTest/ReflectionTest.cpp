@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../HopStepEngine/Property.h"
+#include "../HopStepEngine/CoreObject/Reflection/Property.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
