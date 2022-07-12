@@ -26,8 +26,6 @@ namespace ToolTest
 
             _generator.SolutionRoot = _enginePath;
             _generator.Generate();
-
-            Assert.That(_generator.FilterSchemas.Exists(f => f.FilterName == "Core"));
         }
     }
 }

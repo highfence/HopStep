@@ -53,7 +53,7 @@ namespace ToolTest
 
             Assert.IsFalse(parseContext.ParseStringLine("HCLASS();"));
             Assert.AreEqual(ParsingStateContext.ParsingState.WaitForObjectName, parseContext.State);
-            Assert.AreEqual(SolutionSchema.ObjectType.Class, parseContext.ObjectType);
+            Assert.AreEqual(SolutionSchema.ObjectType.Class, parseContext.CurrentObjectType);
 
             Assert.IsFalse(parseContext.ParseStringLine("class HObject"));
             Assert.AreEqual(ParsingStateContext.ParsingState.WaitForObjectEnd, parseContext.State);

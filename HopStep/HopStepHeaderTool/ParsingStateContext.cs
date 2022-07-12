@@ -17,10 +17,9 @@ namespace HopStepHeaderTool
         }
 
         public ParsingState State { get; private set; } = ParsingState.None;
-        public SolutionSchema.ObjectType ObjectType = SolutionSchema.ObjectType.None;
+        public SolutionSchema.ObjectType CurrentObjectType = SolutionSchema.ObjectType.None;
         public string TypeName { get; private set; } = string.Empty;
         public List<SolutionSchema.PropertyInfo> Properties { get; internal set; } = new List<SolutionSchema.PropertyInfo>();
-
         public int BracketStack { get; private set; } = 0;
 
         private readonly Dictionary<string, SolutionSchema.ObjectType> _objectTypeDefines = new Dictionary<string, SolutionSchema.ObjectType>
@@ -33,6 +32,7 @@ namespace HopStepHeaderTool
         private bool _isInMultiLineAnnotation = false;
         private bool _isObjectStarted = false;
 
+        // Todo : FSM 형태로 변환?
         public bool ParseStringLine(string input)
         {
             var line = FilteringAnnotationString(input);
@@ -43,7 +43,7 @@ namespace HopStepHeaderTool
                 if (type != SolutionSchema.ObjectType.None)
                 {
                     State = ParsingState.WaitForObjectName;
-                    ObjectType = type;
+                    CurrentObjectType = type;
                     return false;
                 }
             }
@@ -136,7 +136,7 @@ namespace HopStepHeaderTool
         public void Reset()
         {
             State = ParsingState.None;
-            ObjectType = SolutionSchema.ObjectType.None;
+            CurrentObjectType = SolutionSchema.ObjectType.None;
             TypeName = string.Empty;
             Properties.Clear();
             BracketStack = 0;
