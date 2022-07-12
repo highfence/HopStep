@@ -30,6 +30,15 @@ namespace ToolTest
 
             var coreFilters = _generator.FilterSchema.Childs.FirstOrDefault(c => c.FilterName == "Core");
             Assert.IsNotNull(coreFilters);
+            Assert.IsTrue(coreFilters?.FileNames.Exists(s => s == "CoreStandardIncludes.h"));
+            Assert.IsTrue(coreFilters?.FileNames.Exists(s => s == "HopStepDefine.h"));
+            Assert.IsTrue(coreFilters?.FileNames.Exists(s => s == "HopStepOverrides.h"));
+            Assert.IsTrue(coreFilters?.FileNames.Exists(s => s == "PrimitiveTypeDefines.h"));
+
+            var loggerFilter = coreFilters?.Childs.FirstOrDefault(f => f.FilterName == "Logger");
+            Assert.IsNotNull(loggerFilter);
+            Assert.IsTrue(loggerFilter?.FileNames.Exists(s => s == "ConsoleLogger.h"));
+            Assert.IsTrue(loggerFilter?.FileNames.Exists(s => s == "LoggerBase.h"));
         }
     }
 }
