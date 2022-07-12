@@ -23,6 +23,8 @@ namespace SolutionGenerator
 
             var gatherer = new DirectoryInfoGatherer(SolutionRoot);
             gatherer.Gather();
+
+            FilterSchema = gatherer.RootSchema;
         }
     }
 

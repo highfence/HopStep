@@ -2,6 +2,7 @@
 using SolutionGenerator;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace ToolTest
 {
@@ -26,6 +27,9 @@ namespace ToolTest
 
             _generator.SolutionRoot = _enginePath;
             _generator.Generate();
+
+            var coreFilters = _generator.FilterSchema.Childs.FirstOrDefault(c => c.FilterName == "Core");
+            Assert.IsNotNull(coreFilters);
         }
     }
 }
