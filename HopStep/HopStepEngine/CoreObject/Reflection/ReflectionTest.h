@@ -1,5 +1,6 @@
 #pragma once
-#include "../../Core/HopStepDefine.h"
+#include "..\..\Core\HopStepCore.h"
+#include "ReflectionMarco.h"
 
 namespace HopStep::CoreObject::Reflection
 {

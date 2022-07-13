@@ -1,5 +1,6 @@
 #pragma once
-#include "Core/HopStepOverrides.h"
+#include "..\..\Core\HopStepCore.h"
+#include "Class.h"
 
 using namespace HopStep::CoreObject::Reflection;
 

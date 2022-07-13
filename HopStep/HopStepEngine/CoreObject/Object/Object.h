@@ -1,4 +1,5 @@
 #pragma once
+#include "..\..\Core\HopStepCore.h"
 #include "..\Reflection\ReflectionMarco.h"
 
 HCLASS();

@@ -88,6 +88,9 @@
     <ClInclude Include="CoreObject\Reflection\TypeLibrary.h">
       <Filter>CoreObject\Reflection</Filter>
     </ClInclude>
+    <ClInclude Include="Core\HopStepCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp" />

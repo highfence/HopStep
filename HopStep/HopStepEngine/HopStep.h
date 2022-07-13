@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Core/CoreStandardIncludes.h"
-#include "Core/HopStepOverrides.h"
-#include "Core/PrimitiveTypeDefines.h"
+#include "Core/HopStepCore.h"
 
 #include "CoreObject/Reflection/TypeLibrary.h"
 #include "CoreObject/Reflection/Struct.h"

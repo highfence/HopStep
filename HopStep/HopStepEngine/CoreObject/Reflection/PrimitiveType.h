@@ -1,4 +1,5 @@
 #pragma once
+#include "..\..\Core\HopStepCore.h"
 
 namespace HopStep::CoreObject::Reflection
 {

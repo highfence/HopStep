@@ -158,6 +158,7 @@
     <ClInclude Include="CoreObject\Reflection\StructBuilder.h" />
     <ClInclude Include="CoreObject\Reflection\Type.h" />
     <ClInclude Include="CoreObject\Reflection\TypeLibrary.h" />
+    <ClInclude Include="Core\HopStepCore.h" />
     <ClInclude Include="Core\CoreStandardIncludes.h" />
     <ClInclude Include="Core\HopStepDefine.h" />
     <ClInclude Include="Core\HopStepOverrides.h" />
@@ -167,22 +168,45 @@
     <ClInclude Include="HopStep.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CoreObject\Object\Object.cpp" />
+    <ClCompile Include="CoreObject\Object\Object.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="CoreObject\Object\ObjectBase.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\HopStep.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="CoreObject\Reflection\Class.cpp" />
-    <ClCompile Include="CoreObject\Reflection\Enum.cpp" />
-    <ClCompile Include="CoreObject\Reflection\Field.cpp" />
-    <ClCompile Include="CoreObject\Reflection\PrimitiveProperty.cpp" />
-    <ClCompile Include="CoreObject\Reflection\PrimitiveType.cpp" />
-    <ClCompile Include="CoreObject\Reflection\Property.cpp" />
-    <ClCompile Include="CoreObject\Reflection\ReflectionTest.cpp" />
-    <ClCompile Include="CoreObject\Reflection\Struct.cpp" />
-    <ClCompile Include="CoreObject\Reflection\Type.cpp" />
-    <ClCompile Include="CoreObject\Reflection\TypeLibrary.cpp" />
+    <ClCompile Include="CoreObject\Reflection\Class.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\Enum.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\Field.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\PrimitiveProperty.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\PrimitiveType.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\Property.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\ReflectionTest.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\Struct.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\Type.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\TypeLibrary.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="HopStep.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">HopStep.h</PrecompiledHeaderFile>
     </ClCompile>
   </ItemGroup>

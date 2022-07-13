@@ -23,7 +23,10 @@ namespace ToolTest
         public void TestFileTree()
         {
             if (_generator is null)
+            {
+                Assert.Fail();
                 return;
+            }
 
             _generator.SolutionRoot = _enginePath;
             _generator.Generate();

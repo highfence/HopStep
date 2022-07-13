@@ -1,4 +1,5 @@
 #pragma once
+#include "..\..\Core\HopStepCore.h"
 
 namespace HopStep::CoreObject::Reflection
 {
@@ -13,7 +14,7 @@ namespace HopStep::CoreObject::Reflection
 
 		static HTypeLibrary* Get();
 
-		std::vector<class HType*> GetTypes();
+		HArray<class HType*> GetTypes();
 
 		void RegisterNewType(class HType* InType);
 

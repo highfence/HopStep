@@ -1,5 +1,5 @@
 #pragma once
-#include "..\..\Core\HopStepOverrides.h"
+#include "..\..\Core\HopStepCore.h"
 #include "..\Reflection\ReflectionConcepts.h"
 
 /**

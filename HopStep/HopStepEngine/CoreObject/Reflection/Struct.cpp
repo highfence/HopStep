@@ -1,4 +1,5 @@
-#include "HopStep.h"
+#include "../../Core/HopStepOverrides.h"
+#include "../../Core/PrimitiveTypeDefines.h"
 #include "Property.h"
 #include "Struct.h"
 
