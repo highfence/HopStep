@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml;
 
 namespace SolutionGenerator
 {
@@ -39,7 +40,16 @@ namespace SolutionGenerator
         private void ModifyProjectFile()
         {
             var projectFilePath = System.IO.Path.Combine(SolutionRoot, $@"{SolutionName}.vcxproj");
+            var projectXML = new XmlDocument();
+            projectXML.Load(projectFilePath);
 
+            var itemGroups = projectXML.SelectNodes("/Project/ItemGroup");
+            Console.WriteLine(itemGroups.Count);
+
+            foreach (var item in itemGroups)
+            {
+                Console.WriteLine(item.ToString());
+            }
         }
     }
 }
