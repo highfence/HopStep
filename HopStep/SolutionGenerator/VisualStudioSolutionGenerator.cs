@@ -43,13 +43,13 @@ namespace SolutionGenerator
             var projectXML = new XmlDocument();
             projectXML.Load(projectFilePath);
 
-            var itemGroups = projectXML.SelectNodes("/Project/ItemGroup");
-            Console.WriteLine(itemGroups.Count);
+            var itemGroups = projectXML.SelectSingleNode("/Project");
+            Console.WriteLine($"itemGroupCount : {itemGroups.ToString()}");
 
-            foreach (var item in itemGroups)
-            {
-                Console.WriteLine(item.ToString());
-            }
+            //foreach (var item in itemGroups)
+            //{
+            //    Console.WriteLine(item.ToString());
+            //}
         }
     }
 }
