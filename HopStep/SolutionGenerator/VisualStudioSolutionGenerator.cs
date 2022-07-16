@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 
 namespace SolutionGenerator
@@ -40,11 +41,20 @@ namespace SolutionGenerator
         private void ModifyProjectFile()
         {
             var projectFilePath = System.IO.Path.Combine(SolutionRoot, $@"{SolutionName}.vcxproj");
-            var projectXML = new XmlDocument();
-            projectXML.Load(projectFilePath);
 
-            var itemGroups = projectXML.SelectSingleNode("/Project");
-            Console.WriteLine($"itemGroupCount : {itemGroups.ToString()}");
+            if (File.Exists(projectFilePath) == false)
+            {
+                throw new Exception($"Project file path {projectFilePath} doesn't exist!");
+            }
+
+            var rootNode = new XmlDocument();
+            rootNode.Load(projectFilePath);
+
+            var projectNodes = rootNode.DocumentElement.SelectNodes("/Project");
+            if (projectNodes.Count == 0)
+            {
+                throw new Exception("ItemGroup was empty");
+            }
 
             //foreach (var item in itemGroups)
             //{
