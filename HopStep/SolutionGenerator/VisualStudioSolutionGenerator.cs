@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Xml;
 
@@ -47,10 +48,16 @@ namespace SolutionGenerator
                 throw new Exception($"Project file path {projectFilePath} doesn't exist!");
             }
 
-            var rootNode = new XmlDocument();
-            rootNode.Load(projectFilePath);
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load(projectFilePath);
 
-            var projectNodes = rootNode.DocumentElement.SelectNodes("/Project");
+            XmlElement rootNode = xmlDoc.DocumentElement;
+            if (rootNode == null)
+            {
+                throw new Exception("No document element!");
+            }
+
+            XmlNodeList projectNodes = rootNode.SelectNodes("//Project");
             if (projectNodes.Count == 0)
             {
                 throw new Exception("ItemGroup was empty");
