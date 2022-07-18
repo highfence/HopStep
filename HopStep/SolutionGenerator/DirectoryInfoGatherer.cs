@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace SolutionGenerator
 {
@@ -22,12 +25,13 @@ namespace SolutionGenerator
 		{
             schema.FilterName = directoryInfo.Name;
 
-            var currentDirectoryFiles = directoryInfo.GetFiles("*.h");
-            foreach (var fileInfo in currentDirectoryFiles)
-			{
-                var fileName = fileInfo.Name;
-                schema.FileNames.Add(fileName);
-			}
+            void GatherFiles(string fileRegex, List<string> destList)
+            {
+                directoryInfo.GetFiles(fileRegex).ToList().ForEach(fi => destList.Add(fi.Name));
+            }
+
+            GatherFiles("*.h", schema.HeaderFileNames);
+            GatherFiles("*.cpp", schema.CppFileNames);
 
             var subDirectories = directoryInfo.GetDirectories();
             foreach (var subDirectory in subDirectories)

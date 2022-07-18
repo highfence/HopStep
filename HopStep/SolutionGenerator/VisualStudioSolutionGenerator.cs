@@ -16,7 +16,8 @@ namespace SolutionGenerator
         {
             public string FilterName = string.Empty;
             public List<SolutionFilterSchema> Childs = new List<SolutionFilterSchema>();
-            public List<string> FileNames = new List<string>();
+            public List<string> HeaderFileNames = new List<string>();
+            public List<string> CppFileNames = new List<string>();
         }
 
         public SolutionFilterSchema FilterSchema { get; set; }
@@ -66,24 +67,54 @@ namespace SolutionGenerator
             }
 
             var headerGroup  = itemGroupNodes[1];
-            AppendHeaderInfoRecursive(headerGroup, FilterSchema, string.Empty);
+            headerGroup.RemoveAll();
+            AppendHeaderInfoRecursive(xmlDoc, headerGroup, FilterSchema, string.Empty);
 
-            // var cppGroup = itemGroupNodes[2];
+            var cppGroup = itemGroupNodes[2];
+            cppGroup.RemoveAll();
+            AppendCppInfoRecursive(xmlDoc, cppGroup, FilterSchema, string.Empty);
+
+            xmlDoc.Save(projectFilePath);
         }
 
-        private void AppendHeaderInfoRecursive(XmlNode xmlNode, SolutionFilterSchema schema, string preDirectories)
+        private void AppendHeaderInfoRecursive(XmlDocument xmlDoc, XmlNode xmlNode, SolutionFilterSchema schema, string baseDirectory)
 		{
-            string currentDirectory = string.Concat(preDirectories, schema.FilterName, "\\");
-            foreach (var fileName in schema.FileNames)
+            foreach (var fileName in schema.HeaderFileNames)
 			{
-                string fileNameWithDirectory = string.Concat(currentDirectory, fileName);
+                string fileNameWithDirectory = string.Concat(baseDirectory, fileName);
                 Console.WriteLine($"Append header : {fileNameWithDirectory}");
+
+                var newNode = xmlDoc.CreateElement("ClInclude");
+                newNode.SetAttribute("Include", fileNameWithDirectory);
+                xmlNode.AppendChild(newNode);
+                newNode.RemoveAttribute("xmlns");
 			}
 
             foreach (var filter in schema.Childs)
 			{
-                AppendHeaderInfoRecursive(xmlNode, filter, currentDirectory);
+                var childDirectory = string.Concat(baseDirectory, filter.FilterName, "\\");
+                AppendHeaderInfoRecursive(xmlDoc, xmlNode, filter, childDirectory);
 			}
 		}
+
+        private void AppendCppInfoRecursive(XmlDocument xmlDoc, XmlNode xmlNode, SolutionFilterSchema schema, string baseDirectory)
+        {
+            foreach (var fileName in schema.CppFileNames)
+            {
+                string fileNameWithDirectory = string.Concat(baseDirectory, fileName);
+                Console.WriteLine($"Append cpp : {fileNameWithDirectory}");
+
+                var newNode = xmlDoc.CreateElement("ClCompile");
+                newNode.SetAttribute("Include", fileNameWithDirectory);
+                xmlNode.AppendChild(newNode);
+                newNode.RemoveAttribute("xmlns");
+            }
+
+            foreach (var filter in schema.Childs)
+            {
+                var childDirectory = string.Concat(baseDirectory, filter.FilterName, "\\");
+                AppendCppInfoRecursive(xmlDoc, xmlNode, filter, childDirectory);
+            }
+        }
     }
 }

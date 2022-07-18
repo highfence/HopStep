@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{5ce0fb36-d3d6-4c45-a733-0312eab2637d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CoreObject">
+      <UniqueIdentifier>{153419c5-bedc-479c-a433-3ccc06b7315e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CoreObject\Reflection">
+      <UniqueIdentifier>{28130bd1-9a9e-4e73-bade-9b61bb00ea40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CoreObject\Object">
+      <UniqueIdentifier>{d701136b-1a3e-4739-bfea-76b93252e549}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Logger">
+      <UniqueIdentifier>{218df021-74ba-48a3-84b7-159f99e6a149}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intermediate">
+      <UniqueIdentifier>{03b61a76-d1ff-4a7b-96da-2ae456bbb6e3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HopStep.h" />
+    <ClInclude Include="Core\Logger\ConsoleLogger.h">
+    </ClInclude>
+    <ClInclude Include="Core\Logger\LoggerBase.h">
+    </ClInclude>
+    <ClInclude Include="Core\CoreStandardIncludes.h">
+    </ClInclude>
+    <ClInclude Include="Core\HopStepDefine.h">
+    </ClInclude>
+    <ClInclude Include="Core\HopStepOverrides.h">
+    </ClInclude>
+    <ClInclude Include="Core\PrimitiveTypeDefines.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Object\Object.h">
+      <Filter>CoreObject\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Object\ObjectBase.h">
+      <Filter>CoreObject\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Object\ObjectMacro.h">
+      <Filter>CoreObject\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\Class.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\Enum.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\Field.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\PrimitiveProperty.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\PrimitiveType.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\Property.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\ReflectionConcepts.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\ReflectionMarco.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\ReflectionTest.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\Struct.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\StructBuilder.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\Type.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\TypeLibrary.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\HopStepCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="HopStep.cpp" />
+    <ClCompile Include="CoreObject\Object\Object.cpp">
+      <Filter>CoreObject\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Object\ObjectBase.cpp">
+      <Filter>CoreObject\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\Class.cpp">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\Enum.cpp">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\Field.cpp">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\PrimitiveProperty.cpp">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\PrimitiveType.cpp">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\Property.cpp">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\ReflectionTest.cpp">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\Struct.cpp">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\Type.cpp">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\TypeLibrary.cpp">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
