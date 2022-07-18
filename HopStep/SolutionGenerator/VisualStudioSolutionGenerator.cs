@@ -57,7 +57,10 @@ namespace SolutionGenerator
                 throw new Exception("No document element!");
             }
 
-            XmlNodeList projectNodes = rootNode.SelectNodes("//Project");
+            XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(xmlDoc.NameTable);
+            xmlNamespaceManager.AddNamespace("t", "http://schemas.microsoft.com/developer/msbuild/2003");
+
+            XmlNodeList projectNodes = rootNode.SelectNodes("//t:ItemGroup", xmlNamespaceManager);
             if (projectNodes.Count == 0)
             {
                 throw new Exception("ItemGroup was empty");
