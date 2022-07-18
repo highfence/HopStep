@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{5ce0fb36-d3d6-4c45-a733-0312eab2637d}</UniqueIdentifier>
+      <UniqueIdentifier>{cbbf2a71-6072-c570-ae76-bd40a7b92bcb}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
       <UniqueIdentifier>{153419c5-bedc-479c-a433-3ccc06b7315e}</UniqueIdentifier>

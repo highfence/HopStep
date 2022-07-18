@@ -143,7 +143,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="HopStep.h" xmlns="" />
-    <ClInclude Include="Core\Core.h" xmlns="" />
     <ClInclude Include="Core\CoreStandardIncludes.h" xmlns="" />
     <ClInclude Include="Core\HopStepCore.h" xmlns="" />
     <ClInclude Include="Core\HopStepDefine.h" xmlns="" />

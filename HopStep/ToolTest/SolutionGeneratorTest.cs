@@ -43,5 +43,13 @@ namespace ToolTest
             Assert.IsTrue(loggerFilter?.HeaderFileNames.Exists(s => s == "ConsoleLogger.h"));
             Assert.IsTrue(loggerFilter?.HeaderFileNames.Exists(s => s == "LoggerBase.h"));
         }
+
+        [Test]
+        public void TestFilterGuidGenerate()
+        {
+            var coreFilter = "Core";
+            var coreGuid = VisualStudioSolutionGenerator.GenerateFilterGuid(coreFilter);
+            Assert.AreEqual("5ce0fb36-d3d6-4c45-a733-0312eab2637d", coreGuid.ToString());
+        }
     }
 }

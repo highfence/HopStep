@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Windows.Xps.Serialization;
 using System.Xml;
 
 namespace SolutionGenerator
@@ -29,6 +31,7 @@ namespace SolutionGenerator
             GatherSolutionFilter();
 
             ModifyProjectFile();
+            ModifyFilterFile();
         }
 
         private void GatherSolutionFilter()
@@ -41,7 +44,7 @@ namespace SolutionGenerator
 
         private void ModifyProjectFile()
         {
-            var projectFilePath = System.IO.Path.Combine(SolutionRoot, $@"{SolutionName}.vcxproj");
+            var projectFilePath = Path.Combine(SolutionRoot, $@"{SolutionName}.vcxproj");
 
             if (File.Exists(projectFilePath) == false)
             {
@@ -114,6 +117,34 @@ namespace SolutionGenerator
             {
                 var childDirectory = string.Concat(baseDirectory, filter.FilterName, "\\");
                 AppendCppInfoRecursive(xmlDoc, xmlNode, filter, childDirectory);
+            }
+        }
+
+        private void ModifyFilterFile()
+        {
+            var projectFilePath = Path.Combine(SolutionRoot, $@"{SolutionName}.vcxproj.filters");
+
+            if (File.Exists(projectFilePath) == false)
+            {
+                throw new Exception($"Project file path {projectFilePath} doesn't exist!");
+            }
+
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load(projectFilePath);
+
+            XmlElement rootNode = xmlDoc.DocumentElement;
+            if (rootNode == null)
+            {
+                throw new Exception("No document element!");
+            }
+
+            XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(xmlDoc.NameTable);
+            xmlNamespaceManager.AddNamespace("t", "http://schemas.microsoft.com/developer/msbuild/2003");
+
+            XmlNodeList itemGroupNodes = rootNode.SelectNodes("//t:ItemGroup", xmlNamespaceManager);
+            if (itemGroupNodes.Count != 3)
+            {
+                throw new Exception("ItemGroup Node Count must be 3.");
             }
         }
     }
