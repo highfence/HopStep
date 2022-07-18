@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Xml;
 
 namespace SolutionGenerator
 {
-    public class VisualStudioSolutionGenerator : ISolutionGenerator
+	public class VisualStudioSolutionGenerator : ISolutionGenerator
     {
         public string SolutionRoot { get; set; } = string.Empty;
 
@@ -60,16 +59,31 @@ namespace SolutionGenerator
             XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(xmlDoc.NameTable);
             xmlNamespaceManager.AddNamespace("t", "http://schemas.microsoft.com/developer/msbuild/2003");
 
-            XmlNodeList projectNodes = rootNode.SelectNodes("//t:ItemGroup", xmlNamespaceManager);
-            if (projectNodes.Count == 0)
+            XmlNodeList itemGroupNodes = rootNode.SelectNodes("//t:ItemGroup", xmlNamespaceManager);
+            if (itemGroupNodes.Count != 3)
             {
-                throw new Exception("ItemGroup was empty");
+                throw new Exception("ItemGroup Node Count must be 3.");
             }
 
-            //foreach (var item in itemGroups)
-            //{
-            //    Console.WriteLine(item.ToString());
-            //}
+            var headerGroup  = itemGroupNodes[1];
+            AppendHeaderInfoRecursive(headerGroup, FilterSchema, string.Empty);
+
+            // var cppGroup = itemGroupNodes[2];
         }
+
+        private void AppendHeaderInfoRecursive(XmlNode xmlNode, SolutionFilterSchema schema, string preDirectories)
+		{
+            string currentDirectory = string.Concat(preDirectories, schema.FilterName, "\\");
+            foreach (var fileName in schema.FileNames)
+			{
+                string fileNameWithDirectory = string.Concat(currentDirectory, fileName);
+                Console.WriteLine($"Append header : {fileNameWithDirectory}");
+			}
+
+            foreach (var filter in schema.Childs)
+			{
+                AppendHeaderInfoRecursive(xmlNode, filter, currentDirectory);
+			}
+		}
     }
 }
