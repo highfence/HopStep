@@ -75,6 +75,13 @@ namespace SolutionGenerator
             cppGroup.RemoveAll();
             AppendCppInfoRecursive(xmlDoc, cppGroup, FilterSchema, string.Empty);
 
+            // Remove all 'xmlns' attribute except root
+            foreach (XmlNode item in rootNode.ChildNodes)
+            {
+                var xmlnsAttribute = item.Attributes["xmlns"];
+                item.Attributes.Remove(xmlnsAttribute);
+            }
+
             xmlDoc.Save(projectFilePath);
         }
 
@@ -88,7 +95,6 @@ namespace SolutionGenerator
                 var newNode = xmlDoc.CreateElement("ClInclude");
                 newNode.SetAttribute("Include", fileNameWithDirectory);
                 xmlNode.AppendChild(newNode);
-                newNode.RemoveAttribute("xmlns");
 			}
 
             foreach (var filter in schema.Childs)
@@ -108,7 +114,6 @@ namespace SolutionGenerator
                 var newNode = xmlDoc.CreateElement("ClCompile");
                 newNode.SetAttribute("Include", fileNameWithDirectory);
                 xmlNode.AppendChild(newNode);
-                newNode.RemoveAttribute("xmlns");
             }
 
             foreach (var filter in schema.Childs)
@@ -144,6 +149,9 @@ namespace SolutionGenerator
             {
                 throw new Exception("ItemGroup Node Count must be 3.");
             }
+
+            XmlNode filterMetaGroup = itemGroupNodes[0];  
+            
         }
     }
 }
