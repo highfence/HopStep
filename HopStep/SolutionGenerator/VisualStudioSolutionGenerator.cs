@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace SolutionGenerator
 {
@@ -104,11 +105,24 @@ namespace SolutionGenerator
 
             var headerGroup  = itemGroupNodes[1];
             headerGroup.RemoveAll();
-            AppendHeaderInfoRecursive(xmlDoc, headerGroup, FilterSchema, string.Empty);
+
+            _flatFilterInfo.HeaderInclude.ForEach(headerInclude => 
+            {
+                var newNode = xmlDoc.CreateElement("ClInclude");
+                newNode.SetAttribute("Include", headerInclude);
+                headerGroup.AppendChild(newNode);
+            });
 
             var cppGroup = itemGroupNodes[2];
             cppGroup.RemoveAll();
-            AppendCppInfoRecursive(xmlDoc, cppGroup, FilterSchema, string.Empty);
+
+            _flatFilterInfo.CppInclude.ForEach(cppInclude => 
+            {
+                var newNode = xmlDoc.CreateElement("ClCompile");
+                newNode.SetAttribute("Include", cppInclude);
+                cppGroup.AppendChild(newNode);
+            });
+
 
             // Remove all 'xmlns' attribute except root
             foreach (XmlNode item in rootNode.ChildNodes)
@@ -118,44 +132,6 @@ namespace SolutionGenerator
             }
 
             xmlDoc.Save(projectFilePath);
-        }
-
-        private void AppendHeaderInfoRecursive(XmlDocument xmlDoc, XmlNode xmlNode, SolutionFilterSchema schema, string baseDirectory)
-		{
-            foreach (var fileName in schema.HeaderFileNames)
-			{
-                string fileNameWithDirectory = string.Concat(baseDirectory, fileName);
-                Console.WriteLine($"Append header : {fileNameWithDirectory}");
-
-                var newNode = xmlDoc.CreateElement("ClInclude");
-                newNode.SetAttribute("Include", fileNameWithDirectory);
-                xmlNode.AppendChild(newNode);
-			}
-
-            foreach (var filter in schema.Childs)
-			{
-                var childDirectory = string.Concat(baseDirectory, filter.FilterName, "\\");
-                AppendHeaderInfoRecursive(xmlDoc, xmlNode, filter, childDirectory);
-			}
-		}
-
-        private void AppendCppInfoRecursive(XmlDocument xmlDoc, XmlNode xmlNode, SolutionFilterSchema schema, string baseDirectory)
-        {
-            foreach (var fileName in schema.CppFileNames)
-            {
-                string fileNameWithDirectory = string.Concat(baseDirectory, fileName);
-                Console.WriteLine($"Append cpp : {fileNameWithDirectory}");
-
-                var newNode = xmlDoc.CreateElement("ClCompile");
-                newNode.SetAttribute("Include", fileNameWithDirectory);
-                xmlNode.AppendChild(newNode);
-            }
-
-            foreach (var filter in schema.Childs)
-            {
-                var childDirectory = string.Concat(baseDirectory, filter.FilterName, "\\");
-                AppendCppInfoRecursive(xmlDoc, xmlNode, filter, childDirectory);
-            }
         }
 
         private void ModifyFilterFile()
@@ -185,12 +161,22 @@ namespace SolutionGenerator
                 throw new Exception("ItemGroup Node Count must be 3.");
             }
 
-            XmlNode filterMetaGroup = itemGroupNodes[0];  
-        }
+            XmlNode filterMetaGroup = itemGroupNodes[0];
+            filterMetaGroup.RemoveAll();
 
-        private void AppendFilterMetaInfoRecursive(XmlDocument xmlDoc, XmlNode xmlNode, SolutionFilterSchema schema, string baseDirectory)
-		{
-            
-		}
+            _flatFilterInfo.Filters.ForEach(filter => 
+            {
+                var newNode = xmlDoc.CreateElement("Filter");
+                newNode.SetAttribute("Include", filter);
+                filterMetaGroup.AppendChild(newNode);
+                
+                var guid = Guid.NewGuid().ToString();
+                var newNode2 = xmlDoc.CreateElement("UniqueIdentifier");
+                newNode2.InnerText = $"{{{guid}}}";
+                newNode.AppendChild(newNode2);
+            });
+
+            xmlDoc.Save(projectFilePath);
+        }
     }
 }

@@ -1,23 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Core">
-      <UniqueIdentifier>{cbbf2a71-6072-c570-ae76-bd40a7b92bcb}</UniqueIdentifier>
+    <Filter Include="Core" xmlns="">
+      <UniqueIdentifier>{f321d1a7-5999-452a-bd7f-d6f8975574db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CoreObject">
-      <UniqueIdentifier>{153419c5-bedc-479c-a433-3ccc06b7315e}</UniqueIdentifier>
+    <Filter Include="Core\Logger" xmlns="">
+      <UniqueIdentifier>{cbbc89a2-ce6e-4bfb-a81d-cdfc1e308c5e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{28130bd1-9a9e-4e73-bade-9b61bb00ea40}</UniqueIdentifier>
+    <Filter Include="CoreObject" xmlns="">
+      <UniqueIdentifier>{82ff90a8-3bb1-4821-8dc9-5aa6ae8be99c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{d701136b-1a3e-4739-bfea-76b93252e549}</UniqueIdentifier>
+    <Filter Include="CoreObject\Object" xmlns="">
+      <UniqueIdentifier>{5e4b4065-66b4-4354-b65d-9ac3a58e90c0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Logger">
-      <UniqueIdentifier>{218df021-74ba-48a3-84b7-159f99e6a149}</UniqueIdentifier>
+    <Filter Include="CoreObject\Reflection" xmlns="">
+      <UniqueIdentifier>{a7944082-f353-4dac-aa4d-7ab3f7adcc7e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Intermediate">
-      <UniqueIdentifier>{03b61a76-d1ff-4a7b-96da-2ae456bbb6e3}</UniqueIdentifier>
+    <Filter Include="Intermediate" xmlns="">
+      <UniqueIdentifier>{f503686d-2a3e-4224-a0b3-8d8f8c98471e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intermediate_Test" xmlns="">
+      <UniqueIdentifier>{c3641be4-c009-4216-9d5a-a5182f30b1f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
