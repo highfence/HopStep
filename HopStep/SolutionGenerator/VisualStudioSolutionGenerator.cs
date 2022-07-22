@@ -176,6 +176,27 @@ namespace SolutionGenerator
                 newNode.AppendChild(newNode2);
             });
 
+            XmlNode headerFilterGroup = itemGroupNodes[1];
+            headerFilterGroup.RemoveAll();
+
+            _flatFilterInfo.HeaderInclude.ForEach(headerPath => 
+            {
+                var newNode = xmlDoc.CreateElement("ClInclude");
+                newNode.SetAttribute("Include", headerPath);
+
+                var expectedFilterName = headerPath.Substring(0, headerPath.LastIndexOf("\\"));
+                var filterName = _flatFilterInfo.Filters.FirstOrDefault(f => f.Equals(expectedFilterName));
+
+                if (string.IsNullOrEmpty(filterName))
+				{
+                    throw new Exception($"{expectedFilterName} is not exist!");
+				}
+
+                var newNode2 = xmlDoc.CreateElement("Filter");
+                newNode2.InnerText = filterName;
+                newNode.AppendChild(newNode2);
+            });
+
             xmlDoc.Save(projectFilePath);
         }
     }
