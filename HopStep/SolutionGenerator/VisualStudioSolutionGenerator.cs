@@ -184,17 +184,50 @@ namespace SolutionGenerator
                 var newNode = xmlDoc.CreateElement("ClInclude");
                 newNode.SetAttribute("Include", headerPath);
 
-                var expectedFilterName = headerPath.Substring(0, headerPath.LastIndexOf("\\"));
-                var filterName = _flatFilterInfo.Filters.FirstOrDefault(f => f.Equals(expectedFilterName));
+                var slashIndex = headerPath.LastIndexOf("\\");
+                if (slashIndex != -1)
+                {
+                    var expectedFilterName = headerPath[..slashIndex];
+                    var filterName = _flatFilterInfo.Filters.FirstOrDefault(f => f.Equals(expectedFilterName));
 
-                if (string.IsNullOrEmpty(filterName))
-				{
-                    throw new Exception($"{expectedFilterName} is not exist!");
-				}
+                    if (string.IsNullOrEmpty(filterName))
+                    {
+                        throw new Exception($"header : {expectedFilterName} is not exist!");
+                    }
 
-                var newNode2 = xmlDoc.CreateElement("Filter");
-                newNode2.InnerText = filterName;
-                newNode.AppendChild(newNode2);
+                    var newNode2 = xmlDoc.CreateElement("Filter");
+                    newNode2.InnerText = filterName;
+                    newNode.AppendChild(newNode2);
+                }
+
+                headerFilterGroup.AppendChild(newNode);
+            });
+
+            XmlNode cppFilterGroup = itemGroupNodes[2];
+            cppFilterGroup.RemoveAll();
+
+            _flatFilterInfo.CppInclude.ForEach(cppPath =>
+            {
+                var newNode = xmlDoc.CreateElement("ClCompile");
+                newNode.SetAttribute("Include", cppPath);
+
+                var slashIndex = cppPath.LastIndexOf("\\");
+                if (slashIndex != -1)
+                {
+                    var expectedFilterName = cppPath[..slashIndex];
+                    var filterName = _flatFilterInfo.Filters.FirstOrDefault(f => f.Equals(expectedFilterName));
+
+                    if (string.IsNullOrEmpty(filterName))
+                    {
+                        throw new Exception($"cpp : {expectedFilterName} is not exist!");
+                    }
+
+                    var newNode2 = xmlDoc.CreateElement("Filter");
+                    newNode2.InnerText = filterName;
+                    newNode.AppendChild(newNode2);
+                }
+
+                cppFilterGroup.AppendChild(newNode);
             });
 
             xmlDoc.Save(projectFilePath);
