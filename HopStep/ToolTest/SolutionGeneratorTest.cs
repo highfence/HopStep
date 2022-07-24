@@ -28,8 +28,7 @@ namespace ToolTest
                 return;
             }
 
-            _generator.SolutionRoot = _enginePath;
-            _generator.Generate();
+            _generator.Generate(_enginePath);
 
             var coreFilters = _generator.FilterSchema.Childs.FirstOrDefault(c => c.FilterName == "Core");
             Assert.IsNotNull(coreFilters);

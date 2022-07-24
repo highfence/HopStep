@@ -2,19 +2,19 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Core" xmlns="">
-      <UniqueIdentifier>{9d3c4bfe-405e-408b-93e9-3cb590e271dd}</UniqueIdentifier>
+      <UniqueIdentifier>{3f98dd2b-d8c9-4aad-afd0-14e579d6604e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger" xmlns="">
-      <UniqueIdentifier>{da2e95f5-8d71-4cf9-a866-932f77d09198}</UniqueIdentifier>
+      <UniqueIdentifier>{b429a362-8713-4fb9-820c-13db87be1dd4}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject" xmlns="">
-      <UniqueIdentifier>{bd1cffc4-70e0-4f76-8bd4-c75d77b4b7d8}</UniqueIdentifier>
+      <UniqueIdentifier>{6f945d49-964e-4507-b49a-b1284a82dded}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object" xmlns="">
-      <UniqueIdentifier>{39344579-b4b8-4fde-9cf5-09886a302131}</UniqueIdentifier>
+      <UniqueIdentifier>{1c7f2699-d2b8-4ab6-976b-2250658c03ff}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection" xmlns="">
-      <UniqueIdentifier>{adf029ce-314a-4a59-b3d4-e361031fa120}</UniqueIdentifier>
+      <UniqueIdentifier>{29dfb3e1-f767-471d-8fae-0b7a524bd99f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,6 @@
 {
     public interface ISolutionGenerator
     {
-        public void Generate();
+        public void Generate(string solutionRoot);
     }
 }

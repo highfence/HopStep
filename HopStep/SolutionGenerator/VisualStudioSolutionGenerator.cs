@@ -7,11 +7,11 @@ using System.Xml.Linq;
 
 namespace SolutionGenerator
 {
-	public class VisualStudioSolutionGenerator : ISolutionGenerator
+    public class VisualStudioSolutionGenerator : ISolutionGenerator
     {
-        public string SolutionRoot { get; set; } = string.Empty;
+        public string SolutionRoot { get; private set; } = string.Empty;
 
-        public string SolutionName => new System.IO.DirectoryInfo(SolutionRoot).Name;
+        public string SolutionName => new DirectoryInfo(SolutionRoot).Name;
 
         // Solution filter must be correspond with directory folders
         public class SolutionFilterSchema
@@ -33,9 +33,11 @@ namespace SolutionGenerator
 
         private SolutionFilterInfo _flatFilterInfo;
 
-        public void Generate()
+        public void Generate(string solutionRoot)
         {
-            if (string.IsNullOrEmpty(SolutionRoot)) return;
+            if (string.IsNullOrEmpty(solutionRoot)) return;
+
+            SolutionRoot = solutionRoot;
 
             GatherFilterSchemaInfo();
 
@@ -123,15 +125,12 @@ namespace SolutionGenerator
                 cppGroup.AppendChild(newNode);
             });
 
+            xmlDoc.Save(projectFilePath);
 
             // Remove all 'xmlns' attribute except root
-            foreach (XmlNode item in rootNode.ChildNodes)
-            {
-                var xmlnsAttribute = item.Attributes["xmlns"];
-                item.Attributes.Remove(xmlnsAttribute);
-            }
-
-            xmlDoc.Save(projectFilePath);
+            XElement xmlElement = XElement.Parse(projectFilePath);
+            var elementWithoutNs = RemoveAllNamesapces(xmlElement);
+            elementWithoutNs.Save(projectFilePath);
         }
 
         private void ModifyFilterFile()
@@ -231,6 +230,27 @@ namespace SolutionGenerator
             });
 
             xmlDoc.Save(projectFilePath);
+
+            // Remove all 'xmlns' attribute except root
+            XElement xmlElement = XElement.Parse(projectFilePath);
+            var elementWithoutNs = RemoveAllNamesapces(xmlElement);
+            elementWithoutNs.Save(projectFilePath);
+        }
+        private static XElement RemoveAllNamesapces(XElement xmlDocument)
+        {
+            if (!xmlDocument.HasElements)
+            {
+                XElement xElement = new XElement(xmlDocument.Name.LocalName);
+                xElement.Value = xmlDocument.Value;
+
+                foreach (XAttribute attribute in xmlDocument.Attributes())
+                {
+                    xElement.Add(attribute);
+                }
+
+                return xElement;
+            }
+            return new XElement(xmlDocument.Name.LocalName, xmlDocument.Elements().Select(el => RemoveAllNamesapces(el)));
         }
     }
 }
