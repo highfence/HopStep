@@ -1,0 +1,2 @@
+start .\HopStepHeaderTool\bin\Release\netcoreapp3.1\HopStepHeaderTool.exe .\HopStepEngine\
+pause

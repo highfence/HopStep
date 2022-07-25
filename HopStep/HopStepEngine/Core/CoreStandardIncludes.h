@@ -11,6 +11,7 @@
 #include <optional>
 #include <iostream>
 #include <cstddef>
+#include <string_view>
 
 
 #include "HopStepDefine.h"
