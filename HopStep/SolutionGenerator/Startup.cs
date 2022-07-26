@@ -6,7 +6,13 @@ namespace SolutionGenerator
 	{
 		static void Main(string[] args)
 		{
-			if (args.Length == 0) return;
+			Console.Write("SolutionGenerator started...");
+
+			if (args.Length == 0)
+			{
+				Console.Write("No Arguments!");
+				return;
+			}
 
 			var solutionRoot = args[0];
 
