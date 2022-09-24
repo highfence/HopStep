@@ -38,6 +38,7 @@ namespace HopStepHeaderTool
 			foreach (var headerPath in solutionSchema.HeaderDirectories)
 			{
 				var fileToken = headerPath.Split("\\").LastOrDefault();
+
 				if (string.IsNullOrEmpty(fileToken))
 				{
 					throw new System.Exception($"Invalid header path! can't find file token from : {headerPath}");
@@ -102,7 +103,7 @@ namespace HopStepHeaderTool
 			var sb = new StringBuilder();
 
 			sb.AppendLine("#pragma once");
-			sb.AppendLine("#include \"..\\ObjectMacro.h\"");
+			sb.AppendLine("#include \"..\\CoreObject\\Object\\ObjectMacro.h\"");
 			sb.AppendLine();
 
 			using (var handle = new StreamWriter(generatedPath, false, Encoding.UTF8))

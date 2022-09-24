@@ -125,6 +125,11 @@ namespace SolutionGenerator
                 cppGroup.AppendChild(newNode);
             });
 
+            if (File.Exists(projectFilePath))
+            {
+                File.Delete(projectFilePath);
+            }
+
             xmlDoc.Save(projectFilePath);
 
             // Remove all 'xmlns' attribute except root

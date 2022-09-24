@@ -6,6 +6,7 @@ namespace SolutionGenerator
 	{
 		static void Main(string[] args)
 		{
+			Console.ForegroundColor = ConsoleColor.Cyan;
 			Console.Write("SolutionGenerator started...");
 
 			if (args.Length == 0)
@@ -13,6 +14,8 @@ namespace SolutionGenerator
 				Console.Write("No Arguments!");
 				return;
 			}
+
+			Console.WriteLine($"args : {string.Join(" ", args)}");
 
 			var solutionRoot = args[0];
 

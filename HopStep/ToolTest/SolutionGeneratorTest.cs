@@ -46,7 +46,6 @@ namespace ToolTest
         [Test]
         public void TestFilterGuidGenerate()
         {
-            var coreFilter = "Core";
         }
     }
 }

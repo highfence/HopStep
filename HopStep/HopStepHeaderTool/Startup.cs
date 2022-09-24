@@ -6,6 +6,10 @@ namespace HopStepHeaderTool
 	{
 		static void Main(string[] args)
 		{
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine($"{nameof(HopStepHeaderTool)} started...");
+			Console.WriteLine($"args : {string.Join(" ", args)}");
+
 			var parser = new CommandParser();
 			var config = new HeaderToolConfig();
 
