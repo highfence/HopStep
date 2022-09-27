@@ -49,7 +49,7 @@ namespace HopStepHeaderTool
 					throw new System.Exception($"Invalid header path! header must end with \".h\" : {headerPath}");
 				}
 
-				var objectName = GeneratedContentHelper.RemovePrefix(fileToken.Remove(fileToken.Length - 2));
+				var objectName = fileToken.Remove(fileToken.Length - 2);
 				var generatedHeaderPath = Path.Combine(intermediatePath, $"{objectName}.generated.h");
 				var schemasInHeader = solutionSchema.Types
 					.Where(s => s.Value.HeaderDirectory == headerPath)
