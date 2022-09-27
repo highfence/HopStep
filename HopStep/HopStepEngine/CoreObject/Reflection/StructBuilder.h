@@ -1,8 +1,8 @@
 #pragma once
 #include "Struct.h"
 #include "Property.h"
-#include "PrimitiveTypeDefines.h"
-#include "HopStepOverrides.h"
+#include "..\..\Core\PrimitiveTypeDefines.h"
+#include "..\..\Core\HopStepOverrides.h"
 
 namespace HopStep::CoreObject::Reflection
 {
