@@ -7,7 +7,7 @@ namespace SolutionGenerator
 		static void Main(string[] args)
 		{
 			Console.ForegroundColor = ConsoleColor.Cyan;
-			Console.Write("SolutionGenerator started...");
+			Console.WriteLine("SolutionGenerator started...");
 
 			if (args.Length == 0)
 			{

@@ -122,7 +122,20 @@ namespace SolutionGenerator
             {
                 var newNode = xmlDoc.CreateElement("ClCompile");
                 newNode.SetAttribute("Include", cppInclude);
+
+                var complieConfigurationString = "'$(Configuration)|$(Platform)'=='Debug|x64'";
+
+				// Add PrecompliedHeader file attributes
+				var precompliedHeaderNode = xmlDoc.CreateElement("PrecompiledHeader");
+                precompliedHeaderNode.SetAttribute("Condition", complieConfigurationString);
+                precompliedHeaderNode.InnerText = "NotUsing";
+
+                var precompliedHeaderFileNode = xmlDoc.CreateElement("PrecompiledHeaderFile");
+                precompliedHeaderFileNode.SetAttribute("Condition", complieConfigurationString);
+
                 cppGroup.AppendChild(newNode);
+                newNode.AppendChild(precompliedHeaderNode);
+                newNode.AppendChild(precompliedHeaderFileNode);
             });
 
             if (File.Exists(projectFilePath))

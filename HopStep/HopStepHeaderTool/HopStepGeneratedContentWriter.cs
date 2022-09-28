@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,8 +27,14 @@ namespace HopStepHeaderTool
 
     public class HopStepGeneratedContentWriter : ISolutionContentGenerator
 	{
-		public void GenerateContent(string intermediatePath, SolutionSchema solutionSchema)
+		private string _enginePath = string.Empty;
+		private string _intermediatePath = string.Empty;
+
+		public void GenerateContent(string enginePath, string intermediatePath, SolutionSchema solutionSchema)
 		{
+			_enginePath = enginePath.Replace("\\\\", "\\");
+			_intermediatePath = intermediatePath.Replace("\\\\", "\\");
+
 			GeneratedContentHelper.ClearIntermediatePath(intermediatePath);
 
 			MakeFiles(intermediatePath, solutionSchema);
@@ -70,8 +77,8 @@ namespace HopStepHeaderTool
 
 			foreach (var typeInfo in schemasInHeader)
 			{
-				var typeNameWithoutPrefix = GeneratedContentHelper.RemovePrefix(typeInfo.Name);
-				sb.AppendLine($"#include \"..\\{typeNameWithoutPrefix}.h\"");
+				var relativeDirectory = GetRelativeDirectory(_intermediatePath, typeInfo.HeaderDirectory);
+				sb.AppendLine($"#include \"{relativeDirectory}\"");
 			}
 
 			sb.AppendLine();
@@ -96,6 +103,15 @@ namespace HopStepHeaderTool
 				handle.Write(sb.ToString());
 				handle.Close();
 			}
+		}
+
+		private string GetRelativeDirectory(string sourceDirectory, string destDirectory)
+		{
+			var path1 = new Uri(sourceDirectory);
+			var path2 = new Uri(destDirectory);
+
+			var diff = path1.MakeRelativeUri(path2);
+			return diff.OriginalString;
 		}
 
 		private void WriteHeader(string generatedPath, List<SolutionSchema.TypeInfo> schemasInHeader)

@@ -17,7 +17,7 @@
         public bool Process()
         {
             _parser?.Parse(_config.EnginePath);
-            _writer?.GenerateContent(_config.IntermediatePath, _parser.SolutionSchema);
+            _writer?.GenerateContent(_config.EnginePath, _config.IntermediatePath, _parser.SolutionSchema);
 
             return true;
         }

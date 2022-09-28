@@ -2,6 +2,6 @@
 {
 	public interface ISolutionContentGenerator
 	{
-		void GenerateContent(string intermediatePath, SolutionSchema solutionSchema);
+		void GenerateContent(string enginePath, string intermediatePath, SolutionSchema solutionSchema);
 	}
 }
