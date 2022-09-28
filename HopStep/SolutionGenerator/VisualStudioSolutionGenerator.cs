@@ -130,12 +130,8 @@ namespace SolutionGenerator
                 File.Delete(projectFilePath);
             }
 
-            xmlDoc.Save(projectFilePath);
-
-            // Remove all 'xmlns' attribute except root
-            XElement xmlElement = XElement.Parse(projectFilePath);
-            var elementWithoutNs = RemoveAllNamesapces(xmlElement);
-            elementWithoutNs.Save(projectFilePath);
+            var xmlRemovedDoc = RemoveAllEmptyNamespaces(xmlDoc);
+            xmlRemovedDoc.Save(projectFilePath);
         }
 
         private void ModifyFilterFile()
@@ -234,28 +230,22 @@ namespace SolutionGenerator
                 cppFilterGroup.AppendChild(newNode);
             });
 
-            xmlDoc.Save(projectFilePath);
-
-            // Remove all 'xmlns' attribute except root
-            XElement xmlElement = XElement.Parse(projectFilePath);
-            var elementWithoutNs = RemoveAllNamesapces(xmlElement);
-            elementWithoutNs.Save(projectFilePath);
+            var xmlRemovedDoc = RemoveAllEmptyNamespaces(xmlDoc);
+            xmlRemovedDoc.Save(projectFilePath);
         }
-        private static XElement RemoveAllNamesapces(XElement xmlDocument)
+
+        private XmlDocument RemoveAllEmptyNamespaces(XmlDocument oldDocument)
         {
-            if (!xmlDocument.HasElements)
-            {
-                XElement xElement = new XElement(xmlDocument.Name.LocalName);
-                xElement.Value = xmlDocument.Value;
+            XmlDocument newDom = new XmlDocument();
+            newDom.LoadXml(System.Text.RegularExpressions.Regex.Replace(
+                    oldDocument.OuterXml,
+                    @"(xmlns:?[^=]*=[""][^""]*[""])",
+                    "",
+                    System.Text.RegularExpressions.RegexOptions.IgnoreCase |
+                    System.Text.RegularExpressions.RegexOptions.Multiline
+				));
 
-                foreach (XAttribute attribute in xmlDocument.Attributes())
-                {
-                    xElement.Add(attribute);
-                }
-
-                return xElement;
-            }
-            return new XElement(xmlDocument.Name.LocalName, xmlDocument.Elements().Select(el => RemoveAllNamesapces(el)));
+            return newDom;
         }
     }
 }
