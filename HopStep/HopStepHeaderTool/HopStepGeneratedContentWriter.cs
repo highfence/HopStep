@@ -62,6 +62,11 @@ namespace HopStepHeaderTool
 					.Where(s => s.Value.HeaderDirectory == headerPath)
 					.Select(s => s.Value).ToList();
 
+				if (schemasInHeader.Count == 0)
+				{
+					continue;
+				}
+
 				WriteHeader(generatedHeaderPath, schemasInHeader);
 
 				var generatedCppPath = Path.Combine(intermediatePath, $"{objectName}.generated.cpp");
