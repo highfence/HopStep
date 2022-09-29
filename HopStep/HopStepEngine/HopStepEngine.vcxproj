@@ -170,6 +170,7 @@
     <ClInclude Include="CoreObject\Reflection\TypeLibrary.h" />
     <ClInclude Include="Intermediate\Object.generated.h" />
     <ClInclude Include="Intermediate\ReflectionTest.generated.h" />
+    <ClInclude Include="Launch\LaunchWindows.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp">
@@ -229,6 +230,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Intermediate\ReflectionTest.generated.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Launch\LaunchWindows.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>

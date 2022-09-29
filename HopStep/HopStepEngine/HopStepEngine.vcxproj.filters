@@ -2,22 +2,25 @@
 <Project ToolsVersion="4.0">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{515ac2c4-648c-4e63-8bd1-e9de94855be6}</UniqueIdentifier>
+      <UniqueIdentifier>{ca69af06-ac64-49a7-8d1f-61628a2be6e6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger">
-      <UniqueIdentifier>{863fe319-0d85-4bdc-b346-e30a064ccb22}</UniqueIdentifier>
+      <UniqueIdentifier>{450fcd92-3b44-4226-b5f0-43907cfa9f62}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
-      <UniqueIdentifier>{a3800919-8ca6-4a23-93bc-e881c6cff80b}</UniqueIdentifier>
+      <UniqueIdentifier>{6962fa2a-4142-4a3d-9bb2-5adb97531cbd}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{7562c88a-94da-4395-a4ce-7cdb012a857d}</UniqueIdentifier>
+      <UniqueIdentifier>{f669db93-f43b-4a51-8eb7-69b2a2ea9f1f}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{89e37720-e032-47dd-bf6f-6b1aa01a2942}</UniqueIdentifier>
+      <UniqueIdentifier>{81816cdc-286b-4a30-b5a6-6c1f8e62f56b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Intermediate">
-      <UniqueIdentifier>{2f85d0f6-877f-455a-94fa-2175a8627b43}</UniqueIdentifier>
+      <UniqueIdentifier>{87b55ef4-f839-4bd0-b0ac-a365a9151080}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Launch">
+      <UniqueIdentifier>{cbdcbacc-b099-454e-ad8d-f1c894fdd7ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +100,9 @@
     <ClInclude Include="Intermediate\ReflectionTest.generated.h">
       <Filter>Intermediate</Filter>
     </ClInclude>
+    <ClInclude Include="Launch\LaunchWindows.h">
+      <Filter>Launch</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp" />
@@ -141,6 +147,9 @@
     </ClCompile>
     <ClCompile Include="Intermediate\ReflectionTest.generated.cpp">
       <Filter>Intermediate</Filter>
+    </ClCompile>
+    <ClCompile Include="Launch\LaunchWindows.cpp">
+      <Filter>Launch</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

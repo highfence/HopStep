@@ -97,7 +97,7 @@ namespace SolutionGenerator
             }
 
             XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(xmlDoc.NameTable);
-            xmlNamespaceManager.AddNamespace("t", "http://schemas.microsoft.com/developer/msbuild/2003");
+            xmlNamespaceManager.AddNamespace("t", "");
 
             XmlNodeList itemGroupNodes = rootNode.SelectNodes("//t:ItemGroup", xmlNamespaceManager);
             if (itemGroupNodes.Count != 3)
@@ -166,7 +166,7 @@ namespace SolutionGenerator
             }
 
             XmlNamespaceManager xmlNamespaceManager = new XmlNamespaceManager(xmlDoc.NameTable);
-            xmlNamespaceManager.AddNamespace("t", "http://schemas.microsoft.com/developer/msbuild/2003");
+            xmlNamespaceManager.AddNamespace("t", "");
 
             XmlNodeList itemGroupNodes = rootNode.SelectNodes("//t:ItemGroup", xmlNamespaceManager);
             if (itemGroupNodes.Count != 3)
