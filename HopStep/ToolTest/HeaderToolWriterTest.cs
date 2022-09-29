@@ -25,7 +25,7 @@ namespace ToolTest
 
             // schema setting
             _schema = new SolutionSchema();
-            var objectHeaderPath = @$"{_enginePath}\\ReflectionTest.h";
+            var objectHeaderPath = @$"{_enginePath}ReflectionTest.h";
             _schema.HeaderDirectories.Add(objectHeaderPath);
             _schema.AddTypeInfo("HReflectionTest", SolutionSchema.ObjectType.Class, objectHeaderPath, new List<SolutionSchema.PropertyInfo>()
             {
@@ -59,14 +59,14 @@ namespace ToolTest
 		{
 			if (Directory.Exists(_intermediatePath))
 			{
-				// Directory.Delete(_intermediatePath, true);
+				Directory.Delete(_intermediatePath, true);
 			}
 		}
 
         [Test]
         public void TestFilesWellGenerated()
 		{
-            _writer?.GenerateContent(_intermediatePath, _schema);
+            _writer?.GenerateContent(_enginePath, _intermediatePath, _schema);
             Assert.IsTrue(Directory.Exists(_intermediatePath));
 
             // check header file generated
@@ -76,8 +76,7 @@ namespace ToolTest
                 string[] headerLines = File.ReadAllLines(targetHeaderFile);
                 var headerIndex = 0;
                 Assert.AreEqual(headerLines[headerIndex++], "#pragma once");
-                Assert.AreEqual(headerLines[headerIndex++], "#include \"..\\ObjectMacro.h\"");
-
+                Assert.AreEqual(headerLines[headerIndex++], "#include \"..\\CoreObject\\Object\\ObjectMacro.h\"");
             }
 
             // check cpp file generated
@@ -88,7 +87,7 @@ namespace ToolTest
                 var cppIndex = 0;
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"..\\HopStep.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest.generated.h\"");
-                Assert.AreEqual(cppLines[cppIndex++], "#include \"..\\ReflectionTest.h\"");
+                Assert.AreEqual(cppLines[cppIndex++], "#include \"../ReflectionTest.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep::CoreObject::Reflection;");
                 Assert.AreEqual(cppLines[cppIndex++], "");

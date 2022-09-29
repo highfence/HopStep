@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using HopStepHeaderTool;
+using System.Linq;
 
 namespace ToolTest
 {
@@ -43,6 +44,10 @@ namespace ToolTest
 
             var types = _parser.SolutionSchema.Types;
             Assert.IsTrue(types.Count > 0);
+
+            var reflectionTestType = types.FirstOrDefault(type => type.Key.Contains("ReflectionTest"));
+            Assert.IsNotNull(reflectionTestType);
+            Assert.IsNotEmpty(reflectionTestType.Value.Fields);
         }
 
         [Test]

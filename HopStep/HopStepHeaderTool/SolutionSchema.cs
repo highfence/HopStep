@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace HopStepHeaderTool
 {
@@ -22,10 +24,10 @@ namespace HopStepHeaderTool
             public List<PropertyInfo> Fields = new List<PropertyInfo>();
         }
 
-        public class PropertyInfo
+        public struct PropertyInfo
         {
-            public string Name = string.Empty;
-            public string PropertyType = string.Empty;
+            public string Name;
+            public string PropertyType;
         }
 
         public List<string> HeaderDirectories { get; internal set; } = new List<string>();
@@ -39,12 +41,15 @@ namespace HopStepHeaderTool
                 throw new System.Exception($"Duplicated type name. name : {name}, type : {type}");
             }
 
+            var copiedFields = new PropertyInfo[fields.Count];
+            fields.CopyTo(copiedFields);
+
             Types.Add(name, new TypeInfo
             {
                 Type = type,
                 Name = name,
                 HeaderDirectory = headerDirectory,
-                Fields = fields
+                Fields = copiedFields.ToList()
             });
         }
     }
