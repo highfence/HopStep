@@ -9,17 +9,23 @@ namespace HopStepTest
 	TEST_CLASS(ReflectionTest)
 	{
 	public:
-		TEST_METHOD(TypeLibraryAccessTest)
+		TEST_METHOD(StaticClassCreationTest)
 		{
-			auto* Library = HTypeLibrary::Get();
-			Assert::IsNotNull(Library);
-
 			HClass* ObjectType = HObject::StaticClass();
+			Assert::IsNotNull(ObjectType);
+
+			HopStep::HString ObjectName = L"HObject";
+			Assert::AreEqual(ObjectName, ObjectType->GetName());
+
+			auto RegisterArray = GetStaticTypeRegisterArray();
+			Assert::AreEqual((size_t)1, RegisterArray.size());
+			/*
 			auto Types = Library->GetTypes();
 			Assert::IsFalse(Types.size() == 0);
 			auto Iter = std::find(Types.begin(), Types.end(), ObjectType);
 			Assert::IsFalse(Iter == Types.end());
 			Assert::AreEqual((*Iter)->GetName(), ObjectType->GetName());
+			*/
 		}
 
 		TEST_METHOD(GameTypeAccessTest)
