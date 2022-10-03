@@ -34,4 +34,20 @@ namespace HopStep::CoreObject::Reflection
 
 		return Result;
 	}
+
+	const HProperty* HStruct::FindProperty(const HString& PropertyName)
+	{
+		const HArray<HProperty*> AllProperties = GetProperties();
+
+		auto FindingPropertyIter = std::find_if(AllProperties.begin(), AllProperties.end(), [PropertyName](const HProperty* InProperty) -> bool 
+			{
+				return InProperty->GetName() == PropertyName;
+			});
+
+		if (FindingPropertyIter == AllProperties.end()) return nullptr;
+
+		const HProperty* PropertyPtr = (*FindingPropertyIter);
+
+		return PropertyPtr;
+	}
 }

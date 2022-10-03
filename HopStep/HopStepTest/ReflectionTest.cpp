@@ -36,7 +36,7 @@ namespace HopStepTest
 			delete GameObject;
 		}
 
-		TEST_METHOD(PropertyValueTest)
+		TEST_METHOD(GetPropertyValueTest)
 		{
 			HReflectionTest* TestClass = new HReflectionTest();
 			HClass* TestType = HReflectionTest::StaticClass();
@@ -51,6 +51,17 @@ namespace HopStepTest
 			Assert::IsTrue(TestType->GetPropertyValue<bool>(TestClass, L"C").value());
 			Assert::AreEqual((int32)7, TestType->GetPropertyValue<int32>(TestClass, L"D").value());
 			Assert::IsFalse(TestType->GetPropertyValue<int32>(TestClass, L"WrongName").has_value());
+
+			delete TestClass;
+		}
+
+		TEST_METHOD(ChangePropertValueTest)
+		{
+			HReflectionTest* TestClass = new HReflectionTest();
+			HClass* TestType = HReflectionTest::StaticClass();
+
+			TestType->ChangePropertyValue(TestClass, L"A", 99);
+			Assert::AreEqual((int32)99, TestClass->A);
 
 			delete TestClass;
 		}

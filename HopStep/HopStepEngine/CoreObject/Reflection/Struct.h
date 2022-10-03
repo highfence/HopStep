@@ -36,8 +36,20 @@ namespace HopStep::CoreObject::Reflection
 		/**
 		 *
 		 */
-		template <typename TValue, typename StaticClassGetable>
-		TOptional<TValue> GetPropertyValue(StaticClassGetable* Instance, const HString& PropertyName);
+		const HProperty* FindProperty(const HString& PropertyName);
+
+		/**
+		 *
+		 */
+		template <class TValue, StaticClassGetable TInstanceType>
+		TOptional<TValue> GetPropertyValue(TInstanceType* Instance, const HString& PropertyName);
+
+		/**
+		 *
+		 */
+		template <class TValue, StaticClassGetable TInstanceType>
+		void ChangePropertyValue(TInstanceType* Instance, const HString& PropertyName, TValue Value);
+
 
 	private:
 
@@ -54,24 +66,29 @@ namespace HopStep::CoreObject::Reflection
 		friend struct HStructBuilder;
 	};
 
-	template<typename TValue, typename StaticClassGetable>
-	inline TOptional<TValue> HStruct::GetPropertyValue(StaticClassGetable* Instance, const HString& PropertyName)
+	template<class TValue, StaticClassGetable TInstanceType>
+	inline TOptional<TValue> HStruct::GetPropertyValue(TInstanceType* Instance, const HString& PropertyName)
 	{
-		HStruct* StaticClass = StaticClassGetable::StaticClass();
+		HStruct* StaticClass = TInstanceType::StaticClass();
+		if (StaticClass != this) return std::nullopt;
 
-		const HArray<HProperty*> Properties = StaticClass->GetProperties();
-		auto FindingPropertyIter = std::find_if(Properties.begin(), Properties.end(), [PropertyName](const HProperty* InProperty) -> bool 
-			{
-				return InProperty->GetName() == PropertyName;
-			});
+		const HProperty* FindingProperty = FindProperty(PropertyName);
 
-		if (FindingPropertyIter == Properties.end()) return std::nullopt;
-
-		const HProperty* FindingProperty = *FindingPropertyIter;
 		void* StartOffsetPtr = (void*)((char*)Instance + FindingProperty->Offset);
+
 		TValue Result;
 		memcpy(&Result, StartOffsetPtr, FindingProperty->ElementSize);
 
 		return TOptional<TValue>(Result);
+	}
+
+	template<class TValue, StaticClassGetable TInstanceType>
+	inline void HStruct::ChangePropertyValue(TInstanceType* Instance, const HString& PropertyName, TValue Value)
+	{
+		const HProperty* Property = FindProperty(PropertyName);
+		if (Property == nullptr) return;
+
+		void* StartOffsetPtr = (void*)((char*)Instance + Property->Offset);
+		memcpy(StartOffsetPtr, &Value, Property->ElementSize);
 	}
 }
