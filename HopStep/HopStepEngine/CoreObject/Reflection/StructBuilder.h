@@ -17,9 +17,9 @@ namespace HopStep::CoreObject::Reflection
 	{
 		int32 PropertyOffset = GetOffsetOf<TStructType, TFieldType>(InField);
 		int32 FieldSize = sizeof(TFieldType);
-		HString StructName = InStruct->GetName();
+		HString PropertyName = InFieldName;
 
-		HUniquePtr<HProperty> NewProperty = std::make_unique<HProperty>(StructName, PropertyOffset, FieldSize);
+		HUniquePtr<HProperty> NewProperty = std::make_unique<HProperty>(PropertyName, PropertyOffset, FieldSize);
 		InStruct->Properties.push_back(std::move(NewProperty));
 	}
 }

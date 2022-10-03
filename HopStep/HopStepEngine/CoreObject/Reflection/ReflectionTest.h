@@ -1,7 +1,7 @@
 #pragma once
 #include "..\..\Core\HopStepCore.h"
 #include "ReflectionMarco.h"
-#include "ReflectionTest.generated.h"
+#include "..\..\Intermediate\ReflectionTest.generated.h"
 
 namespace HopStep::CoreObject::Reflection
 {
@@ -11,6 +11,8 @@ namespace HopStep::CoreObject::Reflection
 	class HReflectionTest
 	{
 		DECLARE_CLASS_BODY(HReflectionTest);
+
+	public:
 
 		HPROPERTY();
 		int32 A;

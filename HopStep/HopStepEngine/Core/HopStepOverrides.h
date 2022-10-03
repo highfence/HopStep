@@ -17,4 +17,8 @@ namespace HopStep
 
 	template <class TType>
 	using HUniquePtr = std::unique_ptr<TType>;
+
+	using HByte = std::byte;
+
+	using HAny = std::any;
 }

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../HopStepEngine/CoreObject/Reflection/Property.h"
+#include "../HopStepEngine/CoreObject/Reflection/ReflectionTest.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -16,16 +17,6 @@ namespace HopStepTest
 
 			HopStep::HString ObjectName = L"HObject";
 			Assert::AreEqual(ObjectName, ObjectType->GetName());
-
-			auto RegisterArray = GetStaticTypeRegisterArray();
-			Assert::AreEqual((size_t)1, RegisterArray.size());
-			/*
-			auto Types = Library->GetTypes();
-			Assert::IsFalse(Types.size() == 0);
-			auto Iter = std::find(Types.begin(), Types.end(), ObjectType);
-			Assert::IsFalse(Iter == Types.end());
-			Assert::AreEqual((*Iter)->GetName(), ObjectType->GetName());
-			*/
 		}
 
 		TEST_METHOD(GameTypeAccessTest)
@@ -47,11 +38,17 @@ namespace HopStepTest
 
 		TEST_METHOD(PropertyValueTest)
 		{
-			HObject* GameObject = new HObject();
+			HReflectionTest* TestClass = new HReflectionTest();
+			HClass* TestType = HReflectionTest::StaticClass();
 
-			HClass* GameType = HObject::StaticClass();
+			TestClass->A = 3;
+			TestClass->B = 5;
+			TestClass->C = 7;
 
-			delete GameObject;
+			Assert::AreEqual((int32)3, TestType->GetPropertyValue<int32>(TestClass, L"A").value());
+
+
+			delete TestClass;
 		}
 
 		TEST_METHOD(OffsetTest)
