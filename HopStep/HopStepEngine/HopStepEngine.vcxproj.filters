@@ -2,25 +2,25 @@
 <Project ToolsVersion="4.0">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{ca69af06-ac64-49a7-8d1f-61628a2be6e6}</UniqueIdentifier>
+      <UniqueIdentifier>{cfae87c1-ad05-4bb0-8238-efce1383d482}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger">
-      <UniqueIdentifier>{450fcd92-3b44-4226-b5f0-43907cfa9f62}</UniqueIdentifier>
+      <UniqueIdentifier>{8a74a7ac-025a-4ab6-98b7-75c8bba546b0}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
-      <UniqueIdentifier>{6962fa2a-4142-4a3d-9bb2-5adb97531cbd}</UniqueIdentifier>
+      <UniqueIdentifier>{14d30198-dad5-4e91-ba28-6fd9c7732810}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{f669db93-f43b-4a51-8eb7-69b2a2ea9f1f}</UniqueIdentifier>
+      <UniqueIdentifier>{0a8d4466-a539-41cf-be32-195885859487}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{81816cdc-286b-4a30-b5a6-6c1f8e62f56b}</UniqueIdentifier>
+      <UniqueIdentifier>{6d1760b5-661b-460d-916d-185ba2051ced}</UniqueIdentifier>
     </Filter>
     <Filter Include="Intermediate">
-      <UniqueIdentifier>{87b55ef4-f839-4bd0-b0ac-a365a9151080}</UniqueIdentifier>
+      <UniqueIdentifier>{7c68286a-3092-4258-8e8f-96857d758230}</UniqueIdentifier>
     </Filter>
     <Filter Include="Launch">
-      <UniqueIdentifier>{cbdcbacc-b099-454e-ad8d-f1c894fdd7ab}</UniqueIdentifier>
+      <UniqueIdentifier>{d5b4d955-7423-4bdb-ae25-7593b23b7091}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -68,9 +68,9 @@ namespace HopStep::CoreObject::Reflection
 		if (FindingPropertyIter == Properties.end()) return std::nullopt;
 
 		const HProperty* FindingProperty = *FindingPropertyIter;
+		void* StartOffsetPtr = (void*)((char*)Instance + FindingProperty->Offset);
 		TValue Result;
-
-		memcpy(&Result, Instance + FindingProperty->Offset, FindingProperty->ElementSize);
+		memcpy(&Result, StartOffsetPtr, FindingProperty->ElementSize);
 
 		return TOptional<TValue>(Result);
 	}

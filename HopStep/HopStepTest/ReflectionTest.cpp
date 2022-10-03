@@ -43,10 +43,14 @@ namespace HopStepTest
 
 			TestClass->A = 3;
 			TestClass->B = 5;
-			TestClass->C = 7;
+			TestClass->C = true;
+			TestClass->D = 7;
 
 			Assert::AreEqual((int32)3, TestType->GetPropertyValue<int32>(TestClass, L"A").value());
-
+			Assert::AreEqual((int32)5, TestType->GetPropertyValue<int32>(TestClass, L"B").value());
+			Assert::IsTrue(TestType->GetPropertyValue<bool>(TestClass, L"C").value());
+			Assert::AreEqual((int32)7, TestType->GetPropertyValue<int32>(TestClass, L"D").value());
+			Assert::IsFalse(TestType->GetPropertyValue<int32>(TestClass, L"WrongName").has_value());
 
 			delete TestClass;
 		}

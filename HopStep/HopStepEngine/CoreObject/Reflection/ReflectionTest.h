@@ -20,8 +20,13 @@ namespace HopStep::CoreObject::Reflection
 		HPROPERTY();
 		int32 B;
 
+		int32 Padding;
+
 		HPROPERTY();
-		int32 C;
+		bool C;
+
+		HPROPERTY();
+		int32 D;
 	};
 
 #endif
