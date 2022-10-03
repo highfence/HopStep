@@ -6,21 +6,30 @@ namespace SolutionGenerator
 	{
 		static void Main(string[] args)
 		{
-			Console.ForegroundColor = ConsoleColor.Cyan;
-			Console.WriteLine("SolutionGenerator started...");
+			var prevConsoleColor = Console.ForegroundColor;
 
-			if (args.Length == 0)
+			try
 			{
-				Console.Write("No Arguments!");
-				return;
+				Console.ForegroundColor = ConsoleColor.Cyan;
+				Console.WriteLine("SolutionGenerator started...");
+
+				if (args.Length == 0)
+				{
+					Console.Write("No Arguments!");
+					return;
+				}
+
+				Console.WriteLine($"args : {string.Join(" ", args)}");
+
+				var solutionRoot = args[0];
+
+				ISolutionGenerator solutionGenerator = new VisualStudioSolutionGenerator();
+				solutionGenerator.Generate(solutionRoot);
 			}
-
-			Console.WriteLine($"args : {string.Join(" ", args)}");
-
-			var solutionRoot = args[0];
-
-			ISolutionGenerator solutionGenerator = new VisualStudioSolutionGenerator();	
-			solutionGenerator.Generate(solutionRoot);
+			finally
+			{
+				Console.ForegroundColor = prevConsoleColor;
+			}
 		}
 	}
 }

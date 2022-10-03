@@ -6,18 +6,27 @@ namespace HopStepHeaderTool
 	{
 		static void Main(string[] args)
 		{
-			Console.ForegroundColor = ConsoleColor.Yellow;
-			Console.WriteLine($"{nameof(HopStepHeaderTool)} started...");
-			Console.WriteLine($"args : {string.Join(" ", args)}");
+			var prevConsoleColor = Console.ForegroundColor;
 
-			var parser = new CommandParser();
-			var config = new HeaderToolConfig();
+			try
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine($"{nameof(HopStepHeaderTool)} started...");
+				Console.WriteLine($"args : {string.Join(" ", args)}");
 
-			config.BindParsingArgs(parser);
-			parser.Parse(args);
+				var parser = new CommandParser();
+				var config = new HeaderToolConfig();
 
-			var hopStepHeaderTool = new HopStepHeaderTool(config);
-			hopStepHeaderTool.Process();
+				config.BindParsingArgs(parser);
+				parser.Parse(args);
+
+				var hopStepHeaderTool = new HopStepHeaderTool(config);
+				hopStepHeaderTool.Process();
+			}
+			finally
+			{
+				Console.ForegroundColor = prevConsoleColor;
+			}
 		}
 	}
 }
