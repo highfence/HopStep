@@ -155,7 +155,9 @@
     <ClInclude Include="Core\PrimitiveTypeDefines.h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
+    <ClInclude Include="Core\Misc\EngineConfig.h" />
     <ClInclude Include="Core\Misc\LazySingleton.h" />
+    <ClInclude Include="Core\Misc\Paths.h" />
     <ClInclude Include="CoreObject\Object\Object.h" />
     <ClInclude Include="CoreObject\Object\ObjectBase.h" />
     <ClInclude Include="CoreObject\Object\ObjectMacro.h" />
@@ -178,6 +180,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Core\Misc\EngineConfig.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
