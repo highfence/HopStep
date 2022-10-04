@@ -73,6 +73,7 @@ namespace HopStep::CoreObject::Reflection
 		if (StaticClass != this) return std::nullopt;
 
 		const HProperty* FindingProperty = FindProperty(PropertyName);
+		if (FindingProperty == nullptr) return std::nullopt;
 
 		void* StartOffsetPtr = (void*)((char*)Instance + FindingProperty->Offset);
 

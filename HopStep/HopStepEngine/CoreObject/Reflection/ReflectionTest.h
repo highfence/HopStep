@@ -1,13 +1,13 @@
 #pragma once
-#include "Core\HopStepCore.h"
-#include "ReflectionMarco.h"
-#include "ReflectionTest.generated.h"
+#include "..\HopStepEngine\Core\HopStepCore.h"
+#include "..\HopStepEngine\CoreObject\Reflection\ReflectionMarco.h"
+#include "..\HopStepEngine\Intermediate\ReflectionTest.generated.h"
 
 namespace HopStep::CoreObject::Reflection
 {
 #if HopStep_UnitTest
 
-	HCLASS()
+	HCLASS();
 	class HReflectionTest
 	{
 		DECLARE_CLASS_BODY(HReflectionTest);
