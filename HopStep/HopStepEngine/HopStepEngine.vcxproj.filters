@@ -2,32 +2,53 @@
 <Project ToolsVersion="4.0">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{8f2d936e-9e5c-4bd3-a9a1-464e47cb37c3}</UniqueIdentifier>
+      <UniqueIdentifier>{a2e24cde-4909-4d8f-8dac-179830df8fa5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger">
-      <UniqueIdentifier>{31d6c525-fb26-48da-a795-63d55443b789}</UniqueIdentifier>
+      <UniqueIdentifier>{738104a9-3f18-4639-a5c2-4730bdc7f26d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Misc">
-      <UniqueIdentifier>{17c3bec9-1d92-4f8e-8f1b-036845fd6b59}</UniqueIdentifier>
+      <UniqueIdentifier>{7e79bdb0-540d-4874-aeb6-6197dc71ed5b}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
-      <UniqueIdentifier>{1e8fba8e-3738-4dcf-ae36-87c4ec2f5f29}</UniqueIdentifier>
+      <UniqueIdentifier>{4b36282d-5d49-4766-85de-35ac991d7163}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{c3637c5a-9b62-4f78-9bce-b86de83d2baf}</UniqueIdentifier>
+      <UniqueIdentifier>{403ee6d4-9974-4e97-83b0-6183af78a3ff}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{055b330d-8334-4c8d-9031-643ee3229b05}</UniqueIdentifier>
+      <UniqueIdentifier>{a17e2855-27d6-4250-8899-5d01d5135cc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Extern">
+      <UniqueIdentifier>{02179d53-f9cb-4bdc-aa4d-5abbb42c1c91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Extern\Jsoncpp">
+      <UniqueIdentifier>{9c84927a-dd76-4b8b-b7bf-80db14e01fe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Extern\Jsoncpp\include">
+      <UniqueIdentifier>{a9c77bd8-3249-40e7-8a25-92435f8cd7f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Extern\Jsoncpp\include\json">
+      <UniqueIdentifier>{194d13f4-9c70-4643-a776-69f05fa0b7fe}</UniqueIdentifier>
     </Filter>
     <Filter Include="Intermediate">
-      <UniqueIdentifier>{29bf9972-bf27-414d-89e4-d094bfab432b}</UniqueIdentifier>
+      <UniqueIdentifier>{5478e17f-bbf4-4be9-9872-60a39a5bf8de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Launch">
-      <UniqueIdentifier>{4fbcfb66-0cf8-4065-aadb-f86ac8cad79b}</UniqueIdentifier>
+    <Filter Include="Runtime">
+      <UniqueIdentifier>{aec696cf-4c7b-423b-a88b-03c1e8031d11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Runtime\Engine">
+      <UniqueIdentifier>{f04392d3-cfa4-4163-94e6-95a00582095a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Runtime\Launch">
+      <UniqueIdentifier>{19cd5d06-e68f-46fe-84f4-f30c1bc368b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HopStep.h" />
+    <ClInclude Include="Core\CoreGlobals.h">
+      <Filter>Core</Filter>
+    </ClInclude>
     <ClInclude Include="Core\CoreStandardIncludes.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -50,6 +71,9 @@
       <Filter>Core\Logger</Filter>
     </ClInclude>
     <ClInclude Include="Core\Misc\EngineConfig.h">
+      <Filter>Core\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Misc\Json.h">
       <Filter>Core\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Core\Misc\LazySingleton.h">
@@ -106,19 +130,61 @@
     <ClInclude Include="CoreObject\Reflection\TypeLibrary.h">
       <Filter>CoreObject\Reflection</Filter>
     </ClInclude>
+    <ClInclude Include="Extern\Jsoncpp\include\json\allocator.h">
+      <Filter>Extern\Jsoncpp\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\Jsoncpp\include\json\assertions.h">
+      <Filter>Extern\Jsoncpp\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\Jsoncpp\include\json\autolink.h">
+      <Filter>Extern\Jsoncpp\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\Jsoncpp\include\json\config.h">
+      <Filter>Extern\Jsoncpp\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\Jsoncpp\include\json\features.h">
+      <Filter>Extern\Jsoncpp\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\Jsoncpp\include\json\forwards.h">
+      <Filter>Extern\Jsoncpp\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\Jsoncpp\include\json\json.h">
+      <Filter>Extern\Jsoncpp\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\Jsoncpp\include\json\reader.h">
+      <Filter>Extern\Jsoncpp\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\Jsoncpp\include\json\value.h">
+      <Filter>Extern\Jsoncpp\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\Jsoncpp\include\json\version.h">
+      <Filter>Extern\Jsoncpp\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\Jsoncpp\include\json\writer.h">
+      <Filter>Extern\Jsoncpp\include\json</Filter>
+    </ClInclude>
     <ClInclude Include="Intermediate\Object.generated.h">
       <Filter>Intermediate</Filter>
     </ClInclude>
     <ClInclude Include="Intermediate\ReflectionTest.generated.h">
       <Filter>Intermediate</Filter>
     </ClInclude>
-    <ClInclude Include="Launch\LaunchWindows.h">
-      <Filter>Launch</Filter>
+    <ClInclude Include="Runtime\Engine\EngineLoop.h">
+      <Filter>Runtime\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Launch\LaunchWindows.h">
+      <Filter>Runtime\Launch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp" />
+    <ClCompile Include="Core\CoreGlobals.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
     <ClCompile Include="Core\Misc\EngineConfig.cpp">
+      <Filter>Core\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Misc\Json.cpp">
       <Filter>Core\Misc</Filter>
     </ClCompile>
     <ClCompile Include="CoreObject\Object\Object.cpp">
@@ -163,8 +229,11 @@
     <ClCompile Include="Intermediate\ReflectionTest.generated.cpp">
       <Filter>Intermediate</Filter>
     </ClCompile>
-    <ClCompile Include="Launch\LaunchWindows.cpp">
-      <Filter>Launch</Filter>
+    <ClCompile Include="Runtime\Engine\EngineLoop.cpp">
+      <Filter>Runtime\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Launch\LaunchWindows.cpp">
+      <Filter>Runtime\Launch</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

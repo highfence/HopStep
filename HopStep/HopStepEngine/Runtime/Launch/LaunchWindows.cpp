@@ -1,4 +1,6 @@
 #include "LaunchWindows.h"
+#include "Core/Misc/EngineConfig.h"
+#include "Core/Misc/Paths.h"
 
 #ifdef HopStep_On_Windows
 

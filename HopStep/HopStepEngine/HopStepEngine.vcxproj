@@ -154,6 +154,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="HopStep.h" />
+    <ClInclude Include="Core\CoreGlobals.h" />
     <ClInclude Include="Core\CoreStandardIncludes.h" />
     <ClInclude Include="Core\HopStepCore.h" />
     <ClInclude Include="Core\HopStepDefine.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
     <ClInclude Include="Core\Misc\EngineConfig.h" />
+    <ClInclude Include="Core\Misc\Json.h" />
     <ClInclude Include="Core\Misc\LazySingleton.h" />
     <ClInclude Include="Core\Misc\Paths.h" />
     <ClInclude Include="CoreObject\Object\Object.h" />
@@ -180,16 +182,36 @@
     <ClInclude Include="CoreObject\Reflection\StructBuilder.h" />
     <ClInclude Include="CoreObject\Reflection\Type.h" />
     <ClInclude Include="CoreObject\Reflection\TypeLibrary.h" />
+    <ClInclude Include="Extern\Jsoncpp\include\json\allocator.h" />
+    <ClInclude Include="Extern\Jsoncpp\include\json\assertions.h" />
+    <ClInclude Include="Extern\Jsoncpp\include\json\autolink.h" />
+    <ClInclude Include="Extern\Jsoncpp\include\json\config.h" />
+    <ClInclude Include="Extern\Jsoncpp\include\json\features.h" />
+    <ClInclude Include="Extern\Jsoncpp\include\json\forwards.h" />
+    <ClInclude Include="Extern\Jsoncpp\include\json\json.h" />
+    <ClInclude Include="Extern\Jsoncpp\include\json\reader.h" />
+    <ClInclude Include="Extern\Jsoncpp\include\json\value.h" />
+    <ClInclude Include="Extern\Jsoncpp\include\json\version.h" />
+    <ClInclude Include="Extern\Jsoncpp\include\json\writer.h" />
     <ClInclude Include="Intermediate\Object.generated.h" />
     <ClInclude Include="Intermediate\ReflectionTest.generated.h" />
-    <ClInclude Include="Launch\LaunchWindows.h" />
+    <ClInclude Include="Runtime\Engine\EngineLoop.h" />
+    <ClInclude Include="Runtime\Launch\LaunchWindows.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
+    <ClCompile Include="Core\CoreGlobals.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
     <ClCompile Include="Core\Misc\EngineConfig.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Core\Misc\Json.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
@@ -249,7 +271,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
-    <ClCompile Include="Launch\LaunchWindows.cpp">
+    <ClCompile Include="Runtime\Engine\EngineLoop.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Launch\LaunchWindows.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
