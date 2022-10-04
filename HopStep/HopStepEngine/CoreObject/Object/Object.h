@@ -1,7 +1,7 @@
 #pragma once
-#include "..\..\Core\HopStepCore.h"
-#include "..\Reflection\ReflectionMarco.h"
-#include "..\..\Intermediate\Object.generated.h"
+#include "Core\HopStepCore.h"
+#include "CoreObject\Reflection\ReflectionMarco.h"
+#include "Object.generated.h"
 
 HCLASS();
 class HObject

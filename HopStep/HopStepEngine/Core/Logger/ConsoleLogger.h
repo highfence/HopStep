@@ -1,6 +1,6 @@
 #pragma once
 #include "LoggerBase.h"
-#include "..\..\HopStepOverrides.h"
+#include "Core\HopStepOverrides.h"
 
 namespace HopStep::Core::Logger
 {

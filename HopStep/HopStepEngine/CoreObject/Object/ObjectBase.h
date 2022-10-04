@@ -1,6 +1,6 @@
 #pragma once
-#include "..\..\Core\HopStepCore.h"
-#include "..\Reflection\ReflectionConcepts.h"
+#include "Core\HopStepCore.h"
+#include "CoreObject\Reflection\ReflectionConcepts.h"
 
 /**
  * Type register interface.

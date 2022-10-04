@@ -1,7 +1,7 @@
 #pragma once
-#include "..\PrimitiveTypeDefines.h"
-#include "..\CoreStandardIncludes.h"
-#include "..\HopStepOverrides.h"
+#include "Core\PrimitiveTypeDefines.h"
+#include "Core\CoreStandardIncludes.h"
+#include "Core\HopStepOverrides.h"
 
 namespace HopStep::Core::Logger
 {

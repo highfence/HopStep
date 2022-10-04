@@ -77,12 +77,13 @@ namespace HopStepHeaderTool
 		private void WriteCpp(string generatedCppPath, string includeHeaderPath, List<SolutionSchema.TypeInfo> schemasInHeader)
 		{
 			var sb = new StringBuilder();
-			sb.AppendLine($"#include \"..\\HopStep.h\"");
+			sb.AppendLine($"#include \"HopStep.h\"");
 			sb.AppendLine($"#include \"{includeHeaderPath}\"");
 
 			foreach (var typeInfo in schemasInHeader)
 			{
-				var relativeDirectory = GetRelativeDirectory(_intermediatePath, typeInfo.HeaderDirectory);
+				var enginePath = Path.GetFullPath(_enginePath);
+				var relativeDirectory = GetRelativeDirectory(enginePath, typeInfo.HeaderDirectory).Replace("/", "\\");
 				sb.AppendLine($"#include \"{relativeDirectory}\"");
 			}
 

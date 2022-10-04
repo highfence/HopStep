@@ -2,8 +2,8 @@
 #include "Struct.h"
 #include "Property.h"
 #include "PrimitiveProperty.h"
-#include "..\..\Core\PrimitiveTypeDefines.h"
-#include "..\..\Core\HopStepOverrides.h"
+#include "Core\PrimitiveTypeDefines.h"
+#include "Core\HopStepOverrides.h"
 
 namespace HopStep::CoreObject::Reflection
 {

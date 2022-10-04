@@ -1,6 +1,6 @@
-﻿#include "..\HopStep.h"
+﻿#include "HopStep.h"
 #include "Object.generated.h"
-#include "../CoreObject/Object/Object.h"
+#include "CoreObject\Object\Object.h"
 
 using namespace HopStep::CoreObject::Reflection;
 
