@@ -155,6 +155,7 @@
     <ClInclude Include="Core\PrimitiveTypeDefines.h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
+    <ClInclude Include="Core\Misc\LazySingleton.h" />
     <ClInclude Include="CoreObject\Object\Object.h" />
     <ClInclude Include="CoreObject\Object\ObjectBase.h" />
     <ClInclude Include="CoreObject\Object\ObjectMacro.h" />

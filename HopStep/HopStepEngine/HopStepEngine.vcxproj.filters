@@ -2,25 +2,28 @@
 <Project ToolsVersion="4.0">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{cfae87c1-ad05-4bb0-8238-efce1383d482}</UniqueIdentifier>
+      <UniqueIdentifier>{8e16a42e-bd2e-4f7d-ab70-ec16eadb77fa}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger">
-      <UniqueIdentifier>{8a74a7ac-025a-4ab6-98b7-75c8bba546b0}</UniqueIdentifier>
+      <UniqueIdentifier>{25da2c46-1bb7-406a-854b-f68befabd12b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Misc">
+      <UniqueIdentifier>{6efbfc59-ca95-4706-bfee-2317fda6f028}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
-      <UniqueIdentifier>{14d30198-dad5-4e91-ba28-6fd9c7732810}</UniqueIdentifier>
+      <UniqueIdentifier>{07a4ae2f-aee6-4b6e-91a0-41886a41b627}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{0a8d4466-a539-41cf-be32-195885859487}</UniqueIdentifier>
+      <UniqueIdentifier>{c70e130d-cc1d-4e4e-b420-7005aa08e52f}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{6d1760b5-661b-460d-916d-185ba2051ced}</UniqueIdentifier>
+      <UniqueIdentifier>{20017124-9ba9-4911-bbf5-b53eb73ba512}</UniqueIdentifier>
     </Filter>
     <Filter Include="Intermediate">
-      <UniqueIdentifier>{7c68286a-3092-4258-8e8f-96857d758230}</UniqueIdentifier>
+      <UniqueIdentifier>{ba5b2b68-8d97-40c2-8847-0a624fe0ac35}</UniqueIdentifier>
     </Filter>
     <Filter Include="Launch">
-      <UniqueIdentifier>{d5b4d955-7423-4bdb-ae25-7593b23b7091}</UniqueIdentifier>
+      <UniqueIdentifier>{75213a78-b230-4af2-9586-4976398a9dbe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -45,6 +48,9 @@
     </ClInclude>
     <ClInclude Include="Core\Logger\LoggerBase.h">
       <Filter>Core\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Misc\LazySingleton.h">
+      <Filter>Core\Misc</Filter>
     </ClInclude>
     <ClInclude Include="CoreObject\Object\Object.h">
       <Filter>CoreObject\Object</Filter>

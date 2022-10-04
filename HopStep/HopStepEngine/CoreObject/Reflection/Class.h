@@ -9,8 +9,8 @@ namespace HopStep::CoreObject::Reflection
 	class HClass : public HStruct
 	{
 	public:
+
 		HClass(const HString& InName) : HStruct(InName) {}
 
-		
 	};
 }
