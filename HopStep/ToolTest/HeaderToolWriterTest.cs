@@ -38,13 +38,13 @@ namespace ToolTest
                 new SolutionSchema.PropertyInfo
                 {
                     Name = "B",
-                    PropertyType = "int32"
+                    PropertyType = "bool"
                 },
 
                 new SolutionSchema.PropertyInfo
                 {
                     Name = "C",
-                    PropertyType = "int32"
+                    PropertyType = "HObject*"
                 }
             });
 
@@ -85,17 +85,17 @@ namespace ToolTest
             {
                 string[] cppLines = File.ReadAllLines(targetCppFile);
                 var cppIndex = 0;
-                Assert.AreEqual(cppLines[cppIndex++], "#include \"..\\HopStep.h\"");
+                Assert.AreEqual(cppLines[cppIndex++], "#include \"HopStep.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest.generated.h\"");
-                Assert.AreEqual(cppLines[cppIndex++], "#include \"../ReflectionTest.h\"");
+                Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep::CoreObject::Reflection;");
                 Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "void HReflectionTest::__Fill_Class_Property_HReflectionTest(HClass* InStaticClass)");
                 Assert.AreEqual(cppLines[cppIndex++], "{");
                 Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT(\"A\"), &HReflectionTest::A);");
-                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT(\"B\"), &HReflectionTest::B);");
-                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT(\"C\"), &HReflectionTest::C);");
+                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, bool>(InStaticClass, TEXT(\"B\"), &HReflectionTest::B);");
+                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, HObject*>(InStaticClass, TEXT(\"C\"), &HReflectionTest::C);");
                 Assert.AreEqual(cppLines[cppIndex++], "}");
                 Assert.AreEqual(cppLines[cppIndex++], "IMPLEMENT_CLASS(HReflectionTest);");
             }

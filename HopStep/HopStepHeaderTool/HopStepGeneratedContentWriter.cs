@@ -98,7 +98,9 @@ namespace HopStepHeaderTool
 
 				foreach (var propertyInfo in typeInfo.Fields)
 				{
-					sb.AppendLine($"\tHStructBuilder::AddProperty<{typeInfo.Name}, {propertyInfo.PropertyType}>(InStaticClass, TEXT(\"{propertyInfo.Name}\"), &{typeInfo.Name}::{propertyInfo.Name});");
+					var propertyString = PropertyTypeDefine.GetPropertyNameFromType(propertyInfo.PropertyType);
+					sb.AppendLine($"\tHStructBuilder::AddProperty<{typeInfo.Name}, {propertyInfo.PropertyType}, {propertyString}>" +
+						$"(InStaticClass, TEXT(\"{propertyInfo.Name}\"), &{typeInfo.Name}::{propertyInfo.Name});");
 				}
 				sb.AppendLine("}");
 				sb.AppendLine($"IMPLEMENT_CLASS({typeInfo.Name});");
