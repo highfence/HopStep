@@ -44,7 +44,7 @@ namespace ToolTest
                 new SolutionSchema.PropertyInfo
                 {
                     Name = "C",
-                    PropertyType = "HObject*"
+                    PropertyType = "HObject"
                 }
             });
 
@@ -93,9 +93,9 @@ namespace ToolTest
                 Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "void HReflectionTest::__Fill_Class_Property_HReflectionTest(HClass* InStaticClass)");
                 Assert.AreEqual(cppLines[cppIndex++], "{");
-                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, int32>(InStaticClass, TEXT(\"A\"), &HReflectionTest::A);");
-                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, bool>(InStaticClass, TEXT(\"B\"), &HReflectionTest::B);");
-                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, HObject*>(InStaticClass, TEXT(\"C\"), &HReflectionTest::C);");
+                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, int32, HNumericProperty>(InStaticClass, TEXT(\"A\"), &HReflectionTest::A);");
+                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, bool, HBooleanProperty>(InStaticClass, TEXT(\"B\"), &HReflectionTest::B);");
+                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, HObject, HClassProperty>(InStaticClass, TEXT(\"C\"), &HReflectionTest::C);");
                 Assert.AreEqual(cppLines[cppIndex++], "}");
                 Assert.AreEqual(cppLines[cppIndex++], "IMPLEMENT_CLASS(HReflectionTest);");
             }
