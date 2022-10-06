@@ -105,6 +105,7 @@ namespace SolutionGenerator
                 throw new Exception("ItemGroup Node Count must be 3.");
             }
 
+            // todo : Instead doing RemoveAll(), compare and modify only changes.
             var headerGroup  = itemGroupNodes[1];
             headerGroup.RemoveAll();
 
@@ -123,6 +124,7 @@ namespace SolutionGenerator
                 var newNode = xmlDoc.CreateElement("ClCompile");
                 newNode.SetAttribute("Include", cppInclude);
 
+                // todo : Implement for release configuration
                 var complieConfigurationString = "'$(Configuration)|$(Platform)'=='Debug|x64'";
 
 				// Add PrecompliedHeader file attributes
