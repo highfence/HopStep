@@ -8,6 +8,23 @@ namespace HopStep::CoreObject::Reflection
 #if HopStep_UnitTest
 
 	HCLASS();
+	class HInnerClassTest
+	{
+		DECLARE_CLASS_BODY(HInnerClassTest);
+		
+	public:
+
+		HPROPERTY();
+		int32 InnerA;
+
+		int32 InnerPadding;
+
+		HPROPERTY();
+		int8 InnerB;
+
+	};
+
+	HCLASS();
 	class HReflectionTest
 	{
 		DECLARE_CLASS_BODY(HReflectionTest);
@@ -27,6 +44,9 @@ namespace HopStep::CoreObject::Reflection
 
 		HPROPERTY();
 		int32 D;
+
+		HPROPERTY();
+		HInnerClassTest* InnerClassPtr;
 	};
 
 #endif

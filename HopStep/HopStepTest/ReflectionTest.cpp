@@ -66,6 +66,31 @@ namespace HopStepTest
 			delete TestClass;
 		}
 
+		TEST_METHOD(ChangePropertValueTest)
+		{
+			HReflectionTest* TestClass = new HReflectionTest();
+			HClass* TestType = HReflectionTest::StaticClass();
+			// Initialize check
+			Assert::IsNull(TestType->GetPropertyValue<HInnerClassTest*>(TestClass, L"InnerClassPtr").value());
+
+			// Pointer check
+			HInnerClassTest* Ptr = new HInnerClassTest();
+			TestClass->InnerClassPtr = Ptr;
+			Assert::AreEqual(Ptr, TestType->GetPropertyValue<HInnerClassTest*>(TestClass, L"InnerClassPtr").value());
+
+
+			// Inner class check
+			HClass* InnerType = HInnerClassTest::StaticClass();
+
+			Ptr->InnerA = 3;
+			Ptr->InnerB = (uint8)4;
+			Assert::AreEqual((int32)3, InnerType->GetPropertyValue<int32>(Ptr, L"InnerA").value());
+			Assert::AreEqual((int8)4, InnerType->GetPropertyValue<int8>(Ptr, L"InnerB").value());
+
+			delete Ptr;
+			delete TestClass;
+		}
+
 		TEST_METHOD(OffsetTest)
 		{
 			struct TestStruct

@@ -23,8 +23,28 @@ namespace ToolTest
             _intermediatePath = Path.Combine(_enginePath, @"Intermediate_Test\");
             _writer = new HopStepGeneratedContentWriter();
 
-            // schema setting
             _schema = new SolutionSchema();
+
+            if (Directory.Exists(_intermediatePath))
+            {
+                Directory.Delete(_intermediatePath, true);
+            }
+        }
+
+        [TearDown]
+        public void CleanUp()
+		{
+			if (Directory.Exists(_intermediatePath))
+			{
+				Directory.Delete(_intermediatePath, true);
+			}
+		}
+
+        [Test]
+        public void TestFilesWellGenerated()
+		{
+            // schema setting
+            Assert.IsNotNull(_schema);
             var objectHeaderPath = @$"{_enginePath}ReflectionTest.h";
             _schema.HeaderDirectories.Add(objectHeaderPath);
             _schema.AddTypeInfo("HReflectionTest", SolutionSchema.ObjectType.Class, objectHeaderPath, new List<SolutionSchema.PropertyInfo>()
@@ -48,24 +68,6 @@ namespace ToolTest
                 }
             });
 
-            if (Directory.Exists(_intermediatePath))
-            {
-                Directory.Delete(_intermediatePath, true);
-            }
-        }
-
-        [TearDown]
-        public void CleanUp()
-		{
-			if (Directory.Exists(_intermediatePath))
-			{
-				Directory.Delete(_intermediatePath, true);
-			}
-		}
-
-        [Test]
-        public void TestFilesWellGenerated()
-		{
             _writer?.GenerateContent(_enginePath, _intermediatePath, _schema);
             Assert.IsTrue(Directory.Exists(_intermediatePath));
 
@@ -100,5 +102,33 @@ namespace ToolTest
                 Assert.AreEqual(cppLines[cppIndex++], "IMPLEMENT_CLASS(HReflectionTest);");
             }
 		}
+
+        [Test]
+        public void TestPointerProperty()
+        {
+            Assert.IsNotNull(_schema);
+            var objectHeaderPath = @$"{_enginePath}ReflectionTest2.h";
+            _schema.HeaderDirectories.Add(objectHeaderPath);
+            _schema.AddTypeInfo("HReflectionTest2", SolutionSchema.ObjectType.Class, objectHeaderPath, new List<SolutionSchema.PropertyInfo>()
+            {
+                new SolutionSchema.PropertyInfo
+                {
+                    Name="Ptr",
+                    PropertyType = "HObject*"
+                }
+
+            });
+
+            _writer?.GenerateContent(_enginePath, _intermediatePath, _schema);
+            Assert.IsTrue(Directory.Exists(_intermediatePath));
+
+            var targetCppFile = Path.Combine(_intermediatePath, "ReflectionTest2.generated.cpp");
+            Assert.IsTrue(File.Exists(targetCppFile));
+            {
+                string[] cppLines = File.ReadAllLines(targetCppFile);
+
+                Console.WriteLine(cppLines);
+            }
+        }
 	}
 }
