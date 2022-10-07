@@ -10,11 +10,11 @@ namespace HopStep::CoreObject::Reflection
 {
 	struct HStructBuilder
 	{
-		template <class TStructType, class TFieldType, HPropertyDerived TPropertyType>
+		template <class TStructType, class TFieldType, class TPropertyType> requires HPropertyDerived<TPropertyType>
 		static void AddProperty(HStruct* InStruct, const HString& InFieldName, TFieldType TStructType::*InField);
 	};
 
-	template<class TStructType, class TFieldType, HPropertyDerived TPropertyType>
+	template<class TStructType, class TFieldType, class TPropertyType> requires HPropertyDerived<TPropertyType>
 	inline void HStructBuilder::AddProperty(HStruct* InStruct, const HString& InFieldName, TFieldType TStructType::* InField)
 	{
 		int32 PropertyOffset = GetOffsetOf<TStructType, TFieldType>(InField);

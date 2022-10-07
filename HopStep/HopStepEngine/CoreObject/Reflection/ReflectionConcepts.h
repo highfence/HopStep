@@ -7,13 +7,12 @@ namespace HopStep::CoreObject::Reflection
 }
 
 template <class TType>
-concept StaticClassGetable = requires(TType Type)
+concept StaticClassGetable = requires
 {
 	TType::StaticClass();
 };
 
 template <class TType>
-concept HPropertyDerived = requires(TType Type)
-{
-	requires std::derived_from<TType, HopStep::CoreObject::Reflection::HProperty>;
-};
+concept HPropertyDerived = std::derived_from<TType, HopStep::CoreObject::Reflection::HProperty>;
+
+
