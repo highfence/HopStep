@@ -64,8 +64,10 @@ namespace HopStep::CoreObject::Reflection
 	{
 	public:
 
-
-
+		HClassProperty(const HString& InName, int32 InOffset, int32 InElementSize, int32 InArrayDimension = 1)
+			: HProperty(InName, InOffset, InElementSize, InArrayDimension)
+		{
+		}
 	};
 }
 

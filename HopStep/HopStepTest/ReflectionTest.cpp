@@ -55,29 +55,19 @@ namespace HopStepTest
 			delete TestClass;
 		}
 
-		TEST_METHOD(ChangePropertValueTest)
+		TEST_METHOD(InnerClassAndPointerPropertyTest)
 		{
 			HReflectionTest* TestClass = new HReflectionTest();
 			HClass* TestType = HReflectionTest::StaticClass();
+			// HClass* TestType = TestClass->StaticClass();
 
-			TestType->ChangePropertyValue(TestClass, L"A", 99);
-			Assert::AreEqual((int32)99, TestClass->A);
-
-			delete TestClass;
-		}
-
-		TEST_METHOD(ChangePropertValueTest)
-		{
-			HReflectionTest* TestClass = new HReflectionTest();
-			HClass* TestType = HReflectionTest::StaticClass();
 			// Initialize check
 			Assert::IsNull(TestType->GetPropertyValue<HInnerClassTest*>(TestClass, L"InnerClassPtr").value());
 
 			// Pointer check
 			HInnerClassTest* Ptr = new HInnerClassTest();
 			TestClass->InnerClassPtr = Ptr;
-			Assert::AreEqual(Ptr, TestType->GetPropertyValue<HInnerClassTest*>(TestClass, L"InnerClassPtr").value());
-
+			Assert::IsTrue(Ptr == TestType->GetPropertyValue<HInnerClassTest*>(TestClass, L"InnerClassPtr").value());
 
 			// Inner class check
 			HClass* InnerType = HInnerClassTest::StaticClass();
@@ -88,6 +78,17 @@ namespace HopStepTest
 			Assert::AreEqual((int8)4, InnerType->GetPropertyValue<int8>(Ptr, L"InnerB").value());
 
 			delete Ptr;
+			delete TestClass;
+		}
+
+		TEST_METHOD(ChangePropertValueTest)
+		{
+			HReflectionTest* TestClass = new HReflectionTest();
+			HClass* TestType = HReflectionTest::StaticClass();
+
+			TestType->ChangePropertyValue(TestClass, L"A", 99);
+			Assert::AreEqual((int32)99, TestClass->A);
+
 			delete TestClass;
 		}
 
