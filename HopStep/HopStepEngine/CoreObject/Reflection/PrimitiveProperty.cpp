@@ -4,14 +4,23 @@ namespace HopStep::CoreObject::Reflection
 {
 	void HNumericProperty::ExportToString(HString& TextOutput, void const* ObjectPtr) const
 	{
-		
+		if (GetPropertyFlag(EPropertyFlag::FloatProperty))
+		{
+			// check size is double
+
+		}
+		else if (GetPropertyFlag(EPropertyFlag::IntProperty))
+		{
+			// check size is uint8
+
+			// check is unsigned
+		}
+
 	}
 
 	void HBooleanProperty::ExportToString(HString& TextOutput, void const* ObjectPtr) const
 	{
-		bool Value = false;
-		void* StartOffsetPtr = (void*)((char*)ObjectPtr + Offset);
-		memcpy(&Value, StartOffsetPtr, ElementSize);
+		bool Value = GetValue<bool>(ObjectPtr);
 		TextOutput += Value ? L"true" : L"false";
 	}
 

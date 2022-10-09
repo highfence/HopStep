@@ -16,6 +16,7 @@
 #include <any>
 #include <concepts>
 #include <filesystem>
+#include <type_traits>
 
 #include "HopStepDefine.h"
 

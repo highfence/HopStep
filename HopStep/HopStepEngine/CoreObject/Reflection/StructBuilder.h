@@ -12,6 +12,9 @@ namespace HopStep::CoreObject::Reflection
 	{
 		template <class TStructType, class TFieldType, class TPropertyType> requires HPropertyDerived<TPropertyType>
 		static void AddProperty(HStruct* InStruct, const HString& InFieldName, TFieldType TStructType::*InField);
+
+		template <class TFieldType>
+		static void IntializePropertyFlags(HProperty* Property);
 	};
 
 	template<class TStructType, class TFieldType, class TPropertyType> requires HPropertyDerived<TPropertyType>
@@ -22,6 +25,20 @@ namespace HopStep::CoreObject::Reflection
 		HString PropertyName = InFieldName;
 
 		HUniquePtr<HProperty> NewProperty = std::make_unique<TPropertyType>(PropertyName, PropertyOffset, FieldSize);
+		IntializePropertyFlags<TFieldType>(NewProperty.get());
 		InStruct->Properties.push_back(std::move(NewProperty));
+	}
+
+	template<class TFieldType>
+	inline void HStructBuilder::IntializePropertyFlags(HProperty* Property)
+	{
+		if constexpr (std::is_integral<TFieldType>::value)
+		{
+			Property->SetPropertyFlag(EPropertyFlag::IntProperty);
+		}
+		else if constexpr (std::is_floating_point<TFieldType>::value)
+		{
+			Property->SetPropertyFlag(EPropertyFlag::FloatProperty);
+		}
 	}
 }

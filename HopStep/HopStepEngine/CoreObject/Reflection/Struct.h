@@ -75,11 +75,7 @@ namespace HopStep::CoreObject::Reflection
 		const HProperty* FindingProperty = FindProperty(PropertyName);
 		if (FindingProperty == nullptr) return std::nullopt;
 
-		void* StartOffsetPtr = (void*)((char*)Instance + FindingProperty->Offset);
-
-		TValue Result;
-		memcpy(&Result, StartOffsetPtr, FindingProperty->ElementSize);
-
+		TValue Result = FindingProperty->GetValue<TValue>((void*)Instance);
 		return TOptional<TValue>(Result);
 	}
 
