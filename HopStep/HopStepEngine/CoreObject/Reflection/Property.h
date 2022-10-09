@@ -16,6 +16,8 @@ namespace HopStep::CoreObject::Reflection
 
 		virtual ~HProperty() {}
 
+		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const abstract;
+
 		int32 Offset;
 		int32 ElementSize;
 		int32 TotalSize;

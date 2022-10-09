@@ -14,6 +14,8 @@ namespace HopStep::CoreObject::Reflection
 		}
 
 		virtual ~HNumericProperty() {}
+
+		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const override;
 	};
 
 	class HBooleanProperty : public HProperty
@@ -26,6 +28,8 @@ namespace HopStep::CoreObject::Reflection
 		}
 
 		virtual ~HBooleanProperty() {}
+
+		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const override;
 	};
 
 	class HCharacterProperty : public HProperty
@@ -37,6 +41,8 @@ namespace HopStep::CoreObject::Reflection
 		}
 
 		virtual ~HCharacterProperty() {}
+
+		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const override;
 	};
 
 	class HStringProperty : public HProperty
@@ -48,6 +54,8 @@ namespace HopStep::CoreObject::Reflection
 		}
 
 		virtual ~HStringProperty() {}
+
+		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const override;
 	};
 
 	class HEnumProperty : public HProperty
@@ -58,6 +66,8 @@ namespace HopStep::CoreObject::Reflection
 
 		HEnum* Enum;
 		HNumericProperty UnderlyingProperty;
+
+		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const override;
 	};
 
 	class HClassProperty : public HProperty
@@ -68,6 +78,8 @@ namespace HopStep::CoreObject::Reflection
 			: HProperty(InName, InOffset, InElementSize, InArrayDimension)
 		{
 		}
+
+		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const override;
 	};
 }
 
