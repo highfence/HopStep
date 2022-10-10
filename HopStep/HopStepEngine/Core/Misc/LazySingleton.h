@@ -15,9 +15,9 @@ class TLazySingleton final : public HLazySingletonBase
 {
 public:
 
-	static T& Get()
+	static T& GetPropertyPtr()
 	{
-		return GetLazy(Construct<T>).GetValue();
+		return GetLazy(Construct<T>).GetPtr();
 	}
 
 	static void TearDown()
@@ -68,7 +68,7 @@ private:
 		return Ptr; 
 	}
 
-	T& GetValue() 
+	T& GetPtr() 
 	{
 		return *Ptr; 
 	}

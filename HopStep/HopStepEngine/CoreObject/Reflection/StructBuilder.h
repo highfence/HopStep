@@ -32,13 +32,18 @@ namespace HopStep::CoreObject::Reflection
 	template<class TFieldType>
 	inline void HStructBuilder::IntializePropertyFlags(HProperty* Property)
 	{
-		if constexpr (std::is_integral<TFieldType>::value)
+		if constexpr (std::is_integral_v<TFieldType>)
 		{
 			Property->SetPropertyFlag(EPropertyFlag::IntProperty);
 		}
-		else if constexpr (std::is_floating_point<TFieldType>::value)
+		else if constexpr (std::is_floating_point_v<TFieldType>)
 		{
 			Property->SetPropertyFlag(EPropertyFlag::FloatProperty);
+		}
+
+		if constexpr (std::is_unsigned_v<TFieldType>)
+		{
+			Property->SetPropertyFlag(EPropertyFlag::UnsignedProperty);
 		}
 	}
 }

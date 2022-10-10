@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 #include "../HopStepEngine/CoreObject/Reflection/Property.h"
 #include "../HopStepEngine/CoreObject/Reflection/ReflectionTest.h"
+#include "../HopStepEngine/Core/HopStepOverrides.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -46,11 +47,11 @@ namespace HopStepTest
 			TestClass->C = true;
 			TestClass->D = 7;
 
-			Assert::AreEqual((int32)3, TestType->GetPropertyValue<int32>(TestClass, L"A").value());
-			Assert::AreEqual((int32)5, TestType->GetPropertyValue<int32>(TestClass, L"B").value());
-			Assert::IsTrue(TestType->GetPropertyValue<bool>(TestClass, L"C").value());
-			Assert::AreEqual((int32)7, TestType->GetPropertyValue<int32>(TestClass, L"D").value());
-			Assert::IsFalse(TestType->GetPropertyValue<int32>(TestClass, L"WrongName").has_value());
+			Assert::AreEqual((int32)3, *TestType->GetPropertyPtr<int32>(TestClass, L"A"));
+			Assert::AreEqual((int32)5, *TestType->GetPropertyPtr<int32>(TestClass, L"B"));
+			Assert::IsTrue(*TestType->GetPropertyPtr<bool>(TestClass, L"C"));
+			Assert::AreEqual((int32)7, *TestType->GetPropertyPtr<int32>(TestClass, L"D"));
+			Assert::IsNull(TestType->GetPropertyPtr<int32>(TestClass, L"WrongName"));
 
 			delete TestClass;
 		}
@@ -62,22 +63,38 @@ namespace HopStepTest
 			// HClass* TestType = TestClass->StaticClass();
 
 			// Initialize check
-			Assert::IsNull(TestType->GetPropertyValue<HInnerClassTest*>(TestClass, L"InnerClassPtr").value());
+			HInnerClassTest** InnerPtr = TestType->GetPropertyPtr<HInnerClassTest*>(TestClass, L"InnerClassPtr");
+			Assert::IsNull(*InnerPtr);
 
 			// Pointer check
 			HInnerClassTest* Ptr = new HInnerClassTest();
 			TestClass->InnerClassPtr = Ptr;
-			Assert::IsTrue(Ptr == TestType->GetPropertyValue<HInnerClassTest*>(TestClass, L"InnerClassPtr").value());
+			Assert::IsTrue(Ptr == *TestType->GetPropertyPtr<HInnerClassTest*>(TestClass, L"InnerClassPtr"));
 
 			// Inner class check
 			HClass* InnerType = HInnerClassTest::StaticClass();
 
 			Ptr->InnerA = 3;
 			Ptr->InnerB = (uint8)4;
-			Assert::AreEqual((int32)3, InnerType->GetPropertyValue<int32>(Ptr, L"InnerA").value());
-			Assert::AreEqual((int8)4, InnerType->GetPropertyValue<int8>(Ptr, L"InnerB").value());
+			Assert::AreEqual((int32)3, *InnerType->GetPropertyPtr<int32>(Ptr, L"InnerA"));
+			Assert::AreEqual((int8)4, *InnerType->GetPropertyPtr<int8>(Ptr, L"InnerB"));
 
 			delete Ptr;
+			delete TestClass;
+		}
+
+		TEST_METHOD(StringPropertyTest)
+		{
+			HStringPropertyTest* TestClass = new HStringPropertyTest();
+			HClass* TestType = HStringPropertyTest::StaticClass();
+
+			TestClass->Post = L'B';
+			Assert::AreEqual(L'B', *TestType->GetPropertyPtr<HopStep::HChar>(TestClass, L"Post"));
+
+			TestClass->StringProperty = L"Test String... for extended";
+			std::wstring* RealValue = TestType->GetPropertyPtr<HopStep::HString>(TestClass, L"StringProperty");
+			Assert::AreEqual(L"Test String... for extended", RealValue->c_str());
+
 			delete TestClass;
 		}
 

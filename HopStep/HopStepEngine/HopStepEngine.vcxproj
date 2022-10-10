@@ -162,6 +162,7 @@
     <ClInclude Include="Core\PrimitiveTypeDefines.h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
+    <ClInclude Include="Core\Misc\DebugUtils.h" />
     <ClInclude Include="Core\Misc\EngineConfig.h" />
     <ClInclude Include="Core\Misc\Json.h" />
     <ClInclude Include="Core\Misc\LazySingleton.h" />

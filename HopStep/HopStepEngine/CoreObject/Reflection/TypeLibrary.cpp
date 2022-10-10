@@ -9,7 +9,7 @@ namespace HopStep::CoreObject::Reflection
 		Types.clear();
 	}
 
-	HTypeLibrary* HTypeLibrary::Get()
+	HTypeLibrary* HTypeLibrary::GetPropertyPtr()
 	{
 		static HTypeLibrary Library;
 		return &Library;

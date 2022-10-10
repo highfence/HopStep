@@ -1,13 +1,15 @@
 #pragma once
 #include "Field.h"
-#include "Core\HopStepCore.h"
+#include "..\..\Core\HopStepCore.h"
 
 namespace HopStep::CoreObject::Reflection
 {
 	enum class EPropertyFlag : uint64
 	{
+		// Numeric Property Flags
 		IntProperty = (0x01 << 0),
 		FloatProperty = (0x01 << 1),
+		UnsignedProperty = (0x01 << 2),
 	};
 
 	class HProperty : public HField
@@ -25,7 +27,7 @@ namespace HopStep::CoreObject::Reflection
 		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const abstract;
 
 		template <class TValueType>
-		TValueType GetValue(void const* ObjectPtr) const;
+		TValueType* GetPtr(void const* ObjectPtr) const;
 
 		void SetPropertyFlag(EPropertyFlag Flag) { PropertyFlags |= static_cast<uint64>(Flag); }
 		bool GetPropertyFlag(EPropertyFlag Flag) const { return PropertyFlags & static_cast<uint64>(Flag); }
@@ -45,11 +47,8 @@ namespace HopStep::CoreObject::Reflection
 	}
 
 	template<class TValueType>
-	inline TValueType HProperty::GetValue(void const* ObjectPtr) const
+	inline TValueType* HProperty::GetPtr(void const* ObjectPtr) const
 	{
-		TValueType Value;
-		void* StartOffsetPtr = (void*)((char*)ObjectPtr + Offset);
-		memcpy(&Value, StartOffsetPtr, ElementSize);
-		return Value;
+		return (TValueType*)((char*)ObjectPtr + Offset);
 	}
 }

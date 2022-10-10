@@ -2,6 +2,7 @@
 #include "ReflectionTest.generated.h"
 #include "CoreObject\Reflection\ReflectionTest.h"
 #include "CoreObject\Reflection\ReflectionTest.h"
+#include "CoreObject\Reflection\ReflectionTest.h"
 
 using namespace HopStep::CoreObject::Reflection;
 
@@ -21,3 +22,11 @@ void HReflectionTest::__Fill_Class_Property_HReflectionTest(HClass* InStaticClas
 	HStructBuilder::AddProperty<HReflectionTest, HInnerClassTest*, HClassProperty>(InStaticClass, TEXT("InnerClassPtr"), &HReflectionTest::InnerClassPtr);
 }
 IMPLEMENT_CLASS(HReflectionTest);
+
+void HStringPropertyTest::__Fill_Class_Property_HStringPropertyTest(HClass* InStaticClass)
+{
+	HStructBuilder::AddProperty<HStringPropertyTest, int32, HNumericProperty>(InStaticClass, TEXT("Prev"), &HStringPropertyTest::Prev);
+	HStructBuilder::AddProperty<HStringPropertyTest, HString, HStringProperty>(InStaticClass, TEXT("StringProperty"), &HStringPropertyTest::StringProperty);
+	HStructBuilder::AddProperty<HStringPropertyTest, HChar, HCharacterProperty>(InStaticClass, TEXT("Post"), &HStringPropertyTest::Post);
+}
+IMPLEMENT_CLASS(HStringPropertyTest);

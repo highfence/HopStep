@@ -5,7 +5,7 @@ namespace HopStep::CoreObject::Reflection
 {
 	void HType::RegisterToLibrary()
 	{
-		auto* Library = HTypeLibrary::Get();
+		auto* Library = HTypeLibrary::GetPropertyPtr();
 		Library->RegisterNewType(this);
 	}
 }

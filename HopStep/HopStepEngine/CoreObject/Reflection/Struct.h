@@ -42,7 +42,7 @@ namespace HopStep::CoreObject::Reflection
 		 *
 		 */
 		template <class TValue, StaticClassGetable TInstanceType>
-		TOptional<TValue> GetPropertyValue(TInstanceType* Instance, const HString& PropertyName);
+		TValue* GetPropertyPtr(TInstanceType* Instance, const HString& PropertyName);
 
 		/**
 		 *
@@ -67,16 +67,15 @@ namespace HopStep::CoreObject::Reflection
 	};
 
 	template<class TValue, StaticClassGetable TInstanceType>
-	inline TOptional<TValue> HStruct::GetPropertyValue(TInstanceType* Instance, const HString& PropertyName)
+	inline TValue* HStruct::GetPropertyPtr(TInstanceType* Instance, const HString& PropertyName)
 	{
 		HStruct* StaticClass = TInstanceType::StaticClass();
-		if (StaticClass != this) return std::nullopt;
+		if (StaticClass != this) return nullptr;
 
 		const HProperty* FindingProperty = FindProperty(PropertyName);
-		if (FindingProperty == nullptr) return std::nullopt;
+		if (FindingProperty == nullptr) return nullptr;
 
-		TValue Result = FindingProperty->GetValue<TValue>((void*)Instance);
-		return TOptional<TValue>(Result);
+		return FindingProperty->GetPtr<TValue>((void*)Instance);
 	}
 
 	template<class TValue, StaticClassGetable TInstanceType>
@@ -85,7 +84,9 @@ namespace HopStep::CoreObject::Reflection
 		const HProperty* Property = FindProperty(PropertyName);
 		if (Property == nullptr) return;
 
-		void* StartOffsetPtr = (void*)((char*)Instance + Property->Offset);
-		memcpy(StartOffsetPtr, &Value, Property->ElementSize);
+		TValue* Ptr = Property->GetPtr<TValue>((void*)Instance);
+		if (Ptr == nullptr) return;
+
+		*Ptr = Value;
 	}
 }

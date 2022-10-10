@@ -49,5 +49,22 @@ namespace HopStep::CoreObject::Reflection
 		HInnerClassTest* InnerClassPtr;
 	};
 
+	HCLASS();
+	class HStringPropertyTest
+	{
+		DECLARE_CLASS_BODY(HStringPropertyTest);
+
+	public:
+
+		HPROPERTY();
+		int32 Prev;
+
+		HPROPERTY();
+		HString StringProperty;
+
+		HPROPERTY();
+		HChar Post;
+	};
+
 #endif
 }

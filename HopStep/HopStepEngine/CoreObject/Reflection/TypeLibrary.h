@@ -12,7 +12,7 @@ namespace HopStep::CoreObject::Reflection
 
 		~HTypeLibrary();
 
-		static HTypeLibrary* Get();
+		static HTypeLibrary* GetPropertyPtr();
 
 		HArray<class HType*> GetTypes();
 
