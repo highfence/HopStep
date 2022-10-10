@@ -62,10 +62,15 @@ namespace HopStep::CoreObject::Reflection
 	{
 	public:
 
+		HEnumProperty(const HString& InName, int32 InOffset, int32 InElementSize, int32 InArrayDimension = 1)
+			: HProperty(InName, InOffset, InElementSize, InArrayDimension)
+		{
+		}
+
 		virtual ~HEnumProperty() {}
 
 		HEnum* Enum;
-		HNumericProperty UnderlyingProperty;
+		// HNumericProperty UnderlyingProperty;
 
 		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const override;
 	};

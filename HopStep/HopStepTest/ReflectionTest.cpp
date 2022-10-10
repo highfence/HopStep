@@ -43,14 +43,14 @@ namespace HopStepTest
 			HClass* TestType = HReflectionTest::StaticClass();
 
 			TestClass->A = 3;
-			TestClass->B = 5;
+			TestClass->B = 'U';
 			TestClass->C = true;
-			TestClass->D = 7;
+			TestClass->D = L"TestString";
 
 			Assert::AreEqual((int32)3, *TestType->GetPropertyPtr<int32>(TestClass, L"A"));
-			Assert::AreEqual((int32)5, *TestType->GetPropertyPtr<int32>(TestClass, L"B"));
+			Assert::AreEqual(L'U', *TestType->GetPropertyPtr<HopStep::HChar>(TestClass, L"B"));
 			Assert::IsTrue(*TestType->GetPropertyPtr<bool>(TestClass, L"C"));
-			Assert::AreEqual((int32)7, *TestType->GetPropertyPtr<int32>(TestClass, L"D"));
+			Assert::AreEqual(L"TestString", TestType->GetPropertyPtr<HopStep::HString>(TestClass, L"D")->c_str());
 			Assert::IsNull(TestType->GetPropertyPtr<int32>(TestClass, L"WrongName"));
 
 			delete TestClass;
@@ -59,8 +59,7 @@ namespace HopStepTest
 		TEST_METHOD(InnerClassAndPointerPropertyTest)
 		{
 			HReflectionTest* TestClass = new HReflectionTest();
-			HClass* TestType = HReflectionTest::StaticClass();
-			// HClass* TestType = TestClass->StaticClass();
+			HClass* TestType = TestClass->StaticClass();
 
 			// Initialize check
 			HInnerClassTest** InnerPtr = TestType->GetPropertyPtr<HInnerClassTest*>(TestClass, L"InnerClassPtr");
@@ -74,9 +73,9 @@ namespace HopStepTest
 			// Inner class check
 			HClass* InnerType = HInnerClassTest::StaticClass();
 
-			Ptr->InnerA = 3;
+			Ptr->InnerA = 3.5f;
 			Ptr->InnerB = (uint8)4;
-			Assert::AreEqual((int32)3, *InnerType->GetPropertyPtr<int32>(Ptr, L"InnerA"));
+			Assert::IsTrue((3.5f - *InnerType->GetPropertyPtr<float>(Ptr, L"InnerA")) < std::numeric_limits<float>::epsilon());
 			Assert::AreEqual((int8)4, *InnerType->GetPropertyPtr<int8>(Ptr, L"InnerB"));
 
 			delete Ptr;
@@ -152,6 +151,11 @@ namespace HopStepTest
 				int32 COffset = HopStep::CoreObject::Reflection::GetOffsetOf<PackedTestStruct, int32>(&PackedTestStruct::C);
 				Assert::AreEqual((int32)12, COffset);
 			}
+		};
+
+		TEST_METHOD(PropertyClipboradSerializeTest)
+		{
+
 		};
 	};
 }

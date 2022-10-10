@@ -7,6 +7,15 @@ namespace HopStep::CoreObject::Reflection
 {
 #if HopStep_UnitTest
 
+	HEnum();
+	enum class EReflectionTestEnum
+	{
+		Test1,
+		Test2,
+		Max
+	};
+
+
 	HCLASS();
 	class HInnerClassTest
 	{
@@ -15,7 +24,7 @@ namespace HopStep::CoreObject::Reflection
 	public:
 
 		HPROPERTY();
-		int32 InnerA;
+		float InnerA;
 
 		int32 InnerPadding;
 
@@ -35,7 +44,7 @@ namespace HopStep::CoreObject::Reflection
 		int32 A;
 
 		HPROPERTY();
-		int32 B;
+		HChar B;
 
 		int32 Padding;
 
@@ -43,7 +52,10 @@ namespace HopStep::CoreObject::Reflection
 		bool C;
 
 		HPROPERTY();
-		int32 D;
+		HString D;
+
+		HPROPERTY();
+		EReflectionTestEnum EnumTest;
 
 		HPROPERTY();
 		HInnerClassTest* InnerClassPtr;

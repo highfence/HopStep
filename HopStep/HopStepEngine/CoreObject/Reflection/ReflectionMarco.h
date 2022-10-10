@@ -5,6 +5,7 @@
 using namespace HopStep::CoreObject::Reflection;
 
 #define HCLASS(...)
+#define HEnum(...)
 #define HPROPERTY(...)
 
 #define DECLARE_TYPEHASH \
