@@ -1,6 +1,7 @@
 #pragma once
 #include "Core\HopStepCore.h"
 #include "CoreObject\Reflection\ReflectionConcepts.h"
+#include "CoreObject/Reflection/ReflectionMarco.h"
 
 /**
  * Type register interface.
@@ -42,6 +43,8 @@ inline HStaticClassRegister<TClass>::HStaticClassRegister()
 HCLASS();
 class HObjectBase
 {
+	DECLARE_CLASS_BODY(HObjectBase);
+
 public:
 
 	virtual ~HObjectBase() {};

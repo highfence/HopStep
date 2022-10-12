@@ -5,9 +5,11 @@ namespace HopStep
 {
 	using HChar = wchar_t;
 
-	using HString = std::basic_string<wchar_t>;
+	using HString = std::basic_string<HChar>;
 	
-	using HStringView = std::wstring_view;
+	using HStringView = std::basic_string_view<HChar>;
+
+	using HStringStream = std::basic_stringstream<HChar>;
 
 	template <class TValueType>
 	using TOptional = std::optional<TValueType>;
