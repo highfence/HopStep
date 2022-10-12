@@ -111,6 +111,8 @@ namespace HopStepTest
 		TEST_METHOD(ExportPropertyStringTest)
 		{
 			HReflectionTest* TestClass = new HReflectionTest();
+			HClass* Type = TestClass->StaticClass();
+
 
 
 			delete TestClass;

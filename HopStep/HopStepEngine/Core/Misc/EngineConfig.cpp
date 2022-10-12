@@ -1,6 +1,8 @@
 #include "EngineConfig.h"
 
-void HEngineConfig::InitializeConfig(const HopStep::HString& ConfigPath)
+using namespace HopStep;
+
+void HEngineConfig::InitializeConfig(const HString& ConfigPath)
 {
 
 }

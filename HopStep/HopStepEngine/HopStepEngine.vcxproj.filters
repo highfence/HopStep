@@ -2,49 +2,49 @@
 <Project ToolsVersion="4.0">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{3357b898-c504-4663-9379-737943b7de52}</UniqueIdentifier>
+      <UniqueIdentifier>{f92be022-60cd-45ac-8b47-ab4df844f181}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Archive">
-      <UniqueIdentifier>{749af7f1-657d-4243-a82c-deb834120bf2}</UniqueIdentifier>
+      <UniqueIdentifier>{ef1a1418-8e5d-455e-9f97-cfaf0ba25140}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger">
-      <UniqueIdentifier>{fd242094-7c33-49bb-8faa-4937c7ab954f}</UniqueIdentifier>
+      <UniqueIdentifier>{7c749897-f866-41da-8e36-1e6badf651af}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Misc">
-      <UniqueIdentifier>{3e22c199-4966-44a5-8a8d-630054f8126b}</UniqueIdentifier>
+      <UniqueIdentifier>{f632dc39-05ea-47eb-80b2-ed0378d594f6}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
-      <UniqueIdentifier>{6184e137-5795-47ca-b53a-8727cf326b58}</UniqueIdentifier>
+      <UniqueIdentifier>{dd2aa3f2-cb8c-4a83-a887-7923cc04b4b2}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{ebd26e5f-711b-4670-bfa3-c7bc29c1c4a4}</UniqueIdentifier>
+      <UniqueIdentifier>{f16f2eff-8a5c-4576-933a-145e9566677b}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{885715bf-92cc-462c-ad62-4a091c194c25}</UniqueIdentifier>
+      <UniqueIdentifier>{3a88b427-b493-403f-ab66-2961b0fa5167}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern">
-      <UniqueIdentifier>{2742c461-abf6-4778-8432-c928d0f66dbb}</UniqueIdentifier>
+      <UniqueIdentifier>{974d8c1d-2251-4596-8f8e-47ae9b53f08f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp">
-      <UniqueIdentifier>{06f6c337-a78b-450a-bf28-f7366f3f516c}</UniqueIdentifier>
+      <UniqueIdentifier>{4aea2a7b-3052-4832-952c-4b06438dd5a7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include">
-      <UniqueIdentifier>{56f5bbd8-acd4-47a7-b05d-566309bdb7f6}</UniqueIdentifier>
+      <UniqueIdentifier>{3f3643d5-e8cc-4aa7-b3d6-05c416e6dc2e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include\json">
-      <UniqueIdentifier>{b5125ca5-b9cb-4b06-88ad-783eee11f47d}</UniqueIdentifier>
+      <UniqueIdentifier>{72bf271b-c365-4e1b-b819-6432b7d90dcc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Intermediate">
-      <UniqueIdentifier>{8a44c835-30b2-456d-bd59-8548bf6bbcde}</UniqueIdentifier>
+      <UniqueIdentifier>{f6f1fe87-b0d3-4575-99e2-0a1b6a0ae243}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime">
-      <UniqueIdentifier>{84fc2b3e-8e57-4f76-b494-e34779bb9319}</UniqueIdentifier>
+      <UniqueIdentifier>{adb53a55-cfb5-4207-830f-ad52098bb28c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Engine">
-      <UniqueIdentifier>{81ec0222-59eb-4b3c-80bf-d018151fd33a}</UniqueIdentifier>
+      <UniqueIdentifier>{b500fe1e-9d8a-4f95-a742-f863f52b0f88}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Launch">
-      <UniqueIdentifier>{66202c08-4d24-48af-a7cc-dd3df3476059}</UniqueIdentifier>
+      <UniqueIdentifier>{2edb6ca2-5f75-4b69-b3e1-b3f1022b9653}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +187,9 @@
     <ClInclude Include="Runtime\Engine\EngineLoop.h">
       <Filter>Runtime\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Runtime\Engine\Exporter.h">
+      <Filter>Runtime\Engine</Filter>
+    </ClInclude>
     <ClInclude Include="Runtime\Launch\LaunchWindows.h">
       <Filter>Runtime\Launch</Filter>
     </ClInclude>
@@ -254,6 +257,9 @@
       <Filter>Intermediate</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Engine\EngineLoop.cpp">
+      <Filter>Runtime\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Engine\Exporter.cpp">
       <Filter>Runtime\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Launch\LaunchWindows.cpp">
