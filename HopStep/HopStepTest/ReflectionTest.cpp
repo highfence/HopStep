@@ -108,6 +108,14 @@ namespace HopStepTest
 			delete TestClass;
 		}
 
+		TEST_METHOD(ExportPropertyStringTest)
+		{
+			HReflectionTest* TestClass = new HReflectionTest();
+
+
+			delete TestClass;
+		}
+
 		TEST_METHOD(OffsetTest)
 		{
 			struct TestStruct

@@ -38,3 +38,13 @@ inline HStaticClassRegister<TClass>::HStaticClassRegister()
 {
 	GetStaticTypeRegisterArray().emplace_back(this);
 }
+
+HCLASS();
+class HObjectBase
+{
+public:
+
+	virtual ~HObjectBase() {};
+
+};
+

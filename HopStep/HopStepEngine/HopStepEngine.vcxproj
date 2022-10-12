@@ -168,12 +168,14 @@
     <ClInclude Include="Core\HopStepDefine.h" />
     <ClInclude Include="Core\HopStepOverrides.h" />
     <ClInclude Include="Core\PrimitiveTypeDefines.h" />
+    <ClInclude Include="Core\Archive\Archive.h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
     <ClInclude Include="Core\Misc\DebugUtils.h" />
     <ClInclude Include="Core\Misc\EngineConfig.h" />
     <ClInclude Include="Core\Misc\Json.h" />
     <ClInclude Include="Core\Misc\LazySingleton.h" />
+    <ClInclude Include="Core\Misc\OutputDevice.h" />
     <ClInclude Include="Core\Misc\Paths.h" />
     <ClInclude Include="CoreObject\Object\Object.h" />
     <ClInclude Include="CoreObject\Object\ObjectBase.h" />
@@ -203,6 +205,7 @@
     <ClInclude Include="Extern\Jsoncpp\include\json\version.h" />
     <ClInclude Include="Extern\Jsoncpp\include\json\writer.h" />
     <ClInclude Include="Intermediate\Object.generated.h" />
+    <ClInclude Include="Intermediate\ObjectBase.generated.h" />
     <ClInclude Include="Intermediate\ReflectionTest.generated.h" />
     <ClInclude Include="Runtime\Engine\EngineLoop.h" />
     <ClInclude Include="Runtime\Launch\LaunchWindows.h" />
@@ -216,11 +219,19 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
+    <ClCompile Include="Core\Archive\Archive.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
     <ClCompile Include="Core\Misc\EngineConfig.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Core\Misc\Json.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Core\Misc\OutputDevice.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
@@ -273,6 +284,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Intermediate\Object.generated.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Intermediate\ObjectBase.generated.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
