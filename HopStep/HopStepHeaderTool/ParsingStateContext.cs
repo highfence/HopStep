@@ -21,8 +21,9 @@ namespace HopStepHeaderTool
         public string TypeName { get; private set; } = string.Empty;
         public List<SolutionSchema.PropertyInfo> Properties { get; internal set; } = new List<SolutionSchema.PropertyInfo>();
         public int BracketStack { get; private set; } = 0;
+		public List<string> ObjectBase { get; private set; } = new List<string>();
 
-        private readonly Dictionary<string, SolutionSchema.ObjectType> _objectTypeDefines = new Dictionary<string, SolutionSchema.ObjectType>
+		private readonly Dictionary<string, SolutionSchema.ObjectType> _objectTypeDefines = new Dictionary<string, SolutionSchema.ObjectType>
         {
             { "HCLASS", SolutionSchema.ObjectType.Class },
             { "HSTRUCT", SolutionSchema.ObjectType.Struct },
@@ -49,23 +50,16 @@ namespace HopStepHeaderTool
             }
             else if (State == ParsingState.WaitForObjectName)
             {
-                string[] tokens = line.Split(' ');
+                var className = FindClassName(line);
+                var baseNames = FindBaseClassNames(line);
 
-                var findClassDeclare = false;
+                if (string.IsNullOrEmpty(className))
+				{
+                    throw new Exception($"Invalid class name input : {line}");
+				}
 
-                foreach (string token in tokens)
-                {
-                    if (findClassDeclare)
-                    {
-                        TypeName = token;
-                        break;
-                    }
-
-                    if (token == "class" || token == "struct")
-                    {
-                        findClassDeclare = true;
-                    }
-                }
+                TypeName = className;
+                ObjectBase = baseNames;
 
                 State = ParsingState.WaitForObjectEnd;
             }
@@ -140,6 +134,7 @@ namespace HopStepHeaderTool
             TypeName = string.Empty;
             Properties.Clear();
             BracketStack = 0;
+            ObjectBase?.Clear();
             _isInMultiLineAnnotation = false;
             _isObjectStarted = false;
         }
@@ -174,5 +169,46 @@ namespace HopStepHeaderTool
 
             return lineString[0].Trim();
         }
+
+        public string FindClassName(string line)
+		{
+            Regex regex = new Regex("(class |struct )([a-z|A-Z|0-9]+)(:|{|\\s|$)");
+            Match match = regex.Match(line);
+
+            if (match.Success == false)
+            {
+                return string.Empty;
+            }
+
+            return match.Groups[2].Value;
+		}
+
+        public List<string> FindBaseClassNames(string line)
+		{
+            Regex reg = new Regex(":(\\s)*([a-z|A-Z|0-9|\\s|,]+)");
+            Match match = reg.Match(line);
+
+            if (match.Success == false)
+            {
+                return null;
+            }
+
+            string baseStrings = match.Groups[2].Value;
+            List<string> results = new List<string>();
+
+            foreach (var token in baseStrings.Split(','))
+			{
+                var baseString = token.Replace("public", "").Replace("protected", "").Replace("private", "").Trim();
+                results.Add(baseString);
+			}
+
+            // single inheritance only.
+            if (results.Where(s => s.StartsWith("H")).Count() > 1)
+			{
+                throw new Exception($"Object must have only one inheritance start with 'H'. Please inherit with interface. input line : {line}");
+			}
+
+            return results;
+		}
     }
 }

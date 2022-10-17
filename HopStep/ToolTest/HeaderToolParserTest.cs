@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace ToolTest
 {
-    internal class HeaderToolParsetTest
+    internal class HeaderToolParserTest
     {
         private HopStepSolutionParser? _parser;
 		private string _enginePath = string.Empty;
@@ -110,6 +110,52 @@ namespace ToolTest
             Assert.AreEqual(parseContext.FilteringAnnotationString(" /*"), string.Empty);
             Assert.AreEqual(parseContext.FilteringAnnotationString("class MultiLineTest"), string.Empty);
             Assert.AreEqual(parseContext.FilteringAnnotationString("Test */"), string.Empty);
+        }
+
+        [Test]
+        public void TestClassNameParse()
+		{
+            var parseContext = new ParsingStateContext();
+
+            Assert.IsTrue(string.IsNullOrEmpty(parseContext.FindClassName("HCLASS();")));
+
+            var className = parseContext.FindClassName("class HObject");
+            Assert.AreEqual(className, "HObject");
+
+            var inheritedClassName = parseContext.FindClassName("class HObject : public HBase");
+            Assert.AreEqual(inheritedClassName, "HObject");
+
+            var structName = parseContext.FindClassName("struct HStruct");
+            Assert.AreEqual(structName, "HStruct");
+
+            var inheritedStructName = parseContext.FindClassName("struct HStruct : public HBase");
+            Assert.AreEqual(inheritedStructName, "HStruct");
+		}
+
+        [Test]
+        public void TestBaseClassNameParse()
+        {
+            var parseContext = new ParsingStateContext();
+
+            Assert.IsTrue(parseContext.FindBaseClassNames("") is null);
+            Assert.IsTrue(parseContext.FindBaseClassNames("HCLASS();") is null);
+            Assert.IsTrue(parseContext.FindBaseClassNames("class HObject") is null);
+
+            var singleBaseResult = parseContext.FindBaseClassNames("class HObject : public HBase");
+            Assert.IsNotNull(singleBaseResult);
+            Assert.IsTrue(singleBaseResult.Count == 1);
+            Assert.AreEqual("HBase", singleBaseResult[0]);
+
+            // Wrong inheritance check.
+            Assert.Throws<Exception>(() => parseContext.FindBaseClassNames("class HObject : public HBase1, private HBaseBase, protected HTestBase"));
+
+            // Multiple inheritance check.
+            var multipleBaseResult = parseContext.FindBaseClassNames("class HObject : public HBase1, public IBaseBase, public ITestBase");
+            Assert.IsNotNull(multipleBaseResult);
+            Assert.IsTrue(multipleBaseResult.Count == 3);
+            Assert.IsTrue(multipleBaseResult.Exists(s => s == "HBase1"));
+            Assert.IsTrue(multipleBaseResult.Exists(s => s == "IBaseBase"));
+            Assert.IsTrue(multipleBaseResult.Exists(s => s == "ITestBase"));
         }
     }
 }

@@ -102,6 +102,13 @@ namespace HopStepHeaderTool
 					sb.AppendLine($"\tHStructBuilder::AddProperty<{typeInfo.Name}, {propertyInfo.PropertyType}, {propertyString}>" +
 						$"(InStaticClass, TEXT(\"{propertyInfo.Name}\"), &{typeInfo.Name}::{propertyInfo.Name});");
 				}
+
+				var representiveBaseClassName = typeInfo.BaseClasses?.FirstOrDefault(s => s.StartsWith("H"));
+				if (string.IsNullOrEmpty(representiveBaseClassName) == false)
+				{
+					sb.AppendLine($"\tHStructBuilder::SetSuper<{representiveBaseClassName}>(InStaticClass);");
+				}
+
 				sb.AppendLine("}");
 				sb.AppendLine($"IMPLEMENT_CLASS({typeInfo.Name});");
 			}

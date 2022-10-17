@@ -78,5 +78,16 @@ namespace HopStep::CoreObject::Reflection
 		HChar Post;
 	};
 
+	HCLASS();
+	class HInheritanceTest : public HReflectionTest
+	{
+		DECLARE_CLASS_BODY(HInheritanceTest);
+
+	public:
+
+		HPROPERTY();
+		int16 InheritanceProperty;
+	};
+
 #endif
 }

@@ -15,6 +15,9 @@ namespace HopStep::CoreObject::Reflection
 
 		template <class TFieldType>
 		static void IntializePropertyFlags(HProperty* Property);
+
+		template <class TSuperType> requires StaticClassGetable<TSuperType>
+		static void SetSuper(HStruct* InStruct);
 	};
 
 	template<class TStructType, class TFieldType, class TPropertyType> requires HPropertyDerived<TPropertyType>
@@ -45,5 +48,11 @@ namespace HopStep::CoreObject::Reflection
 		{
 			Property->SetPropertyFlag(EPropertyFlag::UnsignedProperty);
 		}
+	}
+
+	template<class TSuperType> requires StaticClassGetable<TSuperType>
+	inline void HStructBuilder::SetSuper(HStruct* InStruct)
+	{
+		InStruct->Super = TSuperType::StaticClass();
 	}
 }

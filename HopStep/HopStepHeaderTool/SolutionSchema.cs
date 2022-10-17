@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace HopStepHeaderTool
@@ -22,6 +21,7 @@ namespace HopStepHeaderTool
             public string Name = string.Empty;
             public string HeaderDirectory = string.Empty;
             public List<PropertyInfo> Fields = new List<PropertyInfo>();
+            public List<string> BaseClasses = new List<string>();
         }
 
         public struct PropertyInfo
@@ -34,7 +34,7 @@ namespace HopStepHeaderTool
 
         public Dictionary<string, TypeInfo> Types = new Dictionary<string, TypeInfo>();
 
-        public void AddTypeInfo(string name, ObjectType type, string headerDirectory, List<PropertyInfo> fields)
+        public void AddTypeInfo(string name, ObjectType type, string headerDirectory, List<PropertyInfo> fields, List<string> baseClasses)
         {
             if (Types.ContainsKey(name))
             {
@@ -44,12 +44,21 @@ namespace HopStepHeaderTool
             var copiedFields = new PropertyInfo[fields.Count];
             fields.CopyTo(copiedFields);
 
+            var copiedBase = new List<string>();
+            if (baseClasses != null && baseClasses.Count > 0)
+            {
+                var tempList = new string[baseClasses.Count];
+                baseClasses?.CopyTo(tempList);
+                copiedBase = tempList.ToList();
+            }
+
             Types.Add(name, new TypeInfo
             {
                 Type = type,
                 Name = name,
                 HeaderDirectory = headerDirectory,
-                Fields = copiedFields.ToList()
+                Fields = copiedFields.ToList(),
+                BaseClasses = copiedBase
             });
         }
     }

@@ -3,6 +3,7 @@
 #include "CoreObject\Reflection\ReflectionTest.h"
 #include "CoreObject\Reflection\ReflectionTest.h"
 #include "CoreObject\Reflection\ReflectionTest.h"
+#include "CoreObject\Reflection\ReflectionTest.h"
 
 using namespace HopStep::CoreObject::Reflection;
 
@@ -31,3 +32,10 @@ void HStringPropertyTest::__Fill_Class_Property_HStringPropertyTest(HClass* InSt
 	HStructBuilder::AddProperty<HStringPropertyTest, HChar, HCharacterProperty>(InStaticClass, TEXT("Post"), &HStringPropertyTest::Post);
 }
 IMPLEMENT_CLASS(HStringPropertyTest);
+
+void HInheritanceTest::__Fill_Class_Property_HInheritanceTest(HClass* InStaticClass)
+{
+	HStructBuilder::AddProperty<HInheritanceTest, int16, HNumericProperty>(InStaticClass, TEXT("InheritanceProperty"), &HInheritanceTest::InheritanceProperty);
+	HStructBuilder::SetSuper<HReflectionTest>(InStaticClass);
+}
+IMPLEMENT_CLASS(HInheritanceTest);

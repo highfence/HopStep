@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HopStepHeaderTool": {
+      "commandName": "Project",
+      "commandLineArgs": "Solution=C:\\Dev\\HopStep\\HopStep\\HopStepEngine\\ Intermediate=C:\\Dev\\HopStep\\HopStep\\HopStepEngine\\Intermediate\\"
+    }
+  }
+}

@@ -6,6 +6,16 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
+namespace Microsoft::VisualStudio::CppUnitTestFramework
+{
+	using HStructClass = ::HopStep::CoreObject::Reflection::HStruct;
+
+	template<> inline std::wstring ToString<HStructClass>(HStructClass* InStruct)
+	{
+		return L"HStruct";
+	}
+}
+
 namespace HopStepTest
 {
 	TEST_CLASS(ReflectionTest)
@@ -108,12 +118,13 @@ namespace HopStepTest
 			delete TestClass;
 		}
 
-		TEST_METHOD(ExportPropertyStringTest)
+		TEST_METHOD(SuperClassTest)
 		{
-			HReflectionTest* TestClass = new HReflectionTest();
-			HClass* Type = TestClass->StaticClass();
+			HInheritanceTest* TestClass = new HInheritanceTest();
+			HClass* TestType = TestClass->StaticClass();
 
-
+			Assert::AreEqual(reinterpret_cast<std::uintptr_t>(TestType->GetSuper()),
+							 reinterpret_cast<std::uintptr_t>((HStruct*)HReflectionTest::StaticClass()));
 
 			delete TestClass;
 		}

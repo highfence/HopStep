@@ -43,8 +43,12 @@ namespace ToolTest
         [Test]
         public void TestFilesWellGenerated()
 		{
+            if (_schema is null)
+			{
+                throw new Exception("schema was null");
+			}
+
             // schema setting
-            Assert.IsNotNull(_schema);
             var objectHeaderPath = @$"{_enginePath}ReflectionTest.h";
             _schema.HeaderDirectories.Add(objectHeaderPath);
             _schema.AddTypeInfo("HReflectionTest", SolutionSchema.ObjectType.Class, objectHeaderPath, new List<SolutionSchema.PropertyInfo>()
@@ -66,7 +70,7 @@ namespace ToolTest
                     Name = "C",
                     PropertyType = "HObject"
                 }
-            });
+            }, null);
 
             _writer?.GenerateContent(_enginePath, _intermediatePath, _schema);
             Assert.IsTrue(Directory.Exists(_intermediatePath));
@@ -106,7 +110,11 @@ namespace ToolTest
         [Test]
         public void TestPointerProperty()
         {
-            Assert.IsNotNull(_schema);
+            if (_schema is null)
+			{
+                throw new Exception("schema was null");
+			}
+
             var objectHeaderPath = @$"{_enginePath}ReflectionTest2.h";
             _schema.HeaderDirectories.Add(objectHeaderPath);
             _schema.AddTypeInfo("HReflectionTest2", SolutionSchema.ObjectType.Class, objectHeaderPath, new List<SolutionSchema.PropertyInfo>()
@@ -116,8 +124,7 @@ namespace ToolTest
                     Name="Ptr",
                     PropertyType = "HObject*"
                 }
-
-            });
+            }, null);
 
             _writer?.GenerateContent(_enginePath, _intermediatePath, _schema);
             Assert.IsTrue(Directory.Exists(_intermediatePath));
@@ -130,5 +137,44 @@ namespace ToolTest
                 Console.WriteLine(cppLines);
             }
         }
+
+        [Test]
+        public void TestSuperClassProperty()
+		{
+            if (_schema is null)
+			{
+                throw new Exception("schema was null");
+			}
+
+            // Single inheritance test
+            var objectHeaderPath = @$"{_enginePath}ReflectionTest3.h";
+            _schema.HeaderDirectories.Add(objectHeaderPath);
+            _schema.AddTypeInfo("HReflectionTest3",
+                SolutionSchema.ObjectType.Class,
+                objectHeaderPath,
+                new List<SolutionSchema.PropertyInfo>(),
+                new List<string> { "HReflectionBase" });
+
+            _writer?.GenerateContent(_enginePath, _intermediatePath, _schema);
+            Assert.IsTrue(Directory.Exists(_intermediatePath));
+
+            var targetCppFile = Path.Combine(_intermediatePath, "ReflectionTest3.generated.cpp");
+            Assert.IsTrue(File.Exists(targetCppFile));
+			{
+                string[] cppLines = File.ReadAllLines(targetCppFile);
+                int cppIndex = 0;
+                Assert.AreEqual(cppLines[cppIndex++], "#include \"HopStep.h\"");
+                Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest3.generated.h\"");
+                Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest3.h\"");
+                Assert.AreEqual(cppLines[cppIndex++], "");
+                Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep::CoreObject::Reflection;");
+                Assert.AreEqual(cppLines[cppIndex++], "");
+                Assert.AreEqual(cppLines[cppIndex++], "void HReflectionTest3::__Fill_Class_Property_HReflectionTest3(HClass* InStaticClass)");
+                Assert.AreEqual(cppLines[cppIndex++], "{");
+                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::SetSuper<HReflectionBase>(InStaticClass);");
+                Assert.AreEqual(cppLines[cppIndex++], "}");
+                Assert.AreEqual(cppLines[cppIndex++], "IMPLEMENT_CLASS(HReflectionTest3);");
+			}
+		}
 	}
 }
