@@ -50,4 +50,21 @@ namespace HopStep::CoreObject::Reflection
 
 		return PropertyPtr;
 	}
+
+	bool HStruct::IsChildOf(const HStruct* OtherClass) const
+	{
+		const HStruct* CheckPtr = this;
+
+		while (CheckPtr)
+		{
+			if (CheckPtr == OtherClass)
+			{
+				return true;
+			}
+
+			CheckPtr = CheckPtr->Super;
+		}
+
+		return false;
+	}
 }

@@ -4,6 +4,7 @@
 #include "CoreObject\Reflection\ReflectionTest.h"
 #include "CoreObject\Reflection\ReflectionTest.h"
 #include "CoreObject\Reflection\ReflectionTest.h"
+#include "CoreObject\Reflection\ReflectionTest.h"
 
 using namespace HopStep::CoreObject::Reflection;
 
@@ -39,3 +40,9 @@ void HInheritanceTest::__Fill_Class_Property_HInheritanceTest(HClass* InStaticCl
 	HStructBuilder::SetSuper<HReflectionTest>(InStaticClass);
 }
 IMPLEMENT_CLASS(HInheritanceTest);
+
+void HObjectInheritedTest::__Fill_Class_Property_HObjectInheritedTest(HClass* InStaticClass)
+{
+	HStructBuilder::SetSuper<HObjectBase>(InStaticClass);
+}
+IMPLEMENT_CLASS(HObjectInheritedTest);

@@ -129,6 +129,18 @@ namespace HopStepTest
 			delete TestClass;
 		}
 
+		TEST_METHOD(ClassChildOfTest)
+		{
+			HClass* ObjectType = HObject::StaticClass();
+			HClass* BaseType = HObjectBase::StaticClass();
+
+			Assert::IsTrue(ObjectType->IsChildOf(BaseType));
+
+			HClass* OtherType = HObjectInheritedTest::StaticClass();
+
+			Assert::IsFalse(ObjectType->IsChildOf(OtherType));
+		}
+
 		TEST_METHOD(OffsetTest)
 		{
 			struct TestStruct

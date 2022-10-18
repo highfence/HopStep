@@ -1,6 +1,7 @@
 #pragma once
 #include "..\HopStepEngine\Core\HopStepCore.h"
 #include "..\HopStepEngine\CoreObject\Reflection\ReflectionMarco.h"
+#include "..\HopStepEngine\CoreObject\Object\Object.h"
 #include "..\HopStepEngine\Intermediate\ReflectionTest.generated.h"
 
 namespace HopStep::CoreObject::Reflection
@@ -87,6 +88,14 @@ namespace HopStep::CoreObject::Reflection
 
 		HPROPERTY();
 		int16 InheritanceProperty;
+	};
+
+	HCLASS();
+	class HObjectInheritedTest : public HObjectBase
+	{
+		DECLARE_CLASS_BODY(HObjectInheritedTest);
+
+	public:
 	};
 
 #endif

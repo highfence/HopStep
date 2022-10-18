@@ -50,6 +50,11 @@ namespace HopStep::CoreObject::Reflection
 		template <class TValue, StaticClassGetable TInstanceType>
 		void ChangePropertyValue(TInstanceType* Instance, const HString& PropertyName, TValue Value);
 
+		/**
+		 *
+		 */
+		bool IsChildOf(const HStruct* OtherClass) const;
+
 	private:
 
 		/**

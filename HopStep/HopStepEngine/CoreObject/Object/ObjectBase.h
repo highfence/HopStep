@@ -49,5 +49,22 @@ public:
 
 	virtual ~HObjectBase() {};
 
+	/**
+	 * Todo : Make this after CDO
+	 */
+	template <StaticClassGetable TClass>
+	bool IsA() const
+	{
+		const HClass* ThatClass = TClass::StaticClass();
+		const HClass* ThisClass = GetClass();
+
+		return ThisClass->IsChildOf(ThatClass);
+	}
+
+	HClass* GetClass() const { return ClassPrivate; }
+
+private:
+
+	HClass* ClassPrivate = nullptr;
 };
 
