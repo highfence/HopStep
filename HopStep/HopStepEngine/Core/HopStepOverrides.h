@@ -23,4 +23,9 @@ namespace HopStep
 	using HByte = std::byte;
 
 	using HAny = std::any;
+
+	using HSize = std::size_t;
+
+	template <class TNumericType>
+	using TNumericLimits = std::numeric_limits<TNumericType>;
 }

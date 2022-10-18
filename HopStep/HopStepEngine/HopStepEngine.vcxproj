@@ -169,10 +169,12 @@
     <ClInclude Include="Core\HopStepOverrides.h" />
     <ClInclude Include="Core\PrimitiveTypeDefines.h" />
     <ClInclude Include="Core\Archive\Archive.h" />
+    <ClInclude Include="Core\Container\VariadicStack.h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
     <ClInclude Include="Core\Misc\DebugUtils.h" />
     <ClInclude Include="Core\Misc\EngineConfig.h" />
+    <ClInclude Include="Core\Misc\GenericMemory.h" />
     <ClInclude Include="Core\Misc\Json.h" />
     <ClInclude Include="Core\Misc\LazySingleton.h" />
     <ClInclude Include="Core\Misc\OutputDevice.h" />
@@ -183,6 +185,7 @@
     <ClInclude Include="CoreObject\Reflection\Class.h" />
     <ClInclude Include="CoreObject\Reflection\Enum.h" />
     <ClInclude Include="CoreObject\Reflection\Field.h" />
+    <ClInclude Include="CoreObject\Reflection\Function.h" />
     <ClInclude Include="CoreObject\Reflection\PrimitiveProperty.h" />
     <ClInclude Include="CoreObject\Reflection\PrimitiveType.h" />
     <ClInclude Include="CoreObject\Reflection\Property.h" />
@@ -228,6 +231,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
+    <ClCompile Include="Core\Misc\GenericMemory.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
     <ClCompile Include="Core\Misc\Json.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
@@ -253,6 +260,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="CoreObject\Reflection\Field.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\Function.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>

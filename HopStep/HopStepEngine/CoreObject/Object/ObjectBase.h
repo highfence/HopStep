@@ -2,6 +2,7 @@
 #include "Core\HopStepCore.h"
 #include "CoreObject\Reflection\ReflectionConcepts.h"
 #include "CoreObject/Reflection/ReflectionMarco.h"
+#include "Intermediate\ObjectBase.generated.h"
 
 /**
  * Type register interface.
@@ -49,10 +50,8 @@ public:
 
 	virtual ~HObjectBase() {};
 
-	/**
-	 * Todo : Make this after CDO
-	 */
 	template <StaticClassGetable TClass>
+	[[deprecated("Do not use HObjectBase::IsA<T> now. Implement later after making CDO & GC System.")]]
 	bool IsA() const
 	{
 		const HClass* ThatClass = TClass::StaticClass();
@@ -61,6 +60,7 @@ public:
 		return ThisClass->IsChildOf(ThatClass);
 	}
 
+	[[deprecated("Do not use HObjectBase::GetClass() now. Implement later after making CDO & GC System.")]]
 	HClass* GetClass() const { return ClassPrivate; }
 
 private:

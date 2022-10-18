@@ -2,49 +2,52 @@
 <Project ToolsVersion="4.0">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{de3c7b96-a0d8-4f26-aeed-f0e10c82a2be}</UniqueIdentifier>
+      <UniqueIdentifier>{6a8e5af7-aa6c-4912-aa9a-cd01c8902a23}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Archive">
-      <UniqueIdentifier>{59c2e800-16e3-4a65-8bbb-e1600d0b18f2}</UniqueIdentifier>
+      <UniqueIdentifier>{30d58b22-5d78-4267-b6a2-9decaeccb06c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Container">
+      <UniqueIdentifier>{80efd529-51a8-46a5-8dc6-d4ac92690d81}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger">
-      <UniqueIdentifier>{bdd3c599-a5c0-4e0e-986e-100a87fe7f13}</UniqueIdentifier>
+      <UniqueIdentifier>{4d072114-17d3-449a-a85d-b4a8acf15554}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Misc">
-      <UniqueIdentifier>{b33fe18c-6409-4f95-9490-a62257c6820a}</UniqueIdentifier>
+      <UniqueIdentifier>{b8b00f61-c0c3-4f30-9d32-e9de1a5ab81a}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
-      <UniqueIdentifier>{94a4a7e9-95ca-486d-bb94-b3fe34906d08}</UniqueIdentifier>
+      <UniqueIdentifier>{8ef2271c-823b-4d38-a759-81994e5d700d}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{86fe5574-a91b-425b-bd62-25a6c7e7e4d2}</UniqueIdentifier>
+      <UniqueIdentifier>{4cdf21cc-463a-47be-815b-2c886ccc7369}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{640ca2a3-ed57-437c-ae88-83123950f39b}</UniqueIdentifier>
+      <UniqueIdentifier>{2d24a2ff-5597-4a2f-89ac-f1bd3ec50cd4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern">
-      <UniqueIdentifier>{43aec827-0a71-4c71-a6aa-ff04a46b6b6c}</UniqueIdentifier>
+      <UniqueIdentifier>{beb3759c-d31a-48df-8d7a-cd2618f73e9f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp">
-      <UniqueIdentifier>{5a058fcf-40e7-41df-a9bd-78836b1be26e}</UniqueIdentifier>
+      <UniqueIdentifier>{3aa1cda8-62dc-4d4c-9218-fd54be86442e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include">
-      <UniqueIdentifier>{83906ba4-ec2d-4da5-830e-de3ff6e1b1ac}</UniqueIdentifier>
+      <UniqueIdentifier>{2f9e6bff-5d72-485f-8a8a-330dba5eafa6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include\json">
-      <UniqueIdentifier>{b82b338e-c4d8-4949-bebe-94958f80b1b4}</UniqueIdentifier>
+      <UniqueIdentifier>{0c73d6e7-d137-40eb-90c1-a7c6c0a60bbb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Intermediate">
-      <UniqueIdentifier>{5d31cf77-d8b3-49b3-a334-fd9ac3de8237}</UniqueIdentifier>
+      <UniqueIdentifier>{11eea2ad-b5b7-428e-8aac-94512f76373c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime">
-      <UniqueIdentifier>{ea432461-a374-48cf-91db-61065c243a47}</UniqueIdentifier>
+      <UniqueIdentifier>{5d8451dc-afbe-4af0-b037-374a4e592f49}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Engine">
-      <UniqueIdentifier>{b3147371-a960-45f8-b2c9-33c0bdea7cf9}</UniqueIdentifier>
+      <UniqueIdentifier>{b8870fc5-5a0a-4faf-b681-fc64f528151f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Launch">
-      <UniqueIdentifier>{11d8184f-3532-47a4-9ffd-2001cf26d908}</UniqueIdentifier>
+      <UniqueIdentifier>{29c50bfd-1b27-4753-9841-d099e9147563}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +73,9 @@
     <ClInclude Include="Core\Archive\Archive.h">
       <Filter>Core\Archive</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Container\VariadicStack.h">
+      <Filter>Core\Container</Filter>
+    </ClInclude>
     <ClInclude Include="Core\Logger\ConsoleLogger.h">
       <Filter>Core\Logger</Filter>
     </ClInclude>
@@ -80,6 +86,9 @@
       <Filter>Core\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Core\Misc\EngineConfig.h">
+      <Filter>Core\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Misc\GenericMemory.h">
       <Filter>Core\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Core\Misc\Json.h">
@@ -110,6 +119,9 @@
       <Filter>CoreObject\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="CoreObject\Reflection\Field.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\Function.h">
       <Filter>CoreObject\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="CoreObject\Reflection\PrimitiveProperty.h">
@@ -205,6 +217,9 @@
     <ClCompile Include="Core\Misc\EngineConfig.cpp">
       <Filter>Core\Misc</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Misc\GenericMemory.cpp">
+      <Filter>Core\Misc</Filter>
+    </ClCompile>
     <ClCompile Include="Core\Misc\Json.cpp">
       <Filter>Core\Misc</Filter>
     </ClCompile>
@@ -224,6 +239,9 @@
       <Filter>CoreObject\Reflection</Filter>
     </ClCompile>
     <ClCompile Include="CoreObject\Reflection\Field.cpp">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\Function.cpp">
       <Filter>CoreObject\Reflection</Filter>
     </ClCompile>
     <ClCompile Include="CoreObject\Reflection\PrimitiveProperty.cpp">

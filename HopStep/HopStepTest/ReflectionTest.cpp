@@ -41,8 +41,8 @@ namespace HopStepTest
 			HObject* GameObject = new HObject();
 
 			HClass* GameType = HObject::StaticClass();
-			Assert::AreEqual(GameObject->FriendlyName, std::wstring_view(GameType->GetName()));
-			Assert::AreEqual(GameObject->FriendlyName, std::wstring_view(L"HObject"));
+			Assert::AreEqual(GameObject->FriendlyName, HopStep::HStringView(GameType->GetName()));
+			Assert::AreEqual(GameObject->FriendlyName, HopStep::HStringView(L"HObject"));
 
 			delete GameObject;
 		}
@@ -85,7 +85,7 @@ namespace HopStepTest
 
 			Ptr->InnerA = 3.5f;
 			Ptr->InnerB = (uint8)4;
-			Assert::IsTrue((3.5f - *InnerType->GetPropertyPtr<float>(Ptr, L"InnerA")) < std::numeric_limits<float>::epsilon());
+			Assert::IsTrue(abs(3.5f - *InnerType->GetPropertyPtr<float>(Ptr, L"InnerA")) < HopStep::TNumericLimits<float>::epsilon());
 			Assert::AreEqual((int8)4, *InnerType->GetPropertyPtr<int8>(Ptr, L"InnerB"));
 
 			delete Ptr;
@@ -184,11 +184,6 @@ namespace HopStepTest
 				int32 COffset = HopStep::CoreObject::Reflection::GetOffsetOf<PackedTestStruct, int32>(&PackedTestStruct::C);
 				Assert::AreEqual((int32)12, COffset);
 			}
-		};
-
-		TEST_METHOD(PropertyClipboradSerializeTest)
-		{
-
 		};
 	};
 }
