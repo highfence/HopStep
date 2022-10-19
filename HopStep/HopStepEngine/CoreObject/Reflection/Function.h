@@ -68,15 +68,25 @@ namespace HopStep::CoreObject::Reflection
 
 	};
 
+	typedef void (*HNativeFuncPtr)(HDirectionFunctionCallFrame& Frame);
+
 	/*
 	 */
 	class HNativeFunction : public HFunction
 	{
 	public:
 
+		HNativeFunction(const HString& FunctionName, const HStruct* FunctionOwner = nullptr)
+			: HFunction(FunctionName, FunctionOwner)
+		{
+
+		}
+
 	protected:
 
 		virtual void InvokeImpl(HDirectionFunctionCallFrame& InvokeFrame) override;
+
+		HNativeFuncPtr Func;
 	};
 
 	template<typename TReturnType, typename ...TParamArgs>
