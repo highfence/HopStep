@@ -8,7 +8,7 @@ namespace HopStep::CoreObject::Reflection
 {
 #if HopStep_UnitTest
 
-	HEnum();
+	HENUM();
 	enum class EReflectionTestEnum
 	{
 		Test1,

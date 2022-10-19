@@ -192,6 +192,7 @@
     <ClInclude Include="CoreObject\Reflection\ReflectionConcepts.h" />
     <ClInclude Include="CoreObject\Reflection\ReflectionMarco.h" />
     <ClInclude Include="CoreObject\Reflection\ReflectionTest.h" />
+    <ClInclude Include="CoreObject\Reflection\ScriptMacros.h" />
     <ClInclude Include="CoreObject\Reflection\Struct.h" />
     <ClInclude Include="CoreObject\Reflection\StructBuilder.h" />
     <ClInclude Include="CoreObject\Reflection\Type.h" />

@@ -1,41 +1,18 @@
 #pragma once
 #include "Struct.h"
 #include "Core\Container\VariadicStack.h"
+#include "ScriptMacros.h"
 
 namespace HopStep::CoreObject::Reflection
 {
-	using HVariadicStack = HopStep::Container::HVariadicStack<256>;
+	using HVariadicStack256 = HopStep::Container::HVariadicStack<256>;
 	/*
 	 */
-	struct HDirectionFunctionCallFrame : public HVariadicStack
+	struct HFunctionCallFrame : public HVariadicStack256
 	{
-		HDirectionFunctionCallFrame() 
+		HFunctionCallFrame() 
 			: HVariadicStack()
-			, OutputOffset(0)
-			, OutputSize(0) 
 		{}
-
-		void PushOutput(uint8* Output, int16 Size)
-		{
-			int16 Offset = GetTopOffset();
-			Push(Output, Size);
-			OutputOffset = Offset;
-			OutputSize = Size;
-		}
-
-		template <typename TOutType>
-		TOutType PopOutput()
-		{
-			HCheck(OutputSize == sizeof(TOutType));
-			TOutType Output;
-			Pop((uint8*)&Output, OutputSize);
-			return Output;
-		}
-
-	protected:
-
-		int16 OutputOffset;
-		int16 OutputSize;
 	};
 
 	/*
@@ -56,19 +33,19 @@ namespace HopStep::CoreObject::Reflection
 
 	protected:
 
-		virtual void InvokeImpl(HDirectionFunctionCallFrame& InvokeFrame) abstract;
+		virtual void InvokeImpl(void* Instance, HFunctionCallFrame& InvokeFrame, HFUNC_RESULT_DECL) abstract;
 
 		template <typename... TParamArgs>
-		void SetParameters(HDirectionFunctionCallFrame& RefFrame, TParamArgs&&... Parameters);
+		void SetParameters(HFunctionCallFrame& RefFrame, TParamArgs&&... Parameters);
 
 		template <typename TParamType>
-		int16 PushParamter(HDirectionFunctionCallFrame& RefFrame, TParamType&& Parameter);
+		int16 PushParamter(HFunctionCallFrame& RefFrame, TParamType&& Parameter);
 
 		const HStruct* const Owner;
 
 	};
 
-	typedef void (*HNativeFuncPtr)(HDirectionFunctionCallFrame& Frame);
+	typedef void (*HNativeFuncPtr)(void* Instance, HFunctionCallFrame& Frame, HFUNC_RESULT_DECL);
 
 	/*
 	 */
@@ -77,14 +54,14 @@ namespace HopStep::CoreObject::Reflection
 	public:
 
 		HNativeFunction(const HString& FunctionName, const HStruct* FunctionOwner = nullptr)
-			: HFunction(FunctionName, FunctionOwner)
+			: HFunction(FunctionName, FunctionOwner), Func(nullptr)
 		{
 
 		}
 
 	protected:
 
-		virtual void InvokeImpl(HDirectionFunctionCallFrame& InvokeFrame) override;
+		virtual void InvokeImpl(void* Instance, HFunctionCallFrame& InvokeFrame, HFUNC_RESULT_DECL) override;
 
 		HNativeFuncPtr Func;
 	};
@@ -92,24 +69,24 @@ namespace HopStep::CoreObject::Reflection
 	template<typename TReturnType, typename ...TParamArgs>
 	inline TReturnType HFunction::Invoke(void* InClassPtr, TParamArgs && ...Args)
 	{
-		HDirectionFunctionCallFrame Frame;
-
-		uint8* ClassReference = (uint8*)InClassPtr;
-		Frame.PushReference(ClassReference);
+		HFunctionCallFrame Frame;
 
 		SetParameters(Frame, Args);
 
-		return Frame.PopByType
+		HFUNC_RESULT_DECL;
+		InvokeImpl(InClassPtr, Frame, HFUNC_RESULT_PARAM);
+
+		return HFUNC_RESULT_PARAM;
 	}
 
 	template<typename... TParamArgs>
-	void HFunction::SetParameters(HDirectionFunctionCallFrame& RefFrame, TParamArgs&&... Parameter)
+	void HFunction::SetParameters(HFunctionCallFrame& RefFrame, TParamArgs&&... Parameter)
 	{
 		auto _ = { PushParamter(RefFrame, Parameter)... };
 	}
 
 	template <typename TParamType>
-	int16 HFunction::PushParamter(HDirectionFunctionCallFrame& RefFrame, TParamType&& Parameter)
+	int16 HFunction::PushParamter(HFunctionCallFrame& RefFrame, TParamType&& Parameter)
 	{
 		RefFrame.PushByType<TParamType>(Parameter);
 		return 0;

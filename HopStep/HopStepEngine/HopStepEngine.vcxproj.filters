@@ -2,52 +2,52 @@
 <Project ToolsVersion="4.0">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{6a8e5af7-aa6c-4912-aa9a-cd01c8902a23}</UniqueIdentifier>
+      <UniqueIdentifier>{6316447a-2334-4640-879c-4957497feefb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Archive">
-      <UniqueIdentifier>{30d58b22-5d78-4267-b6a2-9decaeccb06c}</UniqueIdentifier>
+      <UniqueIdentifier>{d2237d99-af5c-43c1-a058-217708dc3123}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Container">
-      <UniqueIdentifier>{80efd529-51a8-46a5-8dc6-d4ac92690d81}</UniqueIdentifier>
+      <UniqueIdentifier>{e3beceaa-0ba6-4e16-945b-1118ca7c25f0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger">
-      <UniqueIdentifier>{4d072114-17d3-449a-a85d-b4a8acf15554}</UniqueIdentifier>
+      <UniqueIdentifier>{29043356-f97f-46c5-8e9f-16cc03c7f9f7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Misc">
-      <UniqueIdentifier>{b8b00f61-c0c3-4f30-9d32-e9de1a5ab81a}</UniqueIdentifier>
+      <UniqueIdentifier>{29730643-1664-4932-a20a-bcfed171dacf}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
-      <UniqueIdentifier>{8ef2271c-823b-4d38-a759-81994e5d700d}</UniqueIdentifier>
+      <UniqueIdentifier>{1faefd7f-7ebc-4ba2-96d3-53844f500a91}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{4cdf21cc-463a-47be-815b-2c886ccc7369}</UniqueIdentifier>
+      <UniqueIdentifier>{ccf14361-91b4-413d-a3f4-0d3481a189e2}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{2d24a2ff-5597-4a2f-89ac-f1bd3ec50cd4}</UniqueIdentifier>
+      <UniqueIdentifier>{cd98cb3a-e770-43c4-9bfb-f23d3b9c598b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern">
-      <UniqueIdentifier>{beb3759c-d31a-48df-8d7a-cd2618f73e9f}</UniqueIdentifier>
+      <UniqueIdentifier>{4aa60522-3497-4f1c-9fa9-25bab1722346}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp">
-      <UniqueIdentifier>{3aa1cda8-62dc-4d4c-9218-fd54be86442e}</UniqueIdentifier>
+      <UniqueIdentifier>{0d7a0c7b-b30b-4154-9b3c-b327d7b78965}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include">
-      <UniqueIdentifier>{2f9e6bff-5d72-485f-8a8a-330dba5eafa6}</UniqueIdentifier>
+      <UniqueIdentifier>{9d4bf24c-abd7-4e3d-8587-86af97a6ebc2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include\json">
-      <UniqueIdentifier>{0c73d6e7-d137-40eb-90c1-a7c6c0a60bbb}</UniqueIdentifier>
+      <UniqueIdentifier>{45e0e1ee-b953-4a25-a9b0-c3893401104e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Intermediate">
-      <UniqueIdentifier>{11eea2ad-b5b7-428e-8aac-94512f76373c}</UniqueIdentifier>
+      <UniqueIdentifier>{db7fe839-959d-4d3b-9d37-9d0f152f58ce}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime">
-      <UniqueIdentifier>{5d8451dc-afbe-4af0-b037-374a4e592f49}</UniqueIdentifier>
+      <UniqueIdentifier>{1fce9926-3733-439e-ae20-42e337c8072c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Engine">
-      <UniqueIdentifier>{b8870fc5-5a0a-4faf-b681-fc64f528151f}</UniqueIdentifier>
+      <UniqueIdentifier>{3ad4de2f-364b-4cbb-8c9e-c18c2b875b38}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Launch">
-      <UniqueIdentifier>{29c50bfd-1b27-4753-9841-d099e9147563}</UniqueIdentifier>
+      <UniqueIdentifier>{0f664bdf-ba0a-4a65-9d0e-5e661e8e1048}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +140,9 @@
       <Filter>CoreObject\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="CoreObject\Reflection\ReflectionTest.h">
+      <Filter>CoreObject\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Reflection\ScriptMacros.h">
       <Filter>CoreObject\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="CoreObject\Reflection\Struct.h">
