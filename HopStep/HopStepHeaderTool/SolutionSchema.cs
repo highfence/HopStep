@@ -23,6 +23,7 @@ namespace HopStepHeaderTool
             public string HeaderDirectory = string.Empty;
             public List<PropertyInfo> Fields = new List<PropertyInfo>();
             public List<string> BaseClasses = new List<string>();
+            public List<FunctionInfo> Functions = new List<FunctionInfo>();
         }
 
         public struct PropertyInfo
@@ -51,7 +52,13 @@ namespace HopStepHeaderTool
 
         public Dictionary<string, TypeInfo> Types = new Dictionary<string, TypeInfo>();
 
-        public void AddTypeInfo(string name, ObjectType type, string headerDirectory, List<PropertyInfo> fields, List<string> baseClasses)
+        public void AddTypeInfo(
+            string name
+            , ObjectType type
+            , string headerDirectory
+            , List<PropertyInfo> fields
+            , List<string> baseClasses
+            , List<FunctionInfo> functionInfos)
         {
             if (Types.ContainsKey(name))
             {
@@ -75,7 +82,8 @@ namespace HopStepHeaderTool
                 Name = name,
                 HeaderDirectory = headerDirectory,
                 Fields = copiedFields.ToList(),
-                BaseClasses = copiedBase
+                BaseClasses = copiedBase,
+                Functions = functionInfos,
             });
         }
     }
