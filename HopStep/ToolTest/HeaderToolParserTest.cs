@@ -78,7 +78,7 @@ namespace ToolTest
             Assert.AreEqual("TestProperty", parseContext.Properties[0].Name);
 
             // Annotation test
-            Assert.IsFalse(parseContext.ParseStringLine("// { is emtpy."));
+            Assert.IsFalse(parseContext.ParseStringLine("// { is empty."));
             Assert.AreEqual(1, parseContext.BracketStack);
             Assert.IsFalse(parseContext.ParseStringLine("/*"));
             Assert.AreEqual(1, parseContext.BracketStack);
@@ -90,7 +90,7 @@ namespace ToolTest
             Assert.AreEqual(1, parseContext.BracketStack);
             Assert.IsFalse(parseContext.ParseStringLine("*/"));
 
-            // Obejct end test
+            // Object end test
             Assert.AreEqual(1, parseContext.BracketStack);
             Assert.IsTrue(parseContext.ParseStringLine("}"));
             Assert.AreEqual(0, parseContext.BracketStack);
