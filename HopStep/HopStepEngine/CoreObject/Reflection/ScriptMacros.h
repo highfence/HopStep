@@ -8,8 +8,9 @@
 
 #define HFUNC_THIS_PTR (Instance)
 #define HFUNC_THIS_CAST(ClassType) ((ClassType*)Instance)
-#define FUNC_THIS HFUNC_THIS_CAST(ThisClass)
+#define HFUNC_THIS HFUNC_THIS_CAST(ThisClass)
 
-
-
-
+/*
+	
+*/
+#define HFUNC_GET_FROM_FRAME(ParamType, ParamName) ParamType ParamName = (Frame.PopByType<ParamType>());

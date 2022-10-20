@@ -13,6 +13,7 @@ namespace HopStepHeaderTool
             Class,
             Struct,
             Property,
+            Function,
         }
 
         public class TypeInfo
@@ -27,7 +28,23 @@ namespace HopStepHeaderTool
         public struct PropertyInfo
         {
             public string Name;
+
             public string PropertyType;
+        }
+
+        public struct FunctionInfo
+        {
+            public struct FunctionParam
+            {
+                public string ParamName;
+                public string ParamType;
+            }
+
+            public string Name;
+
+            public string ReturnType;
+
+            public List<FunctionParam> Params;
         }
 
         public List<string> HeaderDirectories { get; internal set; } = new List<string>();
