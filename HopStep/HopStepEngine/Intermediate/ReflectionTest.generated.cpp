@@ -46,3 +46,4 @@ void HObjectInheritedTest::__Fill_Class_Property_HObjectInheritedTest(HClass* In
 	HStructBuilder::SetSuper<HObjectBase>(InStaticClass);
 }
 IMPLEMENT_CLASS(HObjectInheritedTest);
+

@@ -80,10 +80,16 @@ namespace HopStepHeaderTool
 			sb.AppendLine($"#include \"HopStep.h\"");
 			sb.AppendLine($"#include \"{includeHeaderPath}\"");
 
+			HashSet<string> includes = new HashSet<string>();
+
 			foreach (var typeInfo in schemasInHeader)
 			{
 				var enginePath = Path.GetFullPath(_enginePath);
 				var relativeDirectory = GetRelativeDirectory(enginePath, typeInfo.HeaderDirectory).Replace("/", "\\");
+
+				if (includes.Contains(relativeDirectory)) continue;
+
+				includes.Add(relativeDirectory);
 				sb.AppendLine($"#include \"{relativeDirectory}\"");
 			}
 
@@ -135,7 +141,19 @@ namespace HopStepHeaderTool
 
 			sb.AppendLine("#pragma once");
 			sb.AppendLine("#include \"..\\CoreObject\\Object\\ObjectMacro.h\"");
+			sb.AppendLine("#include \"..\\CoreObject\\Reflection\\ReflectionMacro.h\"");
+			sb.AppendLine("#include \"..\\CoreObject\\Reflection\\Function.h\"");
 			sb.AppendLine();
+
+			foreach (var typeInfo in schemasInHeader)
+			{
+				if (typeInfo.Functions is null) continue;
+
+				foreach (var funcInfo in typeInfo.Functions)
+				{
+					sb.AppendLine($"DECLARE_FUNCTION({funcInfo.Name});");
+				}
+			}
 
 			using (var handle = new StreamWriter(generatedPath, false, Encoding.UTF8))
 			{

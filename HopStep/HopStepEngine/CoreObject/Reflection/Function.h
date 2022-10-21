@@ -1,6 +1,6 @@
 #pragma once
 #include "Struct.h"
-#include "Core\Container\VariadicStack.h"
+#include "..\..\Core\Container\VariadicStack.h"
 #include "ScriptMacros.h"
 
 namespace HopStep::CoreObject::Reflection

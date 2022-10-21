@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using static HopStepHeaderTool.SolutionSchema;
 
 namespace HopStepHeaderTool
 {
+
     public sealed class ParsingStateContext
     {
         public enum ParsingState
@@ -12,22 +14,25 @@ namespace HopStepHeaderTool
             None,
             WaitForObjectName,
             WaitForObjectEnd,
-            WaitForPropertyName,
+            WaitForProperty,
+            WaitForFunction,
             Done
         }
 
         public ParsingState State { get; private set; } = ParsingState.None;
-        public SolutionSchema.ObjectType CurrentObjectType = SolutionSchema.ObjectType.None;
+        public ObjectType CurrentObjectType = ObjectType.None;
         public string TypeName { get; private set; } = string.Empty;
-        public List<SolutionSchema.PropertyInfo> Properties { get; internal set; } = new List<SolutionSchema.PropertyInfo>();
+        public List<PropertyInfo> Properties { get; internal set; } = new List<PropertyInfo>();
         public int BracketStack { get; private set; } = 0;
 		public List<string> ObjectBase { get; private set; } = new List<string>();
+        public List<FunctionInfo> Functions { get; private set; } = new List<FunctionInfo>();
 
-		private readonly Dictionary<string, SolutionSchema.ObjectType> _objectTypeDefines = new Dictionary<string, SolutionSchema.ObjectType>
+        private readonly Dictionary<string, ObjectType> _objectTypeDefines = new Dictionary<string, ObjectType>
         {
-            { "HCLASS", SolutionSchema.ObjectType.Class },
-            { "HSTRUCT", SolutionSchema.ObjectType.Struct },
-            { "HPROPERTY", SolutionSchema.ObjectType.Property },
+            { "HCLASS", ObjectType.Class },
+            { "HSTRUCT", ObjectType.Struct },
+            { "HPROPERTY", ObjectType.Property },
+            { "HFUNCTION", ObjectType.Function },
         };
 
         private bool _isInMultiLineAnnotation = false;
@@ -41,7 +46,7 @@ namespace HopStepHeaderTool
             if (State == ParsingState.None || State == ParsingState.Done)
             {
                 var type = FindObjectTypeInString(line);
-                if (type != SolutionSchema.ObjectType.None)
+                if (type != ObjectType.None)
                 {
                     State = ParsingState.WaitForObjectName;
                     CurrentObjectType = type;
@@ -68,16 +73,20 @@ namespace HopStepHeaderTool
                 UpdateBraketStack(line);
 
                 var objectType = FindObjectTypeInString(line);
-                if (objectType == SolutionSchema.ObjectType.Property)
+                if (objectType == ObjectType.Property)
                 {
-                    State = ParsingState.WaitForPropertyName;
+                    State = ParsingState.WaitForProperty;
                 }
-                else if (objectType != SolutionSchema.ObjectType.None)
+                else if (objectType == ObjectType.Function)
+                {
+                    State = ParsingState.WaitForFunction;
+                }
+                else if (objectType != ObjectType.None)
                 {
                     throw new Exception($"Invalid property line! : {line}");
                 }
             }
-            else if (State == ParsingState.WaitForPropertyName)
+            else if (State == ParsingState.WaitForProperty)
             {
                 string[] tokens = line.Split(' ');
                 string[] propertyToken = tokens.Where(s => string.IsNullOrEmpty(s) == false).Select(s => s.Trim(';')).ToArray();
@@ -88,7 +97,68 @@ namespace HopStepHeaderTool
                 }
 
                 State = ParsingState.WaitForObjectEnd;
-                Properties.Add(new SolutionSchema.PropertyInfo { PropertyType = propertyToken[0], Name = propertyToken[1] });
+                Properties.Add(new PropertyInfo { PropertyType = propertyToken[0], Name = propertyToken[1] });
+            }
+            else if (State == ParsingState.WaitForFunction)
+            {
+                if (line.Contains("template"))
+                {
+                    throw new Exception($"Do not use template function for HFUNCTION : {line}");
+                }
+
+                var separator = new char[2]{ '(', ')' };
+                string[] functionSplit = line.Split(separator);
+
+                if (functionSplit.Length < 2)
+                {
+                    throw new Exception($"Invalid UFUNCTION definition line! : {line}");
+                }
+
+                string funcNameAndReturn = functionSplit[0];
+                if (funcNameAndReturn.Contains("virtual"))
+                {
+                    throw new Exception($"Do not use 'virtual' keyword for HFUNCTION. : {line}");
+                }
+
+
+                var paramInfos = new List<FunctionInfo.FunctionParam>();
+                if (string.IsNullOrEmpty(functionSplit[1]) == false)
+                {
+                    var paramTokens = functionSplit[1].Split(',');
+
+                    foreach (var paramToken in paramTokens)
+                    {
+                        string[] singleParam = paramToken.Trim().Split(' ');
+                        if (singleParam.Length < 2)
+                        {
+                            throw new Exception($"Invalid single param string! : {paramToken}");
+                        }
+
+                        var paramName = singleParam[^1];
+                        var paramType = String.Join(' ', singleParam.Take(singleParam.Length - 1));
+
+                        paramInfos.Add(new FunctionInfo.FunctionParam() 
+                        {
+                            ParamName = paramName,
+                            ParamType = paramType
+                        });
+                    }
+                }
+
+                string[] funcNameAndReturnTokens = funcNameAndReturn.Split(' ');
+
+                var funcInfo = new FunctionInfo
+                {
+                    // Last word before '(' character must be name of this function...
+                    Name = funcNameAndReturnTokens[^1],
+                    // And before that, it will be return type.
+                    ReturnType = String.Join(' ', funcNameAndReturnTokens.Take(funcNameAndReturnTokens.Length - 1)),
+                    Params = paramInfos
+                };
+
+                Functions.Add(funcInfo);
+
+                State = ParsingState.WaitForObjectEnd;
             }
 
             return State == ParsingState.WaitForObjectEnd && BracketStack is 0 && _isObjectStarted;

@@ -70,7 +70,7 @@ namespace ToolTest
                     Name = "C",
                     PropertyType = "HObject"
                 }
-            }, null);
+            }, null, null);
 
             _writer?.GenerateContent(_enginePath, _intermediatePath, _schema);
             Assert.IsTrue(Directory.Exists(_intermediatePath));
@@ -83,6 +83,7 @@ namespace ToolTest
                 var headerIndex = 0;
                 Assert.AreEqual(headerLines[headerIndex++], "#pragma once");
                 Assert.AreEqual(headerLines[headerIndex++], "#include \"..\\CoreObject\\Object\\ObjectMacro.h\"");
+                Assert.AreEqual(headerLines[headerIndex++], "#include \"..\\CoreObject\\Reflection\\ReflectionMacro.h\"");
             }
 
             // check cpp file generated
@@ -124,7 +125,7 @@ namespace ToolTest
                     Name="Ptr",
                     PropertyType = "HObject*"
                 }
-            }, null);
+            }, null, null);
 
             _writer?.GenerateContent(_enginePath, _intermediatePath, _schema);
             Assert.IsTrue(Directory.Exists(_intermediatePath));
@@ -149,11 +150,13 @@ namespace ToolTest
             // Single inheritance test
             var objectHeaderPath = @$"{_enginePath}ReflectionTest3.h";
             _schema.HeaderDirectories.Add(objectHeaderPath);
-            _schema.AddTypeInfo("HReflectionTest3",
-                SolutionSchema.ObjectType.Class,
-                objectHeaderPath,
-                new List<SolutionSchema.PropertyInfo>(),
-                new List<string> { "HReflectionBase" });
+            _schema.AddTypeInfo(
+                "HReflectionTest3"
+                , SolutionSchema.ObjectType.Class
+                , objectHeaderPath
+                , new List<SolutionSchema.PropertyInfo>()
+                , new List<string> { "HReflectionBase" }
+                , null);
 
             _writer?.GenerateContent(_enginePath, _intermediatePath, _schema);
             Assert.IsTrue(Directory.Exists(_intermediatePath));
@@ -176,5 +179,65 @@ namespace ToolTest
                 Assert.AreEqual(cppLines[cppIndex++], "IMPLEMENT_CLASS(HReflectionTest3);");
 			}
 		}
+
+        [Test]
+        public void TestFunctionContents()
+        {
+            if (_schema is null)
+            {
+                throw new Exception("schema was null");
+            }
+
+            var funcName = "FindObject";
+            var returnType = "UObject*";
+            var paramInfos = new List<SolutionSchema.FunctionInfo.FunctionParam>()
+            {
+                new SolutionSchema.FunctionInfo.FunctionParam()
+                {
+                    ParamName = "InObject",
+                    ParamType = "void const*"
+                },
+                new SolutionSchema.FunctionInfo.FunctionParam()
+                {
+                    ParamName = "InName",
+                    ParamType = "const HString&"
+                },
+            };
+
+            var objectHeaderPath = @$"{_enginePath}ReflectionTest4.h";
+            _schema.HeaderDirectories.Add(objectHeaderPath);
+            _schema.AddTypeInfo(
+                "HReflectionTest4"
+                , SolutionSchema.ObjectType.Function
+                , objectHeaderPath
+                , new List<SolutionSchema.PropertyInfo>()
+                , null
+                , new List<SolutionSchema.FunctionInfo> 
+                {  
+                    new SolutionSchema.FunctionInfo()
+                    {
+                        Name = funcName,
+                        ReturnType = returnType,
+                        Params = paramInfos
+                    }
+                });
+               
+            _writer?.GenerateContent(_enginePath, _intermediatePath, _schema);
+            Assert.IsTrue(Directory.Exists(_intermediatePath));
+
+            var targetHeaderFile = Path.Combine(_intermediatePath, "ReflectionTest4.generated.h");
+            Assert.IsTrue(File.Exists(targetHeaderFile));
+            {
+                string[] headerLines = File.ReadAllLines(targetHeaderFile);
+                int headerIndex = 0;
+
+                Assert.AreEqual(headerLines[headerIndex++], "#pragma once");
+                Assert.AreEqual(headerLines[headerIndex++], "#include \"..\\CoreObject\\Object\\ObjectMacro.h\"");
+                Assert.AreEqual(headerLines[headerIndex++], "#include \"..\\CoreObject\\Reflection\\ReflectionMacro.h\"");
+                Assert.AreEqual(headerLines[headerIndex++], "#include \"..\\CoreObject\\Reflection\\Function.h\"");
+                Assert.AreEqual(headerLines[headerIndex++], "");
+                Assert.AreEqual(headerLines[headerIndex++], $"DECLARE_FUNCTION({funcName});");
+            }
+        }
 	}
 }

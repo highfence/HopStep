@@ -6,3 +6,11 @@
 #define HFUNC_RESULT_PARAM __Function_Param_Result
 #define HFUNC_RESULT_DECL void* const HFUNC_RESULT_PARAM
 
+#define HFUNC_THIS_PTR (Instance)
+#define HFUNC_THIS_CAST(ClassType) ((ClassType*)Instance)
+#define HFUNC_THIS HFUNC_THIS_CAST(ThisClass)
+
+/*
+	
+*/
+#define HFUNC_GET_FROM_FRAME(ParamType, ParamName) ParamType ParamName = (Frame.PopByType<ParamType>());
