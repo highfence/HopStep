@@ -6,4 +6,3 @@
 #define HFUNC_RESULT_PARAM __Function_Param_Result
 #define HFUNC_RESULT_DECL void* const HFUNC_RESULT_PARAM
 
-
