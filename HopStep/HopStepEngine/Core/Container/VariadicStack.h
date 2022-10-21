@@ -1,9 +1,8 @@
 #pragma once
-#include "Core/HopStepOverrides.h"
-#include "Core/PrimitiveTypeDefines.h"
-#include "Core/Misc/GenericMemory.h"
-#include "Core/Misc/DebugUtils.h"
-
+#include "..\HopStepOverrides.h"
+#include "..\PrimitiveTypeDefines.h"
+#include "..\Misc\GenericMemory.h"
+#include "..\Misc\DebugUtils.h"
 
 namespace HopStep::Container
 {

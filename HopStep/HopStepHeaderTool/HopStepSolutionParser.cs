@@ -64,7 +64,8 @@ namespace HopStepHeaderTool
                             _parseContext.CurrentObjectType,
                             headerPath,
                             _parseContext.Properties,
-                            _parseContext.ObjectBase
+                            _parseContext.ObjectBase,
+                            _parseContext.Functions
                         );
 
                         _parseContext.Reset();
