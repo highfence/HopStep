@@ -117,6 +117,30 @@ namespace HopStepHeaderTool
 
 				sb.AppendLine("}");
 				sb.AppendLine("");
+
+				if (typeInfo.Functions != null)
+				{
+					foreach (var funcInfo in typeInfo.Functions)
+					{
+						sb.AppendLine($"DEFINE_FUNCTION({typeInfo.Name}::exec{funcInfo.Name})");
+						sb.AppendLine("{");
+
+						for (var paramIndex = funcInfo.Params.Count - 1; paramIndex >= 0; paramIndex--)
+						{
+							var paramInfo = funcInfo.Params[paramIndex];
+
+							sb.AppendLine($"\t{PropertyFromFrameDefine}({paramInfo.ParamType}, {FunctionParamPrefix}{paramInfo.ParamName});");
+						}
+
+						var paramString = string.Join(", ", funcInfo.Params.Select(param => $"{FunctionParamPrefix}{param.ParamName}"));
+
+						sb.AppendLine($"\t{FunctionResultParamDefine} = (void*){FunctionThisPtrDefine}->{funcInfo.Name}({paramString});");
+						sb.AppendLine("}");
+					}
+					
+					sb.AppendLine("");
+				}
+
 				sb.AppendLine($"IMPLEMENT_CLASS({typeInfo.Name});");
 			}
 
@@ -182,5 +206,10 @@ namespace HopStepHeaderTool
 		{
 			return "HopStepEngine_ReflectionTest4";
 		}
+
+		public string FunctionParamPrefix => "HFunc_Param_";
+		public string PropertyFromFrameDefine => "HFUNC_GET_FROM_FRAME";
+		public string FunctionResultParamDefine => "HFUNC_RESULT_PARAM";
+		public string FunctionThisPtrDefine => "HFUNC_THIS";
 	}
 }
