@@ -1,10 +1,6 @@
 ﻿#include "HopStep.h"
 #include "ReflectionTest.generated.h"
 #include "CoreObject\Reflection\ReflectionTest.h"
-#include "CoreObject\Reflection\ReflectionTest.h"
-#include "CoreObject\Reflection\ReflectionTest.h"
-#include "CoreObject\Reflection\ReflectionTest.h"
-#include "CoreObject\Reflection\ReflectionTest.h"
 
 using namespace HopStep::CoreObject::Reflection;
 
@@ -45,5 +41,6 @@ void HObjectInheritedTest::__Fill_Class_Property_HObjectInheritedTest(HClass* In
 {
 	HStructBuilder::SetSuper<HObjectBase>(InStaticClass);
 }
+
 IMPLEMENT_CLASS(HObjectInheritedTest);
 

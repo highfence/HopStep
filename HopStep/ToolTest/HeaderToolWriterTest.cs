@@ -104,6 +104,7 @@ namespace ToolTest
                 Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, bool, HBooleanProperty>(InStaticClass, TEXT(\"B\"), &HReflectionTest::B);");
                 Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddProperty<HReflectionTest, HObject, HClassProperty>(InStaticClass, TEXT(\"C\"), &HReflectionTest::C);");
                 Assert.AreEqual(cppLines[cppIndex++], "}");
+                Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "IMPLEMENT_CLASS(HReflectionTest);");
             }
 		}
@@ -176,6 +177,7 @@ namespace ToolTest
                 Assert.AreEqual(cppLines[cppIndex++], "{");
                 Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::SetSuper<HReflectionBase>(InStaticClass);");
                 Assert.AreEqual(cppLines[cppIndex++], "}");
+                Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "IMPLEMENT_CLASS(HReflectionTest3);");
 			}
 		}
@@ -225,6 +227,10 @@ namespace ToolTest
             _writer?.GenerateContent(_enginePath, _intermediatePath, _schema);
             Assert.IsTrue(Directory.Exists(_intermediatePath));
 
+            var objectFileHierarchy = "HopStepEngine_ReflectionTest4";
+            var objectDeclareClassLine = 4;
+            var defineContent = "Generated_Function_Declare";
+
             var targetHeaderFile = Path.Combine(_intermediatePath, "ReflectionTest4.generated.h");
             Assert.IsTrue(File.Exists(targetHeaderFile));
             {
@@ -236,7 +242,39 @@ namespace ToolTest
                 Assert.AreEqual(headerLines[headerIndex++], "#include \"..\\CoreObject\\Reflection\\ReflectionMacro.h\"");
                 Assert.AreEqual(headerLines[headerIndex++], "#include \"..\\CoreObject\\Reflection\\Function.h\"");
                 Assert.AreEqual(headerLines[headerIndex++], "");
-                Assert.AreEqual(headerLines[headerIndex++], $"DECLARE_FUNCTION({funcName});");
+                Assert.AreEqual(headerLines[headerIndex++], $"#define {objectFileHierarchy}_{objectDeclareClassLine}_{defineContent} \\");
+                Assert.AreEqual(headerLines[headerIndex++], "public: \\");
+                Assert.AreEqual(headerLines[headerIndex++], $"\tDECLARE_FUNCTION(exec{funcName}); \\");
+                Assert.AreEqual(headerLines[headerIndex++], "private:");
+                Assert.AreEqual(headerLines[headerIndex++], "");
+                Assert.AreEqual(headerLines[headerIndex++], "#undef CURRENT_FILE_ID");
+                Assert.AreEqual(headerLines[headerIndex++], $"#define {objectFileHierarchy}");
+            }
+
+            var targetCppFile  = Path.Combine(_intermediatePath, "ReflectionTest4.generated.cpp");
+            Assert.IsTrue(File.Exists(targetCppFile));
+            {
+                string[] cppLines = File.ReadAllLines(targetCppFile);
+                int cppIndex = 0;
+
+                Assert.AreEqual(cppLines[cppIndex++], "#include \"HopStep.h\"");
+                Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest4.generated.h\"");
+                Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest4.h\"");
+                Assert.AreEqual(cppLines[cppIndex++], "");
+                Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep::CoreObject::Reflection;");
+                Assert.AreEqual(cppLines[cppIndex++], "");
+                Assert.AreEqual(cppLines[cppIndex++], "void HReflectionTest4::__Fill_Class_Property_HReflectionTest4(HClass* InStaticClass)");
+                Assert.AreEqual(cppLines[cppIndex++], "{");
+                Assert.AreEqual(cppLines[cppIndex++], "}");
+                Assert.AreEqual(cppLines[cppIndex++], "");
+                Assert.AreEqual(cppLines[cppIndex++], $"DEFINE_FUNCTION(HReflectionTest4::exec{funcName})");
+                Assert.AreEqual(cppLines[cppIndex++], "{");
+                Assert.AreEqual(cppLines[cppIndex++], "\tHFUNC_GET_FROM_FRAME(const HString&, HFunc_Param_InName);");
+                Assert.AreEqual(cppLines[cppIndex++], "\tHFUNC_GET_FROM_FRAME(void const*, HFunc_Param_InObject);");
+                Assert.AreEqual(cppLines[cppIndex++], $"\tHFUNC_RESULT_PARAM = (void*)HFUNC_THIS->{funcName}(HFunc_Param_InObject, HFunc_Param_InName);");
+                Assert.AreEqual(cppLines[cppIndex++], "}");
+                Assert.AreEqual(cppLines[cppIndex++], "");
+                Assert.AreEqual(cppLines[cppIndex++], "IMPLEMENT_CLASS(HReflectionTest4);");
             }
         }
 	}

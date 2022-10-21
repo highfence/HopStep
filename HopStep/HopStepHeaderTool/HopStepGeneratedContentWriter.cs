@@ -67,7 +67,7 @@ namespace HopStepHeaderTool
 					continue;
 				}
 
-				WriteHeader(generatedHeaderPath, schemasInHeader);
+				WriteHeader(generatedHeaderPath, headerPath, schemasInHeader);
 
 				var generatedCppPath = Path.Combine(intermediatePath, $"{objectName}.generated.cpp");
 				WriteCpp(generatedCppPath, $"{objectName}.generated.h", schemasInHeader);
@@ -116,6 +116,7 @@ namespace HopStepHeaderTool
 				}
 
 				sb.AppendLine("}");
+				sb.AppendLine("");
 				sb.AppendLine($"IMPLEMENT_CLASS({typeInfo.Name});");
 			}
 
@@ -135,7 +136,7 @@ namespace HopStepHeaderTool
 			return diff.OriginalString;
 		}
 
-		private void WriteHeader(string generatedPath, List<SolutionSchema.TypeInfo> schemasInHeader)
+		private void WriteHeader(string generatedPath, string originHeaderPath, List<SolutionSchema.TypeInfo> schemasInHeader)
 		{
 			var sb = new StringBuilder();
 
@@ -143,23 +144,43 @@ namespace HopStepHeaderTool
 			sb.AppendLine("#include \"..\\CoreObject\\Object\\ObjectMacro.h\"");
 			sb.AppendLine("#include \"..\\CoreObject\\Reflection\\ReflectionMacro.h\"");
 			sb.AppendLine("#include \"..\\CoreObject\\Reflection\\Function.h\"");
-			sb.AppendLine();
+			sb.AppendLine("");
 
 			foreach (var typeInfo in schemasInHeader)
 			{
+				sb.AppendLine($"#define {GetGeneratedFunctionDeclareDefineId()} \\");
+
 				if (typeInfo.Functions is null) continue;
+
+				sb.AppendLine("public: \\");
 
 				foreach (var funcInfo in typeInfo.Functions)
 				{
-					sb.AppendLine($"DECLARE_FUNCTION({funcInfo.Name});");
+					sb.AppendLine($"\tDECLARE_FUNCTION(exec{funcInfo.Name}); \\");
 				}
+
+				sb.AppendLine("private:");
 			}
+
+			sb.AppendLine("");
+			sb.AppendLine("#undef CURRENT_FILE_ID");
+			sb.AppendLine($"#define {GetCurrentFileId()}");
 
 			using (var handle = new StreamWriter(generatedPath, false, Encoding.UTF8))
 			{
 				handle.Write(sb.ToString());
 				handle.Close();
 			}
+		}
+
+		public string GetGeneratedFunctionDeclareDefineId()
+		{
+			return $"{GetCurrentFileId()}_4_Generated_Function_Declare";
+		}
+
+		public string GetCurrentFileId()
+		{
+			return "HopStepEngine_ReflectionTest4";
 		}
 	}
 }

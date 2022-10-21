@@ -76,7 +76,7 @@ namespace HopStep::CoreObject::Reflection
 		HFUNC_RESULT_DECL;
 		InvokeImpl(InClassPtr, Frame, HFUNC_RESULT_PARAM);
 
-		return HFUNC_RESULT_PARAM;
+		return (TReturnType)HFUNC_RESULT_PARAM;
 	}
 
 	template<typename... TParamArgs>
