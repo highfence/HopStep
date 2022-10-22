@@ -1,6 +1,6 @@
 #pragma once
 #include "..\HopStepEngine\Core\HopStepCore.h"
-#include "..\HopStepEngine\CoreObject\Reflection\ReflectionMarco.h"
+#include "..\HopStepEngine\CoreObject\Reflection\ReflectionMacro.h"
 #include "..\HopStepEngine\CoreObject\Object\Object.h"
 #include "..\HopStepEngine\Intermediate\ReflectionTest.generated.h"
 

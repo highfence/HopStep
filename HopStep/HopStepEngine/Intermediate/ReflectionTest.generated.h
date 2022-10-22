@@ -3,19 +3,19 @@
 #include "..\CoreObject\Reflection\ReflectionMacro.h"
 #include "..\CoreObject\Reflection\Function.h"
 
-#define HopStepEngine_CoreObject_Reflection_ReflectionTest_419_Generated_Function_Declare \
+#define HopStepEngine_CoreObject_Reflection_ReflectionTest_23_Generated_Function_Declare \
 public: \
 private:
-#define HopStepEngine_CoreObject_Reflection_ReflectionTest_4_Generated_Function_Declare \
+#define HopStepEngine_CoreObject_Reflection_ReflectionTest_40_Generated_Function_Declare \
 public: \
 private:
-#define HopStepEngine_CoreObject_Reflection_ReflectionTest_4_Generated_Function_Declare \
+#define HopStepEngine_CoreObject_Reflection_ReflectionTest_68_Generated_Function_Declare \
 public: \
 private:
-#define HopStepEngine_CoreObject_Reflection_ReflectionTest_4_Generated_Function_Declare \
+#define HopStepEngine_CoreObject_Reflection_ReflectionTest_85_Generated_Function_Declare \
 public: \
 private:
-#define HopStepEngine_CoreObject_Reflection_ReflectionTest_4_Generated_Function_Declare \
+#define HopStepEngine_CoreObject_Reflection_ReflectionTest_96_Generated_Function_Declare \
 public: \
 private:
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "Core\HopStepCore.h"
 #include "CoreObject\Reflection\ReflectionConcepts.h"
-#include "CoreObject/Reflection/ReflectionMarco.h"
+#include "CoreObject/Reflection/ReflectionMacro.h"
 #include "Intermediate\ObjectBase.generated.h"
 
 /**

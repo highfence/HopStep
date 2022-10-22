@@ -191,7 +191,7 @@ namespace HopStepHeaderTool
 
 			sb.AppendLine("");
 			sb.AppendLine("#undef CURRENT_FILE_ID");
-			sb.AppendLine($"#define {GetCurrentFileId(originHeaderPath)}");
+			sb.AppendLine($"#define CURRENT_FILE_ID {GetCurrentFileId(originHeaderPath)}");
 
 			using (var handle = new StreamWriter(generatedPath, false, Encoding.UTF8))
 			{

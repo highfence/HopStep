@@ -250,7 +250,7 @@ namespace ToolTest
                 Assert.AreEqual(headerLines[headerIndex++], "private:");
                 Assert.AreEqual(headerLines[headerIndex++], "");
                 Assert.AreEqual(headerLines[headerIndex++], "#undef CURRENT_FILE_ID");
-                Assert.AreEqual(headerLines[headerIndex++], $"#define {objectFileHierarchy}");
+                Assert.AreEqual(headerLines[headerIndex++], $"#define CURRENT_FILE_ID {objectFileHierarchy}");
             }
 
             var targetCppFile  = Path.Combine(_intermediatePath, "ReflectionTest4.generated.cpp");
@@ -334,7 +334,7 @@ namespace ToolTest
                 Assert.AreEqual(headerLines[headerIndex++], "private:");
                 Assert.AreEqual(headerLines[headerIndex++], "");
                 Assert.AreEqual(headerLines[headerIndex++], "#undef CURRENT_FILE_ID");
-                Assert.AreEqual(headerLines[headerIndex++], $"#define {objectFileHierarchy}");
+                Assert.AreEqual(headerLines[headerIndex++], $"#define CURRENT_FILE_ID {objectFileHierarchy}");
             }
         }
 	}

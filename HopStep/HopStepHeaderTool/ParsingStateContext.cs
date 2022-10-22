@@ -38,7 +38,7 @@ namespace HopStepHeaderTool
 
         private bool _isInMultiLineAnnotation = false;
         private bool _isObjectStarted = false;
-        private int _currentLine = -1;
+        private int _currentLine = 0;
 
         // Todo : FSM 형태로 변환?
         public bool ParseStringLine(string input)
@@ -224,7 +224,7 @@ namespace HopStepHeaderTool
             Functions?.Clear();
             _isInMultiLineAnnotation = false;
             _isObjectStarted = false;
-            _currentLine = -1;
+            _currentLine = 0;
         }
 
         public string FilteringAnnotationString(string line)

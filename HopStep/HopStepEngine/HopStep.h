@@ -6,6 +6,6 @@
 #include "CoreObject/Reflection/Struct.h"
 #include "CoreObject/Reflection/Class.h"
 #include "CoreObject/Reflection/Type.h"
-#include "CoreObject/Reflection/ReflectionMarco.h"
+#include "CoreObject/Reflection/ReflectionMacro.h"
 
 #include "CoreObject/Object/Object.h"
