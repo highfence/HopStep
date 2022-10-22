@@ -51,7 +51,8 @@ namespace HopStepHeaderTool
         {
             foreach (var headerPath in SolutionSchema.HeaderDirectories)
             {
-                var headerLines = File.ReadAllLines(headerPath).Where(line => string.IsNullOrEmpty(line) == false);
+                var headerLines = File.ReadAllLines(headerPath);
+                    //.Where(line => string.IsNullOrEmpty(line) == false);
 
                 foreach (var line in headerLines)
                 {
@@ -63,6 +64,7 @@ namespace HopStepHeaderTool
                             _parseContext.TypeName,
                             _parseContext.CurrentObjectType,
                             headerPath,
+                            _parseContext.DeclareLineNumber,
                             _parseContext.Properties,
                             _parseContext.ObjectBase,
                             _parseContext.Functions

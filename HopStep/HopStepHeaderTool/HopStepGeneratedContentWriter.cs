@@ -125,14 +125,17 @@ namespace HopStepHeaderTool
 						sb.AppendLine($"DEFINE_FUNCTION({typeInfo.Name}::exec{funcInfo.Name})");
 						sb.AppendLine("{");
 
-						for (var paramIndex = funcInfo.Params.Count - 1; paramIndex >= 0; paramIndex--)
+						if (funcInfo.Params != null)
 						{
-							var paramInfo = funcInfo.Params[paramIndex];
+							for (var paramIndex = funcInfo.Params.Count - 1; paramIndex >= 0; paramIndex--)
+							{
+								var paramInfo = funcInfo.Params[paramIndex];
 
-							sb.AppendLine($"\t{PropertyFromFrameDefine}({paramInfo.ParamType}, {FunctionParamPrefix}{paramInfo.ParamName});");
+								sb.AppendLine($"\t{PropertyFromFrameDefine}({paramInfo.ParamType}, {FunctionParamPrefix}{paramInfo.ParamName});");
+							}
 						}
 
-						var paramString = string.Join(", ", funcInfo.Params.Select(param => $"{FunctionParamPrefix}{param.ParamName}"));
+						var paramString = funcInfo.Params == null ? string.Empty : string.Join(", ", funcInfo.Params.Select(param => $"{FunctionParamPrefix}{param.ParamName}"));
 
 						sb.AppendLine($"\t{FunctionResultParamDefine} = (void*){FunctionThisPtrDefine}->{funcInfo.Name}({paramString});");
 						sb.AppendLine("}");
@@ -172,7 +175,7 @@ namespace HopStepHeaderTool
 
 			foreach (var typeInfo in schemasInHeader)
 			{
-				sb.AppendLine($"#define {GetGeneratedFunctionDeclareDefineId()} \\");
+				sb.AppendLine($"#define {GetGeneratedFunctionDeclareDefineId(originHeaderPath, typeInfo.DeclareLineNumber)} \\");
 
 				if (typeInfo.Functions is null) continue;
 
@@ -188,7 +191,7 @@ namespace HopStepHeaderTool
 
 			sb.AppendLine("");
 			sb.AppendLine("#undef CURRENT_FILE_ID");
-			sb.AppendLine($"#define {GetCurrentFileId()}");
+			sb.AppendLine($"#define {GetCurrentFileId(originHeaderPath)}");
 
 			using (var handle = new StreamWriter(generatedPath, false, Encoding.UTF8))
 			{
@@ -197,14 +200,18 @@ namespace HopStepHeaderTool
 			}
 		}
 
-		public string GetGeneratedFunctionDeclareDefineId()
+		public string GetGeneratedFunctionDeclareDefineId(string originHeaderPath, int declareLine)
 		{
-			return $"{GetCurrentFileId()}_4_Generated_Function_Declare";
+			return $"{GetCurrentFileId(originHeaderPath)}_{declareLine}_Generated_Function_Declare";
 		}
 
-		public string GetCurrentFileId()
+		public string GetCurrentFileId(string originHeaderPath)
 		{
-			return "HopStepEngine_ReflectionTest4";
+			var basePath = System.IO.Directory.GetParent(_enginePath);
+			var relativePath = GetRelativeDirectory(basePath.FullName, originHeaderPath);
+			// SkipLast for removing ".h"
+			relativePath = relativePath.Remove(relativePath.Length - 2, 2);
+			return String.Join("_", relativePath.Split('/'));
 		}
 
 		public string FunctionParamPrefix => "HFunc_Param_";

@@ -21,6 +21,7 @@ namespace HopStepHeaderTool
             public ObjectType Type = ObjectType.None;
             public string Name = string.Empty;
             public string HeaderDirectory = string.Empty;
+            public int DeclareLineNumber;
             public List<PropertyInfo> Fields = new List<PropertyInfo>();
             public List<string> BaseClasses = new List<string>();
             public List<FunctionInfo> Functions = new List<FunctionInfo>();
@@ -56,6 +57,7 @@ namespace HopStepHeaderTool
             string name
             , ObjectType type
             , string headerDirectory
+            , int declareLineNumber
             , List<PropertyInfo> fields
             , List<string> baseClasses
             , List<FunctionInfo> functionInfos)
@@ -81,6 +83,7 @@ namespace HopStepHeaderTool
                 Type = type,
                 Name = name,
                 HeaderDirectory = headerDirectory,
+                DeclareLineNumber = declareLineNumber,
                 Fields = copiedFields.ToList(),
                 BaseClasses = copiedBase,
                 Functions = functionInfos,

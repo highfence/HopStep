@@ -26,6 +26,7 @@ namespace HopStepHeaderTool
         public int BracketStack { get; private set; } = 0;
 		public List<string> ObjectBase { get; private set; } = new List<string>();
         public List<FunctionInfo> Functions { get; private set; } = new List<FunctionInfo>();
+        public int DeclareLineNumber { get; private set; } = -1;
 
         private readonly Dictionary<string, ObjectType> _objectTypeDefines = new Dictionary<string, ObjectType>
         {
@@ -37,10 +38,12 @@ namespace HopStepHeaderTool
 
         private bool _isInMultiLineAnnotation = false;
         private bool _isObjectStarted = false;
+        private int _currentLine = -1;
 
         // Todo : FSM 형태로 변환?
         public bool ParseStringLine(string input)
         {
+            _currentLine++;
             var line = FilteringAnnotationString(input);
 
             if (State == ParsingState.None || State == ParsingState.Done)
@@ -71,6 +74,7 @@ namespace HopStepHeaderTool
             else if (State == ParsingState.WaitForObjectEnd)
             {
                 UpdateBraketStack(line);
+                UpdateDeclareClassBody(line);
 
                 var objectType = FindObjectTypeInString(line);
                 if (objectType == ObjectType.Property)
@@ -120,7 +124,6 @@ namespace HopStepHeaderTool
                     throw new Exception($"Do not use 'virtual' keyword for HFUNCTION. : {line}");
                 }
 
-
                 var paramInfos = new List<FunctionInfo.FunctionParam>();
                 if (string.IsNullOrEmpty(functionSplit[1]) == false)
                 {
@@ -164,6 +167,18 @@ namespace HopStepHeaderTool
             return State == ParsingState.WaitForObjectEnd && BracketStack is 0 && _isObjectStarted;
         }
 
+        private void UpdateDeclareClassBody(string line)
+        {
+            if (line.Contains("DECLARE_CLASS_BODY(") == false) return;
+
+            if (DeclareLineNumber != -1)
+            {
+                throw new Exception($"Duplicated DECLARE_CLASS_BODY in one class. Find in line {DeclareLineNumber} and {_currentLine} : {line}");
+            }
+
+            DeclareLineNumber = _currentLine;
+        }
+
         private void UpdateBraketStack(string line)
         {
             int openBracket = line.Count(c => c == '{');
@@ -204,9 +219,11 @@ namespace HopStepHeaderTool
             TypeName = string.Empty;
             Properties.Clear();
             BracketStack = 0;
+            DeclareLineNumber = -1;
             ObjectBase?.Clear();
             _isInMultiLineAnnotation = false;
             _isObjectStarted = false;
+            _currentLine = -1;
         }
 
         public string FilteringAnnotationString(string line)
