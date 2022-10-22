@@ -221,6 +221,7 @@ namespace HopStepHeaderTool
             BracketStack = 0;
             DeclareLineNumber = -1;
             ObjectBase?.Clear();
+            Functions?.Clear();
             _isInMultiLineAnnotation = false;
             _isObjectStarted = false;
             _currentLine = -1;

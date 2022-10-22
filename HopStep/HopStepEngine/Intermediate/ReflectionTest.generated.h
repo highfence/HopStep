@@ -1,12 +1,23 @@
 ﻿#pragma once
 #include "..\CoreObject\Object\ObjectMacro.h"
-#include "..\CoreObject\Reflection\ReflectionMarco.h"
+#include "..\CoreObject\Reflection\ReflectionMacro.h"
 #include "..\CoreObject\Reflection\Function.h"
 
-#define HopStepEngine_CoreObject_Reflection_ReflectionTest_HObjectInheritedTest_96_Generated_Function_Body \
+#define HopStepEngine_CoreObject_Reflection_ReflectionTest_419_Generated_Function_Declare \
 public: \
-	DECLARE_FUNCTION(execGetBase); \
+private:
+#define HopStepEngine_CoreObject_Reflection_ReflectionTest_4_Generated_Function_Declare \
+public: \
+private:
+#define HopStepEngine_CoreObject_Reflection_ReflectionTest_4_Generated_Function_Declare \
+public: \
+private:
+#define HopStepEngine_CoreObject_Reflection_ReflectionTest_4_Generated_Function_Declare \
+public: \
+private:
+#define HopStepEngine_CoreObject_Reflection_ReflectionTest_4_Generated_Function_Declare \
+public: \
 private:
 
-#undef CURRENT_FILE_ID 
-#define CURRENT_FILE_ID HopStepEngine_CoreObject_Reflection_ReflectionTest_HObjectInheritedTest
+#undef CURRENT_FILE_ID
+#define HopStepEngine_CoreObject_Reflection_ReflectionTest

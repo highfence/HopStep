@@ -9,6 +9,8 @@ void HInnerClassTest::__Fill_Class_Property_HInnerClassTest(HClass* InStaticClas
 	HStructBuilder::AddProperty<HInnerClassTest, float, HClassProperty>(InStaticClass, TEXT("InnerA"), &HInnerClassTest::InnerA);
 	HStructBuilder::AddProperty<HInnerClassTest, int8, HNumericProperty>(InStaticClass, TEXT("InnerB"), &HInnerClassTest::InnerB);
 }
+
+
 IMPLEMENT_CLASS(HInnerClassTest);
 
 void HReflectionTest::__Fill_Class_Property_HReflectionTest(HClass* InStaticClass)
@@ -20,6 +22,8 @@ void HReflectionTest::__Fill_Class_Property_HReflectionTest(HClass* InStaticClas
 	HStructBuilder::AddProperty<HReflectionTest, EReflectionTestEnum, HEnumProperty>(InStaticClass, TEXT("EnumTest"), &HReflectionTest::EnumTest);
 	HStructBuilder::AddProperty<HReflectionTest, HInnerClassTest*, HClassProperty>(InStaticClass, TEXT("InnerClassPtr"), &HReflectionTest::InnerClassPtr);
 }
+
+
 IMPLEMENT_CLASS(HReflectionTest);
 
 void HStringPropertyTest::__Fill_Class_Property_HStringPropertyTest(HClass* InStaticClass)
@@ -28,6 +32,8 @@ void HStringPropertyTest::__Fill_Class_Property_HStringPropertyTest(HClass* InSt
 	HStructBuilder::AddProperty<HStringPropertyTest, HString, HStringProperty>(InStaticClass, TEXT("StringProperty"), &HStringPropertyTest::StringProperty);
 	HStructBuilder::AddProperty<HStringPropertyTest, HChar, HCharacterProperty>(InStaticClass, TEXT("Post"), &HStringPropertyTest::Post);
 }
+
+
 IMPLEMENT_CLASS(HStringPropertyTest);
 
 void HInheritanceTest::__Fill_Class_Property_HInheritanceTest(HClass* InStaticClass)
@@ -35,6 +41,8 @@ void HInheritanceTest::__Fill_Class_Property_HInheritanceTest(HClass* InStaticCl
 	HStructBuilder::AddProperty<HInheritanceTest, int16, HNumericProperty>(InStaticClass, TEXT("InheritanceProperty"), &HInheritanceTest::InheritanceProperty);
 	HStructBuilder::SetSuper<HReflectionTest>(InStaticClass);
 }
+
+
 IMPLEMENT_CLASS(HInheritanceTest);
 
 void HObjectInheritedTest::__Fill_Class_Property_HObjectInheritedTest(HClass* InStaticClass)
@@ -42,5 +50,5 @@ void HObjectInheritedTest::__Fill_Class_Property_HObjectInheritedTest(HClass* In
 	HStructBuilder::SetSuper<HObjectBase>(InStaticClass);
 }
 
-IMPLEMENT_CLASS(HObjectInheritedTest);
 
+IMPLEMENT_CLASS(HObjectInheritedTest);
