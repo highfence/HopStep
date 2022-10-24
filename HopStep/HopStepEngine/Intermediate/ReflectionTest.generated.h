@@ -20,4 +20,4 @@ public: \
 private:
 
 #undef CURRENT_FILE_ID
-#define HopStepEngine_CoreObject_Reflection_ReflectionTest
+#define CURRENT_FILE_ID HopStepEngine_CoreObject_Reflection_ReflectionTest

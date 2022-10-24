@@ -29,7 +29,6 @@ using namespace HopStep::CoreObject::Reflection;
 public: \
 	DECLARE_TYPEHASH \
 \
-	friend class HStruct; \
 	using ThisClass = Class; \
 	inline static constexpr HopStep::HStringView FriendlyName = L ## #Class; \
 \
@@ -37,6 +36,7 @@ public: \
 \
 private: \
 	static void __Fill_Class_Property_##Class(class HClass*); \
+	friend class HStruct; \
 	friend struct HStructBuilder;
 
 

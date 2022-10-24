@@ -2,7 +2,7 @@
   "profiles": {
     "HopStepHeaderTool": {
       "commandName": "Project",
-      "commandLineArgs": "Solution=C:\\Dev\\HopStep\\HopStep\\HopStepEngine\\ Intermediate=C:\\Dev\\HopStep\\HopStep\\HopStepEngine\\Intermediate\\"
+      "commandLineArgs": "Solution=D:\\Dev\\HopStep\\HopStep\\HopStepEngine\\ Intermediate=D:\\Dev\\HopStep\\HopStep\\HopStepEngine\\Intermediate\\"
     }
   }
 }

@@ -8,4 +8,4 @@ public: \
 private:
 
 #undef CURRENT_FILE_ID
-#define HopStepEngine_CoreObject_Object_ObjectBase
+#define CURRENT_FILE_ID HopStepEngine_CoreObject_Object_ObjectBase

@@ -70,9 +70,11 @@ namespace HopStepHeaderTool
                             _parseContext.Functions
                         );
 
-                        _parseContext.Reset();
+                        _parseContext.SetObjectEnd();
                     }
                 }
+
+                _parseContext.SetFileEnd();
             }
         }
     }

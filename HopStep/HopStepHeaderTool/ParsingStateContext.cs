@@ -212,7 +212,7 @@ namespace HopStepHeaderTool
             return SolutionSchema.ObjectType.None;
         }
 
-        public void Reset()
+        public void SetObjectEnd()
         {
             State = ParsingState.None;
             CurrentObjectType = SolutionSchema.ObjectType.None;
@@ -224,7 +224,6 @@ namespace HopStepHeaderTool
             Functions?.Clear();
             _isInMultiLineAnnotation = false;
             _isObjectStarted = false;
-            _currentLine = 0;
         }
 
         public string FilteringAnnotationString(string line)
@@ -298,5 +297,10 @@ namespace HopStepHeaderTool
 
             return results;
 		}
+
+        public void SetFileEnd()
+        {
+            _currentLine = 0;
+        }
     }
 }
