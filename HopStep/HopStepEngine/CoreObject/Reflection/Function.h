@@ -53,8 +53,8 @@ namespace HopStep::CoreObject::Reflection
 	{
 	public:
 
-		HNativeFunction(const HString& FunctionName, const HStruct* FunctionOwner = nullptr)
-			: HFunction(FunctionName, FunctionOwner), Func(nullptr)
+		HNativeFunction(const HString& FunctionName, const HStruct* FunctionOwner = nullptr, HNativeFuncPtr FuncPtr = nullptr)
+			: HFunction(FunctionName, FunctionOwner), Func(FuncPtr)
 		{
 
 		}

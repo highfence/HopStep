@@ -5,6 +5,7 @@
 #include "Core\PrimitiveTypeDefines.h"
 #include "Core\HopStepOverrides.h"
 #include "ReflectionConcepts.h"
+#include "Function.h"
 
 namespace HopStep::CoreObject::Reflection
 {
@@ -18,6 +19,8 @@ namespace HopStep::CoreObject::Reflection
 
 		template <class TSuperType> requires StaticClassGetable<TSuperType>
 		static void SetSuper(HStruct* InStruct);
+
+		static void AddNativeFunctionProperty(HStruct* InOwnerStruct, HNativeFuncPtr FuncPtr);
 	};
 
 	template<class TStructType, class TFieldType, class TPropertyType> requires HPropertyDerived<TPropertyType>
