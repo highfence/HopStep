@@ -21,7 +21,8 @@ using namespace HopStep::CoreObject::Reflection;
 		return reinterpret_cast<size_t>(&UniquePointer); \
 	}							
 
-#define HEADERTOOL_STRING_CONCAT(A,B,C,D) A##B##C##D
+#define HEADERTOOL_STRING_CONCAT_INNER(A,B,C,D) A##B##C##D
+#define HEADERTOOL_STRING_CONCAT(A,B,C,D) HEADERTOOL_STRING_CONCAT_INNER(A,B,C,D)
 #define HEADERTOOL_DEFINE HEADERTOOL_STRING_CONCAT(CURRENT_FILE_ID,_,__LINE__,_Generated_Function_Declare);
 
 #define BODY_DEFINE(Class) \
@@ -39,7 +40,7 @@ private: \
 	friend struct HStructBuilder;
 
 
-#define DECLARE_CLASS_BODY(Class) \
+#define DECLARE_CLASS_BODY(Class) HEADERTOOL_DEFINE \
 BODY_DEFINE(Class) 
 
 /*
