@@ -50,5 +50,10 @@ void HObjectInheritedTest::__Fill_Class_Property_HObjectInheritedTest(HClass* In
 	HStructBuilder::SetSuper<HObjectBase>(InStaticClass);
 }
 
+DEFINE_FUNCTION(HObjectInheritedTest::execGetBase)
+{
+	HFUNC_GET_FROM_FRAME(const HObjectInheritedTest*, HFunc_Param_InThis);
+	HFUNC_RESULT_PARAM = (void*)HFUNC_THIS->GetBase(HFunc_Param_InThis);
+}
 
 IMPLEMENT_CLASS(HObjectInheritedTest);

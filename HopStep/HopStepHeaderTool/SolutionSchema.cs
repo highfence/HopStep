@@ -78,6 +78,14 @@ namespace HopStepHeaderTool
                 copiedBase = tempList.ToList();
             }
 
+            var copiedFunctions = new List<FunctionInfo>();
+            if (functionInfos != null && functionInfos.Count > 0)
+            {
+                var tempList = new FunctionInfo[functionInfos.Count];
+                functionInfos?.CopyTo(tempList);
+                copiedFunctions = tempList.ToList();
+            }
+
             Types.Add(name, new TypeInfo
             {
                 Type = type,
@@ -86,7 +94,7 @@ namespace HopStepHeaderTool
                 DeclareLineNumber = declareLineNumber,
                 Fields = copiedFields.ToList(),
                 BaseClasses = copiedBase,
-                Functions = functionInfos,
+                Functions = copiedFunctions,
             });
         }
     }
