@@ -12,7 +12,3 @@ int32 HFunctionTestObject::AddBC()
     return B + C;
 }
 
-void HFunctionTestObject::AddWithParamter(int32& OutParam)
-{
-    OutParam = B + C;
-}

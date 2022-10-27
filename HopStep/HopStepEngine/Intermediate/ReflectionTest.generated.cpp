@@ -71,3 +71,10 @@ DEFINE_FUNCTION(HFunctionTestObject::execAddBC)
 }
 
 IMPLEMENT_CLASS(HFunctionTestObject);
+
+void HContainerReflectionTestObject::__Fill_Class_Property_HContainerReflectionTestObject(HClass* InStaticClass)
+{
+}
+
+
+IMPLEMENT_CLASS(HContainerReflectionTestObject);

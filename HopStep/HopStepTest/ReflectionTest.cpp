@@ -175,6 +175,15 @@ namespace HopStepTest
 			*/
 		}
 
+		TEST_METHOD(HArrayPropertyReflectionTest)
+		{
+			HContainerReflectionTestObject Instance;
+			HClass* Type = Instance.StaticClass();
+
+			const HProperty* ArrayProperty = Type->FindProperty(L"ArrayProperty");
+			Assert::IsNotNull(ArrayProperty);
+		}
+
 		TEST_METHOD(OffsetTest)
 		{
 			struct TestStruct

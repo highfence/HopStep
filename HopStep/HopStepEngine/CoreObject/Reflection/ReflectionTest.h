@@ -122,5 +122,16 @@ namespace HopStep::CoreObject::Reflection
 		*/
 	};
 
+	HCLASS();
+	class HContainerReflectionTestObject
+	{
+		DECLARE_CLASS_BODY(HContainerReflectionTestObject);
+
+	public:
+
+		HPROPERTY();
+		HArray<int32> ArrayProperty;
+	};
+
 #endif
 }
