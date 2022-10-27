@@ -1,13 +1,13 @@
 #include "HopStep.h"
+#include "Class.h"
 #include "StructBuilder.h"
 
 namespace HopStep::CoreObject::Reflection
 {
-	void HStructBuilder::AddNativeFunctionProperty(HStruct* InOwnerStruct, HNativeFuncPtr FuncPtr, HString FunctionName)
+	void HStructBuilder::AddNativeFunction(HClass* InOwnerClass, HNativeFuncPtr FuncPtr, HString FunctionName)
 	{
-		HUniquePtr<HProperty> NewProperty = std::make_unique<HNativeFunction>(FunctionName, InOwnerStruct, FuncPtr);
+		HUniquePtr<HFunction> NewProperty = std::make_unique<HNativeFunction>(FunctionName, InOwnerClass, FuncPtr);
 
-		IntializePropertyFlags<HNativeFunction>(NewProperty.get());
-		InStruct->Properties.push_back(std::move(NewProperty));
+		InOwnerClass->Functions.emplace_back(std::move(NewProperty));
 	}
 }

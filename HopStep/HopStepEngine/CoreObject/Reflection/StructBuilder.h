@@ -20,7 +20,7 @@ namespace HopStep::CoreObject::Reflection
 		template <class TSuperType> requires StaticClassGetable<TSuperType>
 		static void SetSuper(HStruct* InStruct);
 
-		static void AddNativeFunctionProperty(HStruct* InOwnerStruct, HNativeFuncPtr FuncPtr, HString FunctionName);
+		static void AddNativeFunction(class HClass* InOwnerStruct, HNativeFuncPtr FuncPtr, HString FunctionName);
 	};
 
 	template<class TStructType, class TFieldType, class TPropertyType> requires HPropertyDerived<TPropertyType>

@@ -1,5 +1,6 @@
 #pragma once
 #include "Struct.h"
+#include "Function.h"
 
 namespace HopStep::CoreObject::Reflection
 {
@@ -12,5 +13,11 @@ namespace HopStep::CoreObject::Reflection
 
 		HClass(const HString& InName) : HStruct(InName) {}
 
+	protected:
+
+
+		friend struct HStructBuilder;
+
+		HArray<HUniquePtr<HFunction>> Functions;
 	};
 }
