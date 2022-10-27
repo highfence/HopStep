@@ -31,6 +31,9 @@ namespace HopStep::CoreObject::Reflection
 		template <typename TReturnType, typename... TParamArgs>
 		TReturnType Invoke(void* InClassPtr, TParamArgs&&... Args) const;
 
+		template <typename TReturnType>
+		TReturnType Invoke(void* InClassPtr) const;
+
 	protected:
 
 		virtual void InvokeImpl(void* Instance, HFunctionCallFrame& InvokeFrame, HFUNC_RESULT_DECL_INNER) const abstract;
@@ -72,6 +75,17 @@ namespace HopStep::CoreObject::Reflection
 		HFunctionCallFrame Frame;
 
 		SetParameters(Frame, Args...);
+
+		HFUNC_RESULT_DECL = nullptr;
+		InvokeImpl(InClassPtr, Frame, &HFUNC_RESULT_PARAM);
+
+		return (TReturnType)HFUNC_RESULT_PARAM;
+	}
+
+	template<typename TReturnType>
+	inline TReturnType HFunction::Invoke(void* InClassPtr) const
+	{
+		HFunctionCallFrame Frame;
 
 		HFUNC_RESULT_DECL = nullptr;
 		InvokeImpl(InClassPtr, Frame, &HFUNC_RESULT_PARAM);

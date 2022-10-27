@@ -145,7 +145,7 @@ namespace HopStepHeaderTool
 
 						var paramString = funcInfo.Params == null ? string.Empty : string.Join(", ", funcInfo.Params.Select(param => $"{FunctionParamPrefix}{param.ParamName}"));
 
-						sb.AppendLine($"\t{FunctionResultParamDefine} = (void*){FunctionThisPtrDefine}->{funcInfo.Name}({paramString});");
+						sb.AppendLine($"\t*{FunctionResultParamDefine} = (void*){FunctionThisPtrDefine}->{funcInfo.Name}({paramString});");
 						sb.AppendLine("}");
 					}
 					

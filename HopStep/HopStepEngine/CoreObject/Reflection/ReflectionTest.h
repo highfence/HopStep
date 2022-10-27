@@ -109,6 +109,13 @@ namespace HopStep::CoreObject::Reflection
 		HFUNCTION();
 		int32 Add(int32 A, int32 B);
 
+		int32 B;
+		int32 C;
+
+		HFUNCTION();
+		int32 AddBC();
+
+
 	};
 
 #endif

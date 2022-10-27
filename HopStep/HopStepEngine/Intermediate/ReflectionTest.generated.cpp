@@ -56,6 +56,7 @@ IMPLEMENT_CLASS(HObjectInheritedTest);
 void HFunctionTestObject::__Fill_Class_Property_HFunctionTestObject(HClass* InStaticClass)
 {
 	HStructBuilder::AddNativeFunction((HClass*)InStaticClass, &HFunctionTestObject::execAdd, TEXT("Add"));
+	HStructBuilder::AddNativeFunction((HClass*)InStaticClass, &HFunctionTestObject::execAddBC, TEXT("AddBC"));
 }
 
 DEFINE_FUNCTION(HFunctionTestObject::execAdd)
@@ -63,6 +64,10 @@ DEFINE_FUNCTION(HFunctionTestObject::execAdd)
 	HFUNC_GET_FROM_FRAME(int32, HFunc_Param_B);
 	HFUNC_GET_FROM_FRAME(int32, HFunc_Param_A);
 	*HFUNC_RESULT_PARAM = (void*)HFUNC_THIS->Add(HFunc_Param_A, HFunc_Param_B);
+}
+DEFINE_FUNCTION(HFunctionTestObject::execAddBC)
+{
+	*HFUNC_RESULT_PARAM = (void*)HFUNC_THIS->AddBC();
 }
 
 IMPLEMENT_CLASS(HFunctionTestObject);

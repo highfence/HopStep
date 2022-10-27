@@ -151,6 +151,15 @@ namespace HopStepTest
 
 			int32 Result = AddFunction->Invoke<int32, int32, int32>((void*)(&Instance), 3, 7);
 			Assert::AreEqual((int32)10, Result);
+
+			Instance.B = -9;
+			Instance.C = 15;
+
+			const HFunction* AddBCFunction = Type->FindFunction(L"AddBC");
+			Assert::IsNotNull(AddBCFunction);
+
+			int32 ResultBC = AddBCFunction->Invoke<int32>((void*)(&Instance));
+			Assert::AreEqual((int32)6, ResultBC);
 		}
 
 		TEST_METHOD(OffsetTest)

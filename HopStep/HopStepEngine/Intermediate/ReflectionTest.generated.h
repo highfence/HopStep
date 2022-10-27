@@ -21,6 +21,7 @@ private:
 #define HopStepEngine_CoreObject_Reflection_ReflectionTest_105_Generated_Function_Declare \
 public: \
 	DECLARE_FUNCTION(execAdd); \
+	DECLARE_FUNCTION(execAddBC); \
 private:
 
 #undef CURRENT_FILE_ID
