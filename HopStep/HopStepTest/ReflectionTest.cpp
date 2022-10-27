@@ -141,6 +141,18 @@ namespace HopStepTest
 			Assert::IsFalse(ObjectType->IsChildOf(OtherType));
 		}
 
+		TEST_METHOD(FunctionReflectionTest)
+		{
+			HFunctionTestObject Instance;
+			HClass* Type = Instance.StaticClass();
+
+			const HFunction* AddFunction = Type->FindFunction(L"Add");
+			Assert::IsNotNull(AddFunction);
+
+			int32 Result = AddFunction->Invoke<int32, int32, int32>((void*)(&Instance), 3, 7);
+			Assert::AreEqual((int32)10, Result);
+		}
+
 		TEST_METHOD(OffsetTest)
 		{
 			struct TestStruct

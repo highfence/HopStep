@@ -97,8 +97,18 @@ namespace HopStep::CoreObject::Reflection
 
 	public:
 
+	};
+
+	HCLASS();
+	class HFunctionTestObject
+	{
+		DECLARE_CLASS_BODY(HFunctionTestObject);
+
+	public:
+
 		HFUNCTION();
-		HObjectBase* GetBase(const HObjectInheritedTest* InThis);
+		int32 Add(int32 A, int32 B);
+
 	};
 
 #endif

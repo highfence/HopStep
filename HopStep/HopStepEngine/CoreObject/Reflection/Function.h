@@ -29,23 +29,23 @@ namespace HopStep::CoreObject::Reflection
 		virtual ~HFunction() {};
 
 		template <typename TReturnType, typename... TParamArgs>
-		TReturnType Invoke(void* InClassPtr, TParamArgs&&... Args);
+		TReturnType Invoke(void* InClassPtr, TParamArgs&&... Args) const;
 
 	protected:
 
-		virtual void InvokeImpl(void* Instance, HFunctionCallFrame& InvokeFrame, HFUNC_RESULT_DECL) abstract;
+		virtual void InvokeImpl(void* Instance, HFunctionCallFrame& InvokeFrame, HFUNC_RESULT_DECL_INNER) const abstract;
 
 		template <typename... TParamArgs>
-		void SetParameters(HFunctionCallFrame& RefFrame, TParamArgs&&... Parameters);
+		void SetParameters(HFunctionCallFrame& RefFrame, TParamArgs&&... Parameters) const;
 
 		template <typename TParamType>
-		int16 PushParamter(HFunctionCallFrame& RefFrame, TParamType&& Parameter);
+		int16 PushParamter(HFunctionCallFrame& RefFrame, TParamType&& Parameter) const;
 
 		const HStruct* const Owner;
 
 	};
 
-	typedef void (*HNativeFuncPtr)(void* Instance, HFunctionCallFrame& Frame, HFUNC_RESULT_DECL);
+	typedef void (*HNativeFuncPtr)(void* Instance, HFunctionCallFrame& Frame, HFUNC_RESULT_DECL_INNER);
 
 	/*
 	 */
@@ -61,32 +61,32 @@ namespace HopStep::CoreObject::Reflection
 
 	protected:
 
-		virtual void InvokeImpl(void* Instance, HFunctionCallFrame& InvokeFrame, HFUNC_RESULT_DECL) override;
+		virtual void InvokeImpl(void* Instance, HFunctionCallFrame& InvokeFrame, HFUNC_RESULT_DECL_INNER) const override;
 
 		HNativeFuncPtr Func;
 	};
 
 	template<typename TReturnType, typename ...TParamArgs>
-	inline TReturnType HFunction::Invoke(void* InClassPtr, TParamArgs && ...Args)
+	inline TReturnType HFunction::Invoke(void* InClassPtr, TParamArgs && ...Args) const
 	{
 		HFunctionCallFrame Frame;
 
-		SetParameters(Frame, Args);
+		SetParameters(Frame, Args...);
 
-		HFUNC_RESULT_DECL;
-		InvokeImpl(InClassPtr, Frame, HFUNC_RESULT_PARAM);
+		HFUNC_RESULT_DECL = nullptr;
+		InvokeImpl(InClassPtr, Frame, &HFUNC_RESULT_PARAM);
 
 		return (TReturnType)HFUNC_RESULT_PARAM;
 	}
 
 	template<typename... TParamArgs>
-	void HFunction::SetParameters(HFunctionCallFrame& RefFrame, TParamArgs&&... Parameter)
+	void HFunction::SetParameters(HFunctionCallFrame& RefFrame, TParamArgs&&... Parameter) const
 	{
 		auto _ = { PushParamter(RefFrame, Parameter)... };
 	}
 
 	template <typename TParamType>
-	int16 HFunction::PushParamter(HFunctionCallFrame& RefFrame, TParamType&& Parameter)
+	int16 HFunction::PushParamter(HFunctionCallFrame& RefFrame, TParamType&& Parameter) const
 	{
 		RefFrame.PushByType<TParamType>(Parameter);
 		return 0;

@@ -2,7 +2,7 @@
 
 using namespace HopStep::CoreObject::Reflection;
 
-HObjectBase* HObjectInheritedTest::GetBase(const HObjectInheritedTest* InThis)
+int32 HFunctionTestObject::Add(int32 A, int32 B)
 {
-    return nullptr;
+    return A + B;
 }

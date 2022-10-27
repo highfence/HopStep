@@ -5,6 +5,7 @@
 */
 #define HFUNC_RESULT_PARAM __Function_Param_Result
 #define HFUNC_RESULT_DECL void* HFUNC_RESULT_PARAM
+#define HFUNC_RESULT_DECL_INNER void** HFUNC_RESULT_PARAM
 
 #define HFUNC_THIS_PTR (Instance)
 #define HFUNC_THIS_CAST(ClassType) ((ClassType*)Instance)

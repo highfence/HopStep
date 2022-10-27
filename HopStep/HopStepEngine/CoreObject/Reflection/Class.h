@@ -13,6 +13,16 @@ namespace HopStep::CoreObject::Reflection
 
 		HClass(const HString& InName) : HStruct(InName) {}
 
+		/**
+		 *
+		 */
+		const HArray<HFunction*> GetFunctions() const;
+
+		/**
+		 *
+		 */
+		const HFunction* FindFunction(const HString& FunctionName) const;
+
 	protected:
 
 

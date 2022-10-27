@@ -115,6 +115,14 @@ namespace HopStepHeaderTool
 					sb.AppendLine($"\tHStructBuilder::SetSuper<{representiveBaseClassName}>(InStaticClass);");
 				}
 
+				if (typeInfo.Functions != null)
+				{
+					foreach (var f in typeInfo.Functions)
+					{
+						sb.AppendLine($"\tHStructBuilder::AddNativeFunction((HClass*)InStaticClass, &{typeInfo.Name}::exec{f.Name}, TEXT(\"{f.Name}\"));");
+					}
+				}
+
 				sb.AppendLine("}");
 				sb.AppendLine("");
 
