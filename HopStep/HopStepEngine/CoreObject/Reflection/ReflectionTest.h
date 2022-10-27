@@ -115,7 +115,11 @@ namespace HopStep::CoreObject::Reflection
 		HFUNCTION();
 		int32 AddBC();
 
-
+		// Todo : support reference parameter for HFUNCTION
+		/*
+		HFUNCTION();
+		void AddWithParamter(int32& OutParam);
+		*/
 	};
 
 #endif

@@ -1,6 +1,7 @@
 #pragma once
 #include "Struct.h"
 #include "Function.h"
+#include "..\..\Core\HopStepOverrides.h"
 
 namespace HopStep::CoreObject::Reflection
 {

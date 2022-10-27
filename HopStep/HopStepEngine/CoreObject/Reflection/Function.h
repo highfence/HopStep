@@ -28,9 +28,15 @@ namespace HopStep::CoreObject::Reflection
 
 		virtual ~HFunction() {};
 
+		/**
+		 * Standard signiture of Invoke method
+		 */
 		template <typename TReturnType, typename... TParamArgs>
 		TReturnType Invoke(void* InClassPtr, TParamArgs&&... Args) const;
 
+		/**
+		 * No arguments signiture of Invoke method
+		 */
 		template <typename TReturnType>
 		TReturnType Invoke(void* InClassPtr) const;
 

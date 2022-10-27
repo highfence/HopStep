@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 #include "../HopStepEngine/CoreObject/Reflection/Property.h"
 #include "../HopStepEngine/CoreObject/Reflection/ReflectionTest.h"
+#include "../HopStepEngine/CoreObject/Reflection/Class.h"
 #include "../HopStepEngine/Core/HopStepOverrides.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -160,6 +161,18 @@ namespace HopStepTest
 
 			int32 ResultBC = AddBCFunction->Invoke<int32>((void*)(&Instance));
 			Assert::AreEqual((int32)6, ResultBC);
+
+			/*
+			Instance.B = 11;
+			Instance.C = -99;
+
+			const HFunction* NoReturnFunction = Type->FindFunction(L"AddWithParamter");
+			Assert::IsNotNull(NoReturnFunction);
+
+			int32 ResultParam = 0;
+			NoReturnFunction->Invoke<void, int32&>((void*)&Instance, ResultParam);
+			Assert::AreEqual((int32)-88, ResultParam);
+			*/
 		}
 
 		TEST_METHOD(OffsetTest)
