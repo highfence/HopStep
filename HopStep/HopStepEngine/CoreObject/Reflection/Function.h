@@ -29,13 +29,13 @@ namespace HopStep::CoreObject::Reflection
 		virtual ~HFunction() {};
 
 		/**
-		 * Standard signiture of Invoke method
+		 * Standard signature of Invoke method
 		 */
 		template <typename TReturnType, typename... TParamArgs>
 		TReturnType Invoke(void* InClassPtr, TParamArgs&&... Args) const;
 
 		/**
-		 * No arguments signiture of Invoke method
+		 * No arguments signature of Invoke method
 		 */
 		template <typename TReturnType>
 		TReturnType Invoke(void* InClassPtr) const;
@@ -85,7 +85,11 @@ namespace HopStep::CoreObject::Reflection
 		HFUNC_RESULT_DECL = nullptr;
 		InvokeImpl(InClassPtr, Frame, &HFUNC_RESULT_PARAM);
 
+#if HOPSTEP_USING_STD_ANY
+		return std::any_cast<TReturnType>(HFUNC_RESULT_PARAM);
+#else
 		return (TReturnType)HFUNC_RESULT_PARAM;
+#endif
 	}
 
 	template<typename TReturnType>
@@ -96,7 +100,11 @@ namespace HopStep::CoreObject::Reflection
 		HFUNC_RESULT_DECL = nullptr;
 		InvokeImpl(InClassPtr, Frame, &HFUNC_RESULT_PARAM);
 
+#if HOPSTEP_USING_STD_ANY
+		return std::any_cast<TReturnType>(HFUNC_RESULT_PARAM);
+#else
 		return (TReturnType)HFUNC_RESULT_PARAM;
+#endif
 	}
 
 	template<typename... TParamArgs>
