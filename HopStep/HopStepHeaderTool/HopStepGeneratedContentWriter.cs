@@ -147,7 +147,7 @@ namespace HopStepHeaderTool
 
 						if (funcInfo.ReturnType != "void")
 						{
-							sb.AppendLine($"\t*{FunctionResultParamDefine} = (void*){FunctionThisPtrDefine}->{funcInfo.Name}({paramString});");
+							sb.AppendLine($"\t*{FunctionResultParamDefine} = {FunctionResultTypeCastDefine}({FunctionThisPtrDefine}->{funcInfo.Name}({paramString}));");
 						}
 						else
 						{
@@ -232,6 +232,8 @@ namespace HopStepHeaderTool
 		public string FunctionParamPrefix => "HFunc_Param_";
 		public string PropertyFromFrameDefine => "HFUNC_GET_FROM_FRAME";
 		public string FunctionResultParamDefine => "HFUNC_RESULT_PARAM";
-		public string FunctionThisPtrDefine => "HFUNC_THIS";
+		public string FunctionResultTypeCastDefine => "HFUNC_RESULT_TYPECAST";
+
+        public string FunctionThisPtrDefine => "HFUNC_THIS";
 	}
 }

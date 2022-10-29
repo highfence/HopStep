@@ -75,6 +75,20 @@ namespace HopStep::CoreObject::Reflection
 		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const override;
 	};
 
+	class HArrayProperty : public HProperty
+	{
+	public:
+
+		HArrayProperty(const HString& InName, int32 InOffset, int32 InElementSize, int32 InArrayDimension = 1)
+			: HProperty(InName, InOffset, InElementSize, InArrayDimension)
+		{
+		}
+
+		virtual ~HArrayProperty() {}
+
+		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const override;
+	};
+
 	class HClassProperty : public HProperty
 	{
 	public:

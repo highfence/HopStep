@@ -30,6 +30,9 @@ namespace HopStepHeaderTool
 
 				// StringProperty
 				{ "HString", "HStringProperty" },
+
+				// Container Property
+				{ "HArray", "HArrayProperty" },
 			};
 		}
 		

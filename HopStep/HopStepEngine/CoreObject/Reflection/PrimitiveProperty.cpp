@@ -91,4 +91,8 @@ namespace HopStep::CoreObject::Reflection
 	{
 
 	}
+
+	void HArrayProperty::ExportToString(HString& TextOutput, void const* ObjectPtr) const
+	{
+	}
 }
