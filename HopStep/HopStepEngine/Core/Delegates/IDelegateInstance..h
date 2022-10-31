@@ -23,6 +23,14 @@ namespace HopStep::Core::Delegates
 		 */
 		virtual class HObject* GetBoundedObject() const = 0;
 
+		/**
+		 * 
+		 */
+		virtual bool IsExecutable() const = 0;
 
+		/**
+		 * 
+		 */
+		virtual HDelegateHandle GetHandle() const = 0;
 	};
 }
