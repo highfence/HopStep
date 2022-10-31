@@ -41,6 +41,7 @@ namespace HopStep::Core::Delegates
 
 		explicit TCommonDelegateInstance(TVarTypes... Vars)
 			: Payload(Vars...)
+			, Handle(HDelegateHandle::EDelegateHandleGenerateType::NewHandleIDGenerate)
 		{
 
 		}
@@ -48,6 +49,7 @@ namespace HopStep::Core::Delegates
 	protected:
 
 		TTuple<TVarTypes...> Payload;
+		HDelegateHandle Handle;
 	};
 
 
