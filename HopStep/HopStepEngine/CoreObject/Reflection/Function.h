@@ -42,7 +42,7 @@ namespace HopStep::CoreObject::Reflection
 
 	protected:
 
-		virtual void InvokeImpl(void* Instance, HFunctionCallFrame& InvokeFrame, HFUNC_RESULT_DECL_INNER) const abstract;
+		virtual void InvokeImpl(void* Instance, HFunctionCallFrame& InvokeFrame, HFUNC_RESULT_DECL_INNER) const = 0;
 
 		template <typename... TParamArgs>
 		void SetParameters(HFunctionCallFrame& RefFrame, TParamArgs&&... Parameters) const;

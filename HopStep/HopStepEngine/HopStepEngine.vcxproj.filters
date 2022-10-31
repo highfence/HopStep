@@ -2,52 +2,55 @@
 <Project ToolsVersion="4.0">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{08c07599-f6cb-4e79-897c-74e1fc613d77}</UniqueIdentifier>
+      <UniqueIdentifier>{80a17ff6-9c9f-42e8-a920-d2ad4c02486a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Archive">
-      <UniqueIdentifier>{8ddf35cc-9c17-4c3e-8035-f442876e941e}</UniqueIdentifier>
+      <UniqueIdentifier>{894f6b01-d0a6-4616-bc8c-33b6dd015075}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Container">
-      <UniqueIdentifier>{6f420ac3-c0bf-4a40-83c1-e526f4e78d1c}</UniqueIdentifier>
+      <UniqueIdentifier>{fa29274b-a6bc-44ee-a26d-2144d3f7aa18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Delegates">
+      <UniqueIdentifier>{9b3a6402-7725-42c7-bf02-27ec21d93db2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger">
-      <UniqueIdentifier>{ee6792fa-dfab-4223-8040-ca76202a37e4}</UniqueIdentifier>
+      <UniqueIdentifier>{5ad5a26f-2aae-4d9c-92b3-ce43aeb64b76}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Misc">
-      <UniqueIdentifier>{111f8f62-bc4b-409c-b3d0-47b639b52ded}</UniqueIdentifier>
+      <UniqueIdentifier>{ebb0d587-7d92-45c0-8d77-203c60ac327f}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
-      <UniqueIdentifier>{092ed873-5146-4c5f-b4ee-96cda1859156}</UniqueIdentifier>
+      <UniqueIdentifier>{96210699-885b-43a0-ba9c-4f7601f78281}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{ae5681c2-e194-47f0-8b51-02be99369d02}</UniqueIdentifier>
+      <UniqueIdentifier>{53067644-0661-490f-b0d6-9760cefeb112}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{5d9ae4f6-2c0e-40b6-a8df-0785449b9ffb}</UniqueIdentifier>
+      <UniqueIdentifier>{fc731a2c-75bc-489b-8f21-3740f42ec98d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern">
-      <UniqueIdentifier>{425ea6a6-a482-46ac-a1ab-ff5eeb490686}</UniqueIdentifier>
+      <UniqueIdentifier>{6ca36057-c9b1-46d2-b12d-1e197483c7ac}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp">
-      <UniqueIdentifier>{46045435-90dc-43d2-9de5-78597c3358ba}</UniqueIdentifier>
+      <UniqueIdentifier>{b6ecf249-ed10-43c3-93c3-fe23aecc7913}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include">
-      <UniqueIdentifier>{69481425-ab7c-45a6-883f-a154bf771dbd}</UniqueIdentifier>
+      <UniqueIdentifier>{1b5fcc1b-f644-429e-8ef9-f6a88887c529}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include\json">
-      <UniqueIdentifier>{7f71bd3a-3d02-461a-a0bc-982e5a70deaa}</UniqueIdentifier>
+      <UniqueIdentifier>{c4e0680f-065d-44f0-915e-01ea4eca5199}</UniqueIdentifier>
     </Filter>
     <Filter Include="Intermediate">
-      <UniqueIdentifier>{e452dc0a-9b65-41b6-ae96-6a6b913fe55f}</UniqueIdentifier>
+      <UniqueIdentifier>{480f57ef-d584-4e1c-ab93-e05b931264e2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime">
-      <UniqueIdentifier>{4e2f675a-7ad3-4d9a-add7-cc730c063c89}</UniqueIdentifier>
+      <UniqueIdentifier>{d6d743a5-c107-40c1-b7f3-b3857bcdab42}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Engine">
-      <UniqueIdentifier>{b8cfab9c-61b8-4d6e-a1e2-0a3f1419727b}</UniqueIdentifier>
+      <UniqueIdentifier>{7528818e-bafa-4560-8350-f0b7db32fbb4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Launch">
-      <UniqueIdentifier>{7e673ca2-e1c0-4fd8-81ec-6914344a546f}</UniqueIdentifier>
+      <UniqueIdentifier>{b9f6825c-179b-4d03-a869-382dc0753e06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +78,9 @@
     </ClInclude>
     <ClInclude Include="Core\Container\VariadicStack.h">
       <Filter>Core\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Delegates\IDelegateInstance..h">
+      <Filter>Core\Delegates</Filter>
     </ClInclude>
     <ClInclude Include="Core\Logger\ConsoleLogger.h">
       <Filter>Core\Logger</Filter>

@@ -10,7 +10,6 @@ void HInnerClassTest::__Fill_Class_Property_HInnerClassTest(HClass* InStaticClas
 	HStructBuilder::AddProperty<HInnerClassTest, int8, HNumericProperty>(InStaticClass, TEXT("InnerB"), &HInnerClassTest::InnerB);
 }
 
-
 IMPLEMENT_CLASS(HInnerClassTest);
 
 void HReflectionTest::__Fill_Class_Property_HReflectionTest(HClass* InStaticClass)
@@ -23,7 +22,6 @@ void HReflectionTest::__Fill_Class_Property_HReflectionTest(HClass* InStaticClas
 	HStructBuilder::AddProperty<HReflectionTest, HInnerClassTest*, HClassProperty>(InStaticClass, TEXT("InnerClassPtr"), &HReflectionTest::InnerClassPtr);
 }
 
-
 IMPLEMENT_CLASS(HReflectionTest);
 
 void HStringPropertyTest::__Fill_Class_Property_HStringPropertyTest(HClass* InStaticClass)
@@ -33,7 +31,6 @@ void HStringPropertyTest::__Fill_Class_Property_HStringPropertyTest(HClass* InSt
 	HStructBuilder::AddProperty<HStringPropertyTest, HChar, HCharacterProperty>(InStaticClass, TEXT("Post"), &HStringPropertyTest::Post);
 }
 
-
 IMPLEMENT_CLASS(HStringPropertyTest);
 
 void HInheritanceTest::__Fill_Class_Property_HInheritanceTest(HClass* InStaticClass)
@@ -42,14 +39,12 @@ void HInheritanceTest::__Fill_Class_Property_HInheritanceTest(HClass* InStaticCl
 	HStructBuilder::SetSuper<HReflectionTest>(InStaticClass);
 }
 
-
 IMPLEMENT_CLASS(HInheritanceTest);
 
 void HObjectInheritedTest::__Fill_Class_Property_HObjectInheritedTest(HClass* InStaticClass)
 {
 	HStructBuilder::SetSuper<HObjectBase>(InStaticClass);
 }
-
 
 IMPLEMENT_CLASS(HObjectInheritedTest);
 
@@ -76,6 +71,5 @@ void HContainerReflectionTestObject::__Fill_Class_Property_HContainerReflectionT
 {
 	HStructBuilder::AddProperty<HContainerReflectionTestObject, HArray<int32>, HClassProperty>(InStaticClass, TEXT("ArrayProperty"), &HContainerReflectionTestObject::ArrayProperty);
 }
-
 
 IMPLEMENT_CLASS(HContainerReflectionTestObject);

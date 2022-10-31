@@ -10,5 +10,4 @@ void HObject::__Fill_Class_Property_HObject(HClass* InStaticClass)
 	HStructBuilder::SetSuper<HObjectBase>(InStaticClass);
 }
 
-
 IMPLEMENT_CLASS(HObject);

@@ -170,6 +170,7 @@
     <ClInclude Include="Core\PrimitiveTypeDefines.h" />
     <ClInclude Include="Core\Archive\Archive.h" />
     <ClInclude Include="Core\Container\VariadicStack.h" />
+    <ClInclude Include="Core\Delegates\IDelegateInstance..h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
     <ClInclude Include="Core\Misc\DebugUtils.h" />
