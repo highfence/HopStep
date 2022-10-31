@@ -1,6 +1,7 @@
 #pragma once
 #include "DelegateConcepts.h"
 #include "IDelegateInstance.h"
+#include "DelegateInstances.h"
 
 namespace HopStep::Core::Delegates
 {

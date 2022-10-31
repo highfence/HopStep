@@ -3,6 +3,7 @@
 #include "IDelegateInstance.h"
 #include "DelegateInstances.h"
 #include "DelegateBase.h"
+#include "..\Templates\HopStepTemplates.h"
 
 namespace HopStep::Core::Delegates
 {
@@ -14,28 +15,41 @@ namespace HopStep::Core::Delegates
 	{
 		using Super = TDelegateBase<TDelegatePolicy>;
 		using FunctionSignitureType = TReturnType(TParamTypes...);
+		using DelegateInstanceType = TBaseDelegateInstance<FunctionSignitureType, TDelegatePolicy>;
 
 	public:
 
-		/**
-		 * 
-		 */
-		template <typename TFunctorType, typename... TVarTypes>
-		void BindLambda(FunctorType&& Functor, VarTypes... Vars)
+		virtual ~TDelegate()
 		{
-			auto LambdaDelegateInstance = CreateLambda();
+			Unbind();
+		}
 
+		/**
+		 * Remove InstancePtr only though this method.
+		 */
+		void Unbind()
+		{
+			if (InstancePtr)
+			{
+				delete InstancePtr;
+			}
+
+			InstancePtr = nullptr;
 		}
 
 		/**
 		 * 
 		 */
 		template <typename TFunctorType, typename... TVarTypes>
-		[[nodiscard]] static TDelegate<TReturnType(TParamTypes...), TDelegatePolicy> CreateLambda(TFunctorType&& Functor, TVarTypes... Vars)
+		void BindLambda(TFunctorType&& Functor, TVarTypes... Vargs)
 		{
-			TDelegate<TReturnType(TParamTypes...), TDelegatePolicy> Result;
-			
-			return Result;
+			if (InstancePtr) Unbind();
+
+
 		}
+
+	protected:
+
+		DelegateInstanceType* InstancePtr = nullptr;
 	};
 }

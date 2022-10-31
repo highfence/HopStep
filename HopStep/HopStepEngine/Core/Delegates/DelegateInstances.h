@@ -1,5 +1,7 @@
 #pragma once
 #include "IDelegateInstance.h"
+#include "DelegateHandle.h"
+#include "..\HopStepOverrides.h"
 
 namespace HopStep::Core::Delegates
 {
@@ -7,10 +9,10 @@ namespace HopStep::Core::Delegates
 	 * Extend IDelegateInstance interface to template
 	 */
 	template <typename TFunctionType, typename TDelegatePolicy> 
-	class TBaseDelegateInstance;
+	class IBaseDelegateInstance;
 	
 	template <typename TReturnType, typename... TArgTypes, typename TDelegatePolicy> requires DelegatePolicy<TDelegatePolicy>
-	class TBaseDelegateInstance<TReturnType(TArgTypes...), TDelegatePolicy> : TDelegatePolicy::HDelegateInstancePolicy
+	class IBaseDelegateInstance<TReturnType(TArgTypes...), TDelegatePolicy> : TDelegatePolicy::HDelegateInstancePolicy
 	{
 	public:
 
@@ -25,10 +27,33 @@ namespace HopStep::Core::Delegates
 		virtual bool ExecuteIfSafe(TArgTypes...) const = 0;
 	};
 
-	/**
-	 * 
-	 */
 
+	/**
+	 * Implement delegate instances common logics
+	 */
+	template <typename TFunctionType, typename TDelegatePolicy, typename... TVarTypes> 
+	class TCommonDelegateInstance;
+
+	template <typename TReturnType, typename... TParamTypes, typename TDelegatePolicy, typename... TVarTypes> 
+	class TCommonDelegateInstance<TReturnType(TParamTypes...), TDelegatePolicy, TVarTypes...> : IBaseDelegateInstance<TReturnType(TParamTypes...), TDelegatePolicy>
+	{
+	public:
+
+		explicit TCommonTCommonDelegateInstance(TVarTypes... Vars)
+			: Payload(Vars...)
+		{
+
+		}
+
+	protected:
+
+		TTuple<TVarTypes...> Payload;
+	};
+
+
+	/**
+	 * Implement delegate instances common logics
+	 */
 	template <typename TFunctionType, typename TPolicyType, typename TFunctorType, typename... TFunctorVargs>
 	class TBaseFunctorDelegateInstance;
 
