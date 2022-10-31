@@ -39,7 +39,7 @@ namespace HopStep::Core::Delegates
 	{
 	public:
 
-		explicit TCommonTCommonDelegateInstance(TVarTypes... Vars)
+		explicit TCommonDelegateInstance(TVarTypes... Vars)
 			: Payload(Vars...)
 		{
 

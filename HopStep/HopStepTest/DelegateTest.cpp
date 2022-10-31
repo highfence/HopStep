@@ -16,7 +16,7 @@ namespace HopStepTest
 		{
 			TDelegate<void()> TestDelegate;
 
-			// TCommonDelegateInstance<void(), HDefaultDelegatePolicy, int32, int32> instance = { 3, 4 };
+			TCommonDelegateInstance<void(), HDefaultDelegatePolicy, int32, int32> instance { 3, 4 };
 		}
 	};
 }
