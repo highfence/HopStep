@@ -28,4 +28,7 @@ namespace HopStep
 
 	template <class TNumericType>
 	using TNumericLimits = std::numeric_limits<TNumericType>;
+
+	template <class TType>
+	using TAtomic = std::atomic<TType>;
 }

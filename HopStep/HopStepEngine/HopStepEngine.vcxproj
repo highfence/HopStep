@@ -170,6 +170,7 @@
     <ClInclude Include="Core\PrimitiveTypeDefines.h" />
     <ClInclude Include="Core\Archive\Archive.h" />
     <ClInclude Include="Core\Container\VariadicStack.h" />
+    <ClInclude Include="Core\Delegates\DelegateHandle.h" />
     <ClInclude Include="Core\Delegates\IDelegateInstance..h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
@@ -226,6 +227,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Core\Archive\Archive.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Core\Delegates\DelegateHandle.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
