@@ -267,13 +267,14 @@ namespace ToolTest
                 Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "void HReflectionTest4::__Fill_Class_Property_HReflectionTest4(HClass* InStaticClass)");
                 Assert.AreEqual(cppLines[cppIndex++], "{");
+                Assert.AreEqual(cppLines[cppIndex++], "\tHStructBuilder::AddNativeFunction((HClass*)InStaticClass, &HReflectionTest4::execFindObject, TEXT(\"FindObject\"));");
                 Assert.AreEqual(cppLines[cppIndex++], "}");
                 Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], $"DEFINE_FUNCTION(HReflectionTest4::exec{funcName})");
                 Assert.AreEqual(cppLines[cppIndex++], "{");
                 Assert.AreEqual(cppLines[cppIndex++], "\tHFUNC_GET_FROM_FRAME(const HString&, HFunc_Param_InName);");
                 Assert.AreEqual(cppLines[cppIndex++], "\tHFUNC_GET_FROM_FRAME(void const*, HFunc_Param_InObject);");
-                Assert.AreEqual(cppLines[cppIndex++], $"\tHFUNC_RESULT_PARAM = (void*)HFUNC_THIS->{funcName}(HFunc_Param_InObject, HFunc_Param_InName);");
+                Assert.AreEqual(cppLines[cppIndex++], $"\t*HFUNC_RESULT_PARAM = HFUNC_RESULT_TYPECAST(HFUNC_THIS->{funcName}(HFunc_Param_InObject, HFunc_Param_InName));");
                 Assert.AreEqual(cppLines[cppIndex++], "}");
                 Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "IMPLEMENT_CLASS(HReflectionTest4);");

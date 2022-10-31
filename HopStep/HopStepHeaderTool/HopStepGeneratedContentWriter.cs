@@ -126,7 +126,7 @@ namespace HopStepHeaderTool
 				sb.AppendLine("}");
 				sb.AppendLine("");
 
-				if (typeInfo.Functions != null)
+				if (typeInfo.Functions != null && typeInfo.Functions.Count() > 0)
 				{
 					foreach (var funcInfo in typeInfo.Functions)
 					{
