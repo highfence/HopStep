@@ -170,8 +170,12 @@
     <ClInclude Include="Core\PrimitiveTypeDefines.h" />
     <ClInclude Include="Core\Archive\Archive.h" />
     <ClInclude Include="Core\Container\VariadicStack.h" />
+    <ClInclude Include="Core\Delegates\DelegateBase.h" />
+    <ClInclude Include="Core\Delegates\DelegateConcepts.h" />
     <ClInclude Include="Core\Delegates\DelegateHandle.h" />
-    <ClInclude Include="Core\Delegates\IDelegateInstance..h" />
+    <ClInclude Include="Core\Delegates\DelegateInstances.h" />
+    <ClInclude Include="Core\Delegates\DelegateSigniture.h" />
+    <ClInclude Include="Core\Delegates\IDelegateInstance.h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
     <ClInclude Include="Core\Misc\DebugUtils.h" />
@@ -181,6 +185,7 @@
     <ClInclude Include="Core\Misc\LazySingleton.h" />
     <ClInclude Include="Core\Misc\OutputDevice.h" />
     <ClInclude Include="Core\Misc\Paths.h" />
+    <ClInclude Include="Core\Templates\RemoveReference.h" />
     <ClInclude Include="CoreObject\Object\Object.h" />
     <ClInclude Include="CoreObject\Object\ObjectBase.h" />
     <ClInclude Include="CoreObject\Object\ObjectMacro.h" />
