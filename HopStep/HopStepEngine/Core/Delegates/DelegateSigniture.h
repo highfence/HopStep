@@ -17,6 +17,19 @@ namespace HopStep::Core::Delegates
 
 	public:
 
+		/**
+		 * 
+		 */
+		template <typename TFunctorType, typename... TVarTypes>
+		void BindLambda(FunctorType&& Functor, VarTypes... Vars)
+		{
+			auto LambdaDelegateInstance = CreateLambda();
+
+		}
+
+		/**
+		 * 
+		 */
 		template <typename TFunctorType, typename... TVarTypes>
 		[[nodiscard]] static TDelegate<TReturnType(TParamTypes...), TDelegatePolicy> CreateLambda(TFunctorType&& Functor, TVarTypes... Vars)
 		{

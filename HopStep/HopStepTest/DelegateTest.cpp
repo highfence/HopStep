@@ -16,7 +16,6 @@ namespace HopStepTest
 		{
 			TDelegate<void()> TestDelegate;
 
-			TestDelegate.BindLambda();
 		}
 	};
 }

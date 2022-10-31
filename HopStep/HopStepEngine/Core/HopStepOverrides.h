@@ -31,4 +31,7 @@ namespace HopStep
 
 	template <class TType>
 	using TAtomic = std::atomic<TType>;
+
+	template <typename TArgs>
+	using TTuple = std::tuple<TArgs>;
 }
