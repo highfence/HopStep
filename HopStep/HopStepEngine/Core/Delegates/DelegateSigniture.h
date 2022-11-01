@@ -4,6 +4,7 @@
 #include "DelegateInstances.h"
 #include "DelegateBase.h"
 #include "..\Templates\HopStepTemplates.h"
+#include "..\Misc\DebugUtils.h"
 
 namespace HopStep::Core::Delegates
 {
@@ -35,6 +36,30 @@ namespace HopStep::Core::Delegates
 			}
 
 			InstancePtr = nullptr;
+		}
+
+		/**
+		 * 
+		 */
+		TReturnType Execute(TParamTypes... Params) const 
+		{
+			HCheck(InstancePtr);
+
+			return InstancePtr->Execute(Params...);
+		}
+
+		/**
+		 * 
+		 */
+		template <typename TempReturnType = TReturnType, std::enable_if_t<std::is_void<TempReturnType>::value>* = nullptr>
+		bool ExecuteIfBound(TParamTypes... Params) const
+		{
+			if (InstancePtr)
+			{
+				return InstancePtr->ExecuteIfSafe(Params...);
+			}
+
+			return false;
 		}
 
 		/**

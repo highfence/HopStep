@@ -60,7 +60,7 @@ namespace HopStep::Core::Delegates
 
 
 	/**
-	 * Implement delegate instances common logics
+	 * Lambda function delegate instance.	
 	 */
 	template <typename TFunctionType, typename TPolicyType, typename TFunctorType, typename... TFunctorVargs>
 	class TBaseFunctorDelegateInstance;
@@ -81,8 +81,14 @@ namespace HopStep::Core::Delegates
 
 		}
 
+		/**
+		 * 
+		 */
 		virtual TReturnType Execute(TParamTypes...) const override { return TReturnType(); };
 
+		/**
+		 * 
+		 */
 		virtual bool ExecuteIfSafe(TParamTypes...) const override { return false; };
 
 		/**
