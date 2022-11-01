@@ -25,7 +25,7 @@ namespace HopStepTest
 			DelegateBase.BindLambda(Lambda);
 			DelegateBase.ExecuteIfBound(3, 5);
 
-			Assert::AreEqual((int32)5, Ref);
+			Assert::AreEqual((int32)8, Ref);
 		}
 	};
 }

@@ -94,13 +94,8 @@ namespace HopStep::Core::Delegates
 		 */
 		virtual bool ExecuteIfSafe(TParamTypes... args) const override final 
 		{
-			if (Functor)
-			{
-				Functor(args...);
-				return true;
-			}
-
-			return false; 
+			Functor(args...);
+			return true;
 		};
 
 		/**
