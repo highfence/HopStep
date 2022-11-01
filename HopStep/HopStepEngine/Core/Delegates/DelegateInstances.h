@@ -50,7 +50,7 @@ namespace HopStep::Core::Delegates
 
 		}
 
-		virtual HDelegateHandle GetHandle() const override { return Handle; }
+		virtual HDelegateHandle GetHandle() const override final { return Handle; }
 
 	protected:
 
@@ -86,8 +86,7 @@ namespace HopStep::Core::Delegates
 		 */
 		virtual TReturnType Execute(TParamTypes... args) const override final 
 		{
-
-			return TReturnType(); 
+			return Functor(args...);
 		};
 
 		/**
@@ -95,6 +94,12 @@ namespace HopStep::Core::Delegates
 		 */
 		virtual bool ExecuteIfSafe(TParamTypes... args) const override final 
 		{
+			if (Functor)
+			{
+				Functor(args...);
+				return true;
+			}
+
 			return false; 
 		};
 
