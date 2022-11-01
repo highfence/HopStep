@@ -63,7 +63,7 @@ namespace HopStep::Core::Delegates
 		}
 
 		/**
-		 * 
+		 * Make TBaseFunctorDelegateInstance for Lambda functions.
 		 */
 		template <typename TFunctorType, typename... TVarTypes>
 		void BindLambda(TFunctorType&& Functor, TVarTypes... Vargs)

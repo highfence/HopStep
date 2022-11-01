@@ -84,28 +84,44 @@ namespace HopStep::Core::Delegates
 		/**
 		 * 
 		 */
-		virtual TReturnType Execute(TParamTypes...) const override { return TReturnType(); };
+		virtual TReturnType Execute(TParamTypes... args) const override final 
+		{
+
+			return TReturnType(); 
+		};
 
 		/**
 		 * 
 		 */
-		virtual bool ExecuteIfSafe(TParamTypes...) const override { return false; };
+		virtual bool ExecuteIfSafe(TParamTypes... args) const override final 
+		{
+			return false; 
+		};
 
 		/**
-		 * 
+		 * Functor delegate instance has no name.
 		 */
-		virtual HopStep::HString GetFunctionName() const override { return HString(); };
+		virtual HopStep::HString GetFunctionName() const override final
+		{
+			return HString(); 
+		};
 
 		/**
-		 * 
+		 * Functor delegate instance has no bounded object.
 		 */
-		virtual class HObject* GetBoundedObject() const override { return nullptr; };
+		virtual class HObject* GetBoundedObject() const override final 
+		{
+			return nullptr; 
+		};
 
 		/**
-		 * 
+		 * Functor delegate instance is always executable.
 		 */
 		virtual bool IsExecutable() const override { return true; };
 
+		/**
+		 * Only create delegate instance with this.
+		 */
 		static ThisType* Create(TFunctorType&& Functor, TFunctorVargs... Vars)
 		{
 			return new ThisType(Functor, Vars...);
