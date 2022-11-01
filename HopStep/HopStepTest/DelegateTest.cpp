@@ -22,8 +22,10 @@ namespace HopStepTest
 			};
 
 			TDelegate<void(int32, int32)> DelegateBase;
+			Assert::IsFalse(DelegateBase.ExecuteIfBound(0, 0));
+
 			DelegateBase.BindLambda(Lambda);
-			DelegateBase.ExecuteIfBound(3, 5);
+			Assert::IsTrue(DelegateBase.ExecuteIfBound(3, 5));
 
 			Assert::AreEqual((int32)8, Ref);
 		}
