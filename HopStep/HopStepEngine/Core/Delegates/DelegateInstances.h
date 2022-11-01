@@ -2,6 +2,7 @@
 #include "IDelegateInstance.h"
 #include "DelegateHandle.h"
 #include "..\HopStepOverrides.h"
+#include "..\Container\VariadicStack.h"
 
 namespace HopStep::Core::Delegates
 {
@@ -30,25 +31,30 @@ namespace HopStep::Core::Delegates
 
 	/**
 	 * Implement delegate instances common logics
+	 * But still, abstract.
 	 */
 	template <typename TFunctionType, typename TDelegatePolicy, typename... TVarTypes> 
 	class TCommonDelegateInstance;
 
 	template <typename TReturnType, typename... TParamTypes, typename TDelegatePolicy, typename... TVarTypes> 
-	class TCommonDelegateInstance<TReturnType(TParamTypes...), TDelegatePolicy, TVarTypes...> : IBaseDelegateInstance<TReturnType(TParamTypes...), TDelegatePolicy>
+	class TCommonDelegateInstance<TReturnType(TParamTypes...), TDelegatePolicy, TVarTypes...> : public IBaseDelegateInstance<TReturnType(TParamTypes...), TDelegatePolicy>
 	{
 	public:
 
+		using ReturnType = TReturnType;
+
 		explicit TCommonDelegateInstance(TVarTypes... Vars)
-			: Payload(Vars...)
+			: Payload(std::make_tuple(Vars...))
 			, Handle(HDelegateHandle::EDelegateHandleGenerateType::NewHandleIDGenerate)
 		{
 
 		}
 
+		virtual HDelegateHandle GetHandle() const override { return Handle; }
+
 	protected:
 
-		TTuple<TVarTypes...> Payload;
+		std::tuple<TVarTypes...> Payload;
 		HDelegateHandle Handle;
 	};
 
@@ -60,9 +66,52 @@ namespace HopStep::Core::Delegates
 	class TBaseFunctorDelegateInstance;
 
 	template <typename TReturnType, typename... TParamTypes, typename TPolicyType, typename TFunctorType, typename... TFunctorVargs>
-	class TBaseFunctorDelegateInstance<TReturnType(TParamTypes...), TPolicyType, TFunctorType, TFunctorVargs...>
+	class TBaseFunctorDelegateInstance<TReturnType(TParamTypes...), TPolicyType, TFunctorType, TFunctorVargs...> : public TCommonDelegateInstance<TReturnType(TParamTypes...), TPolicyType, TFunctorVargs...>
 	{
+		using Super = TCommonDelegateInstance<TReturnType(TParamTypes...), TPolicyType, TFunctorVargs...>;
+		using SuperReturnType = typename Super::ReturnType;
+		using ThisType = TBaseFunctorDelegateInstance<SuperReturnType(TParamTypes...), TPolicyType, TFunctorType, TFunctorVargs...>;
+
 	public:
 
+		TBaseFunctorDelegateInstance(const TFunctorType& Functor, TFunctorVargs... Vars)
+			: Super(Vars...)
+			, Functor(Functor)
+		{
+
+		}
+
+		virtual TReturnType Execute(TParamTypes...) const override { return TReturnType(); };
+
+		virtual bool ExecuteIfSafe(TParamTypes...) const override { return false; };
+
+		/**
+		 * 
+		 */
+		virtual HopStep::HString GetFunctionName() const override { return HString(); };
+
+		/**
+		 * 
+		 */
+		virtual class HObject* GetBoundedObject() const override { return nullptr; };
+
+		/**
+		 * 
+		 */
+		virtual bool IsExecutable() const override { return true; };
+
+		static ThisType* Create(TFunctorType&& Functor, TFunctorVargs... Vars)
+		{
+			return new ThisType(Functor, Vars...);
+		}
+
+		static ThisType* Create(const TFunctorType& Functor, TFunctorVargs... Vars)
+		{
+			return new ThisType(std::move(Functor), Vars...);
+		}
+
+	private:
+
+		TFunctorType Functor;
 	};
 }

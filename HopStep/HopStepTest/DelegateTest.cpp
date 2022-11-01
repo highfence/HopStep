@@ -14,9 +14,17 @@ namespace HopStepTest
 		
 		TEST_METHOD(DelegateLambdaBound)
 		{
-			TDelegate<void()> TestDelegate;
+			int32 Ref = 0;
 
-			TCommonDelegateInstance<void(), HDefaultDelegatePolicy, int32, int32> instance { 3, 4 };
+			auto Lambda = [&Ref](int32 A, int32 B) -> void
+			{
+				Ref = A + B;
+			};
+
+			TDelegate<void(int32, int32)> DelegateBase;
+			DelegateBase.BindLambda(Lambda, 3, 5);
+
+
 		}
 	};
 }

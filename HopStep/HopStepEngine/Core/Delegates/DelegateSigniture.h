@@ -15,7 +15,7 @@ namespace HopStep::Core::Delegates
 	{
 		using Super = TDelegateBase<TDelegatePolicy>;
 		using FunctionSignitureType = TReturnType(TParamTypes...);
-		using DelegateInstanceType = TBaseDelegateInstance<FunctionSignitureType, TDelegatePolicy>;
+		using DelegateInstanceType = IBaseDelegateInstance<FunctionSignitureType, TDelegatePolicy>;
 
 	public:
 
@@ -45,7 +45,7 @@ namespace HopStep::Core::Delegates
 		{
 			if (InstancePtr) Unbind();
 
-
+			InstancePtr = static_cast<DelegateInstanceType*>(TBaseFunctorDelegateInstance<FunctionSignitureType, TDelegatePolicy, typename TRemoveReference<TFunctorType>::Type, TVarTypes...>::Create(Forward<TFunctorType>(Functor), Vargs...));
 		}
 
 	protected:

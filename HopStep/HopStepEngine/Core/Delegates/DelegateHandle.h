@@ -9,7 +9,7 @@ namespace HopStep::Core::Delegates
 
 		enum EDelegateHandleGenerateType
 		{
-			NewHandleWithGeneratedID
+			NewHandleIDGenerate
 		};
 
 		/**

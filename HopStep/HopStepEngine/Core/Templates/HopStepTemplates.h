@@ -8,11 +8,11 @@
 template <typename TType>
 TType&& Forward(typename TRemoveReference<TType>::Type& Obj)
 {
-	return (T&&)Obj;
+	return (TType&&)Obj;
 }
 
 template <typename TType>
 TType&& Forward(typename TRemoveReference<TType>::Type&& Obj)
 {
-	return (T&&)Obj;
+	return (TType&&)Obj;
 }
