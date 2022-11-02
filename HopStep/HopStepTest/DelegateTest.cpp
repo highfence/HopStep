@@ -86,5 +86,11 @@ namespace HopStepTest
 			Assert::AreEqual((int32)-7, Result);
 			DelegateC.Unbind();
 		}
+
+		TEST_METHOD(DelegatePayloadTest)
+		{
+
+
+		}
 	};
 }
