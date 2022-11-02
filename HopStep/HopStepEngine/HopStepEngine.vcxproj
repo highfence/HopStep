@@ -175,6 +175,7 @@
     <ClInclude Include="Core\Delegates\DelegateHandle.h" />
     <ClInclude Include="Core\Delegates\DelegateInstances.h" />
     <ClInclude Include="Core\Delegates\DelegateSigniture.h" />
+    <ClInclude Include="Core\Delegates\DelegateUtils.h" />
     <ClInclude Include="Core\Delegates\IDelegateInstance.h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />

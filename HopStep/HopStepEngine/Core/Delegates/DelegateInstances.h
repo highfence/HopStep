@@ -70,8 +70,8 @@ namespace HopStep::Core::Delegates
 	class TBaseFunctorDelegateInstance<TReturnType(TParamTypes...), TPolicyType, TFunctorType, TFunctorVargs...> : public TCommonDelegateInstance<TReturnType(TParamTypes...), TPolicyType, TFunctorVargs...>
 	{
 		using Super = TCommonDelegateInstance<TReturnType(TParamTypes...), TPolicyType, TFunctorVargs...>;
-		using SuperReturnType = typename Super::ReturnType;
-		using ThisType = TBaseFunctorDelegateInstance<SuperReturnType(TParamTypes...), TPolicyType, TFunctorType, TFunctorVargs...>;
+		using SignatureReturnType = typename Super::ReturnType;
+		using ThisType = TBaseFunctorDelegateInstance<SignatureReturnType(TParamTypes...), TPolicyType, TFunctorType, TFunctorVargs...>;
 
 	public:
 
@@ -212,4 +212,25 @@ namespace HopStep::Core::Delegates
 
 		FunctionPtr StaticFunctionPtr;
 	};
+
+
+	/**
+	 * 	Class member function delegate instance
+	 *  bConst means delegate representing const function or not.
+	 */
+	template <bool bConst, class TClassType, typename TFunctionType, typename TDelegatePolicy, typename... TVarTypes>
+	class TBaseClassMethodDelegateInstance;
+
+	template <bool bConst, class TClassType, typename TReturnType, typename... TParamTypes, typename TDelegatePolicy, typename... TVarTypes>
+	class TBaseClassMethodDelegateInstance<bConst, TClassType, TReturnType(TParamTypes...), TDelegatePolicy, TVarTypes...> : public TCommonDelegateInstance<TReturnType(TParamTypes...), TDelegatePolicy, TVarTypes...>
+	{
+		using Super = TCommonDelegateInstance<TReturnType(TParamTypes...), TDelegatePolicy, TVarTypes...>;
+		using SignatureReturnType = typename Super::ReturnType;
+		using ThisType = TBaseClassMethodDelegateInstance<bConst, TClassType, TReturnType(TParamTypes...), TDelegatePolicy, TVarTypes...>;
+
+	public:
+
+		using MethodPtr = 
+	};
+
 }
