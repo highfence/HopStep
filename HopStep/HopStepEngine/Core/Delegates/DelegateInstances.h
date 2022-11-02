@@ -1,9 +1,12 @@
 #pragma once
 #include "IDelegateInstance.h"
 #include "DelegateHandle.h"
+#include "DelegateUtils.h"
+#include "..\CoreStandardIncludes.h"
 #include "..\HopStepOverrides.h"
 #include "..\Container\VariadicStack.h"
 #include "..\Misc\DebugUtils.h"
+#include "..\Templates\RemoveConst.h"
 
 namespace HopStep::Core::Delegates
 {
@@ -230,7 +233,84 @@ namespace HopStep::Core::Delegates
 
 	public:
 
-		using MethodPtr = 
+		using MethodPtrType = typename TClassMethodPointerType<bConst, TClassType, TReturnType(TVarTypes...)>::Type;
+
+		TBaseClassMethodDelegateInstance(TClassType* InClassPtr, MethodPtrType InMethodPtr, TVarTypes... Vars)
+			: Super(Vars...)
+			, ClassPtr(InClassPtr)
+			, MethodPtr(InMethodPtr)
+		{
+			HCheck(InClassPtr != nullptr && InMethodPtr != nullptr);
+		}
+
+		/**
+		 *
+		 */
+		virtual TReturnType Execute(TParamTypes... Args) const override final
+		{
+			using MutableClassType = typename TRemoveConst<TClassType>::Type;
+
+			MutableClassType* MutableClassObject = const_cast<MutableClassType*>(ClassPtr);
+
+			HCheck(MutableClassObject != nullptr);
+			HCheck(MethodPtr != nullptr);
+
+			// Todo : Must be fixed with payloads.
+			return std::invoke(MethodPtr, MutableClassObject, Args...);
+		};
+
+		/**
+		 *
+		 */
+		virtual bool ExecuteIfSafe(TParamTypes... Args) const override final
+		{
+			using MutableClassType = typename TRemoveConst<TClassType>::Type;
+
+			MutableClassType* MutableClassObject = const_cast<MutableClassType*>(ClassPtr);
+
+			if (MutableClassObject == nullptr || MethodPtr == nullptr)
+			{
+				return false;
+			}
+
+			// Todo : Must be fixed with payloads.
+			std::invoke(MethodPtr, MutableClassObject, Args...);
+			return true;
+		};
+
+		/**
+		 * Static delegate instance has no name.
+		 */
+		virtual HopStep::HString GetFunctionName() const override final
+		{
+			return HString();
+		};
+
+		/**
+		 * Static delegate instance has no bounded object.
+		 */
+		virtual class HObject* GetBoundedObject() const override final
+		{
+			return nullptr;
+		};
+
+		/**
+		 * Static delegate instance is always executable.
+		 */
+		virtual bool IsExecutable() const override { return true; };
+
+		/**
+		 * Only create delegate instance with this.
+		 */
+		static ThisType* Create(TClassType* ClassPtr, MethodPtrType MethodPtr, TVarTypes... Vars)
+		{
+			return new ThisType(ClassPtr, MethodPtr, Vars...);
+		}
+
+	private:
+
+		TClassType* ClassPtr;
+		MethodPtrType MethodPtr;
 	};
 
 }

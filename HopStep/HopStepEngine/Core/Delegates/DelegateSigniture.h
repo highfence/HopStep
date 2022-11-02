@@ -3,6 +3,7 @@
 #include "IDelegateInstance.h"
 #include "DelegateInstances.h"
 #include "DelegateBase.h"
+#include "DelegateUtils.h"
 #include "..\Templates\HopStepTemplates.h"
 #include "..\Misc\DebugUtils.h"
 
@@ -11,7 +12,7 @@ namespace HopStep::Core::Delegates
 	template <typename TDelegateSigniture, typename TDelegatePolicy = HDefaultDelegatePolicy>
 	class TDelegate;
 
-	template <typename TReturnType, typename... TParamTypes, typename TDelegatePolicy> 
+	template <typename TReturnType, typename... TParamTypes, typename TDelegatePolicy>
 	class TDelegate<TReturnType(TParamTypes...), TDelegatePolicy> : public TDelegateBase<TDelegatePolicy>
 	{
 		using Super = TDelegateBase<TDelegatePolicy>;
@@ -39,9 +40,9 @@ namespace HopStep::Core::Delegates
 		}
 
 		/**
-		 * 
+		 *
 		 */
-		TReturnType Execute(TParamTypes... Params) const 
+		TReturnType Execute(TParamTypes... Params) const
 		{
 			HCheck(InstancePtr);
 
@@ -49,7 +50,7 @@ namespace HopStep::Core::Delegates
 		}
 
 		/**
-		 * 
+		 *
 		 */
 		template <typename TempReturnType = TReturnType, std::enable_if_t<std::is_void<TempReturnType>::value>* = nullptr>
 		bool ExecuteIfBound(TParamTypes... Params) const
@@ -82,6 +83,25 @@ namespace HopStep::Core::Delegates
 			Unbind();
 
 			InstancePtr = static_cast<DelegateInstanceType*>(TBaseStaticDelegateInstance<FunctionSignitureType, TDelegatePolicy, TVarTypes...>::Create(Function, Vars...));
+		}
+
+		/**
+		 * Make delegate instance for C++ class method functions.
+		 */
+		template <typename TClassType, typename... TVarTypes>
+		void BindMethod(TClassType* InClassObject, typename TClassMethodPointerType<false, TClassType, FunctionSignitureType>::Type InMethod, TVarTypes... Vars)
+		{
+			Unbind();
+
+			InstancePtr = static_cast<DelegateInstanceType*>(TBaseClassMethodDelegateInstance<false, TClassType, FunctionSignitureType, TDelegatePolicy, TVarTypes...>::Create(InClassObject, InMethod, Vars...));
+		}
+
+		template <typename TClassType, typename... TVarTypes>
+		void BindMethod(const TClassType* InClassObject, typename TClassMethodPointerType<true, TClassType, FunctionSignitureType>::Type InMethod, TVarTypes... Vars)
+		{
+			Unbind();
+
+			InstancePtr = static_cast<DelegateInstanceType*>(TBaseClassMethodDelegateInstance<true, TClassType, FunctionSignitureType, TDelegatePolicy, TVarTypes...>::Create(InClassObject, InMethod, Vars...));
 		}
 
 

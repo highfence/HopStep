@@ -19,6 +19,7 @@
 #include <type_traits>
 #include <atomic>
 #include <tuple>
+#include <functional>
 
 #include "HopStepDefine.h"
 
