@@ -77,10 +77,11 @@ namespace HopStep::Core::Delegates
 		 * Make delegate instance for C++ pointer global functions.
 		 */
 		template <typename... TVarTypes>
-		void BindStatic(typename )
+		void BindStatic(typename TBaseStaticDelegateInstance<FunctionSignitureType, TDelegatePolicy, TVarTypes...>::FunctionPtr Function, TVarTypes... Vars)
 		{
 			Unbind();
 
+			InstancePtr = static_cast<DelegateInstanceType*>(TBaseStaticDelegateInstance<FunctionSignitureType, TDelegatePolicy, TVarTypes...>::Create(Function, Vars...));
 		}
 
 

@@ -40,6 +40,10 @@ namespace HopStepTest
 		TEST_METHOD(DelegateStaticMethod)
 		{
 			TDelegate<void()> StaticMethodEvent;
+			StaticMethodEvent.BindStatic(&StaticMethodTestFunc);
+
+			Assert::IsTrue(StaticMethodEvent.ExecuteIfBound());
+			Assert::AreEqual((int32)1, gA);
 		}
 	};
 }
