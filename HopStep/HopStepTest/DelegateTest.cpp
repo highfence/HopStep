@@ -8,6 +8,9 @@ using namespace HopStep::Core::Delegates;
 
 namespace HopStepTest
 {
+	int32 gA = 0;
+	void StaticMethodTestFunc() { ++gA;	};
+
 	TEST_CLASS(DelegateTest)
 	{
 	public:
@@ -32,6 +35,11 @@ namespace HopStepTest
 			TDelegate<int32(int32, int32)> DelegateBaseWithReturn;
 			DelegateBaseWithReturn.BindLambda([](int32 A, int32 B) -> int32 { return A * B; });
 			Assert::AreEqual((int32)32, DelegateBaseWithReturn.Execute(4, 8));
+		}
+
+		TEST_METHOD(DelegateStaticMethod)
+		{
+			TDelegate<void()> StaticMethodEvent;
 		}
 	};
 }

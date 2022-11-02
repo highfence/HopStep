@@ -68,10 +68,21 @@ namespace HopStep::Core::Delegates
 		template <typename TFunctorType, typename... TVarTypes>
 		void BindLambda(TFunctorType&& Functor, TVarTypes... Vargs)
 		{
-			if (InstancePtr) Unbind();
+			Unbind();
 
 			InstancePtr = static_cast<DelegateInstanceType*>(TBaseFunctorDelegateInstance<FunctionSignitureType, TDelegatePolicy, typename TRemoveReference<TFunctorType>::Type, TVarTypes...>::Create(Forward<TFunctorType>(Functor), Vargs...));
 		}
+
+		/**
+		 * Make delegate instance for C++ pointer global functions.
+		 */
+		template <typename... TVarTypes>
+		void BindStatic(typename )
+		{
+			Unbind();
+
+		}
+
 
 	protected:
 

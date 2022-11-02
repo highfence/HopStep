@@ -3,6 +3,7 @@
 #include "DelegateHandle.h"
 #include "..\HopStepOverrides.h"
 #include "..\Container\VariadicStack.h"
+#include "..\Misc\DebugUtils.h"
 
 namespace HopStep::Core::Delegates
 {
@@ -129,11 +130,86 @@ namespace HopStep::Core::Delegates
 
 		static ThisType* Create(const TFunctorType& Functor, TFunctorVargs... Vars)
 		{
-			return new ThisType(std::move(Functor), Vars...);
+			return new ThisType(Functor, Vars...);
 		}
 
 	private:
 
 		TFunctorType Functor;
+	};
+
+
+	/**
+	 * 	Static C++ function delegate instance
+	 */
+	template <typename TFunctionType, typename TDelegatePolicy, typename... TVarTypes>
+	class TBaseStaticDelegateInstance;
+
+	template <typename TReturnType, typename... TParamTypes, typename TDelegatePolicy, typename... TVarTypes>
+	class TBaseStaticDelegateInstance<TReturnType(TParamTypes...), TDelegatePolicy, TVarTypes...> : public TCommonDelegateInstance<TReturnType(TParamTypes...), TDelegatePolicy, TVarTypes...>
+	{
+		using Super = TCommonDelegateInstance<TReturnType(TParamTypes...), TDelegatePolicy, TVarTypes...>;
+		using SignatureReturnType = Super::ReturnType;
+		using ThisType = TBaseStaticDelegateInstance<TReturnType(TParamTypes...), TDelegatePolicy, TVarTypes...>;
+
+	public:
+
+		using FunctionPtr = SignatureReturnType(*)(TParamTypes..., TVarTypes...);
+
+		TBaseStaticDelegateInstance(FunctionPtr StaticFunctionPtr, TVarTypes... Vars)
+			: Super(Vars...), StaticFunctionPtr(StaticFunctionPtr)
+		{
+			HCheck(StaticFunctionPtr != nullptr);
+		}
+
+		/**
+		 *
+		 */
+		virtual TReturnType Execute(TParamTypes... args) const override final
+		{
+			return StaticFunctionPtr(args...);
+		};
+
+		/**
+		 *
+		 */
+		virtual bool ExecuteIfSafe(TParamTypes... args) const override final
+		{
+			StaticFunctionPtr(args...);
+			return true;
+		};
+
+		/**
+		 * Static delegate instance has no name.
+		 */
+		virtual HopStep::HString GetFunctionName() const override final
+		{
+			return HString();
+		};
+
+		/**
+		 * Static delegate instance has no bounded object.
+		 */
+		virtual class HObject* GetBoundedObject() const override final
+		{
+			return nullptr;
+		};
+
+		/**
+		 * Static delegate instance is always executable.
+		 */
+		virtual bool IsExecutable() const override { return true; };
+
+		/**
+		 * Only create delegate instance with this.
+		 */
+		static ThisType* Create(FunctionPtr Functor, TVarTypes... Vars)
+		{
+			return new ThisType(Functor, Vars...);
+		}
+
+	private:
+
+		FunctionPtr StaticFunctionPtr;
 	};
 }
