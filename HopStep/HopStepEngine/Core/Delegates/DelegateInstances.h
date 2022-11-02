@@ -233,7 +233,7 @@ namespace HopStep::Core::Delegates
 
 	public:
 
-		using MethodPtrType = typename TClassMethodPointerType<bConst, TClassType, TReturnType(TVarTypes...)>::Type;
+		using MethodPtrType = typename TClassMethodPointerType<bConst, TClassType, TReturnType(TParamTypes...)>::Type;
 
 		TBaseClassMethodDelegateInstance(TClassType* InClassPtr, MethodPtrType InMethodPtr, TVarTypes... Vars)
 			: Super(Vars...)
@@ -256,7 +256,7 @@ namespace HopStep::Core::Delegates
 			HCheck(MethodPtr != nullptr);
 
 			// Todo : Must be fixed with payloads.
-			return std::invoke(MethodPtr, MutableClassObject, Args...);
+			return (MutableClassObject->*MethodPtr)(Args...);
 		};
 
 		/**
@@ -274,7 +274,7 @@ namespace HopStep::Core::Delegates
 			}
 
 			// Todo : Must be fixed with payloads.
-			std::invoke(MethodPtr, MutableClassObject, Args...);
+			(MutableClassObject->*MethodPtr)(Args...);
 			return true;
 		};
 
@@ -305,6 +305,11 @@ namespace HopStep::Core::Delegates
 		static ThisType* Create(TClassType* ClassPtr, MethodPtrType MethodPtr, TVarTypes... Vars)
 		{
 			return new ThisType(ClassPtr, MethodPtr, Vars...);
+		}
+
+		static ThisType* Create(const TClassType* ClassPtr, MethodPtrType MethodPtr, TVarTypes... Vars)
+		{
+			return new ThisType(const_cast<TClassType*>(ClassPtr), MethodPtr, Vars...);
 		}
 
 	private:

@@ -69,15 +69,22 @@ namespace HopStepTest
 			TDelegate<void()> DelegateA;
 			DelegateA.BindMethod(&Object, &DelegateClassMethodTest::MakeAIncrease);
 			DelegateA.ExecuteIfBound();
+			DelegateA.Unbind();
 
 			Assert::AreEqual((int32)1, Object.A);
 
 			TDelegate<void(int32)> DelegateB;
 			DelegateB.BindMethod(&Object, &DelegateClassMethodTest::MakeBDecreaseBy);
-			DelegateB.ExecuteIfBound(-7);
+			DelegateB.ExecuteIfBound(7);
+			DelegateB.Unbind();
 
 			Assert::AreEqual((int32)-7, Object.B);
 
+			TDelegate<int32()> DelegateC;
+			DelegateC.BindMethod(&Object, &DelegateClassMethodTest::GetAMultiplyB);
+			int32 Result = DelegateC.Execute();
+			Assert::AreEqual((int32)-7, Result);
+			DelegateC.Unbind();
 		}
 	};
 }
