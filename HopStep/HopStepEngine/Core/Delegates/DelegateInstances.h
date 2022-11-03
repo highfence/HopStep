@@ -58,6 +58,7 @@ namespace HopStep::Core::Delegates
 
 	protected:
 
+		// Todo : Make delegate using payload.
 		std::tuple<TVarTypes...> Payload;
 		HDelegateHandle Handle;
 	};
