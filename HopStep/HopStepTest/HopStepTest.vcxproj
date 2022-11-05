@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CoreObjectTest.cpp" />
     <ClCompile Include="CoreTest.cpp" />
     <ClCompile Include="DelegateTest.cpp" />
     <ClCompile Include="HopStepTest.cpp" />
