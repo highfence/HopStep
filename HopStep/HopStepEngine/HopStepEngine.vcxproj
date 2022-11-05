@@ -189,6 +189,7 @@
     <ClInclude Include="Core\Templates\HopStepTemplates.h" />
     <ClInclude Include="Core\Templates\RemoveConst.h" />
     <ClInclude Include="Core\Templates\RemoveReference.h" />
+    <ClInclude Include="CoreObject\Object\NamePool.h" />
     <ClInclude Include="CoreObject\Object\NameTypes.h" />
     <ClInclude Include="CoreObject\Object\Object.h" />
     <ClInclude Include="CoreObject\Object\ObjectBase.h" />

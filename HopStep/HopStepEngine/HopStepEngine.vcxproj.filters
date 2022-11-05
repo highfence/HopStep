@@ -2,58 +2,58 @@
 <Project ToolsVersion="4.0">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{788a0d87-64ba-457f-885f-927461870671}</UniqueIdentifier>
+      <UniqueIdentifier>{183c5933-cd0a-48a0-9640-5ea967103c12}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Archive">
-      <UniqueIdentifier>{e9bab61e-a1c2-47a1-8e47-4d23877e21bd}</UniqueIdentifier>
+      <UniqueIdentifier>{856cdff4-318f-471e-bd8e-caaecd410389}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Container">
-      <UniqueIdentifier>{adeb49e2-45b3-42be-af97-6635186d6cc0}</UniqueIdentifier>
+      <UniqueIdentifier>{373bb58b-d941-429f-aef1-57baacf435f0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Delegates">
-      <UniqueIdentifier>{ed145049-d5bf-432e-90b4-e2f8e0b12ae5}</UniqueIdentifier>
+      <UniqueIdentifier>{345cb787-cf2c-4454-a5ae-2f6563e305ca}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger">
-      <UniqueIdentifier>{74549883-8519-44ad-afff-0844b4bea067}</UniqueIdentifier>
+      <UniqueIdentifier>{04d3a8f6-4481-420b-ae9a-b26c119f80aa}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Misc">
-      <UniqueIdentifier>{3a7fc20f-226e-4cc7-9cdd-f3d98def4e4f}</UniqueIdentifier>
+      <UniqueIdentifier>{d8bc2442-ac6c-452f-aba5-1f99210d1d30}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Templates">
-      <UniqueIdentifier>{9d43652c-11f3-4fa8-9fed-a71ca36db0f5}</UniqueIdentifier>
+      <UniqueIdentifier>{8413a822-e506-4e27-9870-1f7eb4998ccb}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
-      <UniqueIdentifier>{7e00ab38-3864-4406-8a9e-ab8f20f8d85e}</UniqueIdentifier>
+      <UniqueIdentifier>{3b9536c7-e749-42d9-a4f1-9a2042872aa7}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{54f3a678-4f86-4857-9ad3-7aaf474bdca3}</UniqueIdentifier>
+      <UniqueIdentifier>{b76c6219-8cfb-4b64-ae86-ae5b87532d83}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{9c5a164e-00c0-4618-affb-bc6d193db248}</UniqueIdentifier>
+      <UniqueIdentifier>{cbb9043d-c8d6-4e4d-9f45-5fcb88b05a26}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern">
-      <UniqueIdentifier>{34169ec1-a779-4494-a375-018e7ef0c131}</UniqueIdentifier>
+      <UniqueIdentifier>{8ae13a14-5678-4acf-b515-e600ebae4bc3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp">
-      <UniqueIdentifier>{b6b99f33-56c8-4ae0-bd66-41519632f2c4}</UniqueIdentifier>
+      <UniqueIdentifier>{423a1079-86c5-4b2d-b63f-0a105bb074ea}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include">
-      <UniqueIdentifier>{0a19e934-4fd4-4593-8d30-4334bd53663c}</UniqueIdentifier>
+      <UniqueIdentifier>{68de9f5b-969b-425e-8c65-9c8ac6990085}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include\json">
-      <UniqueIdentifier>{0edd7d3e-a4fc-4e57-b197-9d33018b4c11}</UniqueIdentifier>
+      <UniqueIdentifier>{8d2fee0f-0068-4e95-a626-57438311bb0e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Intermediate">
-      <UniqueIdentifier>{7bec9684-1ca0-4cf7-afa3-b396d560d538}</UniqueIdentifier>
+      <UniqueIdentifier>{cd8e8fb9-c23b-412f-a70f-e6b698105b81}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime">
-      <UniqueIdentifier>{cc52fa68-8979-4cfb-a6e9-950df5c15d6d}</UniqueIdentifier>
+      <UniqueIdentifier>{12484c1a-25cd-47ab-a8bb-6f29463bc794}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Engine">
-      <UniqueIdentifier>{f454e9f6-477f-4545-9625-da4ae5dacb02}</UniqueIdentifier>
+      <UniqueIdentifier>{ceed0b2d-e2d2-48cb-9f7d-04c3f0d44204}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Launch">
-      <UniqueIdentifier>{2f39d8be-d033-49db-a79a-db5863f650b6}</UniqueIdentifier>
+      <UniqueIdentifier>{2c187b7a-764a-48d7-a2bb-7b4e4999d54e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +138,9 @@
     </ClInclude>
     <ClInclude Include="Core\Templates\RemoveReference.h">
       <Filter>Core\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreObject\Object\NamePool.h">
+      <Filter>CoreObject\Object</Filter>
     </ClInclude>
     <ClInclude Include="CoreObject\Object\NameTypes.h">
       <Filter>CoreObject\Object</Filter>

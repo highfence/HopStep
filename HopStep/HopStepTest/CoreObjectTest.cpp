@@ -86,9 +86,9 @@ namespace HopStepTest
 			}
 		}
 
-		TEST_METHOD(HName_)
+		TEST_METHOD(HName_IsValidTest)
 		{
-
+			
 		}
 	};
 }

@@ -16,8 +16,12 @@ namespace HopStep
 		uint32 Value;
 	};
 
+	/**
+	 * 
+	 */
 	struct HNameEntry
 	{
+
 
 
 	private:
@@ -104,6 +108,11 @@ namespace HopStep
 		uint32 GetDigits() const
 		{
 			return Digits;
+		}
+
+		bool IsValid() const
+		{
+			return NameEntry.
 		}
 
 	private:
