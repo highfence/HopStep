@@ -72,6 +72,23 @@ namespace HopStepTest
 				Assert::AreEqual((uint32)27649473, Digit);
 				Assert::AreEqual((uint32)8, Length);
 			}
+
+			// Only number string test
+			{
+				HopStep::HString OnlyNumberString(TEXT("1234782345"));
+				uint32 Digit = 0;
+				uint32 Length = 0;
+
+				HopStep::Internal::DetectTrailingDigitFromString(OnlyNumberString, Digit, Length);
+
+				Assert::AreEqual((uint32)1234782345, Digit);
+				Assert::AreEqual((uint32)10, Length);
+			}
+		}
+
+		TEST_METHOD(HName_)
+		{
+
 		}
 	};
 }

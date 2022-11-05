@@ -43,9 +43,9 @@ namespace HopStep
 
 		void DetectTrailingDigitFromString(const HString& NameString, uint32& Digit, uint32& DigitStringLength)
 		{
-			for (size_t index = NameString.length() - 1; index >= 0; --index)
+			for (int32 Index = static_cast<int32>(NameString.length() - 1); Index >= 0; --Index)
 			{
-				HChar TrailingCharacter = NameString[index];
+				HChar TrailingCharacter = NameString[Index];
 				if (TrailingCharacter < '0' || TrailingCharacter > '9')
 				{
 					break;
