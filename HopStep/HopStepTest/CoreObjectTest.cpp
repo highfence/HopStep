@@ -86,9 +86,13 @@ namespace HopStepTest
 			}
 		}
 
-		TEST_METHOD(HName_IsValidTest)
+		TEST_METHOD(HName_IsValid)
 		{
-			
+			HopStep::HName ValidName(TEXT("ValidName"));
+			Assert::IsTrue(ValidName.IsValid());
+
+			HopStep::HName InValidName;
+			Assert::IsFalse(InValidName.IsValid());
 		}
 	};
 }

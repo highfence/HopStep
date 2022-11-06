@@ -11,18 +11,22 @@ namespace HopStep
 		HNameEntryId() = default;
 		HNameEntryId(uint32 InValue) : Value(InValue) {};
 
+		uint32 GetValue() const { return Value; }
+
 	private:
 
 		uint32 Value;
 	};
 
 	/**
-	 * 
+	 * Hide NamePool implementation from who using HName.
 	 */
 	struct HNameEntry
 	{
-
-
+		bool IsValid() const
+		{
+			return Id.GetValue() != 0;
+		}
 
 	private:
 
@@ -77,6 +81,9 @@ namespace HopStep
 			uint32 TrailingDigitLength = 0;
 
 			DetectTrailingDigitFromString(NameString, TrailingDigit, TrailingDigitLength);
+
+			OutDigits = TrailingDigit;
+			OutEntry = HNameEntry(1);
 		}
 	}
 
@@ -112,7 +119,7 @@ namespace HopStep
 
 		bool IsValid() const
 		{
-			return NameEntry.
+			return NameEntry.IsValid();
 		}
 
 	private:
