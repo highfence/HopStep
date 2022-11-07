@@ -37,6 +37,11 @@ namespace HopStep
 
 		}
 
+		bool operator==(const HNameEntry& Other) const
+		{
+			return this->Id.GetValue() == Other.Id.GetValue();
+		}
+
 		bool IsValid() const
 		{
 			return Id.GetValue() != 0;
@@ -119,9 +124,11 @@ namespace HopStep
 			static void RegistEntryToPool(const HString& RawName, HNameEntry& OutEntry)
 			{
 				HNamePool& NamePool = HNamePool::GetNamePool();
-
+// todo : remove this pragma warning
+#pragma warning(disable: 4267)
 				uint32 Id = NamePool.Store(RawName);
 				OutEntry = HNameEntry(Id, RawName.length());
+#pragma warning(default: 4267)
 			}
 		};
 	}

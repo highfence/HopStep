@@ -19,7 +19,11 @@ namespace HopStep::Internal
 	uint32 HNamePool::GenerateHash(const HString& InString)
 	{
 		THash<HString> Hash{};
+		// Todo: very dangerous static_cast int64 hash to uint32. Must fix it.
+		// Just generated uint32 type hash, or use it 64bit.
+#pragma warning(disable: 4267)
 		return static_cast<uint32>(Hash(InString));
+#pragma warning(default: 4267)
 	}
 
 	HString HNamePool::FindString(uint32 Key) const

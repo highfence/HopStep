@@ -116,8 +116,22 @@ namespace HopStepTest
 
 		TEST_METHOD(HName_Test_Equlity)
 		{
-			HopStep::HString TestString();
+			HopStep::HString TestString(TEXT("THIS_IS_TEST_STRING"));
+			HopStep::HName TestCase1 = HopStep::HName(TestString);
+			HopStep::HName TestCase2 = HopStep::HName(TestString);
+			Assert::IsTrue(TestCase1 == TestCase2);
+			Assert::IsFalse(TestCase1 != TestCase2);
 
+			HopStep::HString OtherString(TEXT("THIS_IS_TEST_STRING_TOO"));
+			HopStep::HName OtherName = HopStep::HName(OtherString);
+			Assert::IsTrue(TestCase1 != OtherName);
+			Assert::IsFalse(TestCase1 == OtherName);
+
+			// Check digit containing
+			HopStep::HString DigitString(TEXT("THIS_IS_TEST_STRING_7893"));
+			HopStep::HName DigitName = HopStep::HName(DigitString);
+			Assert::IsTrue(TestCase1 != DigitName);
+			Assert::IsFalse(TestCase1 == DigitName);
 		}
 	};
 }

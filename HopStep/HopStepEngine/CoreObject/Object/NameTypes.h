@@ -33,6 +33,20 @@ namespace HopStep
 		/**
 		 * 
 		 */
+		bool operator==(const HName& Other) const
+		{
+			return this->NameEntry == Other.NameEntry && this->GetDigits() == Other.GetDigits();
+		}
+
+		bool operator!=(const HName& Other) const
+		{
+			return !(*this == Other);
+		}
+
+
+		/**
+		 * 
+		 */
 		HNameEntry GetEntry() const
 		{
 			return NameEntry;
