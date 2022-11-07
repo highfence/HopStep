@@ -7,7 +7,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace HopStepTest
 {
-	TEST_CLASS(CoreObjectTest)
+	TEST_CLASS(HNameTest)
 	{
 	public:
 		
