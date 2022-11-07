@@ -46,9 +46,9 @@ namespace HopStep
 				HString Result;
 				Entry.GetName(Result);
 
-				if (Digit != 0)
+				if (Digit != HNAME_NO_DIGITS)
 				{
-					Result.append(std::to_wstring(Digit));
+					Result.append(std::to_wstring(Digit - 1));
 				}
 
 				return Result;
@@ -71,7 +71,8 @@ namespace HopStep
 
 				DetectTrailingDigitFromString(NameString, TrailingDigit, TrailingDigitLength);
 
-				OutDigits = TrailingDigit;
+				// Store digit as real number + 1. For recognizing with HNAME_NO_DIGITS
+				OutDigits = TrailingDigitLength == 0 ? TrailingDigit : TrailingDigit + 1;
 				RegistEntryToPool(NameString.substr(0, NameString.length() - TrailingDigitLength), OutEntryKey);
 			}
 

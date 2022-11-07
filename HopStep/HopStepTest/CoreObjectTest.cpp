@@ -84,6 +84,18 @@ namespace HopStepTest
 				Assert::AreEqual((uint32)1234782345, Digit);
 				Assert::AreEqual((uint32)10, Length);
 			}
+
+			// Zero-terminated digit string test
+			{
+				HopStep::HString ZeroTerminateString(TEXT("StringWith0"));
+				uint32 Digit = 0;
+				uint32 Length = 0;
+
+				HopStep::Internal::HNameHelper::DetectTrailingDigitFromString(ZeroTerminateString, Digit, Length);
+
+				Assert::AreEqual((uint32)0, Digit);
+				Assert::AreEqual((uint32)1, Length);
+			}
 		}
 
 		TEST_METHOD(HName_Test_IsValid)
@@ -132,6 +144,12 @@ namespace HopStepTest
 			HopStep::HName DigitName = HopStep::HName(DigitString);
 			Assert::IsTrue(TestCase1 != DigitName);
 			Assert::IsFalse(TestCase1 == DigitName);
+
+			// Zero terminated digit string check
+			HopStep::HString ZeroTerminatedString(TEXT("THIS_IS_TEST_STRING0"));
+			HopStep::HName ZeroTerminateName = HopStep::HName(ZeroTerminatedString);
+			Assert::IsTrue(TestCase1 != ZeroTerminateName);
+			Assert::IsFalse(TestCase1 == ZeroTerminateName);
 		}
 	};
 }
