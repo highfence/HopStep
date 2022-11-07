@@ -16,7 +16,7 @@ namespace HopStep
 		 * 
 		 */
 		HName()
-			: NameEntry()
+			: NameEntryKey()
 			, Digits(HNAME_NO_DIGITS)
 		{
 
@@ -27,7 +27,7 @@ namespace HopStep
 		 */
 		HName(const HString& NameString)
 		{
-			Internal::HNameHelper::MakeName(NameString, NameEntry, Digits);
+			Internal::HNameHelper::MakeName(NameString, NameEntryKey, Digits);
 		}
 
 		/**
@@ -35,21 +35,12 @@ namespace HopStep
 		 */
 		bool operator==(const HName& Other) const
 		{
-			return this->NameEntry == Other.NameEntry && this->GetDigits() == Other.GetDigits();
+			return this->NameEntryKey == Other.NameEntryKey && this->GetDigits() == Other.GetDigits();
 		}
 
 		bool operator!=(const HName& Other) const
 		{
 			return !(*this == Other);
-		}
-
-
-		/**
-		 * 
-		 */
-		HNameEntry GetEntry() const
-		{
-			return NameEntry;
 		}
 
 		/**
@@ -65,7 +56,7 @@ namespace HopStep
 		 */
 		bool IsValid() const
 		{
-			return NameEntry.IsValid();
+			return NameEntryKey.IsValid();
 		}
 		
 		/**
@@ -75,7 +66,7 @@ namespace HopStep
 
 	private:
 
-		HNameEntry NameEntry;
+		HNameEntryId NameEntryKey;
 		uint32 Digits;
 	};
 }

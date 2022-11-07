@@ -13,49 +13,16 @@ namespace HopStep
 
 		uint32 GetValue() const { return Value; }
 
+		bool IsValid() const { return Value != 0; }
+
+		bool operator==(const HNameEntryId& Other) const
+		{
+			return this->GetValue() == Other.GetValue();
+		}
+
 	private:
 
 		uint32 Value;
-	};
-
-	/**
-	 * Hide NamePool implementation from who using HName.
-	 */
-	struct HNameEntry
-	{
-		HNameEntry()
-			: Id()
-			, NameLength(0)
-		{
-
-		}
-
-		explicit HNameEntry(uint32 InValue, uint32 InLength)
-			: Id(InValue)
-			, NameLength(InLength)
-		{
-
-		}
-
-		bool operator==(const HNameEntry& Other) const
-		{
-			return this->Id.GetValue() == Other.Id.GetValue();
-		}
-
-		bool IsValid() const
-		{
-			return Id.GetValue() != 0;
-		}
-
-		uint32 GetNameLength() const { return NameLength; }
-
-		HString GetString() const;
-
-	private:
-
-		uint32 NameLength;
-		// Todo: Don't store name string to pool. Handle with HNameEntry self.
-		HNameEntryId Id;
 	};
 
 	namespace Internal
@@ -70,11 +37,31 @@ namespace HopStep
 			/**
 			 *
 			 */
-			static void MakeName(const HString& NameString, HNameEntry& OutEntry, uint32& OutDigits)
+			static HString GetNameString(const HNameEntryId& EntryKey, uint32 Digit)
+			{
+				HNamePool& NamePool = HNamePool::GetNamePool();
+				
+				const HNameEntry& Entry = NamePool.FindEntry(EntryKey.GetValue());
+
+				HString Result;
+				Entry.GetName(Result);
+
+				if (Digit != 0)
+				{
+					Result.append(std::to_wstring(Digit));
+				}
+
+				return Result;
+			}
+
+			/**
+			 *
+			 */
+			static void MakeName(const HString& NameString, HNameEntryId& OutEntryKey, uint32& OutDigits)
 			{
 				if (NameString.empty())
 				{
-					OutEntry = HNameEntry();
+					OutEntryKey = HNameEntryId();
 					OutDigits = HNAME_NO_DIGITS;
 					return;
 				}
@@ -85,7 +72,7 @@ namespace HopStep
 				DetectTrailingDigitFromString(NameString, TrailingDigit, TrailingDigitLength);
 
 				OutDigits = TrailingDigit;
-				RegistEntryToPool(NameString.substr(0, NameString.length() - TrailingDigitLength), OutEntry);
+				RegistEntryToPool(NameString.substr(0, NameString.length() - TrailingDigitLength), OutEntryKey);
 			}
 
 			static int64 Atoi64(const HChar* Str, int32 Length)
@@ -121,13 +108,13 @@ namespace HopStep
 
 		private:
 
-			static void RegistEntryToPool(const HString& RawName, HNameEntry& OutEntry)
+			static void RegistEntryToPool(const HString& RawName, HNameEntryId& OutEntryKey)
 			{
 				HNamePool& NamePool = HNamePool::GetNamePool();
 // todo : remove this pragma warning
 #pragma warning(disable: 4267)
 				uint32 Id = NamePool.Store(RawName);
-				OutEntry = HNameEntry(Id, RawName.length());
+				OutEntryKey = HNameEntryId(Id);
 #pragma warning(default: 4267)
 			}
 		};

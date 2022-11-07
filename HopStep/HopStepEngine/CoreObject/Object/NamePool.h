@@ -1,6 +1,11 @@
 #pragma once
 #include "..\HopStepEngine\Core\HopStepCore.h"
 
+namespace HopStep
+{
+	constexpr uint32 MaxNameLength = 1024u;
+}
+
 namespace HopStep::Internal
 {
 	/**
@@ -23,6 +28,26 @@ namespace HopStep::Internal
 	/**
 	 * 
 	 */
+	struct HNameEntry
+	{
+		explicit HNameEntry(const HString& InValue);
+
+		/**
+		 *
+		 */
+		void GetName(HString& Out) const;
+
+		uint16 GetNameLength() const { return Length; }
+
+	private:
+
+		uint16 Length;
+		HChar Data[MaxNameLength];
+	};
+
+	/**
+	 * 
+	 */
 	class HNamePool
 	{
 	public:
@@ -38,12 +63,11 @@ namespace HopStep::Internal
 		// Todo: Move to FNameValue's domain
 		uint32 GenerateHash(const HString& InString);
 
-		// Todo: Remove this.
-		HString FindString(uint32 Key) const;
+		const HNameEntry& FindEntry(uint32 Key);
 
 	private:
 
 		// Todo: Divide this to NameShards
-		TMap<uint32, HString> NameEntries;
+		TMap<uint32, HNameEntry> NameEntries;
 	};
 }
