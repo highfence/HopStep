@@ -101,6 +101,11 @@ namespace HopStepTest
 			HopStep::HName TestName = HopStep::HName(TestString);
 
 			Assert::AreEqual(TestString, TestName.ToString());
+
+			HopStep::HString AnotherTestString(TEXT("AnotherTestString"));
+			HopStep::HName AnotherTestName = HopStep::HName(AnotherTestString);
+
+			Assert::AreEqual(AnotherTestString, AnotherTestName.ToString());
 		}
 	};
 }

@@ -3,6 +3,16 @@
 
 namespace HopStep
 {
+	/**
+	 * Primitive type related overrides
+	 */
+	using HByte = std::byte;
+	using HSize = std::size_t;
+	using HAny = std::any;
+
+	/**
+	 * String type related overrides
+	 */
 	using HChar = wchar_t;
 
 	using HString = std::basic_string<HChar>;
@@ -11,28 +21,37 @@ namespace HopStep
 
 	using HStringStream = std::basic_stringstream<HChar>;
 
-	template <class TValueType>
-	using TOptional = std::optional<TValueType>;
-
+	/**
+	 * Container type related overrides
+	 */
+	// Todo: replace this to TArray.
 	template <class TValueType>
 	using HArray = std::vector<TValueType>;
 
+	template <typename TArgs>
+	using TTuple = std::tuple<TArgs>;
+
+	template <typename TKey, typename TValue>
+	using TMap = std::unordered_map<TKey, TValue>;
+
+	/**
+	 * Smart pointer type related overrides.
+	 */
 	template <class TType>
 	using HUniquePtr = std::unique_ptr<TType>;
 
-	using HByte = std::byte;
-
-	using HAny = std::any;
-
-	using HSize = std::size_t;
-
+	/**
+	 * Util type related overrides
+	 */
 	template <class TNumericType>
 	using TNumericLimits = std::numeric_limits<TNumericType>;
 
 	template <class TType>
 	using TAtomic = std::atomic<TType>;
 
-	template <typename TArgs>
-	using TTuple = std::tuple<TArgs>;
+	template <class TValueType>
+	using TOptional = std::optional<TValueType>;
 
+	template <class THashType>
+	using THash = std::hash<THashType>;
 }

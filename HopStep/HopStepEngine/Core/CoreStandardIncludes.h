@@ -20,6 +20,7 @@
 #include <atomic>
 #include <tuple>
 #include <functional>
+#include <unordered_map>
 
 #include "HopStepDefine.h"
 

@@ -57,10 +57,7 @@ namespace HopStep
 		/**
 		 * 
 		 */
-		HString ToString() const 
-		{
-			return TEXT("");
-		}
+		HString ToString() const;
 
 	private:
 
