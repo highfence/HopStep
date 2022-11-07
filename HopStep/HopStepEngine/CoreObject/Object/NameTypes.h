@@ -23,6 +23,20 @@ namespace HopStep
 	 */
 	struct HNameEntry
 	{
+		HNameEntry()
+			: Id()
+			, NameLength(0)
+		{
+
+		}
+
+		explicit HNameEntry(uint32 InValue)
+			: Id(InValue)
+			, NameLength(0)
+		{
+
+		}
+
 		bool IsValid() const
 		{
 			return Id.GetValue() != 0;
@@ -94,6 +108,9 @@ namespace HopStep
 	{
 	public:
 
+		/**
+		 * 
+		 */
 		HName()
 			: NameEntry()
 			, Digits(HNAME_NO_DIGITS)
@@ -101,25 +118,44 @@ namespace HopStep
 
 		}
 
+		/**
+		 * 
+		 */
 		HName(const HString& NameString)
 		{
 			Internal::MakeName(NameString, NameEntry, Digits);
 		}
 
-
+		/**
+		 * 
+		 */
 		HNameEntry GetEntry() const
 		{
 			return NameEntry;
 		}
 
+		/**
+		 * 
+		 */
 		uint32 GetDigits() const
 		{
 			return Digits;
 		}
 
+		/**
+		 * 
+		 */
 		bool IsValid() const
 		{
 			return NameEntry.IsValid();
+		}
+		
+		/**
+		 * 
+		 */
+		HString ToString() const 
+		{
+
 		}
 
 	private:
