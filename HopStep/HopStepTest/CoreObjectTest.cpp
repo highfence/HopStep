@@ -106,6 +106,18 @@ namespace HopStepTest
 			HopStep::HName AnotherTestName = HopStep::HName(AnotherTestString);
 
 			Assert::AreEqual(AnotherTestString, AnotherTestName.ToString());
+
+			// Check digit containing FName
+			HopStep::HString DigitContainString(TEXT("DigitString1255"));
+			HopStep::HName DigitName = HopStep::HName(DigitContainString);
+
+			Assert::AreEqual(DigitContainString, DigitName.ToString());
+		}
+
+		TEST_METHOD(HName_Test_Equlity)
+		{
+			HopStep::HString TestString();
+
 		}
 	};
 }

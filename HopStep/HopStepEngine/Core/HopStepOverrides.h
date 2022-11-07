@@ -14,11 +14,8 @@ namespace HopStep
 	 * String type related overrides
 	 */
 	using HChar = wchar_t;
-
 	using HString = std::basic_string<HChar>;
-	
 	using HStringView = std::basic_string_view<HChar>;
-
 	using HStringStream = std::basic_stringstream<HChar>;
 
 	/**
