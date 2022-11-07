@@ -19,7 +19,7 @@ namespace HopStepTest
 				uint32 MustBeNoDigit = 0;
 				uint32 MustBeNoLength = 0;
 
-				HopStep::Internal::DetectTrailingDigitFromString(NoDigitString, MustBeNoDigit, MustBeNoLength);
+				HopStep::Internal::HNameHelper::DetectTrailingDigitFromString(NoDigitString, MustBeNoDigit, MustBeNoLength);
 
 				Assert::AreEqual((uint32)0, MustBeNoDigit);
 				Assert::AreEqual((uint32)0, MustBeNoLength);
@@ -31,7 +31,7 @@ namespace HopStepTest
 				uint32 Digit = 0;
 				uint32 Length = 0;
 
-				HopStep::Internal::DetectTrailingDigitFromString(OneDigitString, Digit, Length);
+				HopStep::Internal::HNameHelper::DetectTrailingDigitFromString(OneDigitString, Digit, Length);
 
 				Assert::AreEqual((uint32)9, Digit);
 				Assert::AreEqual((uint32)1, Length);
@@ -43,7 +43,7 @@ namespace HopStepTest
 				uint32 Digit = 0;
 				uint32 Length = 0;
 
-				HopStep::Internal::DetectTrailingDigitFromString(MultipleDigitString, Digit, Length);
+				HopStep::Internal::HNameHelper::DetectTrailingDigitFromString(MultipleDigitString, Digit, Length);
 
 				Assert::AreEqual((uint32)49783, Digit);
 				Assert::AreEqual((uint32)5, Length);
@@ -55,7 +55,7 @@ namespace HopStepTest
 				uint32 Digit = 0;
 				uint32 Length = 0;
 
-				HopStep::Internal::DetectTrailingDigitFromString(MinusDigitString, Digit, Length);
+				HopStep::Internal::HNameHelper::DetectTrailingDigitFromString(MinusDigitString, Digit, Length);
 
 				Assert::AreEqual((uint32)883, Digit);
 				Assert::AreEqual((uint32)3, Length);
@@ -67,7 +67,7 @@ namespace HopStepTest
 				uint32 Digit = 0;
 				uint32 Length = 0;
 
-				HopStep::Internal::DetectTrailingDigitFromString(DigitInsideString, Digit, Length);
+				HopStep::Internal::HNameHelper::DetectTrailingDigitFromString(DigitInsideString, Digit, Length);
 
 				Assert::AreEqual((uint32)27649473, Digit);
 				Assert::AreEqual((uint32)8, Length);
@@ -79,7 +79,7 @@ namespace HopStepTest
 				uint32 Digit = 0;
 				uint32 Length = 0;
 
-				HopStep::Internal::DetectTrailingDigitFromString(OnlyNumberString, Digit, Length);
+				HopStep::Internal::HNameHelper::DetectTrailingDigitFromString(OnlyNumberString, Digit, Length);
 
 				Assert::AreEqual((uint32)1234782345, Digit);
 				Assert::AreEqual((uint32)10, Length);
