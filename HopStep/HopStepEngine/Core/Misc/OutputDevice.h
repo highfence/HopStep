@@ -2,30 +2,18 @@
 #include "Core/HopStepCore.h"
 #include "Core/Logger/LoggerBase.h"
 
-using namespace HopStep;
-
-/**
- *
- */
-class IOutputDevice
+namespace HopStep
 {
-public:
-
 	/**
-	 * todo : string view to HName
+	 * Output device interface
 	 */
-	virtual void Serialize(const HChar* Value, LogType Verbosity, const HStringView& Catergory) abstract;
-};
+	class IOutputDevice
+	{
+	public:
 
-/**
- *
- */
-class HStringOutputDevice : public IOutputDevice
-{
-public:
-
-	virtual void Serialize(const HChar* Value, LogType Verbosity, const HStringView& Catergory) override;
-
-private :
-
-};
+		/**
+		 * todo : string view to HName
+		 */
+		virtual void Serialize(const HChar* Value, LogType Verbosity, const class HName& Catergory) = 0;
+	};
+}

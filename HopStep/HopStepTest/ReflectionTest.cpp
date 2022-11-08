@@ -191,6 +191,12 @@ namespace HopStepTest
 			Assert::AreEqual((int32)3, (int32)PropertyPtr->size());
 		}
 
+		TEST_METHOD(Reflection_Test_ClipboardExportProperties)
+		{
+
+
+		}
+
 		TEST_METHOD(OffsetTest)
 		{
 			struct TestStruct

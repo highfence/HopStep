@@ -226,6 +226,7 @@
     <ClInclude Include="Intermediate\ReflectionTest.generated.h" />
     <ClInclude Include="Runtime\Engine\EngineLoop.h" />
     <ClInclude Include="Runtime\Engine\Exporter.h" />
+    <ClInclude Include="Runtime\Engine\HopStepString.h" />
     <ClInclude Include="Runtime\Launch\LaunchWindows.h" />
   </ItemGroup>
   <ItemGroup>
