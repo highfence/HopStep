@@ -1,5 +1,5 @@
 #pragma once
-#include "../HopStepCore.h"
+#include "../CoreExport.h"
 
 namespace HopStep
 {

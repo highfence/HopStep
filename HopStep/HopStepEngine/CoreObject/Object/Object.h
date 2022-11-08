@@ -1,5 +1,5 @@
 #pragma once
-#include "Core\HopStepCore.h"
+#include "Core\CoreExport.h"
 #include "CoreObject\Reflection\ReflectionMacro.h"
 #include "ObjectBase.h"
 #include "Intermediate\Object.generated.h"

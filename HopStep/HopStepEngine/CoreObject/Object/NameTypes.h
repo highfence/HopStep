@@ -1,10 +1,9 @@
 #pragma once
-#include "..\HopStepEngine\Core\HopStepCore.h"
+#include "..\HopStepEngine\Core\CoreExport.h"
 #include "NameHelper.h"
 
 namespace HopStep
 {
-
 	/**
 	 * 
 	 */
@@ -66,7 +65,14 @@ namespace HopStep
 
 	private:
 
+		/**
+		 * 
+		 */
 		HNameEntryId NameEntryKey;
+
+		/**
+		 * 
+		 */
 		uint32 Digits;
 	};
 }

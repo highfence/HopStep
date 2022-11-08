@@ -162,9 +162,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="HopStep.h" />
+    <ClInclude Include="Core\CoreExport.h" />
     <ClInclude Include="Core\CoreGlobals.h" />
     <ClInclude Include="Core\CoreStandardIncludes.h" />
-    <ClInclude Include="Core\HopStepCore.h" />
     <ClInclude Include="Core\HopStepDefine.h" />
     <ClInclude Include="Core\HopStepOverrides.h" />
     <ClInclude Include="Core\PrimitiveTypeDefines.h" />
@@ -189,6 +189,7 @@
     <ClInclude Include="Core\Templates\HopStepTemplates.h" />
     <ClInclude Include="Core\Templates\RemoveConst.h" />
     <ClInclude Include="Core\Templates\RemoveReference.h" />
+    <ClInclude Include="CoreObject\CoreObjectExport.h" />
     <ClInclude Include="CoreObject\Object\NameHelper.h" />
     <ClInclude Include="CoreObject\Object\NamePool.h" />
     <ClInclude Include="CoreObject\Object\NameTypes.h" />
@@ -200,7 +201,6 @@
     <ClInclude Include="CoreObject\Reflection\Field.h" />
     <ClInclude Include="CoreObject\Reflection\Function.h" />
     <ClInclude Include="CoreObject\Reflection\PrimitiveProperty.h" />
-    <ClInclude Include="CoreObject\Reflection\PrimitiveType.h" />
     <ClInclude Include="CoreObject\Reflection\Property.h" />
     <ClInclude Include="CoreObject\Reflection\ReflectionConcepts.h" />
     <ClInclude Include="CoreObject\Reflection\ReflectionMacro.h" />
@@ -299,10 +299,6 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="CoreObject\Reflection\PrimitiveProperty.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-    </ClCompile>
-    <ClCompile Include="CoreObject\Reflection\PrimitiveType.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>

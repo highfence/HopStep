@@ -1,5 +1,5 @@
 #include "NamePool.h"
-#include "..\HopStepEngine\Core\HopStepCore.h"
+#include "..\HopStepEngine\Core\CoreExport.h"
 
 namespace HopStep::Internal
 {

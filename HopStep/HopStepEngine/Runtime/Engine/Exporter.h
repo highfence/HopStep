@@ -1,15 +1,16 @@
 #pragma once
 #include "HopStep.h"
 
-using namespace HopStep;
-
-class HExporter
+namespace HopStep
 {
-public:
+	class HExporter
+	{
+	public:
 
-	/**
-	 * Todo : Make find exporter and use it.
-	 */
-	static void ExportToOutputDevice(const class IOutputDevice* DeviceInterface, const class HObject* Object);
+		/**
+		 * Todo : Make find exporter and use it.
+		 */
+		static void ExportToOutputDevice(const class IOutputDevice* DeviceInterface, const class HObject* Object);
 
-};
+	};
+}

@@ -1,4 +1,4 @@
-#include "..\HopStepEngine\Core\HopStepCore.h"
+#include "..\HopStepEngine\Core\CoreExport.h"
 #include "NamePool.h"
 #include "NameHelper.h"
 

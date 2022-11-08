@@ -1,5 +1,5 @@
 #pragma once
-#include "..\HopStepEngine\Core\HopStepCore.h"
+#include "..\HopStepEngine\Core\CoreExport.h"
 #include "NamePool.h"
 
 namespace HopStep
