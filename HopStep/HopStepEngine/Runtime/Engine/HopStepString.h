@@ -1,10 +1,14 @@
 #pragma once
-#include "HopStep.h"
+#include "..\..\Core\CoreExport.h"
+#include "..\..\CoreObject\CoreObjectExport.h"
+#include "..\..\Core\Misc\OutputDevice.h"
 
-using namespace HopStep;
-
-class HStringOutputDevice
+namespace HopStep
 {
-public:
+	class HStringOutputDevice : public IOutputDevice
+	{
+	public:
 
-};
+		virtual void Serialize(const HChar* Value, LogType Verbosity, const class HName& Catergory) override;
+	};
+}
