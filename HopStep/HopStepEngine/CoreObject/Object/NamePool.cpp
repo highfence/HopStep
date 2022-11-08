@@ -20,11 +20,8 @@ namespace HopStep::Internal
 	uint32 HNamePool::GenerateHash(const HString& InString)
 	{
 		THash<HString> Hash{};
-		// Todo: very dangerous static_cast int64 hash to uint32. Must fix it.
-		// Just generated uint32 type hash, or use it 64bit.
-#pragma warning(disable: 4267)
+		// Todo: use upper 32 bit to determine shard index. and lower 32bit to hash.
 		return static_cast<uint32>(Hash(InString));
-#pragma warning(default: 4267)
 	}
 
 	const HNameEntry& HNamePool::FindEntry(uint32 Key)
@@ -34,7 +31,7 @@ namespace HopStep::Internal
 	}
 
 	HNameEntry::HNameEntry(const HString& InValue)
-		: Length(InValue.length())
+		: Length(static_cast<uint16>(InValue.length()))
 	{
 		HopStep::Core::Misc::HGenericMemory::MemSet((void*)Data, '\0', MaxNameLength * sizeof(HChar));
 		HopStep::Core::Misc::HGenericMemory::MemCpy((void*)Data, (void*)InValue.c_str(), InValue.length() * sizeof(HChar));

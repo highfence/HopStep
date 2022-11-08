@@ -112,11 +112,8 @@ namespace HopStep
 			static void RegistEntryToPool(const HString& RawName, HNameEntryId& OutEntryKey)
 			{
 				HNamePool& NamePool = HNamePool::GetNamePool();
-// todo : remove this pragma warning
-#pragma warning(disable: 4267)
 				uint32 Id = NamePool.Store(RawName);
 				OutEntryKey = HNameEntryId(Id);
-#pragma warning(default: 4267)
 			}
 		};
 	}
