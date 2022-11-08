@@ -1,6 +1,6 @@
 #include "Class.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	const HFunction* HClass::FindFunction(const HString& FunctionName) const
 	{

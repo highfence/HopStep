@@ -2,7 +2,7 @@
 #include "Core/HopStepOverrides.h"
 #include "Core/PrimitiveTypeDefines.h"
 
-namespace HopStep::Core::Misc
+namespace HopStep
 {
 	class HGenericMemory
 	{

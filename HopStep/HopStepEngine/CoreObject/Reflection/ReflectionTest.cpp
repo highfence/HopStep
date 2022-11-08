@@ -1,6 +1,6 @@
 #include "ReflectionTest.h"
 
-using namespace HopStep::CoreObject::Reflection;
+using namespace HopStep;
 
 int32 HFunctionTestObject::Add(int32 A, int32 B)
 {

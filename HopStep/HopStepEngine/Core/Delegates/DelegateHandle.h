@@ -1,7 +1,7 @@
 #pragma once
 #include "..\PrimitiveTypeDefines.h"
 
-namespace HopStep::Core::Delegates
+namespace HopStep
 {
 	class HDelegateHandle
 	{

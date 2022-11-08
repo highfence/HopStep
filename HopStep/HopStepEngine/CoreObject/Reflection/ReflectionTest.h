@@ -4,7 +4,7 @@
 #include "..\HopStepEngine\CoreObject\Object\Object.h"
 #include "..\HopStepEngine\Intermediate\ReflectionTest.generated.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 #if HopStep_UnitTest
 

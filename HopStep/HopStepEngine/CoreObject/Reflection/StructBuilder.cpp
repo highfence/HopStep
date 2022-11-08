@@ -2,7 +2,7 @@
 #include "Class.h"
 #include "StructBuilder.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	void HStructBuilder::AddNativeFunction(HClass* InOwnerClass, HNativeFuncPtr FuncPtr, HString FunctionName)
 	{

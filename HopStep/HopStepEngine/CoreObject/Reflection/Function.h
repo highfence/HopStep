@@ -3,9 +3,9 @@
 #include "..\..\Core\Container\VariadicStack.h"
 #include "ScriptMacros.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
-	using HVariadicStack256 = HopStep::Container::HVariadicStack<256>;
+	using HVariadicStack256 = HopStep::HVariadicStack<256>;
 	/*
 	 */
 	struct HFunctionCallFrame : public HVariadicStack256

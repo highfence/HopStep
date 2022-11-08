@@ -1,6 +1,6 @@
 #include "Property.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 
 

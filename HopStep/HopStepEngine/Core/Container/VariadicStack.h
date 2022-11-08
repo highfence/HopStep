@@ -4,9 +4,9 @@
 #include "..\Misc\GenericMemory.h"
 #include "..\Misc\DebugUtils.h"
 
-namespace HopStep::Container
+namespace HopStep
 {
-	using HGenericMemory = ::HopStep::Core::Misc::HGenericMemory;
+	using HGenericMemory = ::HopStep::HGenericMemory;
 
 	template <int32 StackSize = 1024>
 	struct HVariadicStack

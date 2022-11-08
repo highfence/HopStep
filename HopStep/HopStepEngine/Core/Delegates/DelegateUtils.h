@@ -1,6 +1,6 @@
 #pragma once
 
-namespace HopStep::Core::Delegates
+namespace HopStep
 {
 	/**
 	 * Helper template for class method type define.

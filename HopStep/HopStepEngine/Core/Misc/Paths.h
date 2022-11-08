@@ -1,7 +1,7 @@
 #pragma once
 #include "../HopStepCore.h"
 
-namespace HopStep::Paths
+namespace HopStep
 {
 	HString EnginePath()
 	{

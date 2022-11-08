@@ -33,8 +33,8 @@ namespace HopStep::Internal
 	HNameEntry::HNameEntry(const HString& InValue)
 		: Length(static_cast<uint16>(InValue.length()))
 	{
-		HopStep::Core::Misc::HGenericMemory::MemSet((void*)Data, '\0', MaxNameLength * sizeof(HChar));
-		HopStep::Core::Misc::HGenericMemory::MemCpy((void*)Data, (void*)InValue.c_str(), InValue.length() * sizeof(HChar));
+		HopStep::HGenericMemory::MemSet((void*)Data, '\0', MaxNameLength * sizeof(HChar));
+		HopStep::HGenericMemory::MemCpy((void*)Data, (void*)InValue.c_str(), InValue.length() * sizeof(HChar));
 	}
 
 	void HNameEntry::GetName(HString& Out) const

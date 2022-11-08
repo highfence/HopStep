@@ -1,7 +1,7 @@
 #pragma once
 #include "Core\CoreStandardIncludes.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	class HProperty;
 }
@@ -13,6 +13,6 @@ concept StaticClassGetable = requires
 };
 
 template <class TType>
-concept HPropertyDerived = std::derived_from<TType, HopStep::CoreObject::Reflection::HProperty>;
+concept HPropertyDerived = std::derived_from<TType, HopStep::HProperty>;
 
 

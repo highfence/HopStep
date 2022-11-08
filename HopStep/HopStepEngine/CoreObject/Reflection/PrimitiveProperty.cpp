@@ -1,6 +1,6 @@
 #include "PrimitiveProperty.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	// todo : Fix this
 	void HNumericProperty::ExportToString(HString& TextOutput, void const* ObjectPtr) const

@@ -3,7 +3,7 @@
 #include "IDelegateInstance.h"
 #include "DelegateInstances.h"
 
-namespace HopStep::Core::Delegates
+namespace HopStep
 {
 	class HDelegateBase
 	{

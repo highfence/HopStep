@@ -7,7 +7,7 @@
 #include "ReflectionConcepts.h"
 #include "Function.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	struct HStructBuilder
 	{

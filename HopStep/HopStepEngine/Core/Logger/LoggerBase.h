@@ -3,7 +3,7 @@
 #include "Core\CoreStandardIncludes.h"
 #include "Core\HopStepOverrides.h"
 
-namespace HopStep::Core::Logger
+namespace HopStep
 {
 	constexpr int32 ConsoleLogMaxLength = 256;
 

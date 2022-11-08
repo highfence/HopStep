@@ -1,7 +1,7 @@
 #include "TypeLibrary.h"
 #include "Type.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	void HType::RegisterToLibrary()
 	{

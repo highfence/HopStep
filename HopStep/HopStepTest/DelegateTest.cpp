@@ -4,7 +4,7 @@
 #include "..\HopStepEngine\Core\Delegates\DelegateSigniture.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-using namespace HopStep::Core::Delegates;
+using namespace HopStep;
 
 namespace HopStepTest
 {

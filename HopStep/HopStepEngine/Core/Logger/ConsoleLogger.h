@@ -2,7 +2,7 @@
 #include "LoggerBase.h"
 #include "Core\HopStepOverrides.h"
 
-namespace HopStep::Core::Logger
+namespace HopStep
 {
 	class HConsoleLogger final : public HLoggerBase
 	{

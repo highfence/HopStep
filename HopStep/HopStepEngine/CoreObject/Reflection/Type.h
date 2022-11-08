@@ -1,7 +1,7 @@
 #pragma once
 #include "Field.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	/**
 	 * Provides type library to interface

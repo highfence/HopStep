@@ -2,7 +2,7 @@
 #include "Property.h"
 #include "Enum.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	class HNumericProperty : public HProperty
 	{

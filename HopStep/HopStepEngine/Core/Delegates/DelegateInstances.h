@@ -8,7 +8,7 @@
 #include "..\Misc\DebugUtils.h"
 #include "..\Templates\RemoveConst.h"
 
-namespace HopStep::Core::Delegates
+namespace HopStep
 {
 	/**
 	 * Extend IDelegateInstance interface to template

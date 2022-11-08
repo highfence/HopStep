@@ -1,7 +1,7 @@
 #include "..\HopStepOverrides.h"
 #include "DelegateHandle.h"
 
-using namespace HopStep::Core::Delegates;
+using namespace HopStep;
 
 namespace Internal
 {

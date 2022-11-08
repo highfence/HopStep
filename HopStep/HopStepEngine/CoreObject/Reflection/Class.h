@@ -3,7 +3,7 @@
 #include "Function.h"
 #include "..\..\Core\HopStepOverrides.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	/**
 	* Manage Class Default Object (CDO) & Functions

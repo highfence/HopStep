@@ -96,7 +96,7 @@ namespace ToolTest
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest.generated.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "");
-                Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep::CoreObject::Reflection;");
+                Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep;");
                 Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "void HReflectionTest::__Fill_Class_Property_HReflectionTest(HClass* InStaticClass)");
                 Assert.AreEqual(cppLines[cppIndex++], "{");
@@ -172,7 +172,7 @@ namespace ToolTest
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest3.generated.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest3.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "");
-                Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep::CoreObject::Reflection;");
+                Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep;");
                 Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "void HReflectionTest3::__Fill_Class_Property_HReflectionTest3(HClass* InStaticClass)");
                 Assert.AreEqual(cppLines[cppIndex++], "{");
@@ -263,7 +263,7 @@ namespace ToolTest
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest4.generated.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest4.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "");
-                Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep::CoreObject::Reflection;");
+                Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep;");
                 Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "void HReflectionTest4::__Fill_Class_Property_HReflectionTest4(HClass* InStaticClass)");
                 Assert.AreEqual(cppLines[cppIndex++], "{");

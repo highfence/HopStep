@@ -2,7 +2,7 @@
 #include "ReflectionTest.generated.h"
 #include "CoreObject\Reflection\ReflectionTest.h"
 
-using namespace HopStep::CoreObject::Reflection;
+using namespace HopStep;
 
 void HInnerClassTest::__Fill_Class_Property_HInnerClassTest(HClass* InStaticClass)
 {

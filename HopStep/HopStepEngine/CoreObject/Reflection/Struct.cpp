@@ -3,7 +3,7 @@
 #include "Property.h"
 #include "Struct.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	HStruct* HStruct::GetSuper() const
 	{

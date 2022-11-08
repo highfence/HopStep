@@ -94,7 +94,7 @@ namespace HopStepHeaderTool
 			}
 
 			sb.AppendLine();
-			sb.AppendLine($"using namespace HopStep::CoreObject::Reflection;");
+			sb.AppendLine($"using namespace HopStep;");
 
 			foreach (var typeInfo in schemasInHeader)
 			{

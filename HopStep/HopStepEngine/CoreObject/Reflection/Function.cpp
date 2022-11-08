@@ -1,6 +1,6 @@
 #include "Function.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	void HNativeFunction::InvokeImpl(void* Instance, HFunctionCallFrame& InvokeFrame, HFUNC_RESULT_DECL_INNER) const
 	{

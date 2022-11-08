@@ -2,7 +2,7 @@
 #include "Field.h"
 #include "Core/HopStepOverrides.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	class HEnum : public HField 
 	{

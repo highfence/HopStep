@@ -1,7 +1,7 @@
 #include "HopStep.h"
 #include "GenericMemory.h"
 
-namespace HopStep::Core::Misc
+namespace HopStep
 {
 	void HGenericMemory::MemSet(void* Dest, int32 value, HSize memorySize)
 	{

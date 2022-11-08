@@ -3,7 +3,7 @@
 #include "Class.h"
 #include "ScriptMacros.h"
 
-using namespace HopStep::CoreObject::Reflection;
+using namespace HopStep;
 
 /*
 	Defines used by HeaderTool parsing.

@@ -2,7 +2,7 @@
 #include "TypeLibrary.h"
 
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	HTypeLibrary::~HTypeLibrary()
 	{

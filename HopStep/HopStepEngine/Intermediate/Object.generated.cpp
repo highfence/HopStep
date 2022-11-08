@@ -2,7 +2,7 @@
 #include "Object.generated.h"
 #include "CoreObject\Object\Object.h"
 
-using namespace HopStep::CoreObject::Reflection;
+using namespace HopStep;
 
 void HObject::__Fill_Class_Property_HObject(HClass* InStaticClass)
 {

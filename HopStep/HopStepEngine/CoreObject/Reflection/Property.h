@@ -2,7 +2,7 @@
 #include "Field.h"
 #include "..\..\Core\HopStepCore.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	enum class EPropertyFlag : uint64
 	{

@@ -2,7 +2,7 @@
 #include "..\HopStepOverrides.h"
 #include "DelegateHandle.h"
 
-namespace HopStep::Core::Delegates
+namespace HopStep
 {
 	class IDelegateInstance
 	{

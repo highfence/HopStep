@@ -3,7 +3,7 @@
 #include "Property.h"
 #include "Type.h"
 
-namespace HopStep::CoreObject::Reflection
+namespace HopStep
 {
 	/**
 	 * Manage inheritance & properties

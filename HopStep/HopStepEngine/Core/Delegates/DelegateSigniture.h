@@ -7,7 +7,7 @@
 #include "..\Templates\HopStepTemplates.h"
 #include "..\Misc\DebugUtils.h"
 
-namespace HopStep::Core::Delegates
+namespace HopStep
 {
 	template <typename TDelegateSigniture, typename TDelegatePolicy = HDefaultDelegatePolicy>
 	class TDelegate;

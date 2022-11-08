@@ -2,7 +2,7 @@
 #include "..\CoreStandardIncludes.h"
 #include "IDelegateInstance.h"
 
-using DelegateInstanceInterface = HopStep::Core::Delegates::IDelegateInstance;
+using DelegateInstanceInterface = HopStep::IDelegateInstance;
 
 template <class TDelegatePolicyType>
 concept DelegatePolicy = requires
