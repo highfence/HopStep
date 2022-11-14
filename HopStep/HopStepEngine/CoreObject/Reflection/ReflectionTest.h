@@ -133,5 +133,21 @@ namespace HopStep
 		HArray<int32> ArrayProperty;
 	};
 
+	HCLASS();
+	class HObjectDerivedTestObject : public HObject
+	{
+		DECLARE_CLASS_BODY(HObjectDerivedTestObject);
+
+	public:
+
+		HPROPERTY();
+		int32 IntPropA;
+
+		HPROPERTY();
+		HString StringPropB;
+
+		HPROPERTY();
+		bool BooleanPropC;
+	};
 #endif
 }

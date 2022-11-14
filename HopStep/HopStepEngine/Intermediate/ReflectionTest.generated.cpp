@@ -73,3 +73,13 @@ void HContainerReflectionTestObject::__Fill_Class_Property_HContainerReflectionT
 }
 
 IMPLEMENT_CLASS(HContainerReflectionTestObject);
+
+void HObjectDerivedTestObject::__Fill_Class_Property_HObjectDerivedTestObject(HClass* InStaticClass)
+{
+	HStructBuilder::AddProperty<HObjectDerivedTestObject, int32, HNumericProperty>(InStaticClass, TEXT("IntPropA"), &HObjectDerivedTestObject::IntPropA);
+	HStructBuilder::AddProperty<HObjectDerivedTestObject, HString, HStringProperty>(InStaticClass, TEXT("StringPropB"), &HObjectDerivedTestObject::StringPropB);
+	HStructBuilder::AddProperty<HObjectDerivedTestObject, bool, HBooleanProperty>(InStaticClass, TEXT("BooleanPropC"), &HObjectDerivedTestObject::BooleanPropC);
+	HStructBuilder::SetSuper<HObject>(InStaticClass);
+}
+
+IMPLEMENT_CLASS(HObjectDerivedTestObject);
