@@ -4,9 +4,14 @@
 
 #ifdef HopStep_On_Windows
 
-INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow)
+int WINAPI WinMain(
+	_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ PSTR lpCmdLine,
+	_In_ INT nCmdShow)
 {
-	std::cout << "Hello world!" << std::endl;
+
+
 	system("pause");
 
 	return 0;
