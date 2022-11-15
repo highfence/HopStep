@@ -7,3 +7,4 @@
 #include "Misc/DebugUtils.h"
 #include "Core/Misc/GenericMemory.h"
 #include "Logger/LoggerBase.h"
+#include "Misc/CommandLine.h"

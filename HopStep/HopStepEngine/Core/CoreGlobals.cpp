@@ -1,4 +1,13 @@
 #include "CoreGlobals.h"
 #include "Misc/EngineConfig.h"
 
-HEngineConfig* GConfig = nullptr;
+namespace HopStep
+{
+	bool GIsRequestingExit = false;
+	bool IsEngineExitRequested()
+	{
+		return GIsRequestingExit;
+	}
+
+	HEngineConfig* GConfig = nullptr;
+}

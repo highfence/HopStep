@@ -1,10 +1,12 @@
 #pragma once
 #include "..\HopStepOverrides.h"
 
-class HEngineConfig
+namespace HopStep
 {
-public:
+	class HEngineConfig
+	{
+	public:
 
-	void InitializeConfig(const HopStep::HString& ConfigPath);
-};
-
+		void InitializeConfig(const HopStep::HString& ConfigPath);
+	};
+}
