@@ -1,6 +1,6 @@
 #pragma once
-#include "Core/CoreExport.h"
-#include "Core/Logger/LoggerBase.h"
+#include "..\CoreExport.h"
+#include "..\Logger\LoggerBase.h"
 
 namespace HopStep
 {
@@ -12,7 +12,7 @@ namespace HopStep
 	public:
 
 		/**
-		 * todo : string view to HName
+		 * 
 		 */
 		virtual void Serialize(const HChar* Value, LogType Verbosity, const class HName& Catergory) = 0;
 	};

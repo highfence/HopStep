@@ -19,7 +19,8 @@ namespace HopStepTest
 			HopStep::HObjectDerivedTestObject Object;
 			HopStep::HExporter::ExportToOutputDevice(&Device, &Object);
 
-			// Todo: How can I get this string?
+			const HString& ObjectString = Device.GetValue();
+			Assert::IsFalse(ObjectString.empty());
 		}
 	};
 }

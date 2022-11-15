@@ -7,12 +7,12 @@ namespace HopStep
 {
 	namespace HCharExtention
 	{
-		const HChar* EmptyChar = TEXT("");
+		const static HChar* EmptyChar = TEXT("");
 	}
 
 	namespace HStringExtension
 	{
-		const HString EmptyString = HString(EmptyChar);
+		const static HString EmptyString = HString(TEXT(""));
 	}
 
 	class HStringOutputDevice : public IOutputDevice
@@ -31,6 +31,8 @@ namespace HopStep
 		{
 			return Value += Other;
 		}
+
+		const HString& GetValue() const { return Value; }
 
 	private:
 
