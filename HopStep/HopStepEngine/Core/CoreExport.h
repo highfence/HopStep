@@ -9,3 +9,5 @@
 #include "Logger/LoggerBase.h"
 #include "Misc/CommandLine.h"
 #include "Misc/CommandExecutable.h"
+#include "Windows/WindowsPlatformTime.h"
+#include "Misc/App.h"

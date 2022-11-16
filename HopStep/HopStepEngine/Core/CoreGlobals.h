@@ -1,4 +1,5 @@
 #pragma once
+#include "HopStepOverrides.h"
 
 namespace HopStep
 {
@@ -7,10 +8,15 @@ namespace HopStep
 	 */
 	bool IsEngineExitRequested();
 
-	void RequestEngineExit(const class HString& Reason);
+	void RequestEngineExit(const HString& Reason);
 
 	/**
 	 * Engine Config Section
 	 */
 	extern class HEngineConfig* GConfig;
+
+	/**
+	 * 	Engine Time
+	 */
+	extern double GStartTime;
 }

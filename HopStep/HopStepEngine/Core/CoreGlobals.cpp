@@ -1,4 +1,5 @@
 #include "CoreGlobals.h"
+#include "Windows/WindowsPlatformTime.h"
 #include "Misc/EngineConfig.h"
 
 namespace HopStep
@@ -15,4 +16,6 @@ namespace HopStep
 	}
 
 	HEngineConfig* GConfig = nullptr;
+
+	double GStartTime = HPlatfromTime::Init();
 }

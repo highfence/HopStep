@@ -177,8 +177,10 @@
     <ClInclude Include="Core\Delegates\DelegateSigniture.h" />
     <ClInclude Include="Core\Delegates\DelegateUtils.h" />
     <ClInclude Include="Core\Delegates\IDelegateInstance.h" />
+    <ClInclude Include="Core\GenericPlatform\GenericPlatformTime.h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
+    <ClInclude Include="Core\Misc\App.h" />
     <ClInclude Include="Core\Misc\CommandExecutable.h" />
     <ClInclude Include="Core\Misc\CommandLine.h" />
     <ClInclude Include="Core\Misc\DebugUtils.h" />
@@ -191,6 +193,8 @@
     <ClInclude Include="Core\Templates\HopStepTemplates.h" />
     <ClInclude Include="Core\Templates\RemoveConst.h" />
     <ClInclude Include="Core\Templates\RemoveReference.h" />
+    <ClInclude Include="Core\Windows\WindowsPlatformTime.h" />
+    <ClInclude Include="Core\Windows\WindowsSystemIncludes.h" />
     <ClInclude Include="CoreObject\CoreObjectExport.h" />
     <ClInclude Include="CoreObject\Object\NameHelper.h" />
     <ClInclude Include="CoreObject\Object\NamePool.h" />
@@ -249,6 +253,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
+    <ClCompile Include="Core\GenericPlatform\GenericPlatformTime.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Core\Misc\App.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
     <ClCompile Include="Core\Misc\CommandLine.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
@@ -266,6 +278,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Core\Misc\OutputDevice.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Core\Windows\WindowsPlatformTime.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>

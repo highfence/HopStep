@@ -18,6 +18,13 @@ namespace HopStep
 
 		virtual void Init(class IEngineLoop* InLoop);
 
+		virtual void Tick(float Delta);
+
+		/*
+		 * Update HApp::DeltaTime
+		 */
+		virtual void UpdateTime();
+
 	protected:
 
 		class IEngineLoop* EngineLoop;
