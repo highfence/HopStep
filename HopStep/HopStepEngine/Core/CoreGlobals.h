@@ -7,6 +7,8 @@ namespace HopStep
 	 */
 	bool IsEngineExitRequested();
 
+	void RequestEngineExit(const class HString& Reason);
+
 	/**
 	 * Engine Config Section
 	 */

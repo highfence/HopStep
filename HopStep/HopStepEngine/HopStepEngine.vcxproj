@@ -179,6 +179,7 @@
     <ClInclude Include="Core\Delegates\IDelegateInstance.h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
+    <ClInclude Include="Core\Misc\CommandExecutable.h" />
     <ClInclude Include="Core\Misc\CommandLine.h" />
     <ClInclude Include="Core\Misc\DebugUtils.h" />
     <ClInclude Include="Core\Misc\EngineConfig.h" />
@@ -225,6 +226,7 @@
     <ClInclude Include="Intermediate\Object.generated.h" />
     <ClInclude Include="Intermediate\ObjectBase.generated.h" />
     <ClInclude Include="Intermediate\ReflectionTest.generated.h" />
+    <ClInclude Include="Runtime\Engine\Engine.h" />
     <ClInclude Include="Runtime\Engine\EngineLoop.h" />
     <ClInclude Include="Runtime\Engine\Exporter.h" />
     <ClInclude Include="Runtime\Engine\HopStepString.h" />
@@ -340,6 +342,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Intermediate\ReflectionTest.generated.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Engine\Engine.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>

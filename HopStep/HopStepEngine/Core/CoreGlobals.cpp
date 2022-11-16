@@ -9,5 +9,10 @@ namespace HopStep
 		return GIsRequestingExit;
 	}
 
+	void RequestEngineExit(const HString& Reason)
+	{
+		GIsRequestingExit = true;
+	}
+
 	HEngineConfig* GConfig = nullptr;
 }

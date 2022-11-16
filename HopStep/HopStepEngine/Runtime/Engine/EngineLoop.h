@@ -18,11 +18,11 @@ namespace HopStep
 	{
 	public:
 
-		virtual int32 Init(const HChar*) override { return 0; };
+		virtual int32 Init(const HChar*) override;
 
-		virtual void Tick() override {};
+		virtual void Tick() override;
 
-		virtual void Exit() override {};
+		virtual void Exit() override;
 	};
 
 	extern HEngineLoop GEngineLoop;

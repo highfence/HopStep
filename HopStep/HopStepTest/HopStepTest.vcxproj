@@ -160,6 +160,7 @@
     <ClCompile Include="CoreObjectTest.cpp" />
     <ClCompile Include="CoreTest.cpp" />
     <ClCompile Include="DelegateTest.cpp" />
+    <ClCompile Include="HopStepEngineTest.cpp" />
     <ClCompile Include="HopStepTest.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

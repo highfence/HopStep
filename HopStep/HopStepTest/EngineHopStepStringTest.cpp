@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "..\HopStepEngine\HopStep.h"
 #include "..\HopStepEngine\Runtime\Engine\HopStepString.h"
 #include "..\HopStepEngine\Runtime\Engine\Exporter.h"
 #include "..\HopStepEngine\CoreObject\Reflection\ReflectionTest.h"
