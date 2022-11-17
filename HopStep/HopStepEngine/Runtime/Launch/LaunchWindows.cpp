@@ -14,6 +14,7 @@ int WINAPI WinMain(
 	_In_ INT nCmdShow)
 {
 	GhInstance = hInstance;
+	GCmdShow = nCmdShow;
 
 	const HopStep::HChar* CmdLine = ::GetCommandLineW();
 	int32 ExitValue = GuardedMain(CmdLine);

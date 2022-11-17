@@ -4,14 +4,25 @@
 #include "..\..\Core\Misc\OutputDevice.h"
 #include "..\..\Core\Misc\DebugUtils.h"
 #include "..\..\Core\Misc\App.h"
+#include "..\..\Core\Windows\WindowsPlatformMisc.h"
+#include "..\..\Core\GenericPlatform\GenericApplication.h"
 
 namespace HopStep
 {
 	HEngine* GEngine = nullptr;
 
 	HEngine::HEngine()
-		: EngineLoop(nullptr)
+		: EngineLoop(nullptr), App(nullptr)
 	{
+	}
+
+	HEngine::~HEngine()
+	{
+		if (App)
+		{
+			delete App;
+			App = nullptr;
+		}
 	}
 
 	bool HEngine::Execute(const HChar* InCommand, IOutputDevice* InDevice)
@@ -23,10 +34,14 @@ namespace HopStep
 	{
 		EngineLoop = InLoop;
 		HCheck(EngineLoop);
+
+		App = HPlatformMisc::CreateApplication();
+		HCheck(App);
 	}
 
 	void HEngine::Tick(float Delta)
 	{
+		App->PumpMessages(Delta);
 	}
 
 	void HEngine::UpdateTime()

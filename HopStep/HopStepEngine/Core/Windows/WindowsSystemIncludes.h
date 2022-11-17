@@ -4,6 +4,7 @@
 #define SAFE_RELEASE(p) { if (p) { (p)->Release(); (p)=nullptr; } }
 
 extern "C" HINSTANCE GhInstance;
+extern "C" int GCmdShow;
 
 
 

@@ -1,6 +1,7 @@
 #include "EngineLoop.h"
 #include "Engine.h"
 #include "..\..\Core\CoreExport.h"
+#include "..\..\Core\Windows\WindowsPlatformMisc.h"
 
 namespace HopStep
 {
