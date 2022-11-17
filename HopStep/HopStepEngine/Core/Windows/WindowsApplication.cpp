@@ -1,4 +1,5 @@
 #include "WindowsApplication.h"
+#include "..\CoreGlobals.h"
 
 namespace HopStep
 {
@@ -59,6 +60,7 @@ namespace HopStep
 		{
 			if (Message.message == WM_QUIT)
 			{
+				RequestEngineExit(TEXT("WM_QUIT"));
 				break;
 			}
 
