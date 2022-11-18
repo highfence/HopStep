@@ -11,10 +11,8 @@ namespace HopStep
 		virtual void BeginFrame() override;
 		virtual void EndFrame() override;
 
-	protected:
+		class HRenderSystem* System;
 
-
-
-
+		// Renderer must be stateless.
 	};
 }

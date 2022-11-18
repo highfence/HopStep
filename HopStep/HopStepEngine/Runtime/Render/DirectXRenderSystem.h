@@ -1,6 +1,7 @@
 #pragma once
 #include "RenderSystem.h"
 #include "DirectXIncludes.h"
+#include <DirectXMath.h>
 
 namespace HopStep
 {
@@ -37,5 +38,7 @@ namespace HopStep
 		XMMATRIX ProjectionMatrix;
 		XMMATRIX WorldMatrix;
 		XMMATRIX OrthoMatrix;
+
+		friend class HDirectX11Renderer;
 	};
 }

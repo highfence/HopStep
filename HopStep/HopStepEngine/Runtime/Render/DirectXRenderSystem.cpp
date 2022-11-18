@@ -1,5 +1,6 @@
 #include "DirectXRenderSystem.h"
 #include "SceneRenderer.h"
+#include "DirectXRenderer.h"
 
 namespace HopStep
 {
@@ -276,6 +277,10 @@ namespace HopStep
 	bool HRenderSystem::Render()
 	{
 		ISceneRenderer* Renderer = ISceneRenderer::Create();
+		{
+			HDirectX11Renderer* DX11Renderer = dynamic_cast<HDirectX11Renderer*>(Renderer);
+			DX11Renderer->System = this;
+		}
 
 		Renderer->BeginFrame();
 		Renderer->EndFrame();
