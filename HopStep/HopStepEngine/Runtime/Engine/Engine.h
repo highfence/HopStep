@@ -14,7 +14,7 @@ namespace HopStep
 
 		virtual ~HEngine();
 
-		virtual bool Execute(const HChar* InCommand, IOutputDevice* InDevice) override;
+		virtual bool Execute(const HChar* InCommand, class IOutputDevice* InDevice) override;
 
 		virtual void Init(class IEngineLoop* InLoop);
 
@@ -30,6 +30,8 @@ namespace HopStep
 		class IEngineLoop* EngineLoop;
 
 		class HGenericApplication* App;
+
+		class IRenderSystem* RenderSystem;
 	};
 
 	/*

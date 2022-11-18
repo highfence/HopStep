@@ -11,6 +11,11 @@ namespace HopStep
 
 		HWindowsWindow(HINSTANCE hInstance, int32 CmdShow);
 
+		virtual uint32 GetClientWidth() override;
+		virtual uint32 GetClientHeight() override;
+
+		HWND GetWindowHandle() const { return WindowHandle; }
+
 	private:
 
 		HWND WindowHandle;

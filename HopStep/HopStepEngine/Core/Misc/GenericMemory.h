@@ -11,5 +11,7 @@ namespace HopStep
 		static void MemSet(void* Dest, int32 value, HSize memorySize);
 
 		static void MemCpy(void* Dest, void* Src, HSize Size);
+
+		static void MemZero(void* Dest, HSize Size);
 	};
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "HopStepOverrides.h"
+#include "PrimitiveTypeDefines.h"
 
 namespace HopStep
 {
@@ -19,4 +20,10 @@ namespace HopStep
 	 * 	Engine Time
 	 */
 	extern double GStartTime;
+
+	/**
+	 * Client Section
+	 */
+	static int32 ClientWidth = 1200;
+	static int32 ClientHeight = 800;
 }

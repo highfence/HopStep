@@ -17,7 +17,10 @@ int32 GuardedMain(const HopStep::HChar* CommandLine)
 
 	ErrorLevel = HopStep::GEngineLoop.Init(CommandLine);
 
-	while (!HopStep::IsEngineExitRequested()) HopStep::GEngineLoop.Tick();
+	while (!HopStep::IsEngineExitRequested()) 
+	{
+		HopStep::GEngineLoop.Tick();
+	}
 
 	HopStep::GEngineLoop.Exit();
 

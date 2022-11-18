@@ -6,13 +6,17 @@
 #include "..\..\Core\Misc\App.h"
 #include "..\..\Core\Windows\WindowsPlatformMisc.h"
 #include "..\..\Core\GenericPlatform\GenericApplication.h"
+#include "..\Render\RenderSystem.h"
+
 
 namespace HopStep
 {
 	HEngine* GEngine = nullptr;
 
 	HEngine::HEngine()
-		: EngineLoop(nullptr), App(nullptr)
+		: EngineLoop(nullptr)
+		, App(nullptr)
+		, RenderSystem(nullptr)
 	{
 	}
 
@@ -22,6 +26,12 @@ namespace HopStep
 		{
 			delete App;
 			App = nullptr;
+		}
+
+		if (RenderSystem)
+		{
+			delete RenderSystem;
+			RenderSystem = nullptr;
 		}
 	}
 
@@ -37,11 +47,16 @@ namespace HopStep
 
 		App = HPlatformMisc::CreateApplication();
 		HCheck(App);
+
+		RenderSystem = IRenderSystem::Create();
+		HCheck(RenderSystem);
+		HCheck(RenderSystem->Initialize());
 	}
 
 	void HEngine::Tick(float Delta)
 	{
 		App->PumpMessages(Delta);
+		RenderSystem->Render();
 	}
 
 	void HEngine::UpdateTime()

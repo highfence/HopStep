@@ -1,5 +1,6 @@
 #pragma once
 #include "..\HopStepOverrides.h"
+#include "..\PrimitiveTypeDefines.h"
 
 namespace HopStep
 {
@@ -8,5 +9,6 @@ namespace HopStep
 	public:
 
 		void InitializeConfig(const HopStep::HString& ConfigPath);
+
 	};
 }

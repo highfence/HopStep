@@ -242,6 +242,11 @@
     <ClInclude Include="Runtime\Engine\Exporter.h" />
     <ClInclude Include="Runtime\Engine\HopStepString.h" />
     <ClInclude Include="Runtime\Launch\LaunchWindows.h" />
+    <ClInclude Include="Runtime\Render\DirectXIncludes.h" />
+    <ClInclude Include="Runtime\Render\DirectXRenderer.h" />
+    <ClInclude Include="Runtime\Render\DirectXRenderSystem.h" />
+    <ClInclude Include="Runtime\Render\RenderSystem.h" />
+    <ClInclude Include="Runtime\Render\SceneRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp">
@@ -417,6 +422,22 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Runtime\Launch\LaunchWindows.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Render\DirectXRenderer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Render\DirectXRenderSystem.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Render\RenderSystem.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Render\SceneRenderer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>

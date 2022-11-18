@@ -12,4 +12,9 @@ namespace HopStep
 	{
 		std::memcpy(Dest, Src, Size);
 	}
+
+	void HGenericMemory::MemZero(void* Dest, HSize Size)
+	{
+		MemSet(Dest, 0, Size);
+	}
 }

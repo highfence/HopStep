@@ -1,4 +1,5 @@
 #pragma once
+#include "..\PrimitiveTypeDefines.h"
 
 namespace HopStep
 {
@@ -8,7 +9,8 @@ namespace HopStep
 
 		virtual ~HGenericWindow() {};
 
-
+		virtual uint32 GetClientWidth() = 0;
+		virtual uint32 GetClientHeight() = 0;
 
 	};
 }

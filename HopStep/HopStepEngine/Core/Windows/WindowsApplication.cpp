@@ -52,6 +52,11 @@ namespace HopStep
 		return 0;
 	}
 
+	std::shared_ptr<HGenericWindow> HWindowsApplication::GetWindow()
+	{
+		return NativeWindow;
+	}
+
 	void HWindowsApplication::PumpMessages(float DeltaTime)
 	{
 		MSG Message;

@@ -5,6 +5,7 @@
 
 extern "C" HINSTANCE GhInstance;
 extern "C" int GCmdShow;
+extern "C" HWND GWindowHandle;
 
 
 
