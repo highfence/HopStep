@@ -20,6 +20,7 @@ namespace SolutionGenerator
             public List<SolutionFilterSchema> Childs = new List<SolutionFilterSchema>();
             public List<string> HeaderFileNames = new List<string>();
             public List<string> CppFileNames = new List<string>();
+            public List<string> ShaderFileNames = new List<string>();
         }
 
         public SolutionFilterSchema FilterSchema { get; set; }
@@ -29,6 +30,7 @@ namespace SolutionGenerator
             public List<string> Filters;
             public List<string> HeaderInclude;
             public List<string> CppInclude;
+            public List<string> ShaderInclude;
 		}
 
         private SolutionFilterInfo _flatFilterInfo;
@@ -45,7 +47,8 @@ namespace SolutionGenerator
             {
                 Filters = new List<string>(),
                 HeaderInclude = new List<string>(),
-                CppInclude = new List<string>()
+                CppInclude = new List<string>(),
+                ShaderInclude = new List<string>(),
             };
 
             MakeSolutionFilterInfo(FilterSchema, string.Empty);
@@ -74,6 +77,7 @@ namespace SolutionGenerator
 
             _flatFilterInfo.HeaderInclude.AddRange(currentDirectorySchema.HeaderFileNames.Select(headerName => $"{currentDirectory}{headerName}"));
             _flatFilterInfo.CppInclude.AddRange(currentDirectorySchema.CppFileNames.Select(cppName => $"{currentDirectory}{cppName}"));
+            _flatFilterInfo.ShaderInclude.AddRange(currentDirectorySchema.ShaderFileNames.Select(shaderName => $"{currentDirectory}{shaderName}"));
 
             currentDirectorySchema.Childs.ForEach(child => MakeSolutionFilterInfo(child, currentDirectory));
 		}
@@ -100,13 +104,13 @@ namespace SolutionGenerator
             xmlNamespaceManager.AddNamespace("t", "");
 
             XmlNodeList itemGroupNodes = rootNode.SelectNodes("//t:ItemGroup", xmlNamespaceManager);
-            if (itemGroupNodes.Count != 3)
+            if (itemGroupNodes.Count != 4)
             {
-                throw new Exception("ItemGroup Node Count must be 3.");
+                throw new Exception("ItemGroup Node Count must be 4.");
             }
 
             // todo : Instead doing RemoveAll(), compare and modify only changes.
-            var headerGroup  = itemGroupNodes[1];
+            var headerGroup = itemGroupNodes[1];
             headerGroup.RemoveAll();
 
             _flatFilterInfo.HeaderInclude.ForEach(headerInclude => 
@@ -140,6 +144,16 @@ namespace SolutionGenerator
                 newNode.AppendChild(precompliedHeaderFileNode);
             });
 
+            var otherGroup = itemGroupNodes[3];
+            otherGroup.RemoveAll();
+
+            _flatFilterInfo.ShaderInclude.ForEach(shaderInclude => 
+            {
+                var newNode = xmlDoc.CreateElement("None");
+                newNode.SetAttribute("Include", shaderInclude);
+                otherGroup.AppendChild(newNode);
+            });
+
             if (File.Exists(projectFilePath))
             {
                 File.Delete(projectFilePath);
@@ -171,9 +185,9 @@ namespace SolutionGenerator
             xmlNamespaceManager.AddNamespace("t", "");
 
             XmlNodeList itemGroupNodes = rootNode.SelectNodes("//t:ItemGroup", xmlNamespaceManager);
-            if (itemGroupNodes.Count != 3)
+            if (itemGroupNodes.Count != 4)
             {
-                throw new Exception("ItemGroup Node Count must be 3.");
+                throw new Exception("ItemGroup Node Count must be 4.");
             }
 
             XmlNode filterMetaGroup = itemGroupNodes[0];
@@ -243,6 +257,33 @@ namespace SolutionGenerator
                 }
 
                 cppFilterGroup.AppendChild(newNode);
+            });
+
+            XmlNode otherFilterGroup = itemGroupNodes[3];
+            otherFilterGroup.RemoveAll();
+
+            _flatFilterInfo.ShaderInclude.ForEach(shaderPath =>
+            {
+                var newNode = xmlDoc.CreateElement("None");
+                newNode.SetAttribute("Include", shaderPath);
+
+                var slashIndex = shaderPath.LastIndexOf("\\");
+                if (slashIndex != -1)
+                {
+                    var expectedFilterName = shaderPath[..slashIndex];
+                    var filterName = _flatFilterInfo.Filters.FirstOrDefault(f => f.Equals(expectedFilterName));
+
+                    if (string.IsNullOrEmpty(filterName))
+                    {
+                        throw new Exception($"OtherFile : {expectedFilterName} is not exist!");
+                    }
+
+                    var newNode2 = xmlDoc.CreateElement("Filter");
+                    newNode2.InnerText = filterName;
+                    newNode.AppendChild(newNode2);
+                }
+
+                otherFilterGroup.AppendChild(newNode);
             });
 
             var xmlRemovedDoc = RemoveAllEmptyNamespaces(xmlDoc);

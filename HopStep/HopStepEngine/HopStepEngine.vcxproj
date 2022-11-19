@@ -442,6 +442,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Runtime\Render\Shader\Color.vs" />
+    <None Include="Runtime\Render\Shader\Color.ps" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
