@@ -11,3 +11,4 @@
 #include "Misc/CommandExecutable.h"
 #include "Windows/WindowsPlatformTime.h"
 #include "Misc/App.h"
+#include "Misc/Paths.h"

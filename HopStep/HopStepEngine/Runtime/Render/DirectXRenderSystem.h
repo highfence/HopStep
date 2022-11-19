@@ -21,6 +21,11 @@ namespace HopStep
 
 	protected:
 
+		// Todo: Fix this.
+		class HModelClass* ModelClass;
+		class HColorShaderClass* ColorShader;
+		class HViewInfo* ViewInfo;
+
 		bool bVsyncEnabled;
 		uint32 VideoCardMemory;
 		HString VideoCardDescription;

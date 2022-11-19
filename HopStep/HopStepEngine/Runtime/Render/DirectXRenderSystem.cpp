@@ -1,6 +1,9 @@
 #include "DirectXRenderSystem.h"
 #include "SceneRenderer.h"
 #include "DirectXRenderer.h"
+#include "ModelClass.h"
+#include "ColorShaderClass.h"
+#include "ViewInfo.h"
 
 namespace HopStep
 {
@@ -19,6 +22,9 @@ namespace HopStep
 		, RasterState(nullptr)
 		, bVsyncEnabled(bVsync)
 		, VideoCardMemory(0)
+		, ModelClass(new HModelClass())
+		, ColorShader(new HColorShaderClass())
+		, ViewInfo(new HViewInfo())
 	{
 		ProjectionMatrix = DirectX::XMMatrixIdentity();
 		WorldMatrix = DirectX::XMMatrixIdentity();
@@ -254,11 +260,33 @@ namespace HopStep
 		WorldMatrix = DirectX::XMMatrixIdentity();
 		OrthoMatrix = DirectX::XMMatrixOrthographicLH((float)ClientWidth, (float)ClientHeight, ScreenNear, ScreenDepth);
 
+		ViewInfo->SetPosition(0.0f, 0.0f, -10.0f);
+		if (ModelClass->Initialize(Device) == false) return false;
+		if (ColorShader->Initialize(Device, GWindowHandle) == false) return false;
+
 		return true;
 	}
 
 	void HRenderSystem::Shutdown()
 	{
+		if (ViewInfo)
+		{
+			delete ViewInfo;
+			ViewInfo = nullptr;
+		}
+
+		if (ModelClass)
+		{
+			delete ModelClass;
+			ModelClass = nullptr;
+		}
+
+		if (ColorShader)
+		{
+			delete ColorShader;
+			ColorShader = nullptr;
+		}
+
 		if (SwapChain)
 		{
 			SwapChain->SetFullscreenState(false, NULL);
@@ -283,6 +311,15 @@ namespace HopStep
 		}
 
 		Renderer->BeginFrame();
+
+		ViewInfo->UpdateViewMatrix();
+		XMMATRIX View = ViewInfo->GetViewMatrix();
+		
+		ModelClass->Render(DeviceContext);
+
+		bool Result = ColorShader->Render(DeviceContext, ModelClass->GetIndexCount(), WorldMatrix, View, ProjectionMatrix);
+		if (Result == false) return false;
+
 		Renderer->EndFrame();
 
 		delete Renderer;

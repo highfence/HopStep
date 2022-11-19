@@ -12,7 +12,7 @@ namespace HopStepTest
 		
 		TEST_METHOD(EngineDirectoryTest)
 		{
-			HopStep::HString EngineDir = HopStep::EnginePath();
+			HopStep::HString EngineDir = HopStep::HPaths::EnginePath();
 
 			std::wcout << EngineDir << std::endl;
 		}

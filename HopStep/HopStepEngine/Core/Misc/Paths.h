@@ -1,19 +1,25 @@
 #pragma once
-#include "../CoreExport.h"
+#include "..\HopStepOverrides.h"
 
 namespace HopStep
 {
-	HString EnginePath()
+	class HPaths
 	{
-		// Todo : consider source_location
-		return HString(std::filesystem::current_path()
-			.parent_path()
-			.parent_path()
-			.append(L"HopStepEngine"));
-	}
+	public:
 
-	HString EngineConfigPath() 
-	{
-		return L"";
-	}
+		/**
+		 *
+		 */
+		static HString EnginePath();
+
+		/**
+		 *
+		 */
+		static HString EngineConfigPath();
+
+		/**
+		 *
+		 */
+		static HString ShaderPath();
+	};
 }
