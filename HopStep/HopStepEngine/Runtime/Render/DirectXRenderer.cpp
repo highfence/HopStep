@@ -9,11 +9,7 @@ namespace HopStep
 		HCheck(System);
 
 		// Todo: ColorClass
-		float ClearColor[4];
-		ClearColor[0] = 0.f;
-		ClearColor[1] = 0.f;
-		ClearColor[2] = 0.f;
-		ClearColor[3] = 0.f;
+		constexpr float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f };
 
 		System->DeviceContext->ClearRenderTargetView(System->RenderTargetView, ClearColor);
 	}

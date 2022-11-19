@@ -123,7 +123,13 @@ namespace HopStep
 		}
 
 		int32 NumElements = sizeof(PolygonLayout) / sizeof(PolygonLayout[0]);
-		Result = Device->CreateInputLayout(PolygonLayout, NumElements, VertexShaderBuffer->GetBufferPointer(), VertexShaderBuffer->GetBufferSize(), &Layout);
+		Result = Device->CreateInputLayout(
+			PolygonLayout,
+			NumElements,
+			VertexShaderBuffer->GetBufferPointer(),
+			VertexShaderBuffer->GetBufferSize(),
+			&Layout);
+
 		if (FAILED(Result)) return false;
 
 		SAFE_RELEASE(VertexShaderBuffer);
