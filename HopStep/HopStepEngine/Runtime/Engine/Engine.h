@@ -31,7 +31,7 @@ namespace HopStep
 
 		class HGenericApplication* App;
 
-		class IRenderSystem* RenderSystem;
+		std::unique_ptr<class HWorld> GameWorld;
 	};
 
 	/*

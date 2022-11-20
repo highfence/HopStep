@@ -4,15 +4,14 @@
 #include "ObjectBase.h"
 #include "Intermediate\Object.generated.h"
 
-
-HCLASS();
-class HObject : public HObjectBase
+namespace HopStep
 {
-	DECLARE_CLASS_BODY(HObject);
+	HCLASS();
+	class HObject : public HObjectBase
+	{
+		DECLARE_CLASS_BODY(HObject);
 
-public:
+	public:
 
-	HPROPERTY();
-	int32 a;
-
-};
+	};
+}

@@ -1,5 +1,6 @@
 #include "Engine.h"
 #include "EngineLoop.h"
+#include "World.h"
 #include "..\..\Core\CoreExport.h"
 #include "..\..\Core\Misc\OutputDevice.h"
 #include "..\..\Core\Misc\DebugUtils.h"
@@ -16,7 +17,7 @@ namespace HopStep
 	HEngine::HEngine()
 		: EngineLoop(nullptr)
 		, App(nullptr)
-		, RenderSystem(nullptr)
+		, GameWorld(nullptr)
 	{
 	}
 
@@ -26,12 +27,6 @@ namespace HopStep
 		{
 			delete App;
 			App = nullptr;
-		}
-
-		if (RenderSystem)
-		{
-			delete RenderSystem;
-			RenderSystem = nullptr;
 		}
 	}
 
@@ -48,15 +43,14 @@ namespace HopStep
 		App = HPlatformMisc::CreateApplication();
 		HCheck(App);
 
-		RenderSystem = IRenderSystem::Create();
-		HCheck(RenderSystem);
-		HCheck(RenderSystem->Initialize());
+		GameWorld = std::make_unique<HWorld>();
+		HCheck(GameWorld);
 	}
 
 	void HEngine::Tick(float Delta)
 	{
 		App->PumpMessages(Delta);
-		RenderSystem->Render();
+
 	}
 
 	void HEngine::UpdateTime()
