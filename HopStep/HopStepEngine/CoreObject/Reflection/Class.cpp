@@ -18,9 +18,9 @@ namespace HopStep
 		return FuncPtr;
 	}
 
-	const HArray<HFunction*> HClass::GetFunctions() const
+	const TArray<HFunction*> HClass::GetFunctions() const
 	{
-		HArray<HFunction*> Result;
+		TArray<HFunction*> Result;
 
 		for (int32 Index = 0; Index < Functions.size(); ++Index)
 		{

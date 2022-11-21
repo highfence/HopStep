@@ -196,7 +196,7 @@
     <ClInclude Include="CoreObject\Object\CoreObjectConcepts.h">
       <Filter>CoreObject\Object</Filter>
     </ClInclude>
-    <ClInclude Include="CoreObject\Object\GC.h">
+    <ClInclude Include="CoreObject\Object\GarbageCollector.h">
       <Filter>CoreObject\Object</Filter>
     </ClInclude>
     <ClInclude Include="CoreObject\Object\GCInterface.h">
@@ -409,7 +409,7 @@
     <ClCompile Include="Core\Windows\WindowsWindow.cpp">
       <Filter>Core\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="CoreObject\Object\GC.cpp">
+    <ClCompile Include="CoreObject\Object\GarbageCollector.cpp">
       <Filter>CoreObject\Object</Filter>
     </ClCompile>
     <ClCompile Include="CoreObject\Object\NameHelper.cpp">

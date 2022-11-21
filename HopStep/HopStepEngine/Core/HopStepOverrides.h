@@ -23,13 +23,16 @@ namespace HopStep
 	 */
 	// Todo: replace this to TArray.
 	template <class TValueType>
-	using HArray = std::vector<TValueType>;
+	using TArray = std::vector<TValueType>;
 
 	template <typename TArgs>
 	using TTuple = std::tuple<TArgs>;
 
 	template <typename TKey, typename TValue>
 	using TMap = std::unordered_map<TKey, TValue>;
+
+	template <typename TValueType>
+	using TStack = std::stack<TValueType>;
 
 	/**
 	 * Smart pointer type related overrides.

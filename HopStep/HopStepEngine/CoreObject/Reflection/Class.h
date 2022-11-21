@@ -17,7 +17,7 @@ namespace HopStep
 		/**
 		 *
 		 */
-		const HArray<HFunction*> GetFunctions() const;
+		const TArray<HFunction*> GetFunctions() const;
 
 		/**
 		 *
@@ -29,6 +29,6 @@ namespace HopStep
 
 		friend struct HStructBuilder;
 
-		HArray<HUniquePtr<HFunction>> Functions;
+		TArray<HUniquePtr<HFunction>> Functions;
 	};
 }

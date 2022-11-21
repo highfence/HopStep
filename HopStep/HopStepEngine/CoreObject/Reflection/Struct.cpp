@@ -10,9 +10,9 @@ namespace HopStep
 		return Super;
 	}
 
-	const HArray<HProperty*> HStruct::GetProperties(bool bIncludeSuper /*= true*/)
+	const TArray<HProperty*> HStruct::GetProperties(bool bIncludeSuper /*= true*/)
 	{
-		HArray<HProperty*> Result;
+		TArray<HProperty*> Result;
 		if (bIncludeSuper)
 		{
 			for (HStruct* SuperIter = Super; SuperIter; SuperIter = SuperIter->Super)
@@ -37,7 +37,7 @@ namespace HopStep
 
 	const HProperty* HStruct::FindProperty(const HString& PropertyName)
 	{
-		const HArray<HProperty*> AllProperties = GetProperties();
+		const TArray<HProperty*> AllProperties = GetProperties();
 
 		auto FindingPropertyIter = std::find_if(AllProperties.begin(), AllProperties.end(), [PropertyName](const HProperty* InProperty) -> bool 
 			{

@@ -130,7 +130,7 @@ namespace HopStep
 	public:
 
 		HPROPERTY();
-		HArray<int32> ArrayProperty;
+		TArray<int32> ArrayProperty;
 	};
 
 	HCLASS();

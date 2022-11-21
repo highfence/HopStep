@@ -3,7 +3,7 @@
 // Object related headers
 #include "Object/Object.h"
 #include "Object/NameTypes.h"
-#include "Object/GC.h"
+#include "Object/GarbageCollector.h"
 
 // Reflection related headers.
 #include "Reflection/Class.h"

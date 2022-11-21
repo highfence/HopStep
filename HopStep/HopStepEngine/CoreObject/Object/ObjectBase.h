@@ -29,9 +29,9 @@ struct HStaticClassRegister : public IStaticTypeRegister
 /**
  *  
  */
-static HopStep::HArray<IStaticTypeRegister*>& GetStaticTypeRegisterArray()
+static HopStep::TArray<IStaticTypeRegister*>& GetStaticTypeRegisterArray()
 {
-	static HopStep::HArray<IStaticTypeRegister*> StaticTypeRegisters;
+	static HopStep::TArray<IStaticTypeRegister*> StaticTypeRegisters;
 	return StaticTypeRegisters;
 }
 

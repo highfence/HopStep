@@ -14,7 +14,7 @@ namespace HopStep
 
 		static HTypeLibrary* GetPropertyPtr();
 
-		HArray<class HType*> GetTypes();
+		TArray<class HType*> GetTypes();
 
 		void RegisterNewType(class HType* InType);
 

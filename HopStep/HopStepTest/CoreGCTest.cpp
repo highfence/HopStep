@@ -11,8 +11,14 @@ namespace HopStepTest
 
 		TEST_METHOD(GCNewTest)
 		{
-			HopStep::HObject* NewObject = HopStep::NewObject<HopStep::HObject>();
-			Assert::IsNotNull(NewObject);
+			HopStep::HObject* ManagedObject = HopStep::NewObject<HopStep::HObject>();
+			Assert::IsNotNull(ManagedObject);
+			Assert::IsTrue(ManagedObject->GetPoolIndex() != HopStep::IGCObject::InvalidPoolIndex);
+
+			if (ManagedObject != nullptr)
+			{
+				delete ManagedObject;
+			}
 		}
 	};
 }

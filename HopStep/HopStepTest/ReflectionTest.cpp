@@ -187,7 +187,7 @@ namespace HopStepTest
 			Instance.ArrayProperty.push_back(4);
 			Instance.ArrayProperty.push_back(-15);
 
-			auto PropertyPtr = ArrayProperty->GetPtr<HopStep::HArray<int32>>(&Instance);
+			auto PropertyPtr = ArrayProperty->GetPtr<HopStep::TArray<int32>>(&Instance);
 			Assert::AreEqual((int32)3, (int32)PropertyPtr->size());
 		}
 

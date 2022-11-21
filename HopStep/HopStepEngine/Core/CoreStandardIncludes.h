@@ -21,6 +21,7 @@
 #include <tuple>
 #include <functional>
 #include <unordered_map>
+#include <stack>
 
 #include "HopStepDefine.h"
 

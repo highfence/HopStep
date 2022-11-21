@@ -31,7 +31,7 @@ namespace HopStep
 		/**
 		 *
 		 */
-		const HArray<HProperty*> GetProperties(bool bIncludeSuper = true);
+		const TArray<HProperty*> GetProperties(bool bIncludeSuper = true);
 
 		/**
 		 *
@@ -65,7 +65,7 @@ namespace HopStep
 		/**
 		 *
 		 */
-		HArray<HUniquePtr<HProperty>> Properties;
+		TArray<HUniquePtr<HProperty>> Properties;
 
 		friend struct HStructBuilder;
 	};
