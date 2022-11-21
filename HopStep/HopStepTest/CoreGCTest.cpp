@@ -15,7 +15,7 @@ namespace HopStepTest
 			HopStep::DoGarbageCollect();
 		}
 
-		TEST_METHOD(GCNewTest)
+		TEST_METHOD(GC_NewObject)
 		{
 			HopStep::HObject* ManagedObject = HopStep::NewObject<HopStep::HObject>();
 			Assert::IsNotNull(ManagedObject);
@@ -24,7 +24,7 @@ namespace HopStepTest
 			Assert::IsNotNull(ManagedObject->GetClass());
 		}
 
-		TEST_METHOD(GCSweepTest)
+		TEST_METHOD(GC_MarkAndSweep)
 		{
 			HopStep::HObject* TransientObject = HopStep::NewObject<HopStep::HObject>();
 			Assert::IsNotNull(TransientObject);
@@ -40,6 +40,12 @@ namespace HopStepTest
 
 			HopStep::HObject* OtherObjet = HopStep::NewObject<HopStep::HObject>();
 			Assert::IsTrue(OtherObjet->GetGCPoolIndex() == PoolIndex);
+		}
+
+		TEST_METHOD(GC_Property_MarkAndSweep)
+		{
+			
+
 		}
 	};
 }

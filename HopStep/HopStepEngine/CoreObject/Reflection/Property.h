@@ -6,10 +6,10 @@ namespace HopStep
 {
 	enum class EPropertyFlag : uint64
 	{
-		// Numeric Property Flags
 		IntProperty = (0x01 << 0),
 		FloatProperty = (0x01 << 1),
 		UnsignedProperty = (0x01 << 2),
+		ClassProperty = (0x01 << 3),
 	};
 
 	class HProperty : public HField
@@ -42,7 +42,6 @@ namespace HopStep
 	template <class TClass, class TField>
 	int32 GetOffsetOf(TField TClass::* InClassField)
 	{
-		// Todo : Can offsetof(TClass, InClassField) replace this value?
 		return (int32)((int8*)&((TClass*)nullptr->*InClassField) - (int8*)nullptr);
 	}
 

@@ -19,8 +19,8 @@ namespace HopStep
 		virtual void SetGCPoolIndex(uint32 Index) override final { PoolIndex = Index; }
 		virtual TArray<IGCObject*> GetGCProperties() override;
 		virtual bool IsGCRoot() const override;
-		virtual bool GetGCMark() const override;
-		virtual void SetGCMark(bool bMark) override;
+		virtual bool GetGCMark() const override final;
+		virtual void SetGCMark(bool bMark) override final;
 
 	protected:
 

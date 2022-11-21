@@ -6,6 +6,8 @@ namespace HopStep
 	{
 		TArray<IGCObject*> Properties;
 
+		HClass* ThisClass = GetClass();
+
 		return Properties;
 	}
 

@@ -10,7 +10,7 @@ namespace HopStep
 		return Super;
 	}
 
-	const TArray<HProperty*> HStruct::GetProperties(bool bIncludeSuper /*= true*/)
+	TArray<HProperty*> HStruct::GetProperties(bool bIncludeSuper /*= true*/)
 	{
 		TArray<HProperty*> Result;
 		if (bIncludeSuper)

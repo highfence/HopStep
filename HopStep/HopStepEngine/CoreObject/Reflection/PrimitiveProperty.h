@@ -1,6 +1,6 @@
 #pragma once
-#include "Property.h"
 #include "Enum.h"
+#include "Property.h"
 
 namespace HopStep
 {

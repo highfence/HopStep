@@ -51,6 +51,11 @@ namespace HopStep
 		{
 			Property->SetPropertyFlag(EPropertyFlag::UnsignedProperty);
 		}
+
+		if constexpr (std::is_class_v<TFieldType>)
+		{
+			Property->SetPropertyFlag(EPropertyFlag::ClassProperty);
+		}
 	}
 
 	template<class TSuperType> requires StaticClassGetable<TSuperType>
