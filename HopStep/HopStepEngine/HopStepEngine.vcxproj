@@ -203,6 +203,9 @@
     <ClInclude Include="Core\Windows\WindowsSystemIncludes.h" />
     <ClInclude Include="Core\Windows\WindowsWindow.h" />
     <ClInclude Include="CoreObject\CoreObjectExport.h" />
+    <ClInclude Include="CoreObject\Object\CoreObjectConcepts.h" />
+    <ClInclude Include="CoreObject\Object\GC.h" />
+    <ClInclude Include="CoreObject\Object\GCInterface.h" />
     <ClInclude Include="CoreObject\Object\NameHelper.h" />
     <ClInclude Include="CoreObject\Object\NamePool.h" />
     <ClInclude Include="CoreObject\Object\NameTypes.h" />
@@ -331,6 +334,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Core\Windows\WindowsWindow.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="CoreObject\Object\GC.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
