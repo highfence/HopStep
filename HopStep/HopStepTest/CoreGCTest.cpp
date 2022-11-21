@@ -42,6 +42,25 @@ namespace HopStepTest
 			Assert::IsTrue(OtherObjet->GetGCPoolIndex() == PoolIndex);
 		}
 
+		TEST_METHOD(GC_RootObject)
+		{
+			HopStep::HRootSet* RootObject = HopStep::NewObject<HopStep::HRootSet>();
+			Assert::IsNotNull(RootObject);
+			Assert::IsTrue(RootObject->GetGCPoolIndex() != HopStep::IGCObject::InvalidGCPoolIndex);
+			Assert::IsFalse(RootObject->GetGCMark());
+
+			// If we invoke Mark(), RootObject must be marked.
+			HopStep::Internal::HGarbageCollector::Mark();
+			Assert::IsTrue(RootObject->GetGCMark());
+
+			// After Sweep(), RootObject must be valid.
+			HopStep::Internal::HGarbageCollector::Sweep();
+			Assert::IsTrue(HopStep::IsValidLowLevel(RootObject));
+
+			HopStep::HObject* GCObject = HopStep::NewObject<HopStep::HObject>();
+
+		}
+
 		TEST_METHOD(GC_Property_MarkAndSweep)
 		{
 			

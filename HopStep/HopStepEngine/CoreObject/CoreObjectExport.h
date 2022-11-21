@@ -4,6 +4,7 @@
 #include "Object/Object.h"
 #include "Object/NameTypes.h"
 #include "Object/ObjectFunctions.h"
+#include "Object/RootSet.h"
 
 // Reflection related headers.
 #include "Reflection/Class.h"

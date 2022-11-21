@@ -29,12 +29,12 @@ namespace HopStep::Internal
 		static void MarkAndSweep();
 
 		/**
-		 * 
+		 * For debug & test. You should use MarkAndSweep() method instead of individual methods.
 		 */
 		static void Mark();
 
 		/**
-		 * 
+		 * For debug & test. You should use MarkAndSweep() method instead of individual methods.
 		 */
 		static void Sweep();
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "..\..\Core\Misc\CommandExecutable.h"
+#include "..\..\Core\CoreExport.h"
 
 namespace HopStep
 {
@@ -31,7 +31,7 @@ namespace HopStep
 
 		class HGenericApplication* App;
 
-		std::unique_ptr<class HWorld> GameWorld;
+		HUniquePtr<class HWorld> GameWorld;
 	};
 
 	/*

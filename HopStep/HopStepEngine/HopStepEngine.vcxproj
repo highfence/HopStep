@@ -213,6 +213,7 @@
     <ClInclude Include="CoreObject\Object\ObjectBase.h" />
     <ClInclude Include="CoreObject\Object\ObjectFunctions.h" />
     <ClInclude Include="CoreObject\Object\ObjectMacro.h" />
+    <ClInclude Include="CoreObject\Object\RootSet.h" />
     <ClInclude Include="CoreObject\Reflection\Class.h" />
     <ClInclude Include="CoreObject\Reflection\Enum.h" />
     <ClInclude Include="CoreObject\Reflection\Field.h" />
@@ -241,6 +242,7 @@
     <ClInclude Include="Intermediate\Object.generated.h" />
     <ClInclude Include="Intermediate\ObjectBase.generated.h" />
     <ClInclude Include="Intermediate\ReflectionTest.generated.h" />
+    <ClInclude Include="Intermediate\RootSet.generated.h" />
     <ClInclude Include="Intermediate\World.generated.h" />
     <ClInclude Include="Runtime\Engine\Engine.h" />
     <ClInclude Include="Runtime\Engine\EngineLoop.h" />
@@ -366,6 +368,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
+    <ClCompile Include="CoreObject\Object\RootSet.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
     <ClCompile Include="CoreObject\Reflection\Class.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
@@ -419,6 +425,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Intermediate\ReflectionTest.generated.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Intermediate\RootSet.generated.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
