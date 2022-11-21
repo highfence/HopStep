@@ -1,8 +1,8 @@
 #pragma once
-#include "Core\CoreExport.h"
-#include "CoreObject\Reflection\ReflectionConcepts.h"
-#include "CoreObject/Reflection/ReflectionMacro.h"
-#include "Intermediate\ObjectBase.generated.h"
+#include "..\..\Core\CoreExport.h"
+#include "..\Reflection\ReflectionConcepts.h"
+#include "..\Reflection\ReflectionMacro.h"
+#include "..\..\Intermediate\ObjectBase.generated.h"
 
 /**
  * Type register interface.
@@ -51,7 +51,6 @@ public:
 	virtual ~HObjectBase() {};
 
 	template <StaticClassGetable TClass>
-	[[deprecated("Do not use HObjectBase::IsA<T> now. Implement later after making CDO & GC System.")]]
 	bool IsA() const
 	{
 		const HClass* ThatClass = TClass::StaticClass();
@@ -60,8 +59,9 @@ public:
 		return ThisClass->IsChildOf(ThatClass);
 	}
 
-	[[deprecated("Do not use HObjectBase::GetClass() now. Implement later after making CDO & GC System.")]]
 	HClass* GetClass() const { return ClassPrivate; }
+	// Todo: Remove this.
+	void SetClass(HClass* InClass) { ClassPrivate = InClass; }
 
 private:
 

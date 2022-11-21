@@ -1,15 +1,22 @@
 #include "..\..\Core\CoreExport.h"
+#include "..\Reflection\Property.h"
 #include "GarbageCollector.h"
 
 namespace HopStep::Internal
 {
 	HGarbageCollector::HObjectCollection HGarbageCollector::ObjectCollection;
+	HGarbageCollector::HSweepingCollection HGarbageCollector::SweepingCollections;
+
+	void HGarbageCollector::Shutdown()
+	{
+		MarkAndSweep();
+	}
 
 	void HGarbageCollector::RegisterToGarbagePool(IGCObject* InObject)
 	{
-		HCheck(InObject && InObject->GetPoolIndex() == IGCObject::InvalidPoolIndex);
+		HCheck(InObject && InObject->GetGCPoolIndex() == IGCObject::InvalidGCPoolIndex);
 
-		uint32 ObjectIndex = IGCObject::InvalidPoolIndex;
+		uint32 ObjectIndex = IGCObject::InvalidGCPoolIndex;
 
 		if (ObjectCollection.ObjectArrayEmptyIndexes.empty() == false)
 		{
@@ -23,6 +30,84 @@ namespace HopStep::Internal
 			ObjectCollection.ObjectArray.emplace_back(InObject);
 		}
 
-		InObject->SetPoolIndex(ObjectIndex);
+		InObject->SetGCPoolIndex(ObjectIndex);
+	}
+
+	void HGarbageCollector::MarkAndSweep()
+	{
+		Mark();
+		Sweep();
+	}
+
+	void HGarbageCollector::Mark()
+	{
+		SweepingCollections.MarkedObjects.clear();
+		SweepingCollections.PendingIterateObjects.clear();
+
+		TArray<IGCObject*>& ObjectArray = ObjectCollection.ObjectArray;
+
+		// Finding Root Set
+		for (IGCObject* GCObject : ObjectArray)
+		{
+			if (GCObject == nullptr || GCObject->IsGCRoot() == false) continue;
+
+			GCObject->SetGCMark(true);
+			SweepingCollections.MarkedObjects.emplace_back(GCObject);
+		}
+
+		while (true)
+		{
+			for (HSize Index = 0; Index < SweepingCollections.MarkedObjects.size(); ++Index)
+			{
+				IGCObject* MarkedObject = SweepingCollections.MarkedObjects[Index];
+
+				TArray<IGCObject*> GCProperties = MarkedObject->GetGCProperties();
+
+				for (IGCObject* GCProperty : GCProperties)
+				{
+					GCProperty->SetGCMark(true);
+					SweepingCollections.PendingIterateObjects.emplace_back(GCProperty);
+				}
+			}
+
+			if (SweepingCollections.PendingIterateObjects.empty())
+			{
+				break;
+			}
+
+			SweepingCollections.MarkedObjects.swap(SweepingCollections.PendingIterateObjects);
+			SweepingCollections.PendingIterateObjects.clear();
+		}
+	}
+
+	void HGarbageCollector::Sweep()
+	{
+		// Move unmarked object to remove list
+		for (HSize Index = 0; Index < ObjectCollection.ObjectArray.size(); ++Index)
+		{
+			if (IGCObject* Ptr = ObjectCollection.ObjectArray[Index]; Ptr != nullptr)
+			{
+				if (Ptr->GetGCMark() == true)
+				{
+					Ptr->SetGCMark(false);
+				}
+				else
+				{
+					HCheck(Index == Ptr->GetGCPoolIndex());
+
+					ObjectCollection.ObjectArray[Index] = nullptr;
+					ObjectCollection.ObjectArrayEmptyIndexes.push(Index);
+					ObjectCollection.PendingRemoveObjects.emplace_back(Ptr);
+				}
+			}
+		}
+
+		// Actual remove
+		for (IGCObject* Ptr : ObjectCollection.PendingRemoveObjects)
+		{
+			delete Ptr;
+		}
+
+		ObjectCollection.PendingRemoveObjects.clear();
 	}
 }

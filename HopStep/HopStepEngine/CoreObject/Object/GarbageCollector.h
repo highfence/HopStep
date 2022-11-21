@@ -1,15 +1,42 @@
 #pragma once
 #include "..\..\Core\HopStepOverrides.h"
 #include "GCInterface.h"
+#include "ObjectBase.h"
 #include "CoreObjectConcepts.h"
 
 namespace HopStep::Internal
 {
+	/**
+	 * 
+	 */
 	class HGarbageCollector
 	{
 	public:
 
+		/**
+		 * 
+		 */
+		static void Shutdown();
+
+		/**
+		 * 
+		 */
 		static void RegisterToGarbagePool(IGCObject* InObject);
+
+		/**
+		 * 
+		 */
+		static void MarkAndSweep();
+
+		/**
+		 * 
+		 */
+		static void Mark();
+
+		/**
+		 * 
+		 */
+		static void Sweep();
 
 	private:
 
@@ -18,23 +45,18 @@ namespace HopStep::Internal
 		struct HObjectCollection
 		{
 			TArray<IGCObject*> ObjectArray;
+			TArray<IGCObject*> PendingRemoveObjects;
 			TStack<uint32> ObjectArrayEmptyIndexes;
 		};
 
 		static HObjectCollection ObjectCollection;
-	};
-}
 
-namespace HopStep
-{
-	/**
-	 * Todo: Move to other places...
-	 */
-	template <class TType, typename... TArgs> requires GarbageCollectable<TType>
-	TType* NewObject(TArgs... Params)
-	{
-		TType* NewObject = new TType(Params...);
-		Internal::HGarbageCollector::RegisterToGarbagePool(NewObject);
-		return NewObject;
-	}
+		struct HSweepingCollection
+		{
+			TArray<IGCObject*> MarkedObjects;
+			TArray<IGCObject*> PendingIterateObjects;
+		};
+
+		static HSweepingCollection SweepingCollections;
+	};
 }

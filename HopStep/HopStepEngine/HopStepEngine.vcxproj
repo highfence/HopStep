@@ -211,6 +211,7 @@
     <ClInclude Include="CoreObject\Object\NameTypes.h" />
     <ClInclude Include="CoreObject\Object\Object.h" />
     <ClInclude Include="CoreObject\Object\ObjectBase.h" />
+    <ClInclude Include="CoreObject\Object\ObjectFunctions.h" />
     <ClInclude Include="CoreObject\Object\ObjectMacro.h" />
     <ClInclude Include="CoreObject\Reflection\Class.h" />
     <ClInclude Include="CoreObject\Reflection\Enum.h" />
@@ -358,6 +359,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="CoreObject\Object\ObjectBase.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="CoreObject\Object\ObjectFunctions.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
