@@ -131,6 +131,9 @@ namespace HopStep
 
 		HPROPERTY();
 		TArray<int32> ArrayProperty;
+
+		HPROPERTY();
+		TArray<HObject*> ObjectArrayProperty;
 	};
 
 	HCLASS();

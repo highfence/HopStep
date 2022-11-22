@@ -70,6 +70,7 @@ IMPLEMENT_CLASS(HFunctionTestObject);
 void HContainerReflectionTestObject::__Fill_Class_Property_HContainerReflectionTestObject(HClass* InStaticClass)
 {
 	HStructBuilder::AddProperty<HContainerReflectionTestObject, TArray<int32>, HArrayProperty>(InStaticClass, TEXT("ArrayProperty"), &HContainerReflectionTestObject::ArrayProperty);
+	HStructBuilder::AddProperty<HContainerReflectionTestObject, TArray<HObject*>, HArrayProperty>(InStaticClass, TEXT("ObjectArrayProperty"), &HContainerReflectionTestObject::ObjectArrayProperty);
 }
 
 IMPLEMENT_CLASS(HContainerReflectionTestObject);

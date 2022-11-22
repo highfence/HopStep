@@ -182,6 +182,7 @@ namespace HopStepTest
 
 			const HProperty* ArrayProperty = Type->FindProperty(L"ArrayProperty");
 			Assert::IsNotNull(ArrayProperty);
+			Assert::IsTrue(ArrayProperty->GetPropertyFlag(EPropertyFlag::ArrayProperty));
 
 			Instance.ArrayProperty.push_back(3);
 			Instance.ArrayProperty.push_back(4);

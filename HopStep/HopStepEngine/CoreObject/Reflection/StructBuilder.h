@@ -14,7 +14,7 @@ namespace HopStep
 		template <class TStructType, class TFieldType, class TPropertyType> requires HPropertyDerived<TPropertyType>
 		static void AddProperty(HStruct* InStruct, const HString& InFieldName, TFieldType TStructType::*InField);
 
-		template <class TFieldType>
+		template <class TFieldType, class TPropertyType>
 		static void IntializePropertyFlags(HProperty* Property);
 
 		template <class TSuperType> requires StaticClassGetable<TSuperType>
@@ -31,11 +31,11 @@ namespace HopStep
 		HString PropertyName = InFieldName;
 
 		HUniquePtr<HProperty> NewProperty = std::make_unique<TPropertyType>(PropertyName, PropertyOffset, FieldSize);
-		IntializePropertyFlags<TFieldType>(NewProperty.get());
+		IntializePropertyFlags<TFieldType, TPropertyType>(NewProperty.get());
 		InStruct->Properties.push_back(std::move(NewProperty));
 	}
 
-	template<class TFieldType>
+	template<class TFieldType, class TPropertyType>
 	inline void HStructBuilder::IntializePropertyFlags(HProperty* Property)
 	{
 		if constexpr (std::is_integral_v<TFieldType>)
@@ -46,15 +46,17 @@ namespace HopStep
 		{
 			Property->SetPropertyFlag(EPropertyFlag::FloatProperty);
 		}
-
 		if constexpr (std::is_unsigned_v<TFieldType>)
 		{
 			Property->SetPropertyFlag(EPropertyFlag::UnsignedProperty);
 		}
-
 		if constexpr (std::is_class_v<TFieldType>)
 		{
 			Property->SetPropertyFlag(EPropertyFlag::ClassProperty);
+		}
+		if  constexpr (std::is_same_v<HArrayProperty, TPropertyType>)
+		{
+			Property->SetPropertyFlag(EPropertyFlag::ArrayProperty);
 		}
 	}
 

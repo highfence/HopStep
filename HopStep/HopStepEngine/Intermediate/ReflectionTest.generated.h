@@ -26,7 +26,7 @@ private:
 #define HopStepEngine_CoreObject_Reflection_ReflectionTest_128_Generated_Function_Declare \
 public: \
 private:
-#define HopStepEngine_CoreObject_Reflection_ReflectionTest_139_Generated_Function_Declare \
+#define HopStepEngine_CoreObject_Reflection_ReflectionTest_142_Generated_Function_Declare \
 public: \
 private:
 

@@ -13,7 +13,6 @@ namespace HopStep
 
 		for (const HProperty* Property : Properties)
 		{
-			Property->
 
 		}
 
