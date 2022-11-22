@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+#include "GCInterface.h"
 #include "..\..\Intermediate\RootSet.generated.h"
 
 namespace HopStep
@@ -11,6 +12,15 @@ namespace HopStep
 
 	public:
 
+		~HRootSet();
+
 		virtual bool IsGCRoot() const final { return true; }
+
+		void AddToRoot(HObject* Object);
+
+	protected:
+
+		HPROPERTY();
+		TArray<HObject*> Childs;
 	};
 }

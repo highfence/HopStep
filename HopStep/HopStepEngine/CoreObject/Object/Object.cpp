@@ -1,14 +1,23 @@
+#include "..\Reflection\Property.h"
 #include "Object.h"
 
 namespace HopStep
 {
 	TArray<IGCObject*> HObject::GetGCProperties()
 	{
-		TArray<IGCObject*> Properties;
+		TArray<IGCObject*> GCProperties;
 
 		HClass* ThisClass = GetClass();
 
-		return Properties;
+		const TArray<HProperty*> Properties = ThisClass->GetProperties();
+
+		for (const HProperty* Property : Properties)
+		{
+			Property->
+
+		}
+
+		return GCProperties;
 	}
 
 	bool HObject::IsGCRoot() const

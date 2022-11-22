@@ -10,6 +10,7 @@ namespace HopStep
 		FloatProperty = (0x01 << 1),
 		UnsignedProperty = (0x01 << 2),
 		ClassProperty = (0x01 << 3),
+		ArrayProperty = (0x01 << 4),
 	};
 
 	class HProperty : public HField

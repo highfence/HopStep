@@ -57,8 +57,15 @@ namespace HopStepTest
 			HopStep::Internal::HGarbageCollector::Sweep();
 			Assert::IsTrue(HopStep::IsValidLowLevel(RootObject));
 
+			// It should be the same for all other objects added to the root.
 			HopStep::HObject* GCObject = HopStep::NewObject<HopStep::HObject>();
+			RootObject->AddToRoot(GCObject);
 
+			HopStep::Internal::HGarbageCollector::Mark();
+			Assert::IsTrue(GCObject->GetGCMark());
+
+			HopStep::Internal::HGarbageCollector::Sweep();
+			Assert::IsTrue(HopStep::IsValidLowLevel(GCObject));
 		}
 
 		TEST_METHOD(GC_Property_MarkAndSweep)

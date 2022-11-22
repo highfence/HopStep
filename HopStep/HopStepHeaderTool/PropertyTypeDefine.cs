@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace HopStepHeaderTool
 {
@@ -32,7 +33,7 @@ namespace HopStepHeaderTool
 				{ "HString", "HStringProperty" },
 
 				// Container Property
-				{ "HArray", "HArrayProperty" },
+				{ "TArray", "HArrayProperty" },
 			};
 		}
 		
@@ -41,6 +42,11 @@ namespace HopStepHeaderTool
 			InitializePrimitiveProperties();
 
 			propertyTypeName = propertyTypeName.TrimEnd('*');
+
+			if (propertyTypeName.Contains('<'))
+			{
+				propertyTypeName = propertyTypeName.Split('<').FirstOrDefault();
+			}
 
 			if (_primitiveProperties.ContainsKey(propertyTypeName))
 			{
