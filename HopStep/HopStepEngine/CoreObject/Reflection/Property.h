@@ -1,5 +1,5 @@
 #pragma once
-#include "Type.h"
+#include "Struct.h"
 #include "..\..\Core\CoreExport.h"
 
 namespace HopStep
@@ -13,12 +13,12 @@ namespace HopStep
 		ArrayProperty = (0x01 << 4),
 	};
 
-	class HProperty : public HType
+	class HProperty : public HStruct
 	{
 	public:
 
 		explicit HProperty(const HString& InName, int32 InOffset, int32 InElementSize, int32 InArrayDimension = 1)
-			: HType(InName), Offset(InOffset), ElementSize(InElementSize), ArrayDimension(InArrayDimension), PropertyFlags(0u)
+			: HStruct(InName), Offset(InOffset), ElementSize(InElementSize), ArrayDimension(InArrayDimension), PropertyFlags(0u)
 		{
 			TotalSize = ElementSize * ArrayDimension;
 		}

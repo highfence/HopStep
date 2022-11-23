@@ -44,6 +44,14 @@ namespace HopStep
 		 */
 		bool IsChildOf(const HStruct* OtherClass) const;
 
+		template <StaticClassGetable TType>
+		bool IsChildOf() const
+		{
+			const HStruct* OtherClass = TType::StaticClass();
+			return IsChildOf(OtherClass);
+		}
+
+
 	private:
 
 		/**

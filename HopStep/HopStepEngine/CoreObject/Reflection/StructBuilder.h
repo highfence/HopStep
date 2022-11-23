@@ -54,7 +54,7 @@ namespace HopStep
 		{
 			Property->SetPropertyFlag(EPropertyFlag::ClassProperty);
 		}
-		if  constexpr (std::is_same_v<HArrayProperty, TPropertyType>)
+		if constexpr (std::is_same_v<HArrayProperty, TPropertyType>)
 		{
 			Property->SetPropertyFlag(EPropertyFlag::ArrayProperty);
 		}
