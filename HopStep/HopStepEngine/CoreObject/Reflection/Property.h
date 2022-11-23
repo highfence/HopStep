@@ -1,5 +1,5 @@
 #pragma once
-#include "Field.h"
+#include "Struct.h"
 #include "..\..\Core\CoreExport.h"
 #include "..\Object\Object.h"
 
@@ -14,12 +14,12 @@ namespace HopStep
 		ArrayProperty = (0x01 << 4),
 	};
 
-	class HProperty : public HField
+	class HProperty : public HStruct
 	{
 	public:
 
 		explicit HProperty(const HString& InName, int32 InOffset, int32 InElementSize, int32 InArrayDimension = 1)
-			: HField(InName), Offset(InOffset), ElementSize(InElementSize), ArrayDimension(InArrayDimension), PropertyFlags(0u)
+			: HStruct(InName), Offset(InOffset), ElementSize(InElementSize), ArrayDimension(InArrayDimension), PropertyFlags(0u)
 		{
 			TotalSize = ElementSize * ArrayDimension;
 		}
@@ -33,6 +33,13 @@ namespace HopStep
 
 		template <class TValueType, class TSelfType>
 		TValueType& GetValue(TSelfType&& Self);
+
+		template <class TValueType>
+		void SetValue(void const* ObjectPtr, TValueType Value) const
+		{
+			TValueType* Ptr = GetPtr<TValueType>(ObjectPtr);
+			*Ptr = Value;
+		}
 
 		void SetPropertyFlag(EPropertyFlag Flag) { PropertyFlags |= static_cast<uint64>(Flag); }
 		bool GetPropertyFlag(EPropertyFlag Flag) const { return PropertyFlags & static_cast<uint64>(Flag); }

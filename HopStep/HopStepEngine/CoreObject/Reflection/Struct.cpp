@@ -5,6 +5,17 @@
 
 namespace HopStep
 {
+	HStruct::HStruct(const HString& InName)
+		: HType(InName)
+	{
+		Properties.clear();
+	}
+
+	HStruct::~HStruct()
+	{
+		Properties.clear();
+	}
+
 	HStruct* HStruct::GetSuper() const
 	{
 		return Super;
@@ -13,6 +24,7 @@ namespace HopStep
 	const TArray<HProperty*> HStruct::GetProperties(bool bIncludeSuper /*= true*/)
 	{
 		TArray<HProperty*> Result;
+
 		if (bIncludeSuper)
 		{
 			for (HStruct* SuperIter = Super; SuperIter; SuperIter = SuperIter->Super)

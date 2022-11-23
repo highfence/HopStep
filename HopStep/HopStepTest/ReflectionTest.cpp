@@ -58,11 +58,11 @@ namespace HopStepTest
 			TestClass->C = true;
 			TestClass->D = L"TestString";
 
-			Assert::AreEqual((int32)3, *TestType->GetPropertyPtr<int32>(TestClass, L"A"));
-			Assert::AreEqual(L'U', *TestType->GetPropertyPtr<HopStep::HChar>(TestClass, L"B"));
-			Assert::IsTrue(*TestType->GetPropertyPtr<bool>(TestClass, L"C"));
-			Assert::AreEqual(L"TestString", TestType->GetPropertyPtr<HopStep::HString>(TestClass, L"D")->c_str());
-			Assert::IsNull(TestType->GetPropertyPtr<int32>(TestClass, L"WrongName"));
+			Assert::AreEqual((int32)3, *TestType->FindProperty(L"A")->GetPtr<int32>(TestClass));
+			Assert::AreEqual(L'U', *TestType->FindProperty(L"B")->GetPtr<HopStep::HChar>(TestClass));
+			Assert::IsTrue(*TestType->FindProperty(L"C")->GetPtr<bool>(TestClass));
+			Assert::AreEqual(L"TestString", TestType->FindProperty(L"D")->GetPtr<HopStep::HString>(TestClass)->c_str());
+			Assert::IsNull(TestType->FindProperty(L"WrongName"));
 
 			delete TestClass;
 		}
@@ -73,21 +73,21 @@ namespace HopStepTest
 			HClass* TestType = TestClass->StaticClass();
 
 			// Initialize check
-			HInnerClassTest** InnerPtr = TestType->GetPropertyPtr<HInnerClassTest*>(TestClass, L"InnerClassPtr");
+			HInnerClassTest** InnerPtr = TestType->FindProperty(L"InnerClassPtr")->GetPtr<HInnerClassTest*>(TestClass);
 			Assert::IsNull(*InnerPtr);
 
 			// Pointer check
 			HInnerClassTest* Ptr = new HInnerClassTest();
 			TestClass->InnerClassPtr = Ptr;
-			Assert::IsTrue(Ptr == *TestType->GetPropertyPtr<HInnerClassTest*>(TestClass, L"InnerClassPtr"));
+			Assert::IsTrue(Ptr == *TestType->FindProperty(L"InnerClassPtr")->GetPtr<HInnerClassTest*>(TestClass));
 
 			// Inner class check
 			HClass* InnerType = HInnerClassTest::StaticClass();
 
 			Ptr->InnerA = 3.5f;
 			Ptr->InnerB = (uint8)4;
-			Assert::IsTrue(abs(3.5f - *InnerType->GetPropertyPtr<float>(Ptr, L"InnerA")) < HopStep::TNumericLimits<float>::epsilon());
-			Assert::AreEqual((int8)4, *InnerType->GetPropertyPtr<int8>(Ptr, L"InnerB"));
+			Assert::IsTrue(abs(3.5f - *InnerType->FindProperty(L"InnerA")->GetPtr<float>(Ptr)) < HopStep::TNumericLimits<float>::epsilon());
+			Assert::AreEqual((int8)4, *InnerType->FindProperty(L"InnerB")->GetPtr<int8>(Ptr));
 
 			delete Ptr;
 			delete TestClass;
@@ -99,10 +99,10 @@ namespace HopStepTest
 			HClass* TestType = HStringPropertyTest::StaticClass();
 
 			TestClass->Post = L'B';
-			Assert::AreEqual(L'B', *TestType->GetPropertyPtr<HopStep::HChar>(TestClass, L"Post"));
+			Assert::AreEqual(L'B', *TestType->FindProperty(L"Post")->GetPtr<HopStep::HChar>(TestClass));
 
 			TestClass->StringProperty = L"Test String... for extended";
-			std::wstring* RealValue = TestType->GetPropertyPtr<HopStep::HString>(TestClass, L"StringProperty");
+			std::wstring* RealValue = TestType->FindProperty(L"StringProperty")->GetPtr<HopStep::HString>(TestClass);
 			Assert::AreEqual(L"Test String... for extended", RealValue->c_str());
 
 			delete TestClass;
@@ -113,7 +113,7 @@ namespace HopStepTest
 			HReflectionTest* TestClass = new HReflectionTest();
 			HClass* TestType = HReflectionTest::StaticClass();
 
-			TestType->ChangePropertyValue(TestClass, L"A", 99);
+			TestType->FindProperty(L"A")->SetValue(TestClass, 99);
 			Assert::AreEqual((int32)99, TestClass->A);
 
 			delete TestClass;

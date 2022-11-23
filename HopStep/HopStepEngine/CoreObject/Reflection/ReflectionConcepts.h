@@ -1,5 +1,5 @@
 #pragma once
-#include "Core\CoreStandardIncludes.h"
+#include "..\..\Core\CoreStandardIncludes.h"
 
 namespace HopStep
 {

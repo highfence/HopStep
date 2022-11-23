@@ -1,10 +1,11 @@
 #pragma once
 #include "ReflectionConcepts.h"
-#include "Property.h"
 #include "Type.h"
 
 namespace HopStep
 {
+	class HProperty;
+
 	/**
 	 * Manage inheritance & properties
 	 */
@@ -12,9 +13,7 @@ namespace HopStep
 	{
 	public:
 
-		HStruct(const HString& InName) : HType(InName) 
-		{
-		};
+		explicit HStruct(const HString& InName);
 
 		/**
 		 * Type can't not created by default or copy ctor.
@@ -22,6 +21,8 @@ namespace HopStep
 		 */
 		HStruct() = delete;
 		HStruct(const HStruct&) = delete;
+
+		virtual ~HStruct();
 
 		/**
 		 *
@@ -41,19 +42,15 @@ namespace HopStep
 		/**
 		 *
 		 */
-		template <class TValue, StaticClassGetable TInstanceType>
-		TValue* GetPropertyPtr(TInstanceType* Instance, const HString& PropertyName);
-
-		/**
-		 *
-		 */
-		template <class TValue, StaticClassGetable TInstanceType>
-		void ChangePropertyValue(TInstanceType* Instance, const HString& PropertyName, TValue Value);
-
-		/**
-		 *
-		 */
 		bool IsChildOf(const HStruct* OtherClass) const;
+
+		template <StaticClassGetable TType>
+		bool IsChildOf() const
+		{
+			const HStruct* OtherClass = TType::StaticClass();
+			return IsChildOf(OtherClass);
+		}
+
 
 	private:
 
@@ -65,32 +62,8 @@ namespace HopStep
 		/**
 		 *
 		 */
-		TArray<HUniquePtr<HProperty>> Properties;
+		TArray<HUniquePtr<class HProperty>> Properties;
 
 		friend struct HStructBuilder;
 	};
-
-	template<class TValue, StaticClassGetable TInstanceType>
-	inline TValue* HStruct::GetPropertyPtr(TInstanceType* Instance, const HString& PropertyName)
-	{
-		HStruct* StaticClass = TInstanceType::StaticClass();
-		if (StaticClass != this) return nullptr;
-
-		const HProperty* FindingProperty = FindProperty(PropertyName);
-		if (FindingProperty == nullptr) return nullptr;
-
-		return FindingProperty->GetPtr<TValue>((void*)Instance);
-	}
-
-	template<class TValue, StaticClassGetable TInstanceType>
-	inline void HStruct::ChangePropertyValue(TInstanceType* Instance, const HString& PropertyName, TValue Value)
-	{
-		const HProperty* Property = FindProperty(PropertyName);
-		if (Property == nullptr) return;
-
-		TValue* Ptr = Property->GetPtr<TValue>((void*)Instance);
-		if (Ptr == nullptr) return;
-
-		*Ptr = Value;
-	}
 }
