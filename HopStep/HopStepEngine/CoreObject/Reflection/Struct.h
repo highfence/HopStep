@@ -41,18 +41,6 @@ namespace HopStep
 		/**
 		 *
 		 */
-		template <class TValue, StaticClassGetable TInstanceType>
-		TValue* GetPropertyPtr(TInstanceType* Instance, const HString& PropertyName);
-
-		/**
-		 *
-		 */
-		template <class TValue, StaticClassGetable TInstanceType>
-		void ChangePropertyValue(TInstanceType* Instance, const HString& PropertyName, TValue Value);
-
-		/**
-		 *
-		 */
 		bool IsChildOf(const HStruct* OtherClass) const;
 
 	private:
@@ -69,28 +57,4 @@ namespace HopStep
 
 		friend struct HStructBuilder;
 	};
-
-	template<class TValue, StaticClassGetable TInstanceType>
-	inline TValue* HStruct::GetPropertyPtr(TInstanceType* Instance, const HString& PropertyName)
-	{
-		HStruct* StaticClass = TInstanceType::StaticClass();
-		if (StaticClass != this) return nullptr;
-
-		const HProperty* FindingProperty = FindProperty(PropertyName);
-		if (FindingProperty == nullptr) return nullptr;
-
-		return FindingProperty->GetPtr<TValue>((void*)Instance);
-	}
-
-	template<class TValue, StaticClassGetable TInstanceType>
-	inline void HStruct::ChangePropertyValue(TInstanceType* Instance, const HString& PropertyName, TValue Value)
-	{
-		const HProperty* Property = FindProperty(PropertyName);
-		if (Property == nullptr) return;
-
-		TValue* Ptr = Property->GetPtr<TValue>((void*)Instance);
-		if (Ptr == nullptr) return;
-
-		*Ptr = Value;
-	}
 }
