@@ -5,6 +5,17 @@
 
 namespace HopStep
 {
+	HStruct::HStruct(const HString& InName)
+		: HType(InName)
+	{
+		Properties.clear();
+	}
+
+	HStruct::~HStruct()
+	{
+		Properties.clear();
+	}
+
 	HStruct* HStruct::GetSuper() const
 	{
 		return Super;

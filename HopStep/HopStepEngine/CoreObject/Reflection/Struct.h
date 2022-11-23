@@ -1,10 +1,11 @@
 #pragma once
 #include "ReflectionConcepts.h"
-#include "Property.h"
 #include "Type.h"
 
 namespace HopStep
 {
+	class HProperty;
+
 	/**
 	 * Manage inheritance & properties
 	 */
@@ -12,9 +13,7 @@ namespace HopStep
 	{
 	public:
 
-		HStruct(const HString& InName) : HType(InName) 
-		{
-		};
+		explicit HStruct(const HString& InName);
 
 		/**
 		 * Type can't not created by default or copy ctor.
@@ -22,6 +21,8 @@ namespace HopStep
 		 */
 		HStruct() = delete;
 		HStruct(const HStruct&) = delete;
+
+		virtual ~HStruct();
 
 		/**
 		 *
@@ -53,7 +54,7 @@ namespace HopStep
 		/**
 		 *
 		 */
-		TArray<HUniquePtr<HProperty>> Properties;
+		TArray<HUniquePtr<class HProperty>> Properties;
 
 		friend struct HStructBuilder;
 	};
