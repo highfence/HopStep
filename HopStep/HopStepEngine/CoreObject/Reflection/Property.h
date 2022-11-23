@@ -1,6 +1,7 @@
 #pragma once
 #include "Field.h"
 #include "..\..\Core\CoreExport.h"
+#include "..\Object\Object.h"
 
 namespace HopStep
 {
@@ -30,6 +31,9 @@ namespace HopStep
 		template <class TValueType>
 		TValueType* GetPtr(void const* ObjectPtr) const;
 
+		template <class TValueType, class TSelfType>
+		TValueType& GetValue(TSelfType&& Self);
+
 		void SetPropertyFlag(EPropertyFlag Flag) { PropertyFlags |= static_cast<uint64>(Flag); }
 		bool GetPropertyFlag(EPropertyFlag Flag) const { return PropertyFlags & static_cast<uint64>(Flag); }
 
@@ -50,5 +54,23 @@ namespace HopStep
 	inline TValueType* HProperty::GetPtr(void const* ObjectPtr) const
 	{
 		return (TValueType*)((char*)ObjectPtr + Offset);
+	}
+
+	template<class TValueType, class TSelfType>
+	inline TValueType& HProperty::GetValue(TSelfType&& Self)
+	{
+		using TNonReferenceSelf = TRemoveReference<TSelfType>::Type;
+
+		void* ObjectPtr = nullptr;
+		if constexpr (std::is_pointer_v<TNonReferenceSelf> && DerivedFrom<std::remove_pointer_t<TNonReferenceSelf>, HObject>)
+		{
+			ObjectPtr = reinterpret_cast<void*>(dynamic_cast<HObject*>(Self));
+		}
+		else
+		{
+			ObjectPtr = &Self;
+		}
+
+
 	}
 }

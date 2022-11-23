@@ -12,3 +12,4 @@
 #include "Windows/WindowsPlatformTime.h"
 #include "Misc/App.h"
 #include "Misc/Paths.h"
+#include "Templates/HopStepTemplates.h"
