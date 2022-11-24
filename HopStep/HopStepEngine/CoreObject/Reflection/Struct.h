@@ -1,11 +1,10 @@
 #pragma once
 #include "ReflectionConcepts.h"
 #include "Type.h"
+#include "Property.h"
 
 namespace HopStep
 {
-	class HProperty;
-
 	/**
 	 * Manage inheritance & properties
 	 */
@@ -62,7 +61,7 @@ namespace HopStep
 		/**
 		 *
 		 */
-		TArray<HUniquePtr<class HProperty>> Properties;
+		TArray<HUniquePtr<HProperty>> Properties;
 
 		friend struct HStructBuilder;
 	};

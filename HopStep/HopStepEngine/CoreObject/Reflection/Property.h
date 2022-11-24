@@ -1,6 +1,7 @@
 #pragma once
-#include "Struct.h"
-#include "..\..\Core\CoreExport.h"
+#include "Field.h"
+#include "..\..\Core\PrimitiveTypeDefines.h"
+#include "..\..\Core\HopStepOverrides.h"
 #include "..\Object\Object.h"
 
 namespace HopStep
@@ -11,35 +12,28 @@ namespace HopStep
 		FloatProperty = (0x01 << 1),
 		UnsignedProperty = (0x01 << 2),
 		ClassProperty = (0x01 << 3),
-		ArrayProperty = (0x01 << 4),
+		ArrayProperty = (0x01 << 4)
 	};
 
-	class HProperty : public HStruct
+	class HProperty : public HField
 	{
 	public:
 
-		explicit HProperty(const HString& InName, int32 InOffset, int32 InElementSize, int32 InArrayDimension = 1)
-			: HStruct(InName), Offset(InOffset), ElementSize(InElementSize), ArrayDimension(InArrayDimension), PropertyFlags(0u)
+		HProperty(const HString& InName, int32 InOffset, int32 InElementSize, int32 InArrayDimension = 1)
+			: HField(InName), Offset(InOffset), ElementSize(InElementSize), ArrayDimension(InArrayDimension), PropertyFlags(0u)
 		{
 			TotalSize = ElementSize * ArrayDimension;
 		}
 
 		virtual ~HProperty() {}
 
-		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const abstract;
+		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const = 0;
 
 		template <class TValueType>
 		TValueType* GetPtr(void const* ObjectPtr) const;
 
-		template <class TValueType, class TSelfType>
-		TValueType& GetValue(TSelfType&& Self);
-
 		template <class TValueType>
-		void SetValue(void const* ObjectPtr, TValueType Value) const
-		{
-			TValueType* Ptr = GetPtr<TValueType>(ObjectPtr);
-			*Ptr = Value;
-		}
+		void SetValue(void const* ObjectPtr, TValueType Value) const;
 
 		void SetPropertyFlag(EPropertyFlag Flag) { PropertyFlags |= static_cast<uint64>(Flag); }
 		bool GetPropertyFlag(EPropertyFlag Flag) const { return PropertyFlags & static_cast<uint64>(Flag); }
@@ -63,21 +57,10 @@ namespace HopStep
 		return (TValueType*)((char*)ObjectPtr + Offset);
 	}
 
-	template<class TValueType, class TSelfType>
-	inline TValueType& HProperty::GetValue(TSelfType&& Self)
+	template<class TValueType>
+	inline void HProperty::SetValue(void const* ObjectPtr, TValueType Value) const
 	{
-		using TNonReferenceSelf = TRemoveReference<TSelfType>::Type;
-
-		void* ObjectPtr = nullptr;
-		if constexpr (std::is_pointer_v<TNonReferenceSelf> && DerivedFrom<std::remove_pointer_t<TNonReferenceSelf>, HObject>)
-		{
-			ObjectPtr = reinterpret_cast<void*>(dynamic_cast<HObject*>(Self));
-		}
-		else
-		{
-			ObjectPtr = &Self;
-		}
-
-
+		TValueType* Ptr = GetPtr<TValueType>(ObjectPtr);
+		*Ptr = Value;
 	}
 }
