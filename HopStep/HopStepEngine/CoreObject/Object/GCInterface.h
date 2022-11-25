@@ -36,4 +36,7 @@ namespace HopStep
 
 		virtual void SetGCMark(bool bMark) = 0;
 	};
+
+	template <class TType>
+	concept GarbageCollectable = std::derived_from<TType, IGCObject>;
 }

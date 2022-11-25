@@ -11,11 +11,11 @@ namespace HopStep
 	{
 	public:
 
-		HField(const HString& InName) : Name(InName) {}
+		HField(const HString& InName);
 
-		virtual ~HField() {}
+		virtual ~HField();
 
-		const HString& GetName() const { return Name; }
+		const HString& GetName() const;
 
 	protected:
 

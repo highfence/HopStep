@@ -1,14 +1,20 @@
 #pragma once
-#include "Struct.h"
-#include "Property.h"
-#include "PrimitiveProperty.h"
 #include "Core\PrimitiveTypeDefines.h"
 #include "Core\HopStepOverrides.h"
+#include "Property.h"
+#include "PrimitiveProperty.h"
+#include "Struct.h"
 #include "ReflectionConcepts.h"
 #include "Function.h"
 
 namespace HopStep
 {
+	template <class TClass, class TField>
+	int32 GetOffsetOf(TField TClass::* InClassField)
+	{
+		return (int32)((int8*)&((TClass*)nullptr->*InClassField) - (int8*)nullptr);
+	}
+
 	struct HStructBuilder
 	{
 		template <class TStructType, class TFieldType, class TPropertyType> requires HPropertyDerived<TPropertyType>

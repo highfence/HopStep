@@ -1,8 +1,8 @@
 #pragma once
-#include "Field.h"
 #include "..\..\Core\PrimitiveTypeDefines.h"
 #include "..\..\Core\HopStepOverrides.h"
 #include "..\Object\Object.h"
+#include "Field.h"
 
 namespace HopStep
 {
@@ -19,13 +19,9 @@ namespace HopStep
 	{
 	public:
 
-		HProperty(const HString& InName, int32 InOffset, int32 InElementSize, int32 InArrayDimension = 1)
-			: HField(InName), Offset(InOffset), ElementSize(InElementSize), ArrayDimension(InArrayDimension), PropertyFlags(0u)
-		{
-			TotalSize = ElementSize * ArrayDimension;
-		}
+		HProperty(const HString& InName, int32 InOffset, int32 InElementSize, int32 InArrayDimension = 1);
 
-		virtual ~HProperty() {}
+		virtual ~HProperty();
 
 		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const = 0;
 
@@ -35,8 +31,8 @@ namespace HopStep
 		template <class TValueType>
 		void SetValue(void const* ObjectPtr, TValueType Value) const;
 
-		void SetPropertyFlag(EPropertyFlag Flag) { PropertyFlags |= static_cast<uint64>(Flag); }
-		bool GetPropertyFlag(EPropertyFlag Flag) const { return PropertyFlags & static_cast<uint64>(Flag); }
+		void SetPropertyFlag(EPropertyFlag Flag);
+		bool GetPropertyFlag(EPropertyFlag Flag) const;
 
 		int32 Offset;
 		int32 ElementSize;
@@ -44,12 +40,6 @@ namespace HopStep
 		int32 ArrayDimension;
 		uint64 PropertyFlags;
 	};
-
-	template <class TClass, class TField>
-	int32 GetOffsetOf(TField TClass::* InClassField)
-	{
-		return (int32)((int8*)&((TClass*)nullptr->*InClassField) - (int8*)nullptr);
-	}
 
 	template<class TValueType>
 	inline TValueType* HProperty::GetPtr(void const* ObjectPtr) const

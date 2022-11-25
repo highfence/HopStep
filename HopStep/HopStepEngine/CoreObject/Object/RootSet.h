@@ -20,7 +20,7 @@ namespace HopStep
 
 	protected:
 
-		HPROPERTY();
+		// HPROPERTY();
 		TArray<HObject*> Childs;
 	};
 }

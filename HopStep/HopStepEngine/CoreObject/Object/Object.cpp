@@ -1,4 +1,4 @@
-#include "..\Reflection\Property.h"
+// #include "..\Reflection\Property.h"
 #include "Object.h"
 
 namespace HopStep
@@ -9,12 +9,12 @@ namespace HopStep
 
 		HClass* ThisClass = GetClass();
 
-		const TArray<HProperty*> Properties = ThisClass->GetProperties();
+		//const TArray<HProperty*> Properties = ThisClass->GetProperties();
 
-		for (const HProperty* Property : Properties)
-		{
+		//for (const HProperty* Property : Properties)
+		//{
 
-		}
+		//}
 
 		return GCProperties;
 	}

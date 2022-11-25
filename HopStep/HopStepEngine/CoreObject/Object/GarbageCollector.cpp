@@ -1,5 +1,4 @@
 #include "..\..\Core\CoreExport.h"
-#include "..\Reflection\Property.h"
 #include "GarbageCollector.h"
 
 namespace HopStep::Internal
@@ -96,7 +95,7 @@ namespace HopStep::Internal
 					HCheck(Index == Ptr->GetGCPoolIndex());
 
 					ObjectCollection.ObjectArray[Index] = nullptr;
-					ObjectCollection.ObjectArrayEmptyIndexes.push(Index);
+					ObjectCollection.ObjectArrayEmptyIndexes.push(static_cast<uint32>(Index));
 					ObjectCollection.PendingRemoveObjects.emplace_back(Ptr);
 				}
 			}

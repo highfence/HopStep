@@ -2,6 +2,7 @@
 #include "..\..\Core\CoreExport.h"
 #include "..\Reflection\ReflectionConcepts.h"
 #include "..\Reflection\ReflectionMacro.h"
+#include "..\Reflection\Class.h"
 #include "..\..\Intermediate\ObjectBase.generated.h"
 
 /**
@@ -9,7 +10,7 @@
  */
 struct IStaticTypeRegister
 {
-	virtual class HClass* GetClass() abstract;
+	virtual HClass* GetClass() abstract;
 };
 
 /**
@@ -20,7 +21,7 @@ struct HStaticClassRegister : public IStaticTypeRegister
 {
 	HStaticClassRegister();
 
-	class HClass* GetClass()
+	HClass* GetClass()
 	{
 		return TClass::StaticClass();
 	}

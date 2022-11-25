@@ -1,6 +1,6 @@
 #pragma once
-#include "Field.h"
 #include "Core/HopStepOverrides.h"
+#include "Field.h"
 
 namespace HopStep
 {

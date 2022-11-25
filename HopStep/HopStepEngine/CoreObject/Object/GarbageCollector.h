@@ -1,8 +1,6 @@
 #pragma once
 #include "..\..\Core\HopStepOverrides.h"
 #include "GCInterface.h"
-#include "ObjectBase.h"
-#include "CoreObjectConcepts.h"
 
 namespace HopStep::Internal
 {

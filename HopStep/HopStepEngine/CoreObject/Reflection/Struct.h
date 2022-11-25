@@ -1,7 +1,7 @@
 #pragma once
-#include "ReflectionConcepts.h"
 #include "Type.h"
 #include "Property.h"
+#include "ReflectionConcepts.h"
 
 namespace HopStep
 {
@@ -12,7 +12,7 @@ namespace HopStep
 	{
 	public:
 
-		explicit HStruct(const HString& InName);
+		HStruct(const HString& InName);
 
 		/**
 		 * Type can't not created by default or copy ctor.

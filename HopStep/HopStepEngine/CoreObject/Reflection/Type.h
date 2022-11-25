@@ -10,7 +10,7 @@ namespace HopStep
 	{
 	public:
 
-		explicit HType(const HString& InName) 
+		HType(const HString& InName) 
 			: HField(InName)
 			, TypeFlag(static_cast<uint64>(HTypeFlag::None)) 
 		{
