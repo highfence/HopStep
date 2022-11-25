@@ -1,7 +1,6 @@
 #pragma once
 #include "..\..\Core\PrimitiveTypeDefines.h"
 #include "..\..\Core\HopStepOverrides.h"
-#include "..\Object\Object.h"
 #include "Field.h"
 
 namespace HopStep

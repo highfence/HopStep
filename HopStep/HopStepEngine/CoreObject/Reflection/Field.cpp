@@ -2,9 +2,9 @@
 
 namespace HopStep
 {
-	inline HField::HField(const HString& InName) : Name(InName) {}
+	HField::HField(const HString& InName) : Name(InName) {}
 
-	inline HField::~HField() {}
+	HField::~HField() {}
 
-	inline const HString& HField::GetName() const { return Name; }
+	const HString& HField::GetName() const { return Name; }
 }

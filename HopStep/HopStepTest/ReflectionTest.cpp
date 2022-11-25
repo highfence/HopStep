@@ -4,6 +4,7 @@
 #include "../HopStepEngine/CoreObject/Reflection/PrimitiveProperty.h"
 #include "../HopStepEngine/CoreObject/Reflection/ReflectionTest.h"
 #include "../HopStepEngine/CoreObject/Reflection/Class.h"
+#include "..\HopStepEngine\CoreObject\Reflection\Field.h"
 #include "../HopStepEngine/Core/HopStepOverrides.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

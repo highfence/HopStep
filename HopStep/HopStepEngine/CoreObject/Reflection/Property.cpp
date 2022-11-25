@@ -14,8 +14,8 @@ namespace HopStep
 
 	HProperty::~HProperty() {}
 
-	inline void HProperty::SetPropertyFlag(EPropertyFlag Flag) { PropertyFlags |= static_cast<uint64>(Flag); }
+	void HProperty::SetPropertyFlag(EPropertyFlag Flag) { PropertyFlags |= static_cast<uint64>(Flag); }
 
-	inline bool HProperty::GetPropertyFlag(EPropertyFlag Flag) const { return PropertyFlags & static_cast<uint64>(Flag); }
+	bool HProperty::GetPropertyFlag(EPropertyFlag Flag) const { return PropertyFlags & static_cast<uint64>(Flag); }
 
 }
