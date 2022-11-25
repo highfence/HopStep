@@ -18,9 +18,11 @@ namespace HopStep
 
 		void AddToRoot(HObject* Object);
 
+		virtual TArray<IGCObject*> GetGCProperties() override;
+
 	protected:
 
-		// HPROPERTY();
+		HPROPERTY();
 		TArray<HObject*> Childs;
 	};
 }

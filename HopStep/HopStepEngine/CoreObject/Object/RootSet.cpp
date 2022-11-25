@@ -13,4 +13,13 @@ namespace HopStep
         HCheck(Object != nullptr);
         Childs.emplace_back(Object);
     }
+
+    TArray<IGCObject*> HRootSet::GetGCProperties()
+    {
+        auto Result = HObject::GetGCProperties();
+
+        Result.insert(Result.begin(), Childs.begin(), Childs.end());
+
+        return Result;
+    }
 }
