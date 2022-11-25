@@ -1,5 +1,6 @@
 #pragma once
 #include "..\..\Core\HopStepOverrides.h"
+#include "..\..\CoreObject\Object\ObjectBase.h"
 #include "GCInterface.h"
 #include "GarbageCollector.h"
 
