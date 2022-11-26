@@ -29,6 +29,9 @@ private:
 #define HopStepEngine_CoreObject_Reflection_ReflectionTest_142_Generated_Function_Declare \
 public: \
 private:
+#define HopStepEngine_CoreObject_Reflection_ReflectionTest_159_Generated_Function_Declare \
+public: \
+private:
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID HopStepEngine_CoreObject_Reflection_ReflectionTest

@@ -68,10 +68,17 @@ namespace HopStepTest
 			Assert::IsTrue(HopStep::IsValidLowLevel(GCObject));
 		}
 
-		TEST_METHOD(GC_Property_MarkAndSweep)
+		TEST_METHOD(GC_WeakObjectPtr)
 		{
-			
+			HopStep::HObject* TransientObject = HopStep::NewObject<HopStep::HObject>();
+			HopStep::TWeakObjectPtr<HObject> ObjectPtr = HopStep::MakeWeakObjectPtr(TransientObject);
 
+			Assert::IsTrue(ObjectPtr.IsValid());
+			Assert::AreEqual(TransientObject, ObjectPtr.Get());
+
+			HopStep::Internal::HGarbageCollector::MarkAndSweep();
+
+			Assert::IsFalse(ObjectPtr.IsValid());
 		}
 	};
 }

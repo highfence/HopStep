@@ -84,3 +84,11 @@ void HObjectDerivedTestObject::__Fill_Class_Property_HObjectDerivedTestObject(HC
 }
 
 IMPLEMENT_CLASS(HObjectDerivedTestObject);
+
+void HObjectContainTestObject::__Fill_Class_Property_HObjectContainTestObject(HClass* InStaticClass)
+{
+	HStructBuilder::AddProperty<HObjectContainTestObject, HObject*, HClassProperty>(InStaticClass, TEXT("PropObject"), &HObjectContainTestObject::PropObject);
+	HStructBuilder::SetSuper<HObject>(InStaticClass);
+}
+
+IMPLEMENT_CLASS(HObjectContainTestObject);

@@ -152,5 +152,16 @@ namespace HopStep
 		HPROPERTY();
 		bool BooleanPropC;
 	};
+
+	HCLASS();
+	class HObjectContainTestObject : public HObject
+	{
+		DECLARE_CLASS_BODY(HObjectContainTestObject);
+
+	public:
+
+		HPROPERTY();
+		HObject* PropObject;
+	};
 #endif
 }
