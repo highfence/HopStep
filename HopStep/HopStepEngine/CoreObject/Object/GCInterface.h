@@ -35,8 +35,16 @@ namespace HopStep
 		virtual bool GetGCMark() const = 0;
 
 		virtual void SetGCMark(bool bMark) = 0;
+
+		/**
+		 * WeakObjectPtr Support
+		 */
+		virtual void SetSerialNumber(uint32 SerialNumber) = 0;
+
+		virtual uint32 GetSerialNumber() const = 0;
+
 	};
 
-	template <class TType>
-	concept GarbageCollectable = std::derived_from<TType, IGCObject>;
+	template <class TObjectType>
+	concept GarbageCollectable = std::derived_from<TObjectType, IGCObject>;
 }

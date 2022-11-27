@@ -33,4 +33,14 @@ namespace HopStep
 	{
 		bMarked = bMark;
 	}
+
+	void HObject::SetSerialNumber(uint32 InSerialNumber)
+	{
+		SerialNumber = InSerialNumber;
+	}
+
+	uint32 HObject::GetSerialNumber() const
+	{
+		return SerialNumber;
+	}
 }

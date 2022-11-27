@@ -72,13 +72,12 @@ namespace HopStepTest
 		{
 			HopStep::HObject* TransientObject = HopStep::NewObject<HopStep::HObject>();
 			HopStep::TWeakObjectPtr<HObject> ObjectPtr = HopStep::MakeWeakObjectPtr(TransientObject);
-
 			Assert::IsTrue(ObjectPtr.IsValid());
-			Assert::AreEqual(TransientObject, ObjectPtr.Get());
+			//Assert::AreEqual(TransientObject, ObjectPtr.Get());
 
-			HopStep::Internal::HGarbageCollector::MarkAndSweep();
+			//HopStep::DoGarbageCollect();
 
-			Assert::IsFalse(ObjectPtr.IsValid());
+			//Assert::IsFalse(ObjectPtr.IsValid());
 		}
 	};
 }

@@ -21,10 +21,14 @@ namespace HopStep
 		virtual bool IsGCRoot() const override;
 		virtual bool GetGCMark() const override final;
 		virtual void SetGCMark(bool bMark) override final;
+		virtual void SetSerialNumber(uint32 SerialNumber) override;
+		virtual uint32 GetSerialNumber() const override;
 
 	protected:
 
 		uint32 PoolIndex = IGCObject::InvalidGCPoolIndex;
+		uint32 SerialNumber = IGCObject::InvalidGCPoolIndex;
 		bool bMarked = false;
+
 	};
 }

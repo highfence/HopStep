@@ -214,6 +214,8 @@
     <ClInclude Include="CoreObject\Object\ObjectFunctions.h" />
     <ClInclude Include="CoreObject\Object\ObjectMacro.h" />
     <ClInclude Include="CoreObject\Object\RootSet.h" />
+    <ClInclude Include="CoreObject\Object\WeakObjectPtr.h" />
+    <ClInclude Include="CoreObject\Object\WeakObjectPtrImplement.h" />
     <ClInclude Include="CoreObject\Reflection\Class.h" />
     <ClInclude Include="CoreObject\Reflection\Enum.h" />
     <ClInclude Include="CoreObject\Reflection\Field.h" />
@@ -369,6 +371,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="CoreObject\Object\RootSet.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="CoreObject\Object\WeakObjectPtrImplement.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
