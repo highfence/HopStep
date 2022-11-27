@@ -83,9 +83,8 @@ namespace HopStepTest
 			Assert::IsTrue(ObjectPtr.IsValid());
 			Assert::AreEqual(TransientObject, ObjectPtr.Get());
 
-			//HopStep::DoGarbageCollect();
-
-			//Assert::IsFalse(ObjectPtr.IsValid());
+			HopStep::DoGarbageCollect();
+			Assert::IsFalse(ObjectPtr.IsValid());
 		}
 	};
 }
