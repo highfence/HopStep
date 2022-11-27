@@ -20,7 +20,7 @@ namespace HopStepTest
 
 		TEST_METHOD_CLEANUP(CleanUp)
 		{
-			HopStep::DoGarbageCollect();
+			HopStep::Internal::HGarbageCollector::Shutdown();
 		}
 
 		TEST_METHOD(GC_NewObject)
@@ -85,6 +85,11 @@ namespace HopStepTest
 
 			HopStep::DoGarbageCollect();
 			Assert::IsFalse(ObjectPtr.IsValid());
+		}
+
+		TEST_METHOD(GC_Property_Iterate)
+		{
+			// HopStep::HRootSet* RootSet = HopStep::NewObject<HopStep::HObject>();
 		}
 	};
 }

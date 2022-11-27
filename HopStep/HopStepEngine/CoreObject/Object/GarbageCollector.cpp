@@ -9,6 +9,13 @@ namespace HopStep::Internal
 	void HGarbageCollector::Shutdown()
 	{
 		MarkAndSweep();
+
+		for (IGCObject* RemainingObject : ObjectCollection.ObjectArray)
+		{
+			delete RemainingObject;
+		}
+
+		ObjectCollection.ObjectArray.clear();
 	}
 
 	void HGarbageCollector::RegisterToGarbagePool(IGCObject* InObject)
