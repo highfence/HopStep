@@ -36,6 +36,8 @@ namespace HopStep::Internal
 		 */
 		static void Sweep();
 
+		static IGCObject* GetGCObject(uint32 Index);
+
 	private:
 
 		HGarbageCollector() = delete;

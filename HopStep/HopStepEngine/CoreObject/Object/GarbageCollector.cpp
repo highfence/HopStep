@@ -109,4 +109,14 @@ namespace HopStep::Internal
 
 		ObjectCollection.PendingRemoveObjects.clear();
 	}
+
+	IGCObject* HGarbageCollector::GetGCObject(uint32 Index)
+	{
+		if (ObjectCollection.ObjectArray.size() <= Index)
+		{
+			return nullptr;
+		}
+
+		return ObjectCollection.ObjectArray[Index];
+	}
 }

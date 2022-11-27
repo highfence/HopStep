@@ -4,6 +4,14 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
+namespace Microsoft::VisualStudio::CppUnitTestFramework
+{
+	template<> inline std::wstring ToString<::HopStep::HObject>(HObject* InObject)
+	{
+		return L"HObject";
+	}
+}
+
 namespace HopStepTest
 {
 	TEST_CLASS(CoreGCTest)
@@ -73,7 +81,7 @@ namespace HopStepTest
 			HopStep::HObject* TransientObject = HopStep::NewObject<HopStep::HObject>();
 			HopStep::TWeakObjectPtr<HObject> ObjectPtr = HopStep::MakeWeakObjectPtr(TransientObject);
 			Assert::IsTrue(ObjectPtr.IsValid());
-			//Assert::AreEqual(TransientObject, ObjectPtr.Get());
+			Assert::AreEqual(TransientObject, ObjectPtr.Get());
 
 			//HopStep::DoGarbageCollect();
 

@@ -15,6 +15,10 @@ namespace HopStep
 			return Internal::HWeakObjectPtrImplement::IsValid(ObjectIndex, ObjectSerialNumber);
 		}
 
+		TObjectType* Get() const
+		{
+			return static_cast<TObjectType*>(Internal::HWeakObjectPtrImplement::Get(ObjectIndex, ObjectSerialNumber));
+		}
 
 	private:
 

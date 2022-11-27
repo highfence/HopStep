@@ -10,6 +10,7 @@ namespace HopStep::Internal
 
 		static bool IsValid(uint32 ObjectIndex, uint32 ObjectSerialNumber);
 
+		static class IGCObject* Get(uint32 ObjectIndex, uint32 ObjectSerialNumber);
 
 	};
 }
