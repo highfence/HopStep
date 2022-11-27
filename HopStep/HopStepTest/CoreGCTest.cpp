@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "..\HopStepEngine\CoreObject\Object\GarbageCollector.h"
+#include "..\HopStepEngine\CoreObject\Reflection\ReflectionTest.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -87,9 +88,20 @@ namespace HopStepTest
 			Assert::IsFalse(ObjectPtr.IsValid());
 		}
 
-		TEST_METHOD(GC_Property_Iterate)
+		TEST_METHOD(GC_HPropertyLifeTime)
 		{
-			// HopStep::HRootSet* RootSet = HopStep::NewObject<HopStep::HObject>();
+			HopStep::HRootSet* RootSet = HopStep::NewObject<HopStep::HRootSet>();
+			HopStep::HObjectContainTestObject* OwnerObject = HopStep::NewObject<HopStep::HObjectContainTestObject>();
+			OwnerObject->PropObject = HopStep::NewObject<HopStep::HObject>();
+			RootSet->AddToRoot(OwnerObject);
+
+			// If we invoke Mark(), All object must be marked.
+			HopStep::Internal::HGarbageCollector::Mark();
+			Assert::IsTrue(RootSet->GetGCMark());
+			Assert::IsTrue(OwnerObject->GetGCMark());
+			Assert::IsTrue(OwnerObject->PropObject->GetGCMark());
+
+			HopStep::Internal::HGarbageCollector::Sweep();
 		}
 	};
 }

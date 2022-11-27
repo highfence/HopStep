@@ -18,6 +18,11 @@ namespace HopStep
 
 		bool IsPrimitiveType() const { return TypeFlag & static_cast<uint64>(HTypeFlag::Primitive); }
 
+		bool IsClassType() const { return TypeFlag & static_cast<uint64>(HTypeFlag::Class); }
+
+		bool IsContainerType() const { return TypeFlag & static_cast<uint64>(HTypeFlag::Container); }
+
+		bool IsGarbageCollectable() const { return TypeFlag & static_cast<uint64>(HTypeFlag::GarbageCollectable); }
 
 	protected:
 
@@ -28,9 +33,13 @@ namespace HopStep
 			None = 0x00,
 			Primitive = 0x01 << 0,
 			Class = 0x01 << 1,
-			Container = 0x01 << 2
+			Container = 0x01 << 2,
+			GarbageCollectable  = 0x01 << 3
 		};
 
+
 		uint64 TypeFlag;
+
+		friend struct HStructBuilder;
 	};
 }

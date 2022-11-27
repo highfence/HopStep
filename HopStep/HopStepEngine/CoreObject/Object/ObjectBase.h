@@ -62,10 +62,15 @@ public:
 
 	HClass* GetClass() const { return ClassPrivate; }
 	// Todo: Remove this.
-	void SetClass(HClass* InClass) { ClassPrivate = InClass; }
+	void SetClass(HClass* InClass) 
+	{
+		Name = InClass->GetName();
+		ClassPrivate = InClass; 
+	}
 
 private:
 
+	HString Name;
 	HClass* ClassPrivate = nullptr;
 };
 

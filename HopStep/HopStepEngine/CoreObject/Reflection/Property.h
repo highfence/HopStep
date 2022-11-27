@@ -1,7 +1,7 @@
 #pragma once
 #include "..\..\Core\PrimitiveTypeDefines.h"
 #include "..\..\Core\HopStepOverrides.h"
-#include "Field.h"
+#include "Type.h"
 
 namespace HopStep
 {
@@ -14,7 +14,7 @@ namespace HopStep
 		ArrayProperty = (0x01 << 4)
 	};
 
-	class HProperty : public HField
+	class HProperty : public HType
 	{
 	public:
 
@@ -32,6 +32,8 @@ namespace HopStep
 
 		void SetPropertyFlag(EPropertyFlag Flag);
 		bool GetPropertyFlag(EPropertyFlag Flag) const;
+
+	protected:
 
 		int32 Offset;
 		int32 ElementSize;

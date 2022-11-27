@@ -76,6 +76,8 @@ namespace HopStep::Internal
 
 				for (IGCObject* GCProperty : GCProperties)
 				{
+					if (GCProperty == nullptr) continue;
+
 					GCProperty->SetGCMark(true);
 					SweepingCollections.PendingIterateObjects.emplace_back(GCProperty);
 				}

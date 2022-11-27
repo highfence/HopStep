@@ -9,12 +9,19 @@ namespace HopStep
 
 		HClass* ThisClass = GetClass();
 
-		//const TArray<HProperty*> Properties = ThisClass->GetProperties();
+		const TArray<HProperty*> Properties = ThisClass->GetProperties();
 
-		//for (const HProperty* Property : Properties)
-		//{
+		for (const HProperty* Property : Properties)
+		{
+			if (Property == nullptr || Property->IsPrimitiveType()) continue;
 
-		//}
+			if (Property->IsGarbageCollectable())
+			{
+				HObjectBase* Parent = dynamic_cast<HObjectBase*>(this);
+				IGCObject* GCObject = Property->GetPtr<IGCObject>(Parent);
+				GCProperties.emplace_back(GCObject);
+			}
+		}
 
 		return GCProperties;
 	}

@@ -1,6 +1,7 @@
 #pragma once
 #include "Core\PrimitiveTypeDefines.h"
 #include "Core\HopStepOverrides.h"
+#include "..\Object\GCInterface.h"
 #include "Property.h"
 #include "PrimitiveProperty.h"
 #include "Struct.h"
@@ -44,25 +45,39 @@ namespace HopStep
 	template<class TFieldType, class TPropertyType>
 	inline void HStructBuilder::IntializePropertyFlags(HProperty* Property)
 	{
-		if constexpr (std::is_integral_v<TFieldType>)
+		using TPureFieldType = std::remove_pointer<TFieldType>::type;
+
+		if constexpr (std::is_integral_v<TPureFieldType>)
 		{
 			Property->SetPropertyFlag(EPropertyFlag::IntProperty);
 		}
-		else if constexpr (std::is_floating_point_v<TFieldType>)
+		else if constexpr (std::is_floating_point_v<TPureFieldType>)
 		{
 			Property->SetPropertyFlag(EPropertyFlag::FloatProperty);
 		}
-		if constexpr (std::is_unsigned_v<TFieldType>)
+		if constexpr (std::is_unsigned_v<TPureFieldType>)
 		{
 			Property->SetPropertyFlag(EPropertyFlag::UnsignedProperty);
 		}
-		if constexpr (std::is_class_v<TFieldType>)
+		if constexpr (std::is_class_v<TPureFieldType>)
 		{
 			Property->SetPropertyFlag(EPropertyFlag::ClassProperty);
+			Property->TypeFlag |= static_cast<uint64>(HType::HTypeFlag::Class);
 		}
 		if constexpr (std::is_same_v<HArrayProperty, TPropertyType>)
 		{
 			Property->SetPropertyFlag(EPropertyFlag::ArrayProperty);
+			Property->TypeFlag |= static_cast<uint64>(HType::HTypeFlag::Container);
+		}
+
+		if constexpr (std::derived_from<TPureFieldType, IGCObject>)
+		{
+			Property->TypeFlag |= static_cast<uint64>(HType::HTypeFlag::GarbageCollectable);
+		}
+
+		if (Property->IsClassType() == false && Property->IsContainerType() == false)
+		{
+			Property->TypeFlag |= static_cast<uint64>(HType::HTypeFlag::Primitive);
 		}
 	}
 
