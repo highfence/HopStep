@@ -16,6 +16,11 @@ namespace HopStep::Internal
 		}
 
 		ObjectCollection.ObjectArray.clear();
+
+		while (ObjectCollection.ObjectArrayEmptyIndexes.empty() == false)
+		{
+			ObjectCollection.ObjectArrayEmptyIndexes.pop();
+		}
 	}
 
 	void HGarbageCollector::RegisterToGarbagePool(IGCObject* InObject)
