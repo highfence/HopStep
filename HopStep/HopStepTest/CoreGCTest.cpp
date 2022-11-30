@@ -90,44 +90,18 @@ namespace HopStepTest
 
 		TEST_METHOD(GC_HPropertyLifeTime)
 		{
-			std::wostringstream os;
-			os << TEXT("sizeof(HObjectContainTestObject) is ") << sizeof(HObjectContainTestObject) << "\n";
-			os << TEXT("sizeof(HObject) is ") << sizeof(HObject) << "\n";
-			os << TEXT("sizeof(HObjectBase) is ") << sizeof(HObjectBase) << "\n";
+			HopStep::HRootSet* RootSet = HopStep::NewObject<HopStep::HRootSet>();
+			HopStep::HObjectContainTestObject* OwnerObject = HopStep::NewObject<HopStep::HObjectContainTestObject>();
+			OwnerObject->PropObject = HopStep::NewObject<HopStep::HObject>();
+			RootSet->AddToRoot(OwnerObject);
 
-			HopStep::HObjectContainTestObject ContainObject;
-			HopStep::HObject PropObjectInStack;
-			ContainObject.PropObject = &PropObjectInStack;
+			// If we invoke Mark(), All object must be marked.
+			HopStep::Internal::HGarbageCollector::Mark();
+			Assert::IsTrue(RootSet->GetGCMark());
+			Assert::IsTrue(OwnerObject->GetGCMark());
+			Assert::IsTrue(OwnerObject->PropObject->GetGCMark());
 
-			os << TEXT("ContainObject address : ") << (uintptr_t)&ContainObject << "\n";
-			os << TEXT("PropObject address : ") << (uintptr_t)&PropObjectInStack << "\n";
-			os << TEXT("ContainObject.PropObject address : ") << (uintptr_t)&(ContainObject.PropObject) << "\n";
-
-			void* ObjectPtr = &ContainObject;
-			Assert::AreEqual((uintptr_t)&ContainObject, (uintptr_t)ObjectPtr);
-			HObject** GetPtrResult = (HObject**)((char*)ObjectPtr + 80);
-
-			os << TEXT("GetPtrResult address : ") << (uintptr_t)GetPtrResult << "\n";
-			uintptr_t GetPtrIntPtr = (uintptr_t)GetPtrResult;
-			auto Offset = GetPtrIntPtr - (uintptr_t)&ContainObject;
-
-			os << TEXT("GetPtrResult - ContainObject : ") << Offset << "\n";
-			os << TEXT("dereferencing GetPtrResult : ") << (uintptr_t)*GetPtrResult << "\n";
-
-			Logger::WriteMessage(os.str().c_str());
-
-			//HopStep::HRootSet* RootSet = HopStep::NewObject<HopStep::HRootSet>();
-			//HopStep::HObjectContainTestObject* OwnerObject = HopStep::NewObject<HopStep::HObjectContainTestObject>();
-			//OwnerObject->PropObject = HopStep::NewObject<HopStep::HObject>();
-			//RootSet->AddToRoot(OwnerObject);
-
-			//// If we invoke Mark(), All object must be marked.
-			//HopStep::Internal::HGarbageCollector::Mark();
-			//Assert::IsTrue(RootSet->GetGCMark());
-			//Assert::IsTrue(OwnerObject->GetGCMark());
-			//Assert::IsTrue(OwnerObject->PropObject->GetGCMark());
-
-			//HopStep::Internal::HGarbageCollector::Sweep();
+			HopStep::Internal::HGarbageCollector::Sweep();
 		}
 	};
 }

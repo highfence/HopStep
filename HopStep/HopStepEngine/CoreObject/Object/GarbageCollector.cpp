@@ -72,7 +72,8 @@ namespace HopStep::Internal
 			{
 				IGCObject* MarkedObject = SweepingCollections.MarkedObjects[Index];
 
-				TArray<IGCObject*> GCProperties = MarkedObject->GetGCProperties();
+				TArray<IGCObject*> GCProperties;
+				MarkedObject->GetGCProperties(GCProperties);
 
 				for (IGCObject* GCProperty : GCProperties)
 				{

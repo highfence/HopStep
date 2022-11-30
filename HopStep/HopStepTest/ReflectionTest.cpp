@@ -194,6 +194,35 @@ namespace HopStepTest
 			Assert::AreEqual((int32)3, (int32)PropertyPtr->size());
 		}
 
+		TEST_METHOD(Reflection_PropertyOffset)
+		{
+			std::wostringstream os;
+			os << TEXT("sizeof(HObjectContainTestObject) is ") << sizeof(HObjectContainTestObject) << "\n";
+			os << TEXT("sizeof(HObject) is ") << sizeof(HObject) << "\n";
+			os << TEXT("sizeof(HObjectBase) is ") << sizeof(HObjectBase) << "\n";
+
+			HopStep::HObjectContainTestObject ContainObject;
+			HopStep::HObject PropObjectInStack;
+			ContainObject.PropObject = &PropObjectInStack;
+
+			os << TEXT("ContainObject address : ") << (uintptr_t)&ContainObject << "\n";
+			os << TEXT("PropObject address : ") << (uintptr_t)&PropObjectInStack << "\n";
+			os << TEXT("ContainObject.PropObject address : ") << (uintptr_t)&(ContainObject.PropObject) << "\n";
+
+			void* ObjectPtr = &ContainObject;
+			Assert::AreEqual((uintptr_t)&ContainObject, (uintptr_t)ObjectPtr);
+			HObject** GetPtrResult = (HObject**)((char*)ObjectPtr + 80);
+
+			os << TEXT("GetPtrResult address : ") << (uintptr_t)GetPtrResult << "\n";
+			uintptr_t GetPtrIntPtr = (uintptr_t)GetPtrResult;
+			auto Offset = GetPtrIntPtr - (uintptr_t)&ContainObject;
+
+			os << TEXT("GetPtrResult - ContainObject : ") << Offset << "\n";
+			os << TEXT("dereferencing GetPtrResult : ") << (uintptr_t)*GetPtrResult << "\n";
+
+			Logger::WriteMessage(os.str().c_str());
+		}
+
 		TEST_METHOD(Reflection_Test_ClipboardExportProperties)
 		{
 

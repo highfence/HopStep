@@ -25,7 +25,7 @@ namespace HopStep
 		/**
 		 * Properties
 		 */
-		virtual TArray<IGCObject*> GetGCProperties() = 0;
+		virtual void GetGCProperties(TArray<IGCObject*>& OutList) = 0;
 
 		/**
 		 * References

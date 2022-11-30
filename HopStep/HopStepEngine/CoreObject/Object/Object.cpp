@@ -3,27 +3,28 @@
 
 namespace HopStep
 {
-	TArray<IGCObject*> HObject::GetGCProperties()
+	void HObject::GetGCProperties(TArray<IGCObject*>& OutList) 
 	{
-		TArray<IGCObject*> GCProperties;
-
-		HClass* ThisClass = GetClass();
-
-		const TArray<HProperty*> Properties = ThisClass->GetProperties();
-
-		for (const HProperty* Property : Properties)
+		if (bGCPropertyCached == false)
 		{
-			if (Property == nullptr || Property->IsPrimitiveType()) continue;
+			HClass* ThisClass = GetClass();
 
-			if (Property->IsGarbageCollectable())
+			const TArray<HProperty*> Properties = ThisClass->GetProperties();
+
+			for (const HProperty* Property : Properties)
 			{
-				HObjectBase* Parent = dynamic_cast<HObjectBase*>(this);
-				IGCObject* GCObject = Property->GetPtr<IGCObject>(Parent);
-				GCProperties.emplace_back(GCObject);
+				if (Property == nullptr || Property->IsPrimitiveType()) continue;
+
+				if (Property->IsGarbageCollectable())
+				{
+					HObjectBase* Parent = reinterpret_cast<HObjectBase*>(this);
+					IGCObject* GCObject = *Property->GetPtr<IGCObject*>(Parent);
+					CachedGCProperties.emplace_back(GCObject);
+				}
 			}
 		}
 
-		return GCProperties;
+		OutList.append_range(CachedGCProperties);
 	}
 
 	bool HObject::IsGCRoot() const

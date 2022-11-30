@@ -14,12 +14,9 @@ namespace HopStep
         Childs.emplace_back(Object);
     }
 
-    TArray<IGCObject*> HRootSet::GetGCProperties()
+    void HRootSet::GetGCProperties(TArray<IGCObject*>& OutList)
     {
-        auto Result = HObject::GetGCProperties();
-
-        Result.insert(Result.begin(), Childs.begin(), Childs.end());
-
-        return Result;
+        HObject::GetGCProperties(OutList);
+        OutList.append_range(Childs);
     }
 }
