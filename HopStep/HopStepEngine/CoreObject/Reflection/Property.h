@@ -28,6 +28,9 @@ namespace HopStep
 		TValueType* GetPtr(void const* ObjectPtr) const;
 
 		template <class TValueType>
+		TValueType Get(void const* ObjectPtr) const;
+
+		template <class TValueType>
 		void SetValue(void const* ObjectPtr, TValueType Value) const;
 
 		void SetPropertyFlag(EPropertyFlag Flag);
@@ -46,6 +49,12 @@ namespace HopStep
 	inline TValueType* HProperty::GetPtr(void const* ObjectPtr) const
 	{
 		return (TValueType*)((char*)ObjectPtr + Offset);
+	}
+
+	template<class TValueType>
+	inline TValueType HProperty::Get(void const* ObjectPtr) const
+	{
+		return (TValueType)((char*)ObjectPtr + Offset);
 	}
 
 	template<class TValueType>

@@ -1,11 +1,27 @@
-// #include "..\Reflection\Property.h"
+#include "..\Reflection\Property.h"
 #include "Object.h"
 
 namespace HopStep
 {
 	void HObject::GetGCProperties(TArray<IGCObject*>& OutList) 
 	{
+		HClass* ThisClass = GetClass();
 
+		const TArray<HProperty*> Properties = ThisClass->GetProperties();
+
+		// Todo: Recursive
+		for (HProperty* Property : Properties)
+		{
+			if (Property == nullptr || Property->IsPrimitiveType()) continue;
+			if (Property->IsGarbageCollectable() == false) continue;
+
+			HObjectBase* BasePtr = reinterpret_cast<HObjectBase*>(this);
+			IGCObject* GCPtr = nullptr;
+
+			// Todo: How can i do this?
+
+			OutList.push_back(GCPtr);
+		}
 	}
 
 	bool HObject::IsGCRoot() const

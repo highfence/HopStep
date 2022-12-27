@@ -12,6 +12,7 @@ namespace HopStep::Internal
 
 		for (IGCObject* RemainingObject : ObjectCollection.ObjectArray)
 		{
+			if (RemainingObject == nullptr) continue;
 			delete RemainingObject;
 		}
 
