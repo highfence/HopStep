@@ -53,10 +53,13 @@ namespace HopStepTest
 
 		TEST_METHOD(GC_RootObject)
 		{
-			HopStep::HRootSet* RootObject = HopStep::NewObject<HopStep::HRootSet>();
+			HopStep::HObject* RootObject = HopStep::NewObject<HopStep::HObject>();
 			Assert::IsNotNull(RootObject);
 			Assert::IsTrue(RootObject->GetGCPoolIndex() != HopStep::IGCObject::InvalidGCPoolIndex);
 			Assert::IsFalse(RootObject->GetGCMark());
+
+			RootObject->SetGCRoot(true);
+			Assert::IsTrue(RootObject->IsGCRoot());
 
 			// If we invoke Mark(), RootObject must be marked.
 			HopStep::Internal::HGarbageCollector::Mark();
@@ -68,7 +71,7 @@ namespace HopStepTest
 
 			// It should be the same for all other objects added to the root.
 			HopStep::HObject* GCObject = HopStep::NewObject<HopStep::HObject>();
-			RootObject->AddToRoot(GCObject);
+			GCObject->SetGCRoot(true);
 
 			HopStep::Internal::HGarbageCollector::Mark();
 			Assert::IsTrue(GCObject->GetGCMark());
@@ -90,14 +93,12 @@ namespace HopStepTest
 
 		TEST_METHOD(GC_HPropertyLifeTime)
 		{
-			HopStep::HRootSet* RootSet = HopStep::NewObject<HopStep::HRootSet>();
 			HopStep::HObjectContainTestObject* OwnerObject = HopStep::NewObject<HopStep::HObjectContainTestObject>();
 			OwnerObject->PropObject = HopStep::NewObject<HopStep::HObject>();
-			RootSet->AddToRoot(OwnerObject);
+			OwnerObject->SetGCRoot(true);
 
 			// If we invoke Mark(), All object must be marked.
 			HopStep::Internal::HGarbageCollector::Mark();
-			Assert::IsTrue(RootSet->GetGCMark());
 			Assert::IsTrue(OwnerObject->GetGCMark());
 			Assert::IsTrue(OwnerObject->PropObject->GetGCMark());
 

@@ -32,6 +32,8 @@ namespace HopStep
 		 */
 		virtual bool IsGCRoot() const = 0;
 
+		virtual void SetGCRoot(bool bIsRoot) = 0;
+
 		virtual bool GetGCMark() const = 0;
 
 		virtual void SetGCMark(bool bMark) = 0;

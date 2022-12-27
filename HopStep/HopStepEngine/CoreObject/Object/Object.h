@@ -19,6 +19,7 @@ namespace HopStep
 		virtual void SetGCPoolIndex(uint32 Index) override final { PoolIndex = Index; }
 		virtual void GetGCProperties(TArray<IGCObject*>& OutList) override;
 		virtual bool IsGCRoot() const override;
+		virtual void SetGCRoot(bool bIsRoot) override;
 		virtual bool GetGCMark() const override final;
 		virtual void SetGCMark(bool bMark) override final;
 		virtual void SetSerialNumber(uint32 SerialNumber) override;
@@ -29,8 +30,6 @@ namespace HopStep
 		uint32 PoolIndex = IGCObject::InvalidGCPoolIndex;
 		uint32 SerialNumber = IGCObject::InvalidGCPoolIndex;
 		bool bMarked = false;
-
-		TArray<IGCObject*> CachedGCProperties;
-		bool bGCPropertyCached = false;
+		bool bIsGCRoot = false;
 	};
 }
