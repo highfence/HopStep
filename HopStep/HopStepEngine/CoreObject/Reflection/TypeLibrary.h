@@ -14,12 +14,12 @@ namespace HopStep
 
 		static HTypeLibrary* GetPropertyPtr();
 
-		TArray<class HType*> GetTypes();
+		TArray<class HField*> GetTypes();
 
-		void RegisterNewType(class HType* InType);
+		void RegisterNewType(class HField* InType);
 
 	protected:
 
-		std::vector<class HType*> Types;
+		std::vector<class HField*> Types;
 	};
 }

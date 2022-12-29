@@ -15,12 +15,12 @@ namespace HopStep
 		return &Library;
 	}
 
-	std::vector<class HType*> HTypeLibrary::GetTypes()
+	std::vector<class HField*> HTypeLibrary::GetTypes()
 	{
 		return Types;
 	}
 
-	void HTypeLibrary::RegisterNewType(HType* InType)
+	void HTypeLibrary::RegisterNewType(HField* InType)
 	{
 		if (InType == nullptr) return;
 

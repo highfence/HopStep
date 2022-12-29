@@ -62,22 +62,22 @@ namespace HopStep
 		if constexpr (std::is_class_v<TPureFieldType>)
 		{
 			Property->SetPropertyFlag(EPropertyFlag::ClassProperty);
-			Property->TypeFlag |= static_cast<uint64>(HType::HTypeFlag::Class);
+			Property->TypeFlag |= static_cast<uint64>(HField::HTypeFlag::Class);
 		}
 		if constexpr (std::is_same_v<HArrayProperty, TPropertyType>)
 		{
 			Property->SetPropertyFlag(EPropertyFlag::ArrayProperty);
-			Property->TypeFlag |= static_cast<uint64>(HType::HTypeFlag::Container);
+			Property->TypeFlag |= static_cast<uint64>(HField::HTypeFlag::Container);
 		}
 
 		if constexpr (std::derived_from<TPureFieldType, IGCObject>)
 		{
-			Property->TypeFlag |= static_cast<uint64>(HType::HTypeFlag::GarbageCollectable);
+			Property->TypeFlag |= static_cast<uint64>(HField::HTypeFlag::GarbageCollectable);
 		}
 
 		if (Property->IsClassType() == false && Property->IsContainerType() == false)
 		{
-			Property->TypeFlag |= static_cast<uint64>(HType::HTypeFlag::Primitive);
+			Property->TypeFlag |= static_cast<uint64>(HField::HTypeFlag::Primitive);
 		}
 	}
 

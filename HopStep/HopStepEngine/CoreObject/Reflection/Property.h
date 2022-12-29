@@ -1,7 +1,7 @@
 #pragma once
 #include "..\..\Core\PrimitiveTypeDefines.h"
 #include "..\..\Core\HopStepOverrides.h"
-#include "Type.h"
+#include "Field.h"
 
 namespace HopStep
 {
@@ -14,7 +14,7 @@ namespace HopStep
 		ArrayProperty = (0x01 << 4)
 	};
 
-	class HProperty : public HType
+	class HProperty : public HField
 	{
 	public:
 
@@ -26,9 +26,6 @@ namespace HopStep
 
 		template <class TValueType>
 		TValueType* GetPtr(void const* ObjectPtr) const;
-
-		template <class TValueType>
-		TValueType Get(void const* ObjectPtr) const;
 
 		template <class TValueType>
 		void SetValue(void const* ObjectPtr, TValueType Value) const;
@@ -49,12 +46,6 @@ namespace HopStep
 	inline TValueType* HProperty::GetPtr(void const* ObjectPtr) const
 	{
 		return (TValueType*)((char*)ObjectPtr + Offset);
-	}
-
-	template<class TValueType>
-	inline TValueType HProperty::Get(void const* ObjectPtr) const
-	{
-		return (TValueType)((char*)ObjectPtr + Offset);
 	}
 
 	template<class TValueType>

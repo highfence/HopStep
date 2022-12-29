@@ -1,11 +1,10 @@
-#include "TypeLibrary.h"
 #include "Type.h"
 
 namespace HopStep
 {
-	void HType::RegisterToLibrary()
-	{
-		auto* Library = HTypeLibrary::GetPropertyPtr();
-		Library->RegisterNewType(this);
-	}
+	HType::HType(const HString& InName) : Name(InName) {}
+
+	HType::~HType() {}
+
+	const HString& HType::GetName() const { return Name; }
 }

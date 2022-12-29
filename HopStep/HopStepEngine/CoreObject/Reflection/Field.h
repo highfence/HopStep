@@ -1,24 +1,43 @@
 #pragma once
-#include "..\..\Core\CoreExport.h"
+#include "Type.h"
 
 namespace HopStep
 {
 	/**
-	* Object that has name on it.
-	* + Metadata managing (todo)
-	*/
-	class HField
+	 * 	
+	 */
+	class HField : public HType
 	{
 	public:
 
-		HField(const HString& InName);
+		HField(const HString& InName) 
+			: HType(InName)
+			, TypeFlag(static_cast<uint64>(HTypeFlag::None)) 
+		{
+		};
 
-		virtual ~HField();
+		bool IsPrimitiveType() const { return TypeFlag & static_cast<uint64>(HTypeFlag::Primitive); }
 
-		const HString& GetName() const;
+		bool IsClassType() const { return TypeFlag & static_cast<uint64>(HTypeFlag::Class); }
+
+		bool IsContainerType() const { return TypeFlag & static_cast<uint64>(HTypeFlag::Container); }
+
+		bool IsGarbageCollectable() const { return TypeFlag & static_cast<uint64>(HTypeFlag::GarbageCollectable); }
 
 	protected:
 
-		HString Name;
+		enum class HTypeFlag : uint64
+		{
+			None = 0x00,
+			Primitive = 0x01 << 0,
+			Class = 0x01 << 1,
+			Container = 0x01 << 2,
+			GarbageCollectable  = 0x01 << 3
+		};
+
+
+		uint64 TypeFlag;
+
+		friend struct HStructBuilder;
 	};
 }

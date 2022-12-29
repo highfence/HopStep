@@ -1,10 +1,10 @@
 #pragma once
 #include "Core/HopStepOverrides.h"
-#include "Field.h"
+#include "Type.h"
 
 namespace HopStep
 {
-	class HEnum : public HField 
+	class HEnum : public HType 
 	{
 	public:
 
