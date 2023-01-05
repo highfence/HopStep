@@ -5,7 +5,11 @@ namespace HopStep
 {
 	HField* HFieldClass::ConstructDefaultObject()
 	{
-		return nullptr;
+		HString NameString = TEXT("Default__");
+		NameString.append(Name.ToString());
+
+		HField* Default = Construct(HName(NameString));
+		return Default;
 	}
 
 	HFieldClass::HFieldClass(const HChar* InName, uint64 InId, uint64 InCastFlags, HFieldClass* InSuperClass, HField* (*ConstructFnPtr)(const HName&))

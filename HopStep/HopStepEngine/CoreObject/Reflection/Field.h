@@ -1,5 +1,6 @@
 #pragma once
 #include "Type.h"
+#include "FieldClass.h"
 
 namespace HopStep
 {
@@ -10,11 +11,14 @@ namespace HopStep
 	{
 	public:
 
-		HField(const HString& InName) 
+		HField(const HString& InName, HFieldClass* FieldClass) 
 			: HType(InName)
 			, TypeFlag(static_cast<uint64>(HTypeFlag::None)) 
+			, FieldClassPrivate(FieldClass)
 		{
 		};
+
+		~HField();
 
 		bool IsPrimitiveType() const { return TypeFlag & static_cast<uint64>(HTypeFlag::Primitive); }
 
@@ -37,6 +41,8 @@ namespace HopStep
 
 
 		uint64 TypeFlag;
+
+		HFieldClass* FieldClassPrivate;
 
 		friend struct HStructBuilder;
 	};
