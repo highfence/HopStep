@@ -223,9 +223,8 @@ namespace HopStepTest
 			Logger::WriteMessage(os.str().c_str());
 		}
 
-		TEST_METHOD(Reflection_Test_ClipboardExportProperties)
+		TEST_METHOD(Reflection_FieldClass)
 		{
-
 
 		}
 

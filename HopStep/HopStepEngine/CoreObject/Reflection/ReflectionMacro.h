@@ -48,3 +48,4 @@ BODY_DEFINE(Class)
 */
 #define DECLARE_FUNCTION(func) static void func(void* Instance, HFunctionCallFrame& Frame, HFUNC_RESULT_DECL_INNER)
 #define DEFINE_FUNCTION(func) void func(void* Instance, HFunctionCallFrame& Frame, HFUNC_RESULT_DECL_INNER)
+

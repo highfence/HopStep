@@ -218,6 +218,7 @@
     <ClInclude Include="CoreObject\Reflection\Class.h" />
     <ClInclude Include="CoreObject\Reflection\Enum.h" />
     <ClInclude Include="CoreObject\Reflection\Field.h" />
+    <ClInclude Include="CoreObject\Reflection\FieldClass.h" />
     <ClInclude Include="CoreObject\Reflection\Function.h" />
     <ClInclude Include="CoreObject\Reflection\PrimitiveProperty.h" />
     <ClInclude Include="CoreObject\Reflection\Property.h" />
@@ -381,6 +382,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="CoreObject\Reflection\Field.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="CoreObject\Reflection\FieldClass.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
