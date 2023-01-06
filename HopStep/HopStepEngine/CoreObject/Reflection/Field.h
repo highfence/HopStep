@@ -5,15 +5,15 @@
 namespace HopStep
 {
 	/**
-	 * 	
+	 *
 	 */
 	class HField : public HType
 	{
 	public:
 
-		HField(const HString& InName, HFieldClass* FieldClass) 
+		HField(const HString& InName, HFieldClass* FieldClass)
 			: HType(InName)
-			, TypeFlag(static_cast<uint64>(HTypeFlag::None)) 
+			, TypeFlag(static_cast<uint64>(HTypeFlag::None))
 			, FieldClassPrivate(FieldClass)
 		{
 		};
@@ -36,7 +36,7 @@ namespace HopStep
 			Primitive = 0x01 << 0,
 			Class = 0x01 << 1,
 			Container = 0x01 << 2,
-			GarbageCollectable  = 0x01 << 3
+			GarbageCollectable = 0x01 << 3
 		};
 
 
@@ -47,3 +47,4 @@ namespace HopStep
 		friend struct HStructBuilder;
 	};
 }
+

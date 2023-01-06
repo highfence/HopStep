@@ -6,7 +6,6 @@ using static HopStepHeaderTool.SolutionSchema;
 
 namespace HopStepHeaderTool
 {
-
     public sealed class ParsingStateContext
     {
         public enum ParsingState
@@ -21,11 +20,17 @@ namespace HopStepHeaderTool
 
         public ParsingState State { get; private set; } = ParsingState.None;
         public ObjectType CurrentObjectType = ObjectType.None;
+
         public string TypeName { get; private set; } = string.Empty;
+
         public List<PropertyInfo> Properties { get; internal set; } = new List<PropertyInfo>();
+
         public int BracketStack { get; private set; } = 0;
+
 		public List<string> ObjectBase { get; private set; } = new List<string>();
+
         public List<FunctionInfo> Functions { get; private set; } = new List<FunctionInfo>();
+
         public int DeclareLineNumber { get; private set; } = -1;
 
         private readonly Dictionary<string, ObjectType> _objectTypeDefines = new Dictionary<string, ObjectType>
@@ -212,20 +217,6 @@ namespace HopStepHeaderTool
             return SolutionSchema.ObjectType.None;
         }
 
-        public void SetObjectEnd()
-        {
-            State = ParsingState.None;
-            CurrentObjectType = SolutionSchema.ObjectType.None;
-            TypeName = string.Empty;
-            Properties.Clear();
-            BracketStack = 0;
-            DeclareLineNumber = -1;
-            ObjectBase?.Clear();
-            Functions?.Clear();
-            _isInMultiLineAnnotation = false;
-            _isObjectStarted = false;
-        }
-
         public string FilteringAnnotationString(string line)
         {
             string tempLine = line;
@@ -301,6 +292,20 @@ namespace HopStepHeaderTool
         public void SetFileEnd()
         {
             _currentLine = 0;
+        }
+
+        public void SetObjectEnd()
+        {
+            State = ParsingState.None;
+            CurrentObjectType = SolutionSchema.ObjectType.None;
+            TypeName = string.Empty;
+            Properties.Clear();
+            BracketStack = 0;
+            DeclareLineNumber = -1;
+            ObjectBase?.Clear();
+            Functions?.Clear();
+            _isInMultiLineAnnotation = false;
+            _isObjectStarted = false;
         }
     }
 }

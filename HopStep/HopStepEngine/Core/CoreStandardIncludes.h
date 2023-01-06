@@ -3,7 +3,6 @@
 // standard library
 #include <string>
 #include <memory>
-#include <vector>
 #include <utility>
 #include <algorithm>
 #include <mutex>
@@ -18,10 +17,7 @@
 #include <filesystem>
 #include <type_traits>
 #include <atomic>
-#include <tuple>
 #include <functional>
-#include <unordered_map>
-#include <stack>
 
 #include "HopStepDefine.h"
 
@@ -30,3 +26,9 @@
 #include <Windows.h>
 #endif
 
+#if !HopStep_On_CustomContainer
+#include <tuple>
+#include <unordered_map>
+#include <stack>
+#include <vector>
+#endif

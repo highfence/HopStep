@@ -5,6 +5,7 @@
 #include "../HopStepEngine/CoreObject/Reflection/ReflectionTest.h"
 #include "../HopStepEngine/CoreObject/Reflection/Class.h"
 #include "..\HopStepEngine\CoreObject\Reflection\Field.h"
+#include "..\HopStepEngine\CoreObject\Object\ObjectGlobals.h"
 #include "../HopStepEngine/Core/HopStepOverrides.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -223,8 +224,20 @@ namespace HopStepTest
 			Logger::WriteMessage(os.str().c_str());
 		}
 
-		TEST_METHOD(Reflection_FieldClass)
+		TEST_METHOD(Reflection_PropertyParam_GenerateTest)
 		{
+			using HPropertyParamBase = HopStep::Internal::HPropertyParamBase;
+
+			HPropertyParamBase Param = HPropertyParamBase
+			{
+				.Name = TEXT("PropObject"),
+				.Offset = HopStep::GetOffsetOf<HObjectContainTestObject, HObject*>(&HObjectContainTestObject::PropObject),
+				.ArrayDimension = 1,
+				.Flags = (HopStep::Internal::EPropertyGenFlags)0x15,
+			};
+
+			HObjectContainTestObject NewObject;
+			
 
 		}
 

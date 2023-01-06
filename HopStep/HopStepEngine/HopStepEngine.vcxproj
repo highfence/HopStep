@@ -212,6 +212,7 @@
     <ClInclude Include="CoreObject\Object\Object.h" />
     <ClInclude Include="CoreObject\Object\ObjectBase.h" />
     <ClInclude Include="CoreObject\Object\ObjectFunctions.h" />
+    <ClInclude Include="CoreObject\Object\ObjectGlobals.h" />
     <ClInclude Include="CoreObject\Object\ObjectMacro.h" />
     <ClInclude Include="CoreObject\Object\WeakObjectPtr.h" />
     <ClInclude Include="CoreObject\Object\WeakObjectPtrImplement.h" />

@@ -3,7 +3,8 @@
 namespace HopStep
 {
 	HProperty::HProperty(const HString& InName, int32 InOffset, int32 InElementSize, int32 InArrayDimension)
-		: HField(InName)
+		// Todo: fix this passing nullptr
+		: HField(InName, nullptr)
 		, Offset(InOffset)
 		, ElementSize(InElementSize)
 		, ArrayDimension(InArrayDimension)

@@ -63,6 +63,12 @@ namespace HopStep
 		 */
 		HString ToString() const;
 
+		uint64 GetHash() const
+		{
+			uint64 KeyValue = NameEntryKey.GetValue();
+			return (KeyValue << 32) | Digits;
+		}
+
 	private:
 
 		/**
@@ -76,3 +82,14 @@ namespace HopStep
 		uint32 Digits;
 	};
 }
+
+#if !HopStep_On_CustomContainer
+template<>
+struct std::hash<HopStep::HName>
+{
+	std::size_t operator()(HopStep::HName const& InName) const noexcept
+	{
+		return std::size_t(InName.GetHash());
+	}
+};
+#endif

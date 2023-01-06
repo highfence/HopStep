@@ -20,7 +20,7 @@ namespace HopStep
 	HCLASS();
 	class HInnerClassTest
 	{
-		DECLARE_CLASS_BODY(HInnerClassTest);
+		DECLARE_CLASS_BODY(HInnerClassTest);;
 		
 	public:
 
@@ -162,6 +162,18 @@ namespace HopStep
 
 		HPROPERTY();
 		HObject* PropObject;
+
+		void SetPropObject(HAny& InContainer, const HAny& InValue)
+		{
+			HObjectContainTestObject* Object = std::any_cast<HObjectContainTestObject*>(InContainer);
+			Object->PropObject = std::any_cast<HObject*>(InValue);
+		}
+
+		void GetPropObject(const HAny& InContainer, HAny& OutValue)
+		{
+			HObjectContainTestObject* Object = std::any_cast<HObjectContainTestObject*>(InContainer);
+			OutValue = Object->PropObject;
+		}
 	};
 #endif
 }

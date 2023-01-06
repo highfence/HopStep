@@ -49,3 +49,29 @@ BODY_DEFINE(Class)
 #define DECLARE_FUNCTION(func) static void func(void* Instance, HFunctionCallFrame& Frame, HFUNC_RESULT_DECL_INNER)
 #define DEFINE_FUNCTION(func) void func(void* Instance, HFunctionCallFrame& Frame, HFUNC_RESULT_DECL_INNER)
 
+
+/**
+ * Field related defines
+ */
+#define DECLARE_FIELD(TClass, TSuperClass, TStaticFlags) \
+public: \
+	typedef TSuperClass Super; \
+	typedef TClass ThisClass; \
+	static FField* Construct(const HName&); \
+	static FFieldClass* StaticClass(); \
+	inline static constexpr uint64 StaticClassCastFlagsPrivate() { return uint64(TStaticFlags); } \
+	inline static constexpr uint64 GetStaticCLassCastFlags() \
+	{ \
+		return uint64(TStaticFlags) | Super::StaticClassCastFlagsPrivate(); \
+	} 
+
+#define IMPLEMENT_FIELD(TClass) \
+FField* TClass::Construct(const HName& InName) \
+{ \
+	return new TClass(InName, TClass::StaticClass()); \
+} \
+FFieldClass* TClass::StaticClass() \
+{ \
+	static FFieldClass StaticFieldClass(TEXT(#TClass), TClass::StaticClassCastFlagsPrivate(), TClass::StaticClassCastFlags(), TClass::Super::StaticClass(), &TClass::Construct); \
+	return &StaticFieldClass; \
+} \

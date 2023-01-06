@@ -1,6 +1,7 @@
 #pragma once
 #include "Enum.h"
 #include "Property.h"
+#include "..\Object\ObjectGlobals.h"
 
 namespace HopStep
 {
@@ -99,6 +100,14 @@ namespace HopStep
 		}
 
 		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const override;
+	};
+
+	class HObjectPtrProperty : public HProperty
+	{
+	public:
+
+
+
 	};
 }
 
