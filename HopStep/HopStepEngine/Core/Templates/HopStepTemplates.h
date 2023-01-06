@@ -1,5 +1,6 @@
 #pragma once
 #include "RemoveReference.h"
+#include "RemoveConst.h"
 #include "..\PrimitiveTypeDefines.h"
 
 /**

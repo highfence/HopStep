@@ -22,7 +22,6 @@ namespace HopStep
 
 	private:
 
-
 		uint32 ObjectIndex;
 		uint32 ObjectSerialNumber;
 
