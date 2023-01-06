@@ -11,4 +11,9 @@ namespace HopStep
             FieldClassPrivate = nullptr;
         }
     }
+
+    HFieldClass* HField::StaticClass()
+    {
+        return nullptr;
+    }
 }

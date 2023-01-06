@@ -50,6 +50,7 @@ BODY_DEFINE(Class)
 #define DEFINE_FUNCTION(func) void func(void* Instance, HFunctionCallFrame& Frame, HFUNC_RESULT_DECL_INNER)
 
 
+
 /**
  * Field related defines
  */
@@ -59,10 +60,10 @@ public: \
 	typedef TClass ThisClass; \
 	static FField* Construct(const HName&); \
 	static FFieldClass* StaticClass(); \
-	inline static constexpr uint64 StaticClassCastFlagsPrivate() { return uint64(TStaticFlags); } \
+	inline static constexpr uint64 StaticClassCastFlagsPrivate() { return static_cast<uint64>(TStaticFlags); } \
 	inline static constexpr uint64 GetStaticCLassCastFlags() \
 	{ \
-		return uint64(TStaticFlags) | Super::StaticClassCastFlagsPrivate(); \
+		return static_cast<uint64>(TStaticFlags) | Super::StaticClassCastFlagsPrivate(); \
 	} 
 
 #define IMPLEMENT_FIELD(TClass) \
@@ -75,3 +76,4 @@ FFieldClass* TClass::StaticClass() \
 	static FFieldClass StaticFieldClass(TEXT(#TClass), TClass::StaticClassCastFlagsPrivate(), TClass::StaticClassCastFlags(), TClass::Super::StaticClass(), &TClass::Construct); \
 	return &StaticFieldClass; \
 } \
+

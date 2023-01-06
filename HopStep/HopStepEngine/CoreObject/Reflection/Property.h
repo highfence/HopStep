@@ -16,6 +16,8 @@ namespace HopStep
 
 	class HProperty : public HField
 	{
+		// DECLARE_FIELD(HProperty, HField, EClassCastFlags::CastFlag_Property);
+
 	public:
 
 		HProperty(const HString& InName, int32 InOffset, int32 InElementSize, int32 InArrayDimension = 1);
