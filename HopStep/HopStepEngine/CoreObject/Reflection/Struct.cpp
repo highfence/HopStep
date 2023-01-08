@@ -1,6 +1,7 @@
 #include "Core/HopStepOverrides.h"
 #include "Core/PrimitiveTypeDefines.h"
 #include "Struct.h"
+#include "Field.h"
 
 namespace HopStep
 {

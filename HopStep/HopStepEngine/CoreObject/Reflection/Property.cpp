@@ -1,4 +1,5 @@
 #include "Property.h"
+#include "FieldClass.h"
 
 namespace HopStep
 {

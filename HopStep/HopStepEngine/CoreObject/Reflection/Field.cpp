@@ -4,7 +4,7 @@
 
 namespace HopStep
 {
-    inline HField::HField(const HString& InName, HFieldClass* FieldClass)
+    HField::HField(const HString& InName, HFieldClass* FieldClass)
         : TypeFlag(static_cast<uint64>(HTypeFlag::None))
         , FieldClassPrivate(FieldClass)
         , FieldName(InName)
@@ -35,7 +35,7 @@ namespace HopStep
         return static_cast<uint64>(EClassCastFlags::CastFlag_Field);
     }
 
-    inline const HName& HField::GetName() const
+    const HName& HField::GetName() const
     {
         return FieldName;
     }

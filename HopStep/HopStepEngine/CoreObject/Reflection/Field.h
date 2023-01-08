@@ -37,7 +37,7 @@ namespace HopStep
 
 		inline static constexpr uint64 StaticClassCastFlags();
 
-		inline const HName& GetName() const;
+		const HName& GetName() const;
 
 	protected:
 
