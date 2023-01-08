@@ -52,7 +52,7 @@ namespace HopStep
 
 		auto FindingPropertyIter = std::find_if(AllProperties.begin(), AllProperties.end(), [PropertyName](const HProperty* InProperty) -> bool 
 			{
-				return InProperty->GetName() == PropertyName;
+				return InProperty->GetName().ToString() == PropertyName;
 			});
 
 		if (FindingPropertyIter == AllProperties.end()) return nullptr;

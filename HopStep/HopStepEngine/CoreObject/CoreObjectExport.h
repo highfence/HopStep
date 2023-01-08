@@ -7,12 +7,12 @@
 #include "Object/WeakObjectPtr.h"
 
 // Reflection related headers.
+#include "Reflection/Type.h"
+#include "Reflection/TypeLibrary.h"
+#include "Reflection/Struct.h"
 #include "Reflection/Class.h"
 #include "Reflection/Enum.h"
 #include "Reflection/Field.h"
 #include "Reflection/Function.h"
 #include "Reflection/Property.h"
 #include "Reflection/PrimitiveProperty.h"
-#include "Reflection/Struct.h"
-#include "Reflection/Type.h"
-#include "Reflection/TypeLibrary.h"

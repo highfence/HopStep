@@ -2,8 +2,8 @@
 
 namespace HopStep
 {
+	// Todo: fix this passing nullptr
 	HProperty::HProperty(const HString& InName, int32 InOffset, int32 InElementSize, int32 InArrayDimension)
-		// Todo: fix this passing nullptr
 		: HField(InName, nullptr)
 		, Offset(InOffset)
 		, ElementSize(InElementSize)

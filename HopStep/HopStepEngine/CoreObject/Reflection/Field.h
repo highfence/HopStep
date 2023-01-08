@@ -1,7 +1,5 @@
 #pragma once
-#include "Type.h"
-#include "FieldClass.h"
-#include "ReflectionMacro.h"
+#include "..\Object\NameTypes.h"
 
 namespace HopStep
 {
@@ -15,18 +13,13 @@ namespace HopStep
 	/**
 	 *
 	 */
-	class HField : public HType
+	class HField 	
 	{
 	public:
 		typedef HField Super;
 		typedef HField ThisClass;
 
-		HField(const HString& InName, HFieldClass* FieldClass)
-			: HType(InName)
-			, TypeFlag(static_cast<uint64>(HTypeFlag::None))
-			, FieldClassPrivate(FieldClass)
-		{
-		};
+		HField(const HString& InName, class HFieldClass* FieldClass);;
 
 		~HField();
 
@@ -38,17 +31,13 @@ namespace HopStep
 
 		bool IsGarbageCollectable() const { return TypeFlag & static_cast<uint64>(HTypeFlag::GarbageCollectable); }
 
-		static HFieldClass* StaticClass();
+		static class HFieldClass* StaticClass();
 
-		inline static constexpr uint64 StaticClassCastFlagsPrivate()
-		{
-			return static_cast<uint64>(EClassCastFlags::CastFlag_Field);
-		}
+		inline static constexpr uint64 StaticClassCastFlagsPrivate();
 
-		inline static constexpr uint64 StaticClassCastFlags()
-		{
-			return static_cast<uint64>(EClassCastFlags::CastFlag_Field);
-		}
+		inline static constexpr uint64 StaticClassCastFlags();
+
+		inline const HName& GetName() const;
 
 	protected:
 
@@ -64,7 +53,8 @@ namespace HopStep
 
 		uint64 TypeFlag;
 
-		HFieldClass* FieldClassPrivate;
+		class HFieldClass* FieldClassPrivate;
+		HName FieldName;
 
 		friend struct HStructBuilder;
 	};
