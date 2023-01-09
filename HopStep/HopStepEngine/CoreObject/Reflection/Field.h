@@ -19,7 +19,7 @@ namespace HopStep
 		typedef HField Super;
 		typedef HField ThisClass;
 
-		HField(const HString& InName, class HFieldClass* FieldClass);;
+		HField(const HString& InName, class HFieldClass* FieldClass);
 
 		~HField();
 

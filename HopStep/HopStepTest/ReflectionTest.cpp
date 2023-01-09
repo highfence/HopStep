@@ -226,19 +226,19 @@ namespace HopStepTest
 
 		TEST_METHOD(Reflection_PropertyParam_GenerateTest)
 		{
-			using HPropertyParamBase = HopStep::Internal::HPropertyParamBase;
-
-			HPropertyParamBase Param = HPropertyParamBase
+			auto Param = HopStep::Internal::HPropertyParamBase
 			{
 				.Name = TEXT("PropObject"),
-				.Offset = HopStep::GetOffsetOf<HObjectContainTestObject, HObject*>(&HObjectContainTestObject::PropObject),
+				.Offset = HopStep::GetOffsetOf<HopStep::HObjectContainTestObject, HopStep::HObject*>(&HopStep::HObjectContainTestObject::PropObject),
 				.ArrayDimension = 1,
 				.Flags = (HopStep::Internal::EPropertyGenFlags)0x15,
+				.Size = sizeof(HopStep::HObject*)
 			};
 
-			HObjectContainTestObject NewObject;
-			
+			// HopStep::HObjectContainTestObject NewObject;
+			HopStep::HObjectPtrProperty Property = HopStep::HObjectPtrProperty(Param);
 
+			Assert::AreEqual(Property.GetName().ToString().c_str(), TEXT("PropObject"));
 		}
 
 		TEST_METHOD(OffsetTest)

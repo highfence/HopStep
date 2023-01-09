@@ -95,4 +95,13 @@ namespace HopStep
 	void HArrayProperty::ExportToString(HString& TextOutput, void const* ObjectPtr) const
 	{
 	}
+
+	HObjectPtrProperty::HObjectPtrProperty(Internal::HPropertyParamBase& PropertyParam)
+		: HProperty(PropertyParam.Name, PropertyParam.Offset, PropertyParam.Size)
+	{
+	}
+
+	void HObjectPtrProperty::ExportToString(HString& TextOutput, void const* ObjectPtr) const
+	{
+	}
 }

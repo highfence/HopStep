@@ -106,8 +106,9 @@ namespace HopStep
 	{
 	public:
 
+		HObjectPtrProperty(Internal::HPropertyParamBase& PropertyParam);
 
-
+		virtual void ExportToString(HString& TextOutput, void const* ObjectPtr) const override;
 	};
 }
 

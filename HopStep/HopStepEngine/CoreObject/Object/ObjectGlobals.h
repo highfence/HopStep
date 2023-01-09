@@ -40,6 +40,7 @@ namespace HopStep::Internal
 		int32 Offset;
 		int32 ArrayDimension;
 		EPropertyGenFlags Flags;
+		int32 Size;
 	};
 
 	// Todo: Add ClassPropertyParam struct here when HObject needs specialized constructor
