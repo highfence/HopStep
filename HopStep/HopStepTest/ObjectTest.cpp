@@ -9,11 +9,27 @@ namespace HopStepTest
 	TEST_CLASS(HObjectTest)
 	{
 	public:
-
-		TEST_METHOD(HObject_Ptr_Valid)
+		TEST_CLASS_CLEANUP(HObject_ClassCleanUp)
 		{
+			HopStep::DoGarbageCollect();
+		}
 
+		TEST_METHOD(HObjectPtr_Valid)
+		{
+			HopStep::HObjectPtr ObjectPtr = HopStep::NewObject<HObject>();
+			Assert::IsTrue(ObjectPtr);
 
+			HopStep::HObjectPtr InValidPtr = nullptr;
+			Assert::IsFalse(InValidPtr);
+		}
+
+		TEST_METHOD(TObjectPtr_Valid)
+		{
+			HopStep::TObjectPtr<HObject> ObjectPtr = HopStep::NewObject<HObject>();
+			Assert::IsTrue(ObjectPtr);
+
+			HopStep::TObjectPtr<HObject> InValidPtr = nullptr;
+			Assert::IsFalse(InValidPtr);
 		}
 	};
 }

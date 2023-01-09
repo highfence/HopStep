@@ -15,8 +15,8 @@ namespace HopStep
 
 	inline bool operator==(HObjectHandle LHS, HObjectHandle RHS);
 	inline bool operator!=(HObjectHandle LHS, HObjectHandle RHS);
-	inline HObjectHandle MakeObjectHandle(class HObject*);
-	inline class HObject* ResolveObjectHandle(const HObjectHandle& InHandle);
+	HObjectHandle MakeObjectHandle(class HObject*);
+	class HObject* ResolveObjectHandle(const HObjectHandle& InHandle);
 
 	struct HObjectPtr
 	{
@@ -37,6 +37,11 @@ namespace HopStep
 		class HObject* Get() const
 		{
 			return ResolveObjectHandle(Handle);
+		}
+
+		operator bool() const
+		{
+			return Get() != nullptr;
 		}
 
 	private:
@@ -61,6 +66,17 @@ namespace HopStep
 			: ObjectPtr(InObject)
 		{
 
+		}
+
+		TObjectPtr(TClass* InObjectPtr)
+			: ObjectPtr(InObjectPtr)
+		{
+
+		}
+
+		operator bool() const
+		{
+			return ObjectPtr.operator bool();
 		}
 
 	private:

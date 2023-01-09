@@ -5,6 +5,7 @@
 #include "Object/NameTypes.h"
 #include "Object/ObjectFunctions.h"
 #include "Object/WeakObjectPtr.h"
+#include "Object/ObjectPtr.h"
 
 // Reflection related headers.
 #include "Reflection/Type.h"
