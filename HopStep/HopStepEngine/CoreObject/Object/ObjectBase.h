@@ -1,4 +1,5 @@
 #pragma once
+#include "GCInterface.h"
 #include "..\..\Core\CoreExport.h"
 #include "..\Reflection\ReflectionConcepts.h"
 #include "..\Reflection\ReflectionMacro.h"
@@ -43,13 +44,20 @@ inline HStaticClassRegister<TClass>::HStaticClassRegister()
 }
 
 HCLASS();
-class HObjectBase
+class HObjectBase : public IGCObject
 {
 	DECLARE_CLASS_BODY(HObjectBase);
 
 public:
 
-	virtual ~HObjectBase() {};
+	virtual ~HObjectBase() 
+	{
+		if (ClassPrivate != nullptr)
+		{
+			delete ClassPrivate;
+			ClassPrivate = nullptr;
+		}
+	};
 
 	template <StaticClassGetable TClass>
 	bool IsA() const

@@ -1,5 +1,4 @@
 #pragma once
-#include "GCInterface.h"
 #include "ObjectBase.h"
 #include "..\Reflection\ReflectionMacro.h"
 #include "..\..\Core\CoreExport.h"
@@ -8,7 +7,7 @@
 namespace HopStep
 {
 	HCLASS();
-	class HObject : public HObjectBase, public IGCObject
+	class HObject : public HObjectBase
 	{
 		DECLARE_CLASS_BODY(HObject);
 

@@ -15,12 +15,8 @@ namespace HopStep
 			if (Property == nullptr || Property->IsPrimitiveType()) continue;
 			if (Property->IsGarbageCollectable() == false) continue;
 
-			HObjectBase* BasePtr = reinterpret_cast<HObjectBase*>(this);
-			IGCObject* GCPtr = nullptr;
-
-			// Todo: How can i do this?
-
-			OutList.push_back(GCPtr);
+			IGCObject* GCPropertyPtr = *Property->GetPtr<IGCObject*>(this);
+			OutList.push_back(GCPropertyPtr);
 		}
 	}
 

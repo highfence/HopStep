@@ -235,10 +235,17 @@ namespace HopStepTest
 				.Size = sizeof(HopStep::HObject*)
 			};
 
-			// HopStep::HObjectContainTestObject NewObject;
-			HopStep::HObjectPtrProperty Property = HopStep::HObjectPtrProperty(Param);
+			HopStep::HObjectContainTestObject NewObject;
+			NewObject.PropObject = nullptr;
 
+			HopStep::HObjectPtrProperty Property = HopStep::HObjectPtrProperty(Param);
 			Assert::AreEqual(Property.GetName().ToString().c_str(), TEXT("PropObject"));
+
+			HObject** Ptr = Property.GetPtr<HObject*>(&NewObject);
+			Assert::AreEqual((intptr_t)Ptr, (intptr_t)&NewObject.PropObject);
+
+			HObject* NullObject = *Ptr;
+			Assert::IsNull(NullObject);
 		}
 
 		TEST_METHOD(OffsetTest)

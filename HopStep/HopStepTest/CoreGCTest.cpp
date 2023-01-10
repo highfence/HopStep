@@ -93,17 +93,16 @@ namespace HopStepTest
 
 		TEST_METHOD(GC_HPropertyLifeTime)
 		{
-			// Todo: Recovery later.
-			//HopStep::HObjectContainTestObject* OwnerObject = HopStep::NewObject<HopStep::HObjectContainTestObject>();
-			//OwnerObject->PropObject = HopStep::NewObject<HopStep::HObject>();
-			//OwnerObject->SetGCRoot(true);
+			HopStep::HObjectContainTestObject* OwnerObject = HopStep::NewObject<HopStep::HObjectContainTestObject>();
+			OwnerObject->PropObject = HopStep::NewObject<HopStep::HObject>();
+			OwnerObject->SetGCRoot(true);
 
-			//// If we invoke Mark(), All object must be marked.
-			//HopStep::Internal::HGarbageCollector::Mark();
-			//Assert::IsTrue(OwnerObject->GetGCMark());
-			//Assert::IsTrue(OwnerObject->PropObject->GetGCMark());
+			// If we invoke Mark(), All object must be marked.
+			HopStep::Internal::HGarbageCollector::Mark();
+			Assert::IsTrue(OwnerObject->GetGCMark());
+			Assert::IsTrue(OwnerObject->PropObject->GetGCMark());
 
-			//HopStep::Internal::HGarbageCollector::Sweep();
+			HopStep::Internal::HGarbageCollector::Sweep();
 		}
 	};
 }
