@@ -52,11 +52,6 @@ public:
 
 	virtual ~HObjectBase() 
 	{
-		if (ClassPrivate != nullptr)
-		{
-			delete ClassPrivate;
-			ClassPrivate = nullptr;
-		}
 	};
 
 	template <StaticClassGetable TClass>
@@ -72,6 +67,9 @@ public:
 	// Todo: Remove this.
 	void SetClass(HClass* InClass) 
 	{
+		HCheck(InClass);
+		HCheck(InClass->GetName().length() > 0 || InClass->GetName().length() < 1024);
+
 		Name = InClass->GetName();
 		ClassPrivate = InClass; 
 	}

@@ -12,7 +12,11 @@ namespace HopStep::Internal
 	template <typename TType> requires std::derived_from<TType, HObjectBase>
 	void SetClassPrivate(TType* NewInstance)
 	{
-		NewInstance->SetClass(TType::StaticClass());
+		HClass* TypeClass = TType::StaticClass();
+		HCheck(TypeClass != nullptr);
+		HCheck(TypeClass->GetName().length() > 0 && TypeClass->GetName().length() < 1024);
+
+		NewInstance->SetClass(TypeClass);
 	}
 }
 
