@@ -55,6 +55,7 @@ namespace HopStep
 		{
 			Property->SetPropertyFlag(EPropertyFlag::FloatProperty);
 		}
+
 		if constexpr (std::is_unsigned_v<TPureFieldType>)
 		{
 			Property->SetPropertyFlag(EPropertyFlag::UnsignedProperty);
@@ -69,12 +70,14 @@ namespace HopStep
 			Property->SetPropertyFlag(EPropertyFlag::ArrayProperty);
 			Property->TypeFlag |= static_cast<uint64>(HField::HTypeFlag::Container);
 		}
-
 		if constexpr (std::derived_from<TPureFieldType, IGCObject>)
 		{
 			Property->TypeFlag |= static_cast<uint64>(HField::HTypeFlag::GarbageCollectable);
 		}
-
+		if constexpr (std::is_pointer_v<TFieldType>)
+		{
+			Property->TypeFlag |= static_cast<uint64>(HField::HTypeFlag::Pointer);
+		}
 		if (Property->IsClassType() == false && Property->IsContainerType() == false)
 		{
 			Property->TypeFlag |= static_cast<uint64>(HField::HTypeFlag::Primitive);

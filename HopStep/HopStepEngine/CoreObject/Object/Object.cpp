@@ -9,14 +9,24 @@ namespace HopStep
 
 		const TArray<HProperty*> Properties = ThisClass->GetProperties();
 
-		// Todo: Recursive
 		for (HProperty* Property : Properties)
 		{
 			if (Property == nullptr || Property->IsPrimitiveType()) continue;
 			if (Property->IsGarbageCollectable() == false) continue;
 
-			IGCObject* GCPropertyPtr = *Property->GetPtr<IGCObject*>(this);
-			OutList.push_back(GCPropertyPtr);
+			IGCObject* GCProperty = nullptr;
+
+			if (Property->IsPointerType())
+			{
+				GCProperty = *Property->GetPtr<IGCObject*>(this);
+			}
+			else
+			{
+				GCProperty = Property->GetPtr<IGCObject>(this);
+			}
+
+			HCheck(GCProperty!= nullptr);
+			OutList.push_back(GCProperty);
 		}
 	}
 

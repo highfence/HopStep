@@ -31,6 +31,8 @@ namespace HopStep
 
 		bool IsGarbageCollectable() const { return TypeFlag & static_cast<uint64>(HTypeFlag::GarbageCollectable); }
 
+		bool IsPointerType() const { return TypeFlag & static_cast<uint64>(HTypeFlag::Pointer); }
+
 		static class HFieldClass* StaticClass();
 
 		inline static constexpr uint64 StaticClassCastFlagsPrivate();
@@ -47,7 +49,8 @@ namespace HopStep
 			Primitive = 0x01 << 0,
 			Class = 0x01 << 1,
 			Container = 0x01 << 2,
-			GarbageCollectable = 0x01 << 3
+			GarbageCollectable = 0x01 << 3,
+			Pointer = 0x01 << 4
 		};
 
 
