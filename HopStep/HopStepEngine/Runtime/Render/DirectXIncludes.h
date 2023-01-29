@@ -14,6 +14,8 @@
 #include <DirectXPackedVector.h>
 #include <DirectXColors.h>
 #include <DirectXCollision.h>
+#include <wrl.h>
+#include <wrl/client.h>
 
 // Custom
 #include "..\..\Core\Windows\WindowsSystemIncludes.h"
@@ -21,8 +23,25 @@
 // Namespace Aliasing
 namespace HopStep
 {
+	// DirectX namespace aliasing
 	using XMMATRIX = ::DirectX::XMMATRIX;
 	using XMVECTOR = ::DirectX::XMVECTOR;
 	using XMFLOAT3 = ::DirectX::XMFLOAT3;
 	using XMFLOAT4 = ::DirectX::XMFLOAT4;
+
+	// Microsoft namespace aliasing
+	template<class TComObject>
+	using ComPtr = ::Microsoft::WRL::ComPtr<TComObject>;
+}
+
+
+namespace HopStep
+{
+	class HDirectXException
+	{
+	public:
+
+		HDirectXException() = default;
+		// HDirectXException(HRESULT hr, const HString& );
+	};
 }

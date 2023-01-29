@@ -6,18 +6,18 @@
 class HLazySingletonBase
 {
 protected:
-	template <class T> static void Construct(void* Place) { new (Place) T; }
-	template <class T> static void Destruct(T* Instance) { Instance->~T(); }
+	template <class TComObject> static void Construct(void* Place) { new (Place) TComObject; }
+	template <class TComObject> static void Destruct(TComObject* Instance) { Instance->~TComObject(); }
 };
 
-template <class T>
+template <class TComObject>
 class TLazySingleton final : public HLazySingletonBase
 {
 public:
 
-	static T& GetPropertyPtr()
+	static TComObject& GetPropertyPtr()
 	{
-		return GetLazy(Construct<T>).GetPtr();
+		return GetLazy(Construct<TComObject>).GetPtr();
 	}
 
 	static void TearDown()
@@ -25,9 +25,9 @@ public:
 		return GetLazy(nullptr).Reset();
 	}
 
-	static T* TryGet()
+	static TComObject* TryGet()
 	{
-		return GetLazy(Construct<T>).TryGetValue();
+		return GetLazy(Construct<TComObject>).TryGetValue();
 	}
 
 private:
@@ -41,12 +41,12 @@ private:
 	/**
 	 * 
 	 */
-	alignas(T) unsigned char Data[sizeof(T)];
+	alignas(TComObject) unsigned char Data[sizeof(TComObject)];
 
 	/**
 	 * 
 	 */
-	T* Ptr;
+	TComObject* Ptr;
 
 	TLazySingleton(void(*Constructor)(void*))
 	{
@@ -55,7 +55,7 @@ private:
 			Constructor(Data);
 		}
 
-		Ptr = Constructor ? (T*)Data : nullptr;
+		Ptr = Constructor ? (TComObject*)Data : nullptr;
 	}
 
 	~TLazySingleton()
@@ -63,12 +63,12 @@ private:
 		Reset();
 	}
 
-	T* TryGetValue() 
+	TComObject* TryGetValue() 
 	{
 		return Ptr; 
 	}
 
-	T& GetPtr() 
+	TComObject& GetPtr() 
 	{
 		return *Ptr; 
 	}

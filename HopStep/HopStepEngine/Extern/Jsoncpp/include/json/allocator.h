@@ -12,15 +12,15 @@
 #pragma pack(push, 8)
 
 namespace Json {
-template<typename T>
+template<typename TComObject>
 class SecureAllocator {
 	public:
 		// Type definitions
-		using value_type      = T;
-		using pointer         = T*;
-		using const_pointer   = const T*;
-		using reference       = T&;
-		using const_reference = const T&;
+		using value_type      = TComObject;
+		using pointer         = TComObject*;
+		using const_pointer   = const TComObject*;
+		using reference       = TComObject&;
+		using const_reference = const TComObject&;
 		using size_type       = std::size_t;
 		using difference_type = std::ptrdiff_t;
 
@@ -29,7 +29,7 @@ class SecureAllocator {
 		 */
 		pointer allocate(size_type n) {
 			// allocate using "global operator new"
-			return static_cast<pointer>(::operator new(n * sizeof(T)));
+			return static_cast<pointer>(::operator new(n * sizeof(TComObject)));
 		}
 
 		/**
@@ -40,7 +40,7 @@ class SecureAllocator {
 		 * compiler optimizing out this critical step.
 		 */
 		void deallocate(volatile pointer p, size_type n) {
-			std::memset(p, 0, n * sizeof(T));
+			std::memset(p, 0, n * sizeof(TComObject));
 			// free using "global operator delete"
 			::operator delete(p);
 		}
@@ -51,11 +51,11 @@ class SecureAllocator {
 		template<typename... Args>
 		void construct(pointer p, Args&&... args) {
 			// construct using "placement new" and "perfect forwarding"
-			::new (static_cast<void*>(p)) T(std::forward<Args>(args)...);
+			::new (static_cast<void*>(p)) TComObject(std::forward<Args>(args)...);
 		}
 
 		size_type max_size() const {
-			return size_t(-1) / sizeof(T);
+			return size_t(-1) / sizeof(TComObject);
 		}
 
 		pointer address( reference x ) const {
@@ -71,7 +71,7 @@ class SecureAllocator {
 		 */
 		void destroy(pointer p) {
 			// destroy using "explicit destructor"
-			p->~T();
+			p->~TComObject();
 		}
 
 		// Boilerplate
@@ -81,13 +81,13 @@ class SecureAllocator {
 };
 
 
-template<typename T, typename U>
-bool operator==(const SecureAllocator<T>&, const SecureAllocator<U>&) {
+template<typename TComObject, typename U>
+bool operator==(const SecureAllocator<TComObject>&, const SecureAllocator<U>&) {
 	return true;
 }
 
-template<typename T, typename U>
-bool operator!=(const SecureAllocator<T>&, const SecureAllocator<U>&) {
+template<typename TComObject, typename U>
+bool operator!=(const SecureAllocator<TComObject>&, const SecureAllocator<U>&) {
 	return false;
 }
 

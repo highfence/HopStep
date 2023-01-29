@@ -1,5 +1,5 @@
 #pragma once
 
-template <typename T> struct TRemoveReference { typedef T Type; };
-template <typename T> struct TRemoveReference<T&> { typedef T Type; };
-template <typename T> struct TRemoveReference<T&&> { typedef T Type; };
+template <typename TComObject> struct TRemoveReference { typedef TComObject Type; };
+template <typename TComObject> struct TRemoveReference<TComObject&> { typedef TComObject Type; };
+template <typename TComObject> struct TRemoveReference<TComObject&&> { typedef TComObject Type; };
