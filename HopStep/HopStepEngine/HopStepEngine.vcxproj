@@ -253,14 +253,7 @@
     <ClInclude Include="Runtime\Engine\HopStepString.h" />
     <ClInclude Include="Runtime\Engine\World.h" />
     <ClInclude Include="Runtime\Launch\LaunchWindows.h" />
-    <ClInclude Include="Runtime\Render\ColorShaderClass.h" />
     <ClInclude Include="Runtime\Render\DirectXIncludes.h" />
-    <ClInclude Include="Runtime\Render\DirectXRenderer.h" />
-    <ClInclude Include="Runtime\Render\DirectXRenderSystem.h" />
-    <ClInclude Include="Runtime\Render\ModelClass.h" />
-    <ClInclude Include="Runtime\Render\RenderSystem.h" />
-    <ClInclude Include="Runtime\Render\SceneRenderer.h" />
-    <ClInclude Include="Runtime\Render\ViewInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp">
@@ -475,38 +468,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
-    <ClCompile Include="Runtime\Render\ColorShaderClass.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-    </ClCompile>
-    <ClCompile Include="Runtime\Render\DirectXRenderer.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-    </ClCompile>
-    <ClCompile Include="Runtime\Render\DirectXRenderSystem.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-    </ClCompile>
-    <ClCompile Include="Runtime\Render\ModelClass.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-    </ClCompile>
-    <ClCompile Include="Runtime\Render\RenderSystem.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-    </ClCompile>
-    <ClCompile Include="Runtime\Render\SceneRenderer.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-    </ClCompile>
-    <ClCompile Include="Runtime\Render\ViewInfo.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Runtime\Render\Shader\Color.vs" />
-    <None Include="Runtime\Render\Shader\Color.ps" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -64,9 +64,6 @@
     <Filter Include="Runtime\Render">
       <UniqueIdentifier>{a3c7a58b-2e5d-4d06-be6c-03690e53912c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Runtime\Render\Shader">
-      <UniqueIdentifier>{9a62472d-b62d-455b-af84-7b63d5df06a9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HopStep.h" />
@@ -343,28 +340,7 @@
     <ClInclude Include="Runtime\Launch\LaunchWindows.h">
       <Filter>Runtime\Launch</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\Render\ColorShaderClass.h">
-      <Filter>Runtime\Render</Filter>
-    </ClInclude>
     <ClInclude Include="Runtime\Render\DirectXIncludes.h">
-      <Filter>Runtime\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Render\DirectXRenderer.h">
-      <Filter>Runtime\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Render\DirectXRenderSystem.h">
-      <Filter>Runtime\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Render\ModelClass.h">
-      <Filter>Runtime\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Render\RenderSystem.h">
-      <Filter>Runtime\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Render\SceneRenderer.h">
-      <Filter>Runtime\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Render\ViewInfo.h">
       <Filter>Runtime\Render</Filter>
     </ClInclude>
   </ItemGroup>
@@ -526,34 +502,5 @@
     <ClCompile Include="Runtime\Launch\LaunchWindows.cpp">
       <Filter>Runtime\Launch</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\Render\ColorShaderClass.cpp">
-      <Filter>Runtime\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Render\DirectXRenderer.cpp">
-      <Filter>Runtime\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Render\DirectXRenderSystem.cpp">
-      <Filter>Runtime\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Render\ModelClass.cpp">
-      <Filter>Runtime\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Render\RenderSystem.cpp">
-      <Filter>Runtime\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Render\SceneRenderer.cpp">
-      <Filter>Runtime\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Render\ViewInfo.cpp">
-      <Filter>Runtime\Render</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Runtime\Render\Shader\Color.vs">
-      <Filter>Runtime\Render\Shader</Filter>
-    </None>
-    <None Include="Runtime\Render\Shader\Color.ps">
-      <Filter>Runtime\Render\Shader</Filter>
-    </None>
   </ItemGroup>
 </Project>

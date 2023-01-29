@@ -7,7 +7,6 @@
 #include "..\..\Core\Misc\App.h"
 #include "..\..\Core\Windows\WindowsPlatformMisc.h"
 #include "..\..\Core\GenericPlatform\GenericApplication.h"
-#include "..\Render\RenderSystem.h"
 
 
 namespace HopStep
