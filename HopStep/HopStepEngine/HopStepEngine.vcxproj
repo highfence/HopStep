@@ -253,7 +253,9 @@
     <ClInclude Include="Runtime\Engine\HopStepString.h" />
     <ClInclude Include="Runtime\Engine\World.h" />
     <ClInclude Include="Runtime\Launch\LaunchWindows.h" />
+    <ClInclude Include="Runtime\Render\D3DRenderer.h" />
     <ClInclude Include="Runtime\Render\DirectXIncludes.h" />
+    <ClInclude Include="Runtime\Render\ID3DRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp">
@@ -467,6 +469,12 @@
     <ClCompile Include="Runtime\Launch\LaunchWindows.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Render\D3DRenderer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Runtime\Render\ID3DRenderer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

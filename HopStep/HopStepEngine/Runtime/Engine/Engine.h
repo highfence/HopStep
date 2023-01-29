@@ -31,6 +31,8 @@ namespace HopStep
 
 		class HGenericApplication* App;
 
+		class ID3DRenderer* Renderer;
+
 		HUniquePtr<class HWorld> GameWorld;
 	};
 

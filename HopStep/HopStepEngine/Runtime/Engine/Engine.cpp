@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "EngineLoop.h"
 #include "World.h"
+#include "..\Render\ID3DRenderer.h"
 #include "..\..\Core\CoreExport.h"
 #include "..\..\Core\Misc\OutputDevice.h"
 #include "..\..\Core\Misc\DebugUtils.h"
@@ -16,6 +17,7 @@ namespace HopStep
 	HEngine::HEngine()
 		: EngineLoop(nullptr)
 		, App(nullptr)
+		, Renderer(nullptr)
 		, GameWorld(nullptr)
 	{
 	}
@@ -41,6 +43,10 @@ namespace HopStep
 
 		App = HPlatformMisc::CreateApplication();
 		HCheck(App);
+
+		Renderer = ID3DRenderer::CreateD3DRenderer();
+		HCheck(Renderer);
+		Renderer->InitDirect3D();
 
 		GameWorld = std::make_unique<HWorld>();
 		HCheck(GameWorld);

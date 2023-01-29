@@ -343,6 +343,12 @@
     <ClInclude Include="Runtime\Render\DirectXIncludes.h">
       <Filter>Runtime\Render</Filter>
     </ClInclude>
+    <ClInclude Include="Runtime\Render\D3DRenderer.h">
+      <Filter>Runtime\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Render\ID3DRenderer.h">
+      <Filter>Runtime\Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HopStep.cpp" />
@@ -501,6 +507,12 @@
     </ClCompile>
     <ClCompile Include="Runtime\Launch\LaunchWindows.cpp">
       <Filter>Runtime\Launch</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Render\D3DRenderer.cpp">
+      <Filter>Runtime\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Render\ID3DRenderer.cpp">
+      <Filter>Runtime\Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
