@@ -50,7 +50,6 @@ namespace HopStep
 	void HEngine::Tick(float Delta)
 	{
 		App->PumpMessages(Delta);
-
 	}
 
 	void HEngine::UpdateTime()
