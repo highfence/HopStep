@@ -1,6 +1,7 @@
 #pragma once
 #include "..\CoreStandardIncludes.h"
 #include "..\HopStepOverrides.h"
+#include "..\PrimitiveTypeDefines.h"
 
 #if defined(DEBUG) || defined(_DEBUG)
 #define _CRTDBG_MAP_ALLOC

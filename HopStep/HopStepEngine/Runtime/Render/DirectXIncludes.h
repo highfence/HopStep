@@ -34,14 +34,3 @@ namespace HopStep
 	using ComPtr = ::Microsoft::WRL::ComPtr<TComObject>;
 }
 
-
-namespace HopStep
-{
-	class HDirectXException
-	{
-	public:
-
-		HDirectXException() = default;
-		// HDirectXException(HRESULT hr, const HString& );
-	};
-}
