@@ -12,6 +12,7 @@
 #include <d3dcompiler.h>
 #include <wrl.h>
 #include <wrl/client.h>
+#include "d3dx12.h"
 
 // Custom
 #include "..\..\Core\Windows\WindowsSystemIncludes.h"

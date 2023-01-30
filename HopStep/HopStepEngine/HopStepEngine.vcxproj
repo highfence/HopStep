@@ -255,6 +255,7 @@
     <ClInclude Include="Runtime\Launch\LaunchWindows.h" />
     <ClInclude Include="Runtime\Render\D3DRenderer.h" />
     <ClInclude Include="Runtime\Render\D3DUtils.h" />
+    <ClInclude Include="Runtime\Render\d3dx12.h" />
     <ClInclude Include="Runtime\Render\DirectXIncludes.h" />
     <ClInclude Include="Runtime\Render\ID3DRenderer.h" />
   </ItemGroup>
@@ -477,7 +478,9 @@
     <ClCompile Include="Runtime\Render\D3DUtils.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Runtime\Render\DirectXIncludes.cpp" />
+    <ClCompile Include="Runtime\Render\DirectXIncludes.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Runtime\Render\ID3DRenderer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>

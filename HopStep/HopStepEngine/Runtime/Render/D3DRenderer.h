@@ -20,10 +20,14 @@ namespace HopStep
 
 		TSharedPtr<class HGenericWindow> AppWindow;
 
-		ComPtr<ID3D12Device> D3DDevice;
+		ComPtr<ID3D12Device> Device;
 		ComPtr<IDXGIFactory4> DXGIFactory;
 		ComPtr<ID3D12CommandQueue> CommandQueue;
 		ComPtr<IDXGISwapChain3> SwapChain;
+		ComPtr<ID3D12DescriptorHeap> RtvHeap;
+		ComPtr<ID3D12Resource> RenderTargets[SwapChainBufferCount];
+		ComPtr<ID3D12CommandAllocator> CommandAllocator;
+		uint32 RtvDescriptorSize;
 
 		uint32 FrameIndex;
 	};
