@@ -14,10 +14,10 @@ namespace HopStep
 		virtual uint32 GetClientWidth() override;
 		virtual uint32 GetClientHeight() override;
 
-		HWND GetWindowHandle() const { return WindowHandle; }
+		static HWND GetWindowHandle() { return WindowHandle; }
 
 	private:
 
-		HWND WindowHandle;
+		static HWND WindowHandle;
 	};
 }

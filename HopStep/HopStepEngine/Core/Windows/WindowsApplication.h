@@ -11,9 +11,9 @@ namespace HopStep
 
 		HWindowsApplication(HINSTANCE hInstanceHandle);
 
-		virtual void SetWindow(std::shared_ptr<class HGenericWindow> Window) override;
+		virtual void SetWindow(TSharedPtr<class HGenericWindow> Window) override;
 
-		virtual std::shared_ptr<class HGenericWindow> GetWindow() override;
+		virtual TSharedPtr<class HGenericWindow> GetWindow() override;
 
 		virtual void PumpMessages(float DeltaTime) override;
 
@@ -23,6 +23,6 @@ namespace HopStep
 
 		HINSTANCE InstanceHandle;
 
-		std::shared_ptr<HGenericWindow> NativeWindow;
+		TSharedPtr<HGenericWindow> NativeWindow;
 	};
 }

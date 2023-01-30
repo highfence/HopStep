@@ -6,14 +6,10 @@
 #pragma comment(lib, "D3DCompiler.lib")
 
 // DirectX includes
-#include <dxgi.h>
+#include <dxgi1_6.h>
 #include <d3d12.h>
-#include <d3dcommon.h>
 #include <DirectXMath.h>
 #include <d3dcompiler.h>
-#include <DirectXPackedVector.h>
-#include <DirectXColors.h>
-#include <DirectXCollision.h>
 #include <wrl.h>
 #include <wrl/client.h>
 

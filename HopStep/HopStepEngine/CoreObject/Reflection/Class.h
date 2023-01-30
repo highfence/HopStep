@@ -29,6 +29,6 @@ namespace HopStep
 
 		friend struct HStructBuilder;
 
-		TArray<HUniquePtr<HFunction>> Functions;
+		TArray<TUniquePtr<HFunction>> Functions;
 	};
 }

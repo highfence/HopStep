@@ -1,5 +1,6 @@
 #pragma once
 #include "..\CoreStandardIncludes.h"
+#include "..\HopStepOverrides.h"
 
 namespace HopStep
 {
@@ -11,8 +12,8 @@ namespace HopStep
 
 		virtual void PumpMessages(float DeltaTime) = 0;
 
-		virtual void SetWindow(std::shared_ptr<class HGenericWindow> Window) = 0;
+		virtual void SetWindow(TSharedPtr<class HGenericWindow> Window) = 0;
 
-		virtual std::shared_ptr<class HGenericWindow> GetWindow() = 0;
+		virtual TSharedPtr<class HGenericWindow> GetWindow() = 0;
 	};
 }

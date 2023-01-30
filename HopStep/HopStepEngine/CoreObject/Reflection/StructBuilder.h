@@ -37,7 +37,7 @@ namespace HopStep
 		int32 FieldSize = sizeof(TFieldType);
 		HString PropertyName = InFieldName;
 
-		HUniquePtr<HProperty> NewProperty = std::make_unique<TPropertyType>(PropertyName, PropertyOffset, FieldSize);
+		TUniquePtr<HProperty> NewProperty = std::make_unique<TPropertyType>(PropertyName, PropertyOffset, FieldSize);
 		IntializePropertyFlags<TFieldType, TPropertyType>(NewProperty.get());
 		InStruct->Properties.push_back(std::move(NewProperty));
 	}

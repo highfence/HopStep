@@ -33,7 +33,7 @@ namespace HopStep
 
 		class ID3DRenderer* Renderer;
 
-		HUniquePtr<class HWorld> GameWorld;
+		TUniquePtr<class HWorld> GameWorld;
 	};
 
 	/*

@@ -16,7 +16,7 @@ namespace HopStep
 	{
 		HGenericApplication* App = new HWindowsApplication(GhInstance);
 		{
-			std::shared_ptr<HWindowsWindow> Window = std::make_shared<HWindowsWindow>(GhInstance, GCmdShow);
+			TSharedPtr<HWindowsWindow> Window = std::make_shared<HWindowsWindow>(GhInstance, GCmdShow);
 			App->SetWindow(Window);
 			GWindowHandle = Window->GetWindowHandle();
 		}

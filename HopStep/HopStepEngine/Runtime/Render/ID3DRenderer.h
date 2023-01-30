@@ -1,4 +1,5 @@
 #pragma once
+#include "..\..\Core\HopStepOverrides.h"
 
 namespace HopStep
 {
@@ -8,8 +9,8 @@ namespace HopStep
 
 		virtual ~ID3DRenderer() {}
 
-		static ID3DRenderer* CreateD3DRenderer();
+		static ID3DRenderer* CreateD3DRenderer(TSharedPtr<class HGenericWindow> WindowPtr);
 		
-		virtual bool InitDirect3D() = 0;
+		virtual bool OnInit() = 0;
 	};
 }

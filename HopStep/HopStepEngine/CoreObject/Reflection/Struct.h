@@ -61,7 +61,7 @@ namespace HopStep
 		/**
 		 *
 		 */
-		TArray<HUniquePtr<HProperty>> Properties;
+		TArray<TUniquePtr<HProperty>> Properties;
 
 		friend struct HStructBuilder;
 	};

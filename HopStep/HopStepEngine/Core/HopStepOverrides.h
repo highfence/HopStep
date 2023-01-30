@@ -38,7 +38,13 @@ namespace HopStep
 	 * Smart pointer type related overrides.
 	 */
 	template <class TType>
-	using HUniquePtr = std::unique_ptr<TType>;
+	using TUniquePtr = std::unique_ptr<TType>;
+
+	template <class TType>
+	using TSharedPtr = std::shared_ptr<TType>;
+
+	template <class TType>
+	using TWeakPtr = std::weak_ptr<TType>;
 
 	/**
 	 * Util type related overrides

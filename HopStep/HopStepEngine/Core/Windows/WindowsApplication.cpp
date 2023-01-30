@@ -31,7 +31,7 @@ namespace HopStep
 		}
 	}
 
-	void HWindowsApplication::SetWindow(std::shared_ptr<HGenericWindow> Window)
+	void HWindowsApplication::SetWindow(TSharedPtr<HGenericWindow> Window)
 	{
 		NativeWindow = std::move(Window);
 	}
@@ -52,7 +52,7 @@ namespace HopStep
 		return 0;
 	}
 
-	std::shared_ptr<HGenericWindow> HWindowsApplication::GetWindow()
+	TSharedPtr<HGenericWindow> HWindowsApplication::GetWindow()
 	{
 		return NativeWindow;
 	}

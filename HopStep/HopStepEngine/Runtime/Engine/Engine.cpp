@@ -44,9 +44,9 @@ namespace HopStep
 		App = HPlatformMisc::CreateApplication();
 		HCheck(App);
 
-		Renderer = ID3DRenderer::CreateD3DRenderer();
+		Renderer = ID3DRenderer::CreateD3DRenderer(App->GetWindow());
 		HCheck(Renderer);
-		Renderer->InitDirect3D();
+		Renderer->OnInit();
 
 		GameWorld = std::make_unique<HWorld>();
 		HCheck(GameWorld);

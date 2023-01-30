@@ -3,6 +3,8 @@
 
 namespace HopStep
 {
+	HWND HWindowsWindow::WindowHandle = nullptr;
+
 	HWindowsWindow::HWindowsWindow(HINSTANCE hInstance, int32 CmdShow)
 	{
 		WindowHandle = CreateWindowEx(
