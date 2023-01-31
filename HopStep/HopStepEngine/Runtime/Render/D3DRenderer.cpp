@@ -17,6 +17,13 @@ namespace HopStep
 
 	bool HD3DRenderer::OnInit()
 	{
+		InitPipeline();
+		LoadAssets();
+		return true;
+	}
+
+	void HD3DRenderer::InitPipeline()
+	{
 		uint32 DXGIFactoryFlags = 0u;
 
 #if defined(_DEBUG)
@@ -102,6 +109,24 @@ namespace HopStep
 		}
 
 		ThrowIfFailed(Device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&CommandAllocator)));
-		return true;
+	}
+
+	void HD3DRenderer::LoadAssets()
+	{
+		// Create an empty root signature
+		{
+			CD3DX12_ROOT_SIGNATURE_DESC RootSignatureDesc;
+			RootSignatureDesc.Init(0, nullptr, 0, nullptr, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
+
+			ComPtr<ID3DBlob> Signature;
+			ComPtr<ID3DBlob> Error;
+			ThrowIfFailed(D3D12SerializeRootSignature(&RootSignatureDesc, D3D_ROOT_SIGNATURE_VERSION_1, &Signature, &Error));
+			ThrowIfFailed(Device->CreateRootSignature(0, Signature->GetBufferPointer(), Signature->GetBufferSize(), IID_PPV_ARGS(&RootSignature)));
+		}
+
+		// Create the pipeline state, including complies and loading shaders.
+		{
+
+		}
 	}
 }

@@ -2,67 +2,70 @@
 <Project ToolsVersion="4.0">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{a117e378-6cd4-44d0-9faf-c7cc19ec14d4}</UniqueIdentifier>
+      <UniqueIdentifier>{95f9ed51-e5c2-439b-84ac-e23c4c274d72}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Archive">
-      <UniqueIdentifier>{2c03a082-77a0-49ae-a684-342fc0d49843}</UniqueIdentifier>
+      <UniqueIdentifier>{828064d7-0926-4d4f-91a4-e5c9c3b10b00}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Container">
-      <UniqueIdentifier>{b19e2b44-3874-4d79-bfcc-932e99f3d5d3}</UniqueIdentifier>
+      <UniqueIdentifier>{4b7ae9f7-cdb9-423c-9be2-7b34bffa2ac7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Delegates">
-      <UniqueIdentifier>{595cf231-23a8-44e5-85b3-dae28a7ded33}</UniqueIdentifier>
+      <UniqueIdentifier>{38b5d5b6-09c8-4ff8-9df3-28f5409f4b24}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\GenericPlatform">
-      <UniqueIdentifier>{08b50870-688d-471e-ad2c-9abfed8f62e5}</UniqueIdentifier>
+      <UniqueIdentifier>{f089cf72-6d5b-420f-b9bc-e34dc0279bc3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger">
-      <UniqueIdentifier>{a32ff553-ea2a-402d-9ac6-c4f9d60460a2}</UniqueIdentifier>
+      <UniqueIdentifier>{a562434e-4c41-45ff-be64-f38b43beaf34}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Misc">
-      <UniqueIdentifier>{0efd28b4-a177-46b3-80cf-6df0fc314119}</UniqueIdentifier>
+      <UniqueIdentifier>{a0cd3e83-36f9-47c4-ac72-f4362700eef1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Templates">
-      <UniqueIdentifier>{49129614-8889-4b5c-8367-bd4ab351254b}</UniqueIdentifier>
+      <UniqueIdentifier>{1c4d06c7-333c-47b7-b706-b9d50f87ebab}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Windows">
-      <UniqueIdentifier>{d07902d0-44e1-4a5f-865e-a8184c48950d}</UniqueIdentifier>
+      <UniqueIdentifier>{5209d5ef-1d0f-4e0f-bcef-87343a3929b2}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
-      <UniqueIdentifier>{67602b77-1826-4ae5-92ab-302ef4705c2f}</UniqueIdentifier>
+      <UniqueIdentifier>{cc3234be-d50d-4b38-833d-8079e38eb87f}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{d2cebd0a-2555-4c1a-96a0-e8dff4fc6c7a}</UniqueIdentifier>
+      <UniqueIdentifier>{0ac3703c-20fe-4d74-a6bf-517e34283e4e}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{6e87630e-e178-4581-a653-c14ee45f4ec4}</UniqueIdentifier>
+      <UniqueIdentifier>{b37887b2-673a-4e85-a7f3-b145a2e4db3b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern">
-      <UniqueIdentifier>{51fc4d74-b041-4df5-b695-12396f2fcf54}</UniqueIdentifier>
+      <UniqueIdentifier>{469a93bc-8cf4-46bd-929f-e6c7bfb332d1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp">
-      <UniqueIdentifier>{41bbd480-a156-4568-b7e0-b2fef4a4d2b0}</UniqueIdentifier>
+      <UniqueIdentifier>{c3002a02-8b93-46fe-81a0-3b1a8d16fb2e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include">
-      <UniqueIdentifier>{af35adf6-2ebb-44a7-b04a-368c3194b164}</UniqueIdentifier>
+      <UniqueIdentifier>{77d8d5e5-4130-4d5c-b33e-84814423561c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include\json">
-      <UniqueIdentifier>{7c42f39a-2a28-418b-bada-0d4c874b2368}</UniqueIdentifier>
+      <UniqueIdentifier>{0986a000-5903-4d19-8ab4-d9cbbd9ac2b9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Intermediate">
-      <UniqueIdentifier>{7928aa9f-388b-4c1c-8cbd-e3363194f780}</UniqueIdentifier>
+      <UniqueIdentifier>{c2d08640-219b-474b-8ee7-081a9c0f813d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime">
-      <UniqueIdentifier>{46dbff36-dad5-428b-b0ea-cd91a8dc7912}</UniqueIdentifier>
+      <UniqueIdentifier>{97b7d532-8ccd-469b-a4d0-0e95a6c49821}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Engine">
-      <UniqueIdentifier>{0f669286-b2b4-4c27-9c2d-ee39f5e95487}</UniqueIdentifier>
+      <UniqueIdentifier>{bdde3cce-1f22-4e9d-8818-75e0b3b23d23}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Launch">
-      <UniqueIdentifier>{fb398225-330e-4207-8ebb-e1aaf045b58b}</UniqueIdentifier>
+      <UniqueIdentifier>{c830e9d6-96d9-4f57-8a8a-cdfed9322494}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Render">
-      <UniqueIdentifier>{a3c7a58b-2e5d-4d06-be6c-03690e53912c}</UniqueIdentifier>
+      <UniqueIdentifier>{d729e886-c7c2-4ee7-84f3-c2239c3f0f9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Runtime\Render\Shaders">
+      <UniqueIdentifier>{e147bba2-f9de-4d86-b0e6-5c05cc8d2118}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -340,19 +343,19 @@
     <ClInclude Include="Runtime\Launch\LaunchWindows.h">
       <Filter>Runtime\Launch</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\Render\DirectXIncludes.h">
-      <Filter>Runtime\Render</Filter>
-    </ClInclude>
     <ClInclude Include="Runtime\Render\D3DRenderer.h">
-      <Filter>Runtime\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Render\ID3DRenderer.h">
       <Filter>Runtime\Render</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Render\D3DUtils.h">
       <Filter>Runtime\Render</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Render\d3dx12.h">
+      <Filter>Runtime\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Render\DirectXIncludes.h">
+      <Filter>Runtime\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Render\ID3DRenderer.h">
       <Filter>Runtime\Render</Filter>
     </ClInclude>
   </ItemGroup>
@@ -517,14 +520,19 @@
     <ClCompile Include="Runtime\Render\D3DRenderer.cpp">
       <Filter>Runtime\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\Render\ID3DRenderer.cpp">
-      <Filter>Runtime\Render</Filter>
-    </ClCompile>
     <ClCompile Include="Runtime\Render\D3DUtils.cpp">
       <Filter>Runtime\Render</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Render\DirectXIncludes.cpp">
       <Filter>Runtime\Render</Filter>
     </ClCompile>
+    <ClCompile Include="Runtime\Render\ID3DRenderer.cpp">
+      <Filter>Runtime\Render</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Runtime\Render\Shaders\shaders.hlsl">
+      <Filter>Runtime\Render\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

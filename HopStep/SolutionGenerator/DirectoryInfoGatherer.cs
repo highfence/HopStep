@@ -34,6 +34,7 @@ namespace SolutionGenerator
             GatherFiles("*.cpp", schema.CppFileNames);
             GatherFiles("*.vs", schema.ShaderFileNames);
             GatherFiles("*.ps", schema.ShaderFileNames);
+            GatherFiles("*.hlsl", schema.ShaderFileNames);
 
             var subDirectories = directoryInfo.GetDirectories();
             foreach (var subDirectory in subDirectories)

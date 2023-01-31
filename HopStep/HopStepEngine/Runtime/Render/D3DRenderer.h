@@ -27,8 +27,12 @@ namespace HopStep
 		ComPtr<ID3D12DescriptorHeap> RtvHeap;
 		ComPtr<ID3D12Resource> RenderTargets[SwapChainBufferCount];
 		ComPtr<ID3D12CommandAllocator> CommandAllocator;
+		ComPtr<ID3D12RootSignature> RootSignature;
 		uint32 RtvDescriptorSize;
 
 		uint32 FrameIndex;
+
+		void InitPipeline();
+		void LoadAssets();
 	};
 }

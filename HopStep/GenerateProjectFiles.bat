@@ -1,5 +1,5 @@
 @echo off
-set MS_BUILD="C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\MsBuild.exe"
+set MS_BUILD="C:\Program Files\Microsoft Visual Studio\2022\Professional\Msbuild\Current\Bin\MsBuild.exe"
 set BAT_DIR=%~dp0
 echo Current Batch Directory: %BAT_DIR%
 echo MsBuild.exe: %MS_BUILD%
