@@ -490,7 +490,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Runtime\Render\Shaders\shaders.hlsl" />
+    <None Include="Runtime\Render\Shader\shaders.hlsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

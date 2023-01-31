@@ -1,5 +1,7 @@
 #include "D3DRenderer.h"
 #include "D3DUtils.h"
+#include "..\..\Core\Misc\Paths.h"
+#include "..\..\Core\Misc\GenericMemory.h"	
 #include "..\..\Core\GenericPlatform\GenericWindow.h"
 #include "..\..\Core\Windows\WindowsWindow.h"
 
@@ -9,6 +11,7 @@ namespace HopStep
 	{
 		HCheck(AppWindowPtr);
 		AppWindow = AppWindowPtr;
+		AspectRatio = static_cast<float>(AppWindow->GetClientWidth()) / static_cast<float>(AppWindow->GetClientHeight());
 	}
 
 	HD3DRenderer::~HD3DRenderer()
@@ -126,6 +129,96 @@ namespace HopStep
 
 		// Create the pipeline state, including complies and loading shaders.
 		{
+			ComPtr<ID3DBlob> VertexShader;
+			ComPtr<ID3DBlob> PixelShader;
+
+			uint32 ComplieFlags = 0u;
+#if defined(_DEBUG)
+			ComplieFlags = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
+#endif
+
+			HString ShaderPath = HPaths::ShaderPath().append(TEXT("\\shaders.hlsl"));
+			ThrowIfFailed(D3DCompileFromFile(ShaderPath.c_str(), nullptr, nullptr, "VSMain", "vs_5_0", ComplieFlags, 0, &VertexShader, nullptr));
+			ThrowIfFailed(D3DCompileFromFile(ShaderPath.c_str(), nullptr, nullptr, "PSMain", "ps_5_0", ComplieFlags, 0, &PixelShader, nullptr));
+
+			D3D12_INPUT_ELEMENT_DESC InputElementDescs[] =
+			{
+				{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+				{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
+			};
+
+			D3D12_GRAPHICS_PIPELINE_STATE_DESC PSODesc = 
+			{
+				.pRootSignature = RootSignature.Get(),
+				.VS = CD3DX12_SHADER_BYTECODE(VertexShader.Get()),
+				.PS = CD3DX12_SHADER_BYTECODE(PixelShader.Get()),
+				.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT),
+				.SampleMask = UINT_MAX,
+				.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT),
+				.InputLayout = { InputElementDescs, _countof(InputElementDescs) },
+				.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE,
+				.NumRenderTargets = 1,
+			};
+
+			PSODesc.DepthStencilState.DepthEnable = FALSE;
+			PSODesc.DepthStencilState.StencilEnable = FALSE;
+			PSODesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
+			PSODesc.SampleDesc.Count = 1;
+
+			ThrowIfFailed(Device->CreateGraphicsPipelineState(&PSODesc, IID_PPV_ARGS(&PipelineState)));
+		}
+
+		ThrowIfFailed(Device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, CommandAllocator.Get(), PipelineState.Get(), IID_PPV_ARGS(&CommandList)));
+
+		// Commandlist가 Recording state로 생성이 되었지만, 아직 record할 정보가 아무것도 없으므로 우선 close상태로 만들어준다.
+		ThrowIfFailed(CommandList->Close());
+
+		// Create vertex buffer
+		{
+			HVertex TriangleVertices[] =
+			{
+				{ { 0.0f, 0.25f * AspectRatio, 0.0f }, { 1.0f, 0.0f, 0.0f, 1.0f } },
+				{ { 0.25f, -0.25f * AspectRatio, 0.0f }, { 0.0f, 1.0f, 0.0f, 1.0f } },
+				{ { -0.25f, -0.25f * AspectRatio, 0.0f }, { 0.0f, 0.0f, 1.0f, 1.0f } }
+			};
+
+			const uint32 VertexBufferSize = sizeof(TriangleVertices);
+
+			// Note: 여기서는 코드를 간략하게 만들기 위해 upload heap을 사용하지만, 정상적인 방법으로 추천하지 않음.
+			// GPU가 vertex를 필요로 할 때마다, upload head의 마샬링이 필요해질것이다. Default head usage에 대한 문서를 읽자.
+			ThrowIfFailed(Device->CreateCommittedResource(
+				&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
+				D3D12_HEAP_FLAG_NONE,
+				&CD3DX12_RESOURCE_DESC::Buffer(VertexBufferSize),
+				D3D12_RESOURCE_STATE_GENERIC_READ,
+				nullptr,
+				IID_PPV_ARGS(&VertexBuffer)
+			));
+
+			// TriangleData를 VertexBuffer로 복사시켜주자.
+			uint8* VertexData;
+			CD3DX12_RANGE ReadRange(0, 0);
+			ThrowIfFailed(VertexBuffer->Map(0, &ReadRange, reinterpret_cast<void**>(&VertexData)));
+			HGenericMemory::MemCpy(VertexData, TriangleVertices, sizeof(TriangleVertices));
+			VertexBuffer->Unmap(0, nullptr);
+
+			// Intialize vertex buffer view
+			VertexBufferView.BufferLocation = VertexBuffer->GetGPUVirtualAddress();
+			VertexBufferView.StrideInBytes = sizeof(HVertex);
+			VertexBufferView.SizeInBytes = VertexBufferSize;
+		}
+
+		// Create Synchronization objects. Wait until assets have been uploaded to the GPU.
+		{
+			ThrowIfFailed(Device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&Fence)));
+			FenceValue = 1;
+
+			FenceEvent = CreateEvent(nullptr, FALSE, FALSE, nullptr);
+			if (FenceEvent == nullptr)
+			{
+				ThrowIfFailed(HRESULT_FROM_WIN32(GetLastError()));
+			}
+
 
 		}
 	}
