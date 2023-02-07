@@ -20,6 +20,12 @@ namespace HopStep
 
 		virtual bool OnInit() override;
 
+		virtual void OnUpdate() override;
+
+		virtual void OnRender() override;
+
+		virtual void OnDestroy() override;
+
 	private:
 
 		float AspectRatio = 0.0f;
@@ -35,6 +41,8 @@ namespace HopStep
 		ComPtr<ID3D12Resource> RenderTargets[SwapChainBufferCount];
 		ComPtr<ID3D12RootSignature> RootSignature;
 		ComPtr<ID3D12PipelineState> PipelineState;
+		CD3DX12_VIEWPORT Viewport;
+		CD3DX12_RECT ScissorRect;
 
 		ComPtr<ID3D12CommandQueue> CommandQueue;
 		ComPtr<ID3D12CommandAllocator> CommandAllocator;
@@ -54,7 +62,11 @@ namespace HopStep
 		uint32 FrameIndex;
 
 		void InitPipeline();
+
 		void LoadAssets();
+
 		void WaitForPreviousFrame();
+
+		void PopulateCommandList();
 	};
 }

@@ -12,5 +12,11 @@ namespace HopStep
 		static ID3DRenderer* CreateD3DRenderer(TSharedPtr<class HGenericWindow> WindowPtr);
 		
 		virtual bool OnInit() = 0;
+
+		virtual void OnUpdate() = 0;
+
+		virtual void OnRender() = 0;
+
+		virtual void OnDestroy() = 0;
 	};
 }

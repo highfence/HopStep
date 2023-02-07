@@ -25,6 +25,23 @@ namespace HopStep
 		return true;
 	}
 
+	void HD3DRenderer::OnUpdate()
+	{
+		throw std::logic_error("The method or operation is not implemented.");
+	}
+
+	void HD3DRenderer::OnRender()
+	{
+
+	}
+
+	void HD3DRenderer::OnDestroy()
+	{
+		WaitForPreviousFrame();
+
+		CloseHandle(FenceEvent);
+	}
+
 	void HD3DRenderer::InitPipeline()
 	{
 		uint32 DXGIFactoryFlags = 0u;
@@ -243,5 +260,41 @@ namespace HopStep
 		}
 
 		FrameIndex = SwapChain->GetCurrentBackBufferIndex();
+	}
+
+	void HD3DRenderer::PopulateCommandList()
+	{
+		// CommandAllocator는 관련 CommandList가 GPU에서 실행을 완료한 경우에 Reset 할 수 있다.
+		// Fence를 이용하여 GPU 실행 진행률을 판단해야한다. (?)
+		ThrowIfFailed(CommandAllocator->Reset());
+
+		// 그러나 ExecuteCommandList()가 특정 CommandList에서 호출되면 언제든지 해당 CommandList는 Reset될 수 있으며, 반드시 re-recoding하기 전이여야 한다.
+		ThrowIfFailed(CommandList->Reset(CommandAllocator.Get(), PipelineState.Get()));
+
+		CommandList->SetGraphicsRootSignature(RootSignature.Get());
+		CommandList->RSSetViewports(1, &Viewport);
+		CommandList->RSSetScissorRects(1, &ScissorRect);
+
+		{
+			auto TransitionToRenderTarget = CD3DX12_RESOURCE_BARRIER::Transition(RenderTargets[FrameIndex].Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+			CommandList->ResourceBarrier(1, &TransitionToRenderTarget);
+		}
+
+		CD3DX12_CPU_DESCRIPTOR_HANDLE RtvHandle(RtvHeap->GetCPUDescriptorHandleForHeapStart(), FrameIndex, RtvDescriptorSize);
+		CommandList->OMSetRenderTargets(1, &RtvHandle, FALSE, nullptr);
+
+		// Record Commands
+		const float ClearColor[] = { 0.0f, 0.2f, 0.4f, 1.0f };
+		CommandList->ClearRenderTargetView(RtvHandle, ClearColor, 0, nullptr);
+		CommandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		CommandList->IASetVertexBuffers(0, 1, &VertexBufferView);
+		CommandList->DrawInstanced(3, 1, 0, 0);
+
+		// Swap buffer
+		{
+			auto TransitionToPresent = CD3DX12_RESOURCE_BARRIER::Transition(RenderTargets[FrameIndex].Get(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+			CommandList->ResourceBarrier(1, &TransitionToPresent);
+		}
+		ThrowIfFailed(CommandList->Close());
 	}
 }

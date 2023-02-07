@@ -11,6 +11,5 @@ namespace HopStep
 
 		virtual uint32 GetClientWidth() = 0;
 		virtual uint32 GetClientHeight() = 0;
-
 	};
 }

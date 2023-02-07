@@ -179,6 +179,7 @@
     <ClInclude Include="Core\Delegates\IDelegateInstance.h" />
     <ClInclude Include="Core\GenericPlatform\GenericApplication.h" />
     <ClInclude Include="Core\GenericPlatform\GenericApplicationMessageHandler.h" />
+    <ClInclude Include="Core\GenericPlatform\GenericMessageHandler.h" />
     <ClInclude Include="Core\GenericPlatform\GenericPlatformTime.h" />
     <ClInclude Include="Core\GenericPlatform\GenericWindow.h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />

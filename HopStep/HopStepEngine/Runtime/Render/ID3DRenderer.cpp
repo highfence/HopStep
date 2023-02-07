@@ -3,7 +3,7 @@
 
 namespace HopStep
 {
-	ID3DRenderer* ID3DRenderer::CreateD3DRenderer(TSharedPtr<class HGenericWindow> WindowPtr)
+	ID3DRenderer* ID3DRenderer::CreateD3DRenderer(TSharedPtr<HGenericWindow> WindowPtr)
 	{
 		return new HD3DRenderer(WindowPtr);
 	}
