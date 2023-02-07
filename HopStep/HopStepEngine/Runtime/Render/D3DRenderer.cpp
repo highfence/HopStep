@@ -186,10 +186,13 @@ namespace HopStep
 
 			// Note: 여기서는 코드를 간략하게 만들기 위해 upload heap을 사용하지만, 정상적인 방법으로 추천하지 않음.
 			// GPU가 vertex를 필요로 할 때마다, upload head의 마샬링이 필요해질것이다. Default head usage에 대한 문서를 읽자.
+			auto HeapProperties = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
+			auto VertexBufferDesc = CD3DX12_RESOURCE_DESC::Buffer(VertexBufferSize);
+
 			ThrowIfFailed(Device->CreateCommittedResource(
-				&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
+				&HeapProperties,
 				D3D12_HEAP_FLAG_NONE,
-				&CD3DX12_RESOURCE_DESC::Buffer(VertexBufferSize),
+				&VertexBufferDesc,
 				D3D12_RESOURCE_STATE_GENERIC_READ,
 				nullptr,
 				IID_PPV_ARGS(&VertexBuffer)
@@ -219,7 +222,26 @@ namespace HopStep
 				ThrowIfFailed(HRESULT_FROM_WIN32(GetLastError()));
 			}
 
-
+			// CommandList가 execute하길 기다려준다.
+			WaitForPreviousFrame();
 		}
+	}
+
+	void HD3DRenderer::WaitForPreviousFrame()
+	{
+		// 프레임이 끝나기를 기다리는 것은 훌륭한 케이스가 아니며, 코드 단순성을 위해 만들어진 코드.
+		// 나중에 D3D12HelloFrameBuffering을 보면서 이를 고칠 것.
+
+		const uint64 FenceLocalValue = FenceValue;
+		ThrowIfFailed(CommandQueue->Signal(Fence.Get(), FenceLocalValue));
+		++FenceValue;
+
+		if (Fence->GetCompletedValue() < FenceLocalValue)
+		{
+			ThrowIfFailed(Fence->SetEventOnCompletion(FenceLocalValue, FenceEvent));
+			WaitForSingleObject(FenceEvent, INFINITE);
+		}
+
+		FrameIndex = SwapChain->GetCurrentBackBufferIndex();
 	}
 }

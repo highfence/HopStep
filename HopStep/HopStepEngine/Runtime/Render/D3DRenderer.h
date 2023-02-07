@@ -55,5 +55,6 @@ namespace HopStep
 
 		void InitPipeline();
 		void LoadAssets();
+		void WaitForPreviousFrame();
 	};
 }
