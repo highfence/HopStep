@@ -29,6 +29,13 @@ namespace HopStep
 			delete App;
 			App = nullptr;
 		}
+
+		if (Renderer)
+		{
+			Renderer->OnDestroy();
+			delete Renderer;
+			Renderer = nullptr;
+		}
 	}
 
 	bool HEngine::Execute(const HChar* InCommand, IOutputDevice* InDevice)
@@ -55,6 +62,8 @@ namespace HopStep
 	void HEngine::Tick(float Delta)
 	{
 		App->PumpMessages(Delta);
+		Renderer->OnUpdate();
+		Renderer->OnRender();
 	}
 
 	void HEngine::UpdateTime()

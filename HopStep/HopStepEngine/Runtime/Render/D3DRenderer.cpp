@@ -27,12 +27,20 @@ namespace HopStep
 
 	void HD3DRenderer::OnUpdate()
 	{
-		throw std::logic_error("The method or operation is not implemented.");
 	}
 
 	void HD3DRenderer::OnRender()
 	{
+		PopulateCommandList();
 
+		// Execute Command list
+		ID3D12CommandList* CommandLists[] = { CommandList.Get() };
+		CommandQueue->ExecuteCommandLists(_countof(CommandLists), CommandLists);
+
+		// Present the frame
+		ThrowIfFailed(SwapChain->Present(1, 0));
+
+		WaitForPreviousFrame();
 	}
 
 	void HD3DRenderer::OnDestroy()
