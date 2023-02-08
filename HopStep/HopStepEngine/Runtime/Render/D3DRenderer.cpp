@@ -12,6 +12,8 @@ namespace HopStep
 		HCheck(AppWindowPtr);
 		AppWindow = AppWindowPtr;
 		AspectRatio = static_cast<float>(AppWindow->GetClientWidth()) / static_cast<float>(AppWindow->GetClientHeight());
+		Viewport = CD3DX12_VIEWPORT(0.0f, 0.0f, static_cast<float>(AppWindow->GetClientWidth()), static_cast<float>(AppWindow->GetClientHeight()));
+		ScissorRect = CD3DX12_RECT(0, 0, AppWindow->GetClientWidth(), AppWindow->GetClientHeight());
 	}
 
 	HD3DRenderer::~HD3DRenderer()

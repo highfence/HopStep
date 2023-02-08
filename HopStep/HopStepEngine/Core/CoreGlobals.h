@@ -24,6 +24,6 @@ namespace HopStep
 	/**
 	 * Client Section
 	 */
-	static int32 ClientWidth = 1200;
-	static int32 ClientHeight = 800;
+	static int32 ClientWidth = 1280;
+	static int32 ClientHeight = 720;
 }
