@@ -7,7 +7,7 @@ namespace HopStep
 	struct HVertex
 	{
 		XMFLOAT3 Position;
-		XMFLOAT4 Color;
+		XMFLOAT2 UV;
 	};
 
 	class HD3DRenderer : public ID3DRenderer
@@ -31,6 +31,9 @@ namespace HopStep
 		float AspectRatio = 0.0f;
 
 		static constexpr uint8 SwapChainBufferCount = 2;
+		static constexpr uint8 TextureWidth = 256;
+		static constexpr uint8 TextureHeight = 256;
+		static constexpr uint8 TexturePixelSize = 4;
 
 		TSharedPtr<class HGenericWindow> AppWindow;
 
@@ -68,5 +71,7 @@ namespace HopStep
 		void WaitForPreviousFrame();
 
 		void PopulateCommandList();
+
+		TArray<uint8> GenerateSampleTextureData();
 	};
 }

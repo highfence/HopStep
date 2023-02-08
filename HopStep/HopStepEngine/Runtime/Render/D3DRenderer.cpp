@@ -143,14 +143,42 @@ namespace HopStep
 
 	void HD3DRenderer::LoadAssets()
 	{
-		// Create an empty root signature
+		// Create the root signature
 		{
-			CD3DX12_ROOT_SIGNATURE_DESC RootSignatureDesc;
-			RootSignatureDesc.Init(0, nullptr, 0, nullptr, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
+			D3D12_FEATURE_DATA_ROOT_SIGNATURE FeatureData = 
+			{
+				.HighestVersion = D3D_ROOT_SIGNATURE_VERSION_1_1
+			};
+
+			CD3DX12_DESCRIPTOR_RANGE1 Ranges[1];
+			Ranges[0].Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0, 0, D3D12_DESCRIPTOR_RANGE_FLAG_DATA_STATIC);
+
+			CD3DX12_ROOT_PARAMETER1 RootParameters[1];
+			RootParameters[0].InitAsDescriptorTable(1, &Ranges[0], D3D12_SHADER_VISIBILITY_PIXEL);
+
+			D3D12_STATIC_SAMPLER_DESC Sampler =
+			{
+				.Filter = D3D12_FILTER_MIN_MAG_MIP_POINT,
+				.AddressU = D3D12_TEXTURE_ADDRESS_MODE_BORDER,
+				.AddressV = D3D12_TEXTURE_ADDRESS_MODE_BORDER,
+				.AddressW = D3D12_TEXTURE_ADDRESS_MODE_BORDER,
+				.MipLODBias = 0,
+				.MaxAnisotropy = 0,
+				.ComparisonFunc = D3D12_COMPARISON_FUNC_NEVER,
+				.BorderColor = D3D12_STATIC_BORDER_COLOR_TRANSPARENT_BLACK,
+				.MinLOD = 0.0f,
+				.MaxLOD = D3D12_FLOAT32_MAX,
+				.ShaderRegister = 0,
+				.RegisterSpace = 0,
+				.ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL
+			};
+
+			CD3DX12_VERSIONED_ROOT_SIGNATURE_DESC RootSignatureDesc;
+			RootSignatureDesc.Init_1_1(_countof(RootParameters), RootParameters, 1, &Sampler, D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
 
 			ComPtr<ID3DBlob> Signature;
 			ComPtr<ID3DBlob> Error;
-			ThrowIfFailed(D3D12SerializeRootSignature(&RootSignatureDesc, D3D_ROOT_SIGNATURE_VERSION_1, &Signature, &Error));
+			ThrowIfFailed(D3DX12SerializeVersionedRootSignature(&RootSignatureDesc, FeatureData.HighestVersion, &Signature, &Error));
 			ThrowIfFailed(Device->CreateRootSignature(0, Signature->GetBufferPointer(), Signature->GetBufferSize(), IID_PPV_ARGS(&RootSignature)));
 		}
 
@@ -171,7 +199,7 @@ namespace HopStep
 			D3D12_INPUT_ELEMENT_DESC InputElementDescs[] =
 			{
 				{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
-				{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
+				{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
 			};
 
 			D3D12_GRAPHICS_PIPELINE_STATE_DESC PSODesc = 
@@ -198,15 +226,15 @@ namespace HopStep
 		ThrowIfFailed(Device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, CommandAllocator.Get(), PipelineState.Get(), IID_PPV_ARGS(&CommandList)));
 
 		// Commandlist가 Recording state로 생성이 되었지만, 아직 record할 정보가 아무것도 없으므로 우선 close상태로 만들어준다.
-		ThrowIfFailed(CommandList->Close());
+		// ThrowIfFailed(CommandList->Close());
 
 		// Create vertex buffer
 		{
 			HVertex TriangleVertices[] =
 			{
-				{ { 0.0f, 0.25f * AspectRatio, 0.0f }, { 1.0f, 0.0f, 0.0f, 1.0f } },
-				{ { 0.25f, -0.25f * AspectRatio, 0.0f }, { 0.0f, 1.0f, 0.0f, 1.0f } },
-				{ { -0.25f, -0.25f * AspectRatio, 0.0f }, { 0.0f, 0.0f, 1.0f, 1.0f } }
+				{ { 0.0f, 0.25f * AspectRatio, 0.0f }, { 0.5f, 0.0f } },
+				{ { 0.25f, -0.25f * AspectRatio, 0.0f }, { 1.0f, 1.0f } },
+				{ { -0.25f, -0.25f * AspectRatio, 0.0f }, { 0.0f, 1.0f } }
 			};
 
 			const uint32 VertexBufferSize = sizeof(TriangleVertices);
@@ -236,6 +264,14 @@ namespace HopStep
 			VertexBufferView.BufferLocation = VertexBuffer->GetGPUVirtualAddress();
 			VertexBufferView.StrideInBytes = sizeof(HVertex);
 			VertexBufferView.SizeInBytes = VertexBufferSize;
+		}
+
+		// Create texture resource
+		// ComPtr은 CPU 객체이지만, 이 텍스쳐 리소스는 GPU에서 실행이 완료될 때까지 파괴되지 않아야 한다.
+		// 이 메서드 끝 부분에 GPU Flush가 있으므로 리소스가 너무 일찍 파괴되지 않는 것을 보장한다.
+		ComPtr<ID3D12Resource> TextureUploadHeap;
+		{
+			// todo: start here
 		}
 
 		// Create Synchronization objects. Wait until assets have been uploaded to the GPU.
@@ -306,5 +342,41 @@ namespace HopStep
 			CommandList->ResourceBarrier(1, &TransitionToPresent);
 		}
 		ThrowIfFailed(CommandList->Close());
+	}
+
+	TArray<uint8> HD3DRenderer::GenerateSampleTextureData()
+	{
+		const uint32 RowPitch = TextureWidth * TexturePixelSize;
+		const uint32 CellPitch = RowPitch >> 3;	 // Checkerboard texture cell width size
+		const uint32 CellHeight = TextureWidth >> 3; // Checkerboard texture cell height size
+		const uint32 TextureSize = RowPitch * TextureHeight;
+
+		TArray<uint8> Data(TextureSize);
+		uint8* DataPtr = &Data[0];
+
+		for (uint32 N = 0; N < TextureSize; N += TexturePixelSize)
+		{
+			uint32 X = N % RowPitch;
+			uint32 Y = N / RowPitch;
+			uint32 I = X / CellPitch;
+			uint32 J = Y / CellHeight;
+
+			if (I % 2 == J % 2)
+			{
+				DataPtr[N] = 0x00; 
+				DataPtr[N + 1] = 0x00; 
+				DataPtr[N + 2] = 0x00; 
+				DataPtr[N + 3] = 0xff; 
+			}
+			else
+			{
+				DataPtr[N] = 0xff; 
+				DataPtr[N + 1] = 0xff; 
+				DataPtr[N + 2] = 0xff; 
+				DataPtr[N + 3] = 0xff; 
+			}
+		}
+
+		return Data;
 	}
 }

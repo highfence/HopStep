@@ -23,6 +23,7 @@ namespace HopStep
 	// DirectX namespace aliasing
 	using XMMATRIX = ::DirectX::XMMATRIX;
 	using XMVECTOR = ::DirectX::XMVECTOR;
+	using XMFLOAT2 = ::DirectX::XMFLOAT2;
 	using XMFLOAT3 = ::DirectX::XMFLOAT3;
 	using XMFLOAT4 = ::DirectX::XMFLOAT4;
 
