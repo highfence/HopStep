@@ -272,6 +272,7 @@ namespace HopStep
 		ComPtr<ID3D12Resource> TextureUploadHeap;
 		{
 			// todo: start here
+			// for test commit
 		}
 
 		// Create Synchronization objects. Wait until assets have been uploaded to the GPU.
