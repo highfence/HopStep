@@ -123,6 +123,15 @@ namespace HopStep
 				.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE,
 			};
 			ThrowIfFailed(Device->CreateDescriptorHeap(&RtvHeapDesc, IID_PPV_ARGS(&RtvHeap)));
+
+			D3D12_DESCRIPTOR_HEAP_DESC SrvHeapDesc =
+			{
+				.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV,
+				.NumDescriptors = 1,
+				.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE
+			};
+			ThrowIfFailed(Device->CreateDescriptorHeap(&SrvHeapDesc, IID_PPV_ARGS(&SrvHeap)));
+
 			RtvDescriptorSize = Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 		}
 
@@ -271,9 +280,73 @@ namespace HopStep
 		// 이 메서드 끝 부분에 GPU Flush가 있으므로 리소스가 너무 일찍 파괴되지 않는 것을 보장한다.
 		ComPtr<ID3D12Resource> TextureUploadHeap;
 		{
-			// todo: start here
-			// for test commit
+			D3D12_RESOURCE_DESC TextureDesc =
+			{
+				.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D,
+				.Width = TextureWidth,
+				.Height = TextureHeight,
+				.DepthOrArraySize = 1,
+				.MipLevels = 1,
+				.Format = DXGI_FORMAT_R8G8B8A8_UNORM,
+				.Flags = D3D12_RESOURCE_FLAG_NONE
+			};
+			TextureDesc.SampleDesc.Count = 1;
+			TextureDesc.SampleDesc.Quality = 0;
+
+			auto TextureProperty = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
+			ThrowIfFailed(Device->CreateCommittedResource(
+				&TextureProperty,
+				D3D12_HEAP_FLAG_NONE,
+				&TextureDesc,
+				D3D12_RESOURCE_STATE_COPY_DEST,
+				nullptr,
+				IID_PPV_ARGS(&Texture)
+			));
+
+			const uint64 UploadBufferSize = ::GetRequiredIntermediateSize(Texture.Get(), 0, 1);
+
+			// Create GPU upload buffer
+			auto UploadBufferProperty = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
+			auto UploadBufferDesc = CD3DX12_RESOURCE_DESC::Buffer(UploadBufferSize);
+
+			ThrowIfFailed(Device->CreateCommittedResource(
+				&UploadBufferProperty,
+				D3D12_HEAP_FLAG_NONE,
+				&UploadBufferDesc,
+				D3D12_RESOURCE_STATE_GENERIC_READ,
+				nullptr,
+				IID_PPV_ARGS(&TextureUploadHeap)
+			));
+
+			TArray<uint8> TextureRawData = GenerateSampleTextureData();
+
+			D3D12_SUBRESOURCE_DATA TextureData =
+			{
+				.pData = &TextureRawData[0],
+				.RowPitch = TextureWidth * TexturePixelSize,
+				.SlicePitch = TextureData.RowPitch * TextureHeight
+			};
+
+			UpdateSubresources(CommandList.Get(), Texture.Get(), TextureUploadHeap.Get(), 0, 0, 1, &TextureData);
+
+			{
+				auto TransitionToPixelShaderResource = CD3DX12_RESOURCE_BARRIER::Transition(Texture.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE);
+				CommandList->ResourceBarrier(1, &TransitionToPixelShaderResource);
+			}
+
+			D3D12_SHADER_RESOURCE_VIEW_DESC SrvDesc =
+			{
+				.Format = TextureDesc.Format,
+				.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D,
+				.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING
+			};
+			SrvDesc.Texture2D.MipLevels = 1;
+			Device->CreateShaderResourceView(Texture.Get(), &SrvDesc, SrvHeap->GetCPUDescriptorHandleForHeapStart());
 		}
+
+		ThrowIfFailed(CommandList->Close());
+		ID3D12CommandList* CommandLists[] = { CommandList.Get() };
+		CommandQueue->ExecuteCommandLists(_countof(CommandLists), CommandLists);
 
 		// Create Synchronization objects. Wait until assets have been uploaded to the GPU.
 		{
@@ -319,6 +392,11 @@ namespace HopStep
 		ThrowIfFailed(CommandList->Reset(CommandAllocator.Get(), PipelineState.Get()));
 
 		CommandList->SetGraphicsRootSignature(RootSignature.Get());
+
+		ID3D12DescriptorHeap* Heaps[] = { SrvHeap.Get() };
+		CommandList->SetDescriptorHeaps(_countof(Heaps), Heaps);
+
+		CommandList->SetGraphicsRootDescriptorTable(0, SrvHeap->GetGPUDescriptorHandleForHeapStart());
 		CommandList->RSSetViewports(1, &Viewport);
 		CommandList->RSSetScissorRects(1, &ScissorRect);
 

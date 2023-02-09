@@ -31,9 +31,9 @@ namespace HopStep
 		float AspectRatio = 0.0f;
 
 		static constexpr uint8 SwapChainBufferCount = 2;
-		static constexpr uint8 TextureWidth = 256;
-		static constexpr uint8 TextureHeight = 256;
-		static constexpr uint8 TexturePixelSize = 4;
+		static constexpr uint32 TextureWidth = 256;
+		static constexpr uint32 TextureHeight = 256;
+		static constexpr uint32 TexturePixelSize = 4;
 
 		TSharedPtr<class HGenericWindow> AppWindow;
 
@@ -44,6 +44,7 @@ namespace HopStep
 		ComPtr<ID3D12Resource> RenderTargets[SwapChainBufferCount];
 		ComPtr<ID3D12RootSignature> RootSignature;
 		ComPtr<ID3D12PipelineState> PipelineState;
+		ComPtr<ID3D12DescriptorHeap> SrvHeap;
 		CD3DX12_VIEWPORT Viewport;
 		CD3DX12_RECT ScissorRect;
 
@@ -54,6 +55,7 @@ namespace HopStep
 		// Resources
 		ComPtr<ID3D12Resource> VertexBuffer;
 		D3D12_VERTEX_BUFFER_VIEW VertexBufferView;
+		ComPtr<ID3D12Resource> Texture;
 
 		// Synchronization
 		ComPtr<ID3D12Fence> Fence;
