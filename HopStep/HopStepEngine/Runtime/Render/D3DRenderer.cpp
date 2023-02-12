@@ -159,10 +159,10 @@ namespace HopStep
 				.HighestVersion = D3D_ROOT_SIGNATURE_VERSION_1_1
 			};
 
-			CD3DX12_DESCRIPTOR_RANGE1 Ranges[1];
+			CD3DX12_DESCRIPTOR_RANGE1 Ranges[1] = {};
 			Ranges[0].Init(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0, 0, D3D12_DESCRIPTOR_RANGE_FLAG_DATA_STATIC);
 
-			CD3DX12_ROOT_PARAMETER1 RootParameters[1];
+			CD3DX12_ROOT_PARAMETER1 RootParameters[1] = {};
 			RootParameters[0].InitAsDescriptorTable(1, &Ranges[0], D3D12_SHADER_VISIBILITY_PIXEL);
 
 			D3D12_STATIC_SAMPLER_DESC Sampler =
