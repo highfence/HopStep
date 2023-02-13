@@ -2,9 +2,9 @@
 
 namespace HopStep
 {
-	bool HFbxImporter::Load(const HString& Filename)
+	bool HFbxImporter::OpenFile(const HString& Filename)
 	{
-
+		
 
 		return false;
 	}

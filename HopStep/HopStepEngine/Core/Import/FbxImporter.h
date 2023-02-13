@@ -7,7 +7,7 @@ namespace HopStep
 	{
 	public:
 
-		bool Load(const HString& Filename);
+		bool OpenFile(const HString& Filename);
 
 
 	};
