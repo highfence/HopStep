@@ -1,3 +1,4 @@
+#include "..\Misc\DebugUtils.h"
 #include "FbxImporter.h"
 
 namespace HopStep
@@ -10,11 +11,13 @@ namespace HopStep
 	bool HFbxImporter::Initialize()
 	{
 		SDKManager = ::FbxManager::Create();
+		HCheck(SDKManager);
+
 		::FbxIOSettings* IOSetting = ::FbxIOSettings::Create(SDKManager, IOSROOT);
 		SDKManager->SetIOSettings(IOSetting);
 
 		ImportOptions = std::make_unique<HFBXImportOptions>();
-		return false;
+		return SDKManager != nullptr;
 	}
 
 	bool HFbxImporter::OpenFile(const HString& Filename)
@@ -35,6 +38,12 @@ namespace HopStep
 		{
 			SDKManager->Destroy();
 			SDKManager = nullptr;
+		}
+
+		if (Importer)
+		{
+			Importer->Destroy();
+			Importer = nullptr;
 		}
 	}
 }
