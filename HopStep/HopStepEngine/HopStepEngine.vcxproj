@@ -81,12 +81,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir);$(ProjectDir)ThirdParty\;$(ProjectDir)ThirdParty\FBX\2020.2\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)ThirdParty\FBX\2020.2\lib\vs2017\$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir);$(ProjectDir)ThirdParty\;$(ProjectDir)ThirdParty\FBX\2020.2\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)ThirdParty\FBX\2020.2\lib\vs2017\$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

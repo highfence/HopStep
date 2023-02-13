@@ -23,7 +23,7 @@ namespace HopStep
 
         // Engine Tick
         GEngine->UpdateTime();
-        GEngine->Tick(static_cast<float>(HApp::GetDeltaTime()));
+        GEngine->Tick(HApp::GetDeltaTime());
     }
 
     void HEngineLoop::Exit()

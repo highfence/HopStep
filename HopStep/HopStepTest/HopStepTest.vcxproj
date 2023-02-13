@@ -77,9 +77,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\HopStepEngine\ThirdParty\FBX\2020.2\lib\vs2017\$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
-    <ExternalIncludePath>$(ProjectDir)..\HopStepEngine\ThirdParty\FBX\2020.2\include\;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -89,9 +86,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\HopStepEngine\ThirdParty\FBX\2020.2\lib\vs2017\$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
-    <ExternalIncludePath>$(ProjectDir)..\HopStepEngine\ThirdParty\FBX\2020.2\include\;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -167,10 +161,6 @@
     <ClCompile Include="CoreObjectTest.cpp" />
     <ClCompile Include="CoreTest.cpp" />
     <ClCompile Include="DelegateTest.cpp" />
-    <ClCompile Include="FbxImportTest.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="HopStepEngineTest.cpp" />
     <ClCompile Include="HopStepTest.cpp" />
     <ClCompile Include="ObjectTest.cpp" />
