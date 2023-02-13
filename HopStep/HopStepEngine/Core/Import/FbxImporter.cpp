@@ -1,4 +1,5 @@
 #include "FbxImporter.h"
+#include "..\..\ThirdParty\FBX\2020.2\include\fbxsdk.h"
 
 namespace HopStep
 {
