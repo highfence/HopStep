@@ -57,6 +57,7 @@ namespace HopStep
 
 		GameWorld = std::make_unique<HWorld>();
 		HCheck(GameWorld);
+		GameWorld->InitWorld();
 	}
 
 	void HEngine::Tick(float Delta)

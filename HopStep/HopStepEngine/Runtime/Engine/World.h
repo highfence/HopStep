@@ -12,6 +12,7 @@ namespace HopStep
 
 	public:
 
+		bool InitWorld();
 
 	};
 }
