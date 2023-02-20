@@ -2,10 +2,9 @@
 #include "Core/Misc/EngineConfig.h"
 #include "Core/Misc/Paths.h"
 #include "Core/Windows/WindowsSystemIncludes.h"
+#include "Launch.h"
 
 #ifdef HopStep_On_Windows
-
-extern int32 GuardedMain(const HopStep::HChar* CommandLine);
 
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -17,7 +16,7 @@ int WINAPI WinMain(
 	GCmdShow = nCmdShow;
 
 	const HopStep::HChar* CmdLine = ::GetCommandLineW();
-	int32 ExitValue = GuardedMain(CmdLine);
+	int32 ExitValue = HopStep::GuardedMain(CmdLine);
 	return ExitValue;
 }
 
