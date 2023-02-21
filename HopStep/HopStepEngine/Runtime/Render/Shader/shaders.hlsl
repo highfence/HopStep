@@ -7,7 +7,7 @@ struct PSInput
 Texture2D gTexture : register(t0);
 SamplerState gSampler : register(s0);
 
-PSInput VSMain(float4 position : POSITION, float4 uv : TEXCOORD)
+PSInput VSMain(float4 position : POSITION, float4 normal : NORMAL, float4 uv : TEXCOORD)
 {
     PSInput result;
 

@@ -7,7 +7,17 @@ namespace HopStep
 	struct HVertex
 	{
 		XMFLOAT3 Position;
+		XMFLOAT3 Normal;
 		XMFLOAT2 UV;
+
+		/*
+		HVertex() = default;
+		HVertex(XMFLOAT3& InPos, XMFLOAT3& InNormal, XMFLOAT2& InUV)
+			: Position(InPos), Normal(InNormal), UV(InUV)
+		{
+
+		}
+		*/
 	};
 
 	class HD3DRenderer : public ID3DRenderer
