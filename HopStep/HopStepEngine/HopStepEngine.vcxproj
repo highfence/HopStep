@@ -249,6 +249,7 @@
     <ClInclude Include="Intermediate\Object.generated.h" />
     <ClInclude Include="Intermediate\ObjectBase.generated.h" />
     <ClInclude Include="Intermediate\ReflectionTest.generated.h" />
+    <ClInclude Include="Intermediate\StaticMesh.generated.h" />
     <ClInclude Include="Intermediate\World.generated.h" />
     <ClInclude Include="Runtime\Engine\Engine.h" />
     <ClInclude Include="Runtime\Engine\EngineLoop.h" />
@@ -523,6 +524,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Intermediate\ReflectionTest.generated.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Intermediate\StaticMesh.generated.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>

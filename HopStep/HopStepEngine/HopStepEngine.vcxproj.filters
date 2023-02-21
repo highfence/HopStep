@@ -2,94 +2,94 @@
 <Project ToolsVersion="4.0">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{21a1c5ba-c5e9-40e7-b357-5a2cd7c9af9b}</UniqueIdentifier>
+      <UniqueIdentifier>{b7dd2876-4006-4936-9e0d-3b34397b1807}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Archive">
-      <UniqueIdentifier>{62feb982-cc18-47b5-99f2-ea6ca6f09af6}</UniqueIdentifier>
+      <UniqueIdentifier>{f04027cc-2d32-4291-ac36-f1209d1fb23e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Container">
-      <UniqueIdentifier>{321a7532-ebe0-4397-83b7-819c35364bc9}</UniqueIdentifier>
+      <UniqueIdentifier>{b99f10fb-3b9e-4693-9540-139e590e652e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Delegates">
-      <UniqueIdentifier>{ca9efa9c-5091-4169-83cb-541ed0096ce2}</UniqueIdentifier>
+      <UniqueIdentifier>{cc324e4f-9be8-471f-8533-d65a30bd9f8f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\GenericPlatform">
-      <UniqueIdentifier>{0989c13a-4efd-4afe-898d-b0a6cb27eca4}</UniqueIdentifier>
+      <UniqueIdentifier>{3e826075-9df6-4fc7-b3f7-4b46345757cc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Import">
-      <UniqueIdentifier>{f6e3e7d9-522c-44a5-a6f3-b563eb37b15a}</UniqueIdentifier>
+      <UniqueIdentifier>{21df43b5-be3f-4880-89d6-048f008e51cd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger">
-      <UniqueIdentifier>{05c4a7ec-4e44-4819-abd9-9d2cf31a5838}</UniqueIdentifier>
+      <UniqueIdentifier>{535bf525-074d-4623-8701-28f9a018793e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Misc">
-      <UniqueIdentifier>{52126bda-b769-4ef3-b696-f71e1c9f9ddc}</UniqueIdentifier>
+      <UniqueIdentifier>{4906cd9d-ab56-4ff3-a500-6fb03ee4803c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Templates">
-      <UniqueIdentifier>{6da08371-a351-4c03-b0b5-8715c1427969}</UniqueIdentifier>
+      <UniqueIdentifier>{d5025cbd-2b51-424f-87a2-114b1b1324ca}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Windows">
-      <UniqueIdentifier>{2ff0e43e-ee34-4004-9f7c-a70a30887e76}</UniqueIdentifier>
+      <UniqueIdentifier>{2ca6c2e8-85db-484a-b748-4c2b918adff7}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
-      <UniqueIdentifier>{d86c2a6b-d74c-47db-8c5c-0e62985b1b68}</UniqueIdentifier>
+      <UniqueIdentifier>{9e5a020b-2be2-4fa1-b59e-05b22b2672cb}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{ddee4226-2af6-4afd-a8cc-865925721491}</UniqueIdentifier>
+      <UniqueIdentifier>{ad7ce14e-bd2e-4ed0-9339-6e2b50de2805}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{3af5c412-b6a4-4f18-888e-b1fe3584b924}</UniqueIdentifier>
+      <UniqueIdentifier>{6c9e0e40-4f17-4359-b4cc-c7bf8abad0b7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern">
-      <UniqueIdentifier>{3b9dcf0c-db84-4c62-88ca-502eb3751f1f}</UniqueIdentifier>
+      <UniqueIdentifier>{47590928-44a4-43eb-86f3-779e0ab34573}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp">
-      <UniqueIdentifier>{015ecdc9-f910-492c-bb6f-3c583ebf1713}</UniqueIdentifier>
+      <UniqueIdentifier>{0f274abd-01dc-4122-90eb-641d1c58977e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include">
-      <UniqueIdentifier>{4c4c4b5a-7b17-4b4f-bfe0-2a29782671d3}</UniqueIdentifier>
+      <UniqueIdentifier>{adc58d0d-2be3-4db9-a6e2-d4007399a842}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include\json">
-      <UniqueIdentifier>{60dab89f-de10-45d2-bf8a-2a0d2846c4cf}</UniqueIdentifier>
+      <UniqueIdentifier>{38f3a55e-ca66-488e-b217-7ec7adc01d05}</UniqueIdentifier>
     </Filter>
     <Filter Include="Intermediate">
-      <UniqueIdentifier>{ae46f44a-0b38-48bc-a2cd-2ddc69345b91}</UniqueIdentifier>
+      <UniqueIdentifier>{383d3c2a-f7d0-4a53-9894-8387fc6615d3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime">
-      <UniqueIdentifier>{e652122f-b05d-4a77-a831-36ba0c05d21c}</UniqueIdentifier>
+      <UniqueIdentifier>{e56b57b5-acd9-407f-a1db-de669aef75ab}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Engine">
-      <UniqueIdentifier>{6887aef6-f615-4038-9219-27b9d6cbbad5}</UniqueIdentifier>
+      <UniqueIdentifier>{f7310f14-033b-4ca3-a964-b772b11652d6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Launch">
-      <UniqueIdentifier>{a676ecb7-021b-4308-8feb-f51f31cff6e7}</UniqueIdentifier>
+      <UniqueIdentifier>{a31b2fc0-df7e-49ba-a913-acb226ac5eeb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Render">
-      <UniqueIdentifier>{15c4f087-1901-42e1-9a74-c0a98ecefeb1}</UniqueIdentifier>
+      <UniqueIdentifier>{96a1677b-879d-4345-b451-84e40cf5f1e4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Render\Shader">
-      <UniqueIdentifier>{dc6240e0-1943-4dfa-8ae3-09edebfdf970}</UniqueIdentifier>
+      <UniqueIdentifier>{1219c1e3-d615-4856-bd1f-8434b50c39c6}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty">
-      <UniqueIdentifier>{9d236cc5-b67c-4e86-9226-76685cc2262a}</UniqueIdentifier>
+      <UniqueIdentifier>{e4fc4dbf-8d1b-4e6e-9f6f-f5ae2cc68c1b}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp">
-      <UniqueIdentifier>{96bb4789-9c71-4412-b226-c6906e28ac15}</UniqueIdentifier>
+      <UniqueIdentifier>{9b3313f2-e0c3-430a-8bcc-ee9a84999807}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include">
-      <UniqueIdentifier>{869a204d-fe4a-4f4c-911c-04c412b784e5}</UniqueIdentifier>
+      <UniqueIdentifier>{f985cfec-d6d6-4acf-8be6-d42199954a50}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include\assimp">
-      <UniqueIdentifier>{d59597d9-7a6f-4467-bcb2-1af4df21f027}</UniqueIdentifier>
+      <UniqueIdentifier>{a554d1be-a9fd-4cf9-988e-62bf10249586}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include\assimp\Compiler">
-      <UniqueIdentifier>{f71550c2-3315-46f3-9142-796beea292e7}</UniqueIdentifier>
+      <UniqueIdentifier>{54355aa1-d8f6-4a67-bd25-56d630961e1e}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include\assimp\port">
-      <UniqueIdentifier>{2336e536-4591-439d-ba35-e697f834d6a4}</UniqueIdentifier>
+      <UniqueIdentifier>{71fc8f66-2e78-4ba9-898f-c194ad5bfd77}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include\assimp\port\AndroidJNI">
-      <UniqueIdentifier>{90f18752-099f-46ad-8ffe-e6bad0cf5df1}</UniqueIdentifier>
+      <UniqueIdentifier>{60dca435-f096-4f56-981e-bb6eb30ae85a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -353,6 +353,9 @@
       <Filter>Intermediate</Filter>
     </ClInclude>
     <ClInclude Include="Intermediate\ReflectionTest.generated.h">
+      <Filter>Intermediate</Filter>
+    </ClInclude>
+    <ClInclude Include="Intermediate\StaticMesh.generated.h">
       <Filter>Intermediate</Filter>
     </ClInclude>
     <ClInclude Include="Intermediate\World.generated.h">
@@ -755,6 +758,9 @@
       <Filter>Intermediate</Filter>
     </ClCompile>
     <ClCompile Include="Intermediate\ReflectionTest.generated.cpp">
+      <Filter>Intermediate</Filter>
+    </ClCompile>
+    <ClCompile Include="Intermediate\StaticMesh.generated.cpp">
       <Filter>Intermediate</Filter>
     </ClCompile>
     <ClCompile Include="Intermediate\World.generated.cpp">
