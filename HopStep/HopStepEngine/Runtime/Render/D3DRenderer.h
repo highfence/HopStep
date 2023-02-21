@@ -9,15 +9,13 @@ namespace HopStep
 		XMFLOAT3 Position;
 		XMFLOAT3 Normal;
 		XMFLOAT2 UV;
+	};
 
-		/*
-		HVertex() = default;
-		HVertex(XMFLOAT3& InPos, XMFLOAT3& InNormal, XMFLOAT2& InUV)
-			: Position(InPos), Normal(InNormal), UV(InUV)
-		{
-
-		}
-		*/
+	struct HMeshData
+	{
+		TArray<HVertex> Vertices;
+		TArray<uint32> Indexes;
+		uint32 MaterialIndex = 0u;
 	};
 
 	class HD3DRenderer : public ID3DRenderer
