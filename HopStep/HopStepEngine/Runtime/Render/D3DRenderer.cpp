@@ -201,7 +201,7 @@ namespace HopStep
 			ComplieFlags = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
 #endif
 
-			HString ShaderPath = HPaths::ShaderPath().append(TEXT("\\shaders.hlsl"));
+			HString ShaderPath = HPaths::ShaderPath().append(TEXT("shaders.hlsl"));
 			ThrowIfFailed(D3DCompileFromFile(ShaderPath.c_str(), nullptr, nullptr, "VSMain", "vs_5_0", ComplieFlags, 0, &VertexShader, nullptr));
 			ThrowIfFailed(D3DCompileFromFile(ShaderPath.c_str(), nullptr, nullptr, "PSMain", "ps_5_0", ComplieFlags, 0, &PixelShader, nullptr));
 

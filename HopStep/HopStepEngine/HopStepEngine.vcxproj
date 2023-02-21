@@ -182,7 +182,7 @@
     <ClInclude Include="Core\GenericPlatform\GenericMessageHandler.h" />
     <ClInclude Include="Core\GenericPlatform\GenericPlatformTime.h" />
     <ClInclude Include="Core\GenericPlatform\GenericWindow.h" />
-    <ClInclude Include="Core\Import\FbxImporter.h" />
+    <ClInclude Include="Core\Import\AssetImporter.h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
     <ClInclude Include="Core\Misc\App.h" />
@@ -369,7 +369,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
-    <ClCompile Include="Core\Import\FbxImporter.cpp">
+    <ClCompile Include="Core\Import\AssetImporter.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>

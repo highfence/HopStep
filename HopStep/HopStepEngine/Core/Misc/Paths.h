@@ -10,6 +10,11 @@ namespace HopStep
 		/**
 		 *
 		 */
+		static HString SolutionPath();
+
+		/**
+		 *
+		 */
 		static HString EnginePath();
 
 		/**
@@ -21,5 +26,10 @@ namespace HopStep
 		 *
 		 */
 		static HString ShaderPath();
+
+		/**
+		 *
+		 */
+		static HString ContentPath();
 	};
 }

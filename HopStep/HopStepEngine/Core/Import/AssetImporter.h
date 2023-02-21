@@ -3,7 +3,7 @@
 
 namespace HopStep 
 {
-	class HFbxImporter
+	class HAssetImporter
 	{
 	public:
 
