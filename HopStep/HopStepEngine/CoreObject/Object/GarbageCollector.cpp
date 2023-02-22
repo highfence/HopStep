@@ -69,7 +69,7 @@ namespace HopStep::Internal
 
 		while (true)
 		{
-			for (HSize Index = 0; Index < SweepingCollections.MarkedObjects.size(); ++Index)
+			for (Size_t Index = { 0u }; Index < SweepingCollections.MarkedObjects.size(); ++Index)
 			{
 				IGCObject* MarkedObject = SweepingCollections.MarkedObjects[Index];
 
@@ -98,7 +98,7 @@ namespace HopStep::Internal
 	void HGarbageCollector::Sweep()
 	{
 		// Move unmarked object to remove list
-		for (HSize Index = 0; Index < ObjectCollection.ObjectArray.size(); ++Index)
+		for (Size_t Index = { 0u }; Index < ObjectCollection.ObjectArray.size(); ++Index)
 		{
 			if (IGCObject* Ptr = ObjectCollection.ObjectArray[Index]; Ptr != nullptr)
 			{

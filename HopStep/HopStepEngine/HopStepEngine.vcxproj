@@ -182,7 +182,6 @@
     <ClInclude Include="Core\GenericPlatform\GenericMessageHandler.h" />
     <ClInclude Include="Core\GenericPlatform\GenericPlatformTime.h" />
     <ClInclude Include="Core\GenericPlatform\GenericWindow.h" />
-    <ClInclude Include="Core\Import\AssetImporter.h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
     <ClInclude Include="Core\Misc\App.h" />
@@ -251,6 +250,7 @@
     <ClInclude Include="Intermediate\ReflectionTest.generated.h" />
     <ClInclude Include="Intermediate\StaticMesh.generated.h" />
     <ClInclude Include="Intermediate\World.generated.h" />
+    <ClInclude Include="Runtime\Engine\AssetImporter.h" />
     <ClInclude Include="Runtime\Engine\Engine.h" />
     <ClInclude Include="Runtime\Engine\EngineLoop.h" />
     <ClInclude Include="Runtime\Engine\Exporter.h" />
@@ -260,6 +260,7 @@
     <ClInclude Include="Runtime\Launch\Launch.h" />
     <ClInclude Include="Runtime\Launch\LaunchWindows.h" />
     <ClInclude Include="Runtime\Render\D3DRenderer.h" />
+    <ClInclude Include="Runtime\Render\D3DStructure.h" />
     <ClInclude Include="Runtime\Render\D3DUtils.h" />
     <ClInclude Include="Runtime\Render\d3dx12.h" />
     <ClInclude Include="Runtime\Render\DirectXIncludes.h" />
@@ -368,10 +369,6 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Core\GenericPlatform\GenericWindow.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-    </ClCompile>
-    <ClCompile Include="Core\Import\AssetImporter.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
@@ -532,6 +529,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Intermediate\World.generated.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Engine\AssetImporter.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>

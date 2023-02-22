@@ -8,10 +8,10 @@ namespace HopStep
 	{
 	public:
 
-		static void MemSet(void* Dest, int32 value, HSize memorySize);
+		static void MemSet(void* Dest, int32 value, Size_t memorySize);
 
-		static void MemCpy(void* Dest, void* Src, HSize Size);
+		static void MemCpy(void* Dest, void* Src, Size_t Size);
 
-		static void MemZero(void* Dest, HSize Size);
+		static void MemZero(void* Dest, Size_t Size);
 	};
 }

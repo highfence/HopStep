@@ -19,7 +19,7 @@ TType&& Forward(typename TRemoveReference<TType>::Type&& Obj)
 	return (TType&&)Obj;
 }
 
-template <typename TComObject, HopStep::HSize N>
+template <typename TComObject, HopStep::Size_t N>
 char (&HopStepArraySizeHelper(const TComObject(&InputArray)[N]))[N];
 
 /**

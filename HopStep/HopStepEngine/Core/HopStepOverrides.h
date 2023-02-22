@@ -6,9 +6,11 @@ namespace HopStep
 	/**
 	 * Primitive type related overrides
 	 */
+	using Size_t = std::size_t;
+
 	using HByte = std::byte;
-	using HSize = std::size_t;
 	using HAny = std::any;
+
 
 	/**
 	 * String type related overrides

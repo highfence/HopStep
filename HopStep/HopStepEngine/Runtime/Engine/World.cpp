@@ -1,16 +1,16 @@
 #include "World.h"
 #include "..\..\Core\CoreExport.h"
 // Todo: Temp
-#include "..\..\Core\Import\AssetImporter.h"
+#include "Runtime/Engine/AssetImporter.h"
 
 namespace HopStep
 {
 	bool HWorld::InitWorld()
 	{
-		HString AssetPath = HPaths::ContentPath().append(TEXT("Lowpoly_tree_sample.fbx"));
+		HString AssetPath = HPaths::ContentPath().append(TEXT("tree.fbx"));
 
 		HAssetImporter Importer;
-		Importer.OpenFile(AssetPath);
+		Importer.ImportFromFile(AssetPath);
 
 		return false;
 	}
