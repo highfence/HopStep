@@ -1,4 +1,5 @@
 #include "WindowsApplication.h"
+#include "WindowsApplicationMessageHandler.h"
 #include "..\CoreGlobals.h"
 
 namespace HopStep
@@ -29,6 +30,8 @@ namespace HopStep
 				HCheck(false);
 			}
 		}
+
+		MessageHander = std::make_shared<HWindowsApplicationMessageHandler>();
 	}
 
 	void HWindowsApplication::SetWindow(TSharedPtr<HGenericWindow> Window)
@@ -38,14 +41,33 @@ namespace HopStep
 
 	LRESULT HWindowsApplication::AppWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	{
+		HGenericApplication* App = reinterpret_cast<HGenericApplication*>(GetWindowLongPtr(hwnd, GWLP_USERDATA));
+
 		switch (msg)
 		{
+		case WM_CREATE:
+		{
+			LPCREATESTRUCT CreateStruct = reinterpret_cast<LPCREATESTRUCT>(lParam);
+			SetWindowLongPtr(hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(CreateStruct->lpCreateParams));
+			break;
+		}
+
 		case WM_CLOSE:
 			DestroyWindow(hwnd);
 			break;
+
 		case WM_DESTROY:
 			PostQuitMessage(0);
 			break;
+
+		case WM_KEYDOWN:
+			App->GetMessageHandler().get()->HandleKeyDown(reinterpret_cast<uint64*>(wParam));
+			break;
+
+		case WM_KEYUP:
+			App->GetMessageHandler().get()->HandleKeyUp(reinterpret_cast<uint64*>(wParam));
+			break;
+
 		default:
 			return DefWindowProc(hwnd, msg, wParam, lParam);
 		}
@@ -72,5 +94,10 @@ namespace HopStep
 			TranslateMessage(&Message);
 			DispatchMessageW(&Message);
 		}
+	}
+
+	TSharedPtr<HGenericApplicationMessageHandler> HWindowsApplication::GetMessageHandler()
+	{
+		return MessageHander;
 	}
 }

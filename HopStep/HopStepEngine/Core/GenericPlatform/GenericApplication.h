@@ -15,5 +15,7 @@ namespace HopStep
 		virtual void SetWindow(TSharedPtr<class HGenericWindow> Window) = 0;
 
 		virtual TSharedPtr<class HGenericWindow> GetWindow() = 0;
+
+		virtual TSharedPtr<class HGenericApplicationMessageHandler> GetMessageHandler() = 0;
 	};
 }

@@ -1,11 +1,12 @@
 #include "WindowsWindow.h"
 #include "Core\CoreGlobals.h"
+#include "Core\GenericPlatform\GenericApplication.h"
 
 namespace HopStep
 {
 	HWND HWindowsWindow::WindowHandle = nullptr;
 
-	HWindowsWindow::HWindowsWindow(HINSTANCE hInstance, int32 CmdShow)
+	HWindowsWindow::HWindowsWindow(HGenericApplication* App, HINSTANCE hInstance, int32 CmdShow)
 	{
 		WindowHandle = CreateWindowEx(
 			WS_EX_CLIENTEDGE,
@@ -16,10 +17,10 @@ namespace HopStep
 			CW_USEDEFAULT,
 			ClientWidth,
 			ClientHeight,
-			NULL,
-			NULL,
+			NULL, // No parent window
+			NULL, // No using menu
 			hInstance,
-			NULL
+			App
 		);
 
 		if (WindowHandle == NULL)

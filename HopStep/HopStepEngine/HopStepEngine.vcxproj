@@ -254,6 +254,7 @@
     <ClInclude Include="Runtime\Engine\Engine.h" />
     <ClInclude Include="Runtime\Engine\EngineLoop.h" />
     <ClInclude Include="Runtime\Engine\Exporter.h" />
+    <ClInclude Include="Runtime\Engine\GameCamera.h" />
     <ClInclude Include="Runtime\Engine\HopStepString.h" />
     <ClInclude Include="Runtime\Engine\StaticMesh.h" />
     <ClInclude Include="Runtime\Engine\World.h" />
@@ -545,6 +546,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Runtime\Engine\Exporter.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Engine\GameCamera.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>

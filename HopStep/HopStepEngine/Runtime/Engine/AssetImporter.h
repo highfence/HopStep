@@ -19,6 +19,8 @@ namespace HopStep
 
 		bool ImportFromFile(const HString& Filename);
 
+		TArray<HMeshData>& GetMeshData() { return MeshDatas; }
+
 	private:
 
 		const HAssimpScene* LoadAISceneFromFile(const HString& Filename) const;

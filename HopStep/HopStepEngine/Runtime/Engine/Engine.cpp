@@ -8,6 +8,7 @@
 #include "..\..\Core\Misc\App.h"
 #include "..\..\Core\Windows\WindowsPlatformMisc.h"
 #include "..\..\Core\GenericPlatform\GenericApplication.h"
+#include "Runtime\Engine\GameCamera.h"
 
 
 namespace HopStep
@@ -18,6 +19,7 @@ namespace HopStep
 		: EngineLoop(nullptr)
 		, App(nullptr)
 		, Renderer(nullptr)
+		, Camera(nullptr)
 		, GameWorld(nullptr)
 	{
 	}
@@ -48,16 +50,19 @@ namespace HopStep
 		EngineLoop = InLoop;
 		HCheck(EngineLoop);
 
+		Camera = std::make_shared<HGameCamera>();
+		HCheck(Camera.get());
+
 		App = HPlatformMisc::CreateApplication();
 		HCheck(App);
-
-		Renderer = ID3DRenderer::CreateD3DRenderer(App->GetWindow());
-		HCheck(Renderer);
-		Renderer->OnInit();
 
 		GameWorld = std::make_unique<HWorld>();
 		HCheck(GameWorld);
 		GameWorld->InitWorld();
+
+		Renderer = ID3DRenderer::CreateD3DRenderer(App->GetWindow());
+		HCheck(Renderer);
+		Renderer->OnInit();
 	}
 
 	void HEngine::Tick(float Delta)

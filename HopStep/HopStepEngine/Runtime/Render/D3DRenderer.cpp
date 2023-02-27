@@ -4,6 +4,7 @@
 #include "..\..\Core\Misc\GenericMemory.h"	
 #include "..\..\Core\GenericPlatform\GenericWindow.h"
 #include "..\..\Core\Windows\WindowsWindow.h"
+#include "Runtime\Engine\AssetImporter.h"
 
 namespace HopStep
 {

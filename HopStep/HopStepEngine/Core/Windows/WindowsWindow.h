@@ -9,7 +9,7 @@ namespace HopStep
 	{
 	public:
 
-		HWindowsWindow(HINSTANCE hInstance, int32 CmdShow);
+		HWindowsWindow(class HGenericApplication* App, HINSTANCE hInstance, int32 CmdShow);
 
 		virtual uint32 GetClientWidth() override;
 		virtual uint32 GetClientHeight() override;

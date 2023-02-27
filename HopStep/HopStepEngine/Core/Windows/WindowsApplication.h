@@ -2,6 +2,7 @@
 #include "..\GenericPlatform\GenericApplication.h"
 #include "..\CoreExport.h"
 #include "WindowsSystemIncludes.h"
+#include "WindowsApplicationMessageHandler.h"
 
 namespace HopStep
 {
@@ -13,9 +14,11 @@ namespace HopStep
 
 		virtual void SetWindow(TSharedPtr<class HGenericWindow> Window) override;
 
-		virtual TSharedPtr<class HGenericWindow> GetWindow() override;
+		virtual TSharedPtr<HGenericWindow> GetWindow() override;
 
 		virtual void PumpMessages(float DeltaTime) override;
+
+		virtual TSharedPtr<HGenericApplicationMessageHandler> GetMessageHandler() override;
 
 	protected:
 
@@ -24,5 +27,7 @@ namespace HopStep
 		HINSTANCE InstanceHandle;
 
 		TSharedPtr<HGenericWindow> NativeWindow;
+
+		TSharedPtr<HGenericApplicationMessageHandler> MessageHander;
 	};
 }
