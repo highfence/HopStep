@@ -455,7 +455,6 @@ FodyWeavers.xsd
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
-HopStep/HopStepEngine/ThirdParty/
 JSON/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudio,c++
