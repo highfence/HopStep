@@ -9,6 +9,7 @@
 #include "..\..\Core\Windows\WindowsPlatformMisc.h"
 #include "..\..\Core\GenericPlatform\GenericApplication.h"
 #include "Runtime\Engine\GameCamera.h"
+#include "Core\CoreStandardIncludes.h"
 
 
 namespace HopStep
@@ -55,6 +56,7 @@ namespace HopStep
 
 		App = HPlatformMisc::CreateApplication();
 		HCheck(App);
+		App->GetMessageHandler().get()->RegistKeyHandler(Camera);
 
 		GameWorld = std::make_unique<HWorld>();
 		HCheck(GameWorld);
@@ -68,6 +70,7 @@ namespace HopStep
 	void HEngine::Tick(float Delta)
 	{
 		App->PumpMessages(Delta);
+		// OutputDebugString(Camera->ToString().c_str());
 		Renderer->OnUpdate();
 		Renderer->OnRender();
 	}

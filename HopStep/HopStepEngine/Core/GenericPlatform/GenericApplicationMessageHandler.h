@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/PrimitiveTypeDefines.h"
 #include "Core/Misc/DebugUtils.h"
+#include "Core/HopStepOverrides.h"
 
 namespace HopStep
 {
@@ -18,7 +19,7 @@ namespace HopStep
 
 		virtual ~HGenericApplicationMessageHandler() {};
 
-		virtual void RegistKeyHandler(IKeyHandleable* InHandler) { HCheck(false); };
+		virtual void RegistKeyHandler(TSharedPtr<IKeyHandleable> InHandler) { HCheck(false); };
 
 		virtual void HandleKeyUp(uint64* Key) { HCheck(false); };
 

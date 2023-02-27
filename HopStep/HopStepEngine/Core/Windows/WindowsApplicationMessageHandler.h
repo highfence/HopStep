@@ -8,7 +8,7 @@ namespace HopStep
 	{
 	public:
 
-		virtual void RegistKeyHandler(IKeyHandleable* InHandler);
+		virtual void RegistKeyHandler(TSharedPtr<IKeyHandleable> InHandler);
 
 		virtual void HandleKeyUp(uint64* Key);
 
@@ -16,6 +16,6 @@ namespace HopStep
 
 	private:
 
-		TArray<IKeyHandleable*> Handlers;
+		TArray<TSharedPtr<IKeyHandleable>> Handlers;
 	};
 }

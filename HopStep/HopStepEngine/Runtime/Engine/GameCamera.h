@@ -19,6 +19,8 @@ namespace HopStep
 		XMMATRIX GetViewMatrix();
 		XMMATRIX GetProjectionMatrix(float FOV, float AspectRatio, float NearPlane = 1.0f, float FarPlane = 1000.0f);
 
+		HString ToString() const;
+
 	protected:
 
 		void Reset();

@@ -164,6 +164,22 @@ namespace HopStep
 		return ::DirectX::XMMatrixPerspectiveFovRH(FOV, AspectRatio, NearPlane, FarPlane);
 	}
 
+	HString HGameCamera::ToString() const
+	{
+		HString Desc;
+		Desc.append(TEXT("PressState:\n"));
+		Desc.append(std::format(TEXT("\tW: {}\n"), PressState.W ? TEXT("On") : TEXT("Off")));
+		Desc.append(std::format(TEXT("\tA: {}\n"), PressState.A ? TEXT("On") : TEXT("Off")));
+		Desc.append(std::format(TEXT("\tS: {}\n"), PressState.S ? TEXT("On") : TEXT("Off")));
+		Desc.append(std::format(TEXT("\tD: {}\n"), PressState.D ? TEXT("On") : TEXT("Off")));
+
+		Desc.append(std::format(TEXT("\tLeft: {}\n"), PressState.Left ? TEXT("On") : TEXT("Off")));
+		Desc.append(std::format(TEXT("\tRight: {}\n"), PressState.Right ? TEXT("On") : TEXT("Off")));
+		Desc.append(std::format(TEXT("\tUp: {}\n"), PressState.Up ? TEXT("On") : TEXT("Off")));
+		Desc.append(std::format(TEXT("\tDown: {}\n"), PressState.Down ? TEXT("On") : TEXT("Off")));
+		return Desc;
+	}
+
 	void HGameCamera::Reset()
 	{
 		Position = InitialPosition;
