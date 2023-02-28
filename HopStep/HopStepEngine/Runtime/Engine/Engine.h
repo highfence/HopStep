@@ -33,7 +33,7 @@ namespace HopStep
 
 		class ID3DRenderer* Renderer;
 
-		TSharedPtr<class HGameCamera> Camera;
+		TSharedPtr<class HGameView> View;
 
 		TUniquePtr<class HWorld> GameWorld;
 	};

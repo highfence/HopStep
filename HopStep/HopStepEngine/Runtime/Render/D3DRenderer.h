@@ -9,7 +9,7 @@ namespace HopStep
 	{
 	public:
 
-		HD3DRenderer(TSharedPtr<class HGenericWindow> AppWindowPtr);
+		HD3DRenderer(TSharedPtr<class HGenericWindow> AppWindowPtr, TSharedPtr<class HGameView> CameraPtr);
 
 		virtual ~HD3DRenderer();
 
@@ -23,6 +23,17 @@ namespace HopStep
 
 	private:
 
+		// Todo: Move to view info
+		_declspec(align(256u)) struct HSceneConstantBuffer
+		{
+			XMFLOAT4X4 World;
+			XMFLOAT4X4 WorldView;
+			XMFLOAT4X4 WorldViewProj;
+		};
+
+		HSceneConstantBuffer SceneConstantBuffer;
+		uint32 FrameCounter = 0u;
+
 		float AspectRatio = 0.0f;
 
 		static constexpr uint8 SwapChainBufferCount = 2;
@@ -31,6 +42,7 @@ namespace HopStep
 		static constexpr uint32 TexturePixelSize = 4;
 
 		TSharedPtr<class HGenericWindow> AppWindow;
+		TSharedPtr<class HGameView> ViewInfo;
 
 		ComPtr<ID3D12Device> Device;
 		ComPtr<IDXGIFactory4> DXGIFactory;

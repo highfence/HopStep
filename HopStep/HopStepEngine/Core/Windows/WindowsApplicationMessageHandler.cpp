@@ -3,14 +3,14 @@
 
 namespace HopStep
 {
-    void HWindowsApplicationMessageHandler::RegistKeyHandler(TSharedPtr<IKeyHandleable> InHandler)
+    void HWindowsApplicationMessageHandler::RegistKeyHandler(TSharedPtr<IInputHandleable> InHandler)
     {
         Handlers.push_back(InHandler);
     }
 
     void HWindowsApplicationMessageHandler::HandleKeyUp(uint64* Key)
     {
-        for (TSharedPtr<IKeyHandleable> Handler : Handlers)
+        for (TSharedPtr<IInputHandleable> Handler : Handlers)
         {
             Handler->OnKeyUp(Key);
         }
@@ -18,7 +18,7 @@ namespace HopStep
 
     void HWindowsApplicationMessageHandler::HandleKeyDown(uint64* Key)
     {
-        for (TSharedPtr<IKeyHandleable> Handler : Handlers)
+        for (TSharedPtr<IInputHandleable> Handler : Handlers)
         {
             Handler->OnKeyDown(Key);
         }

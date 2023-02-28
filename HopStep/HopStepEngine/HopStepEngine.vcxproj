@@ -256,7 +256,7 @@
     <ClInclude Include="Runtime\Engine\Engine.h" />
     <ClInclude Include="Runtime\Engine\EngineLoop.h" />
     <ClInclude Include="Runtime\Engine\Exporter.h" />
-    <ClInclude Include="Runtime\Engine\GameCamera.h" />
+    <ClInclude Include="Runtime\Engine\GameView.h" />
     <ClInclude Include="Runtime\Engine\HopStepString.h" />
     <ClInclude Include="Runtime\Engine\StaticMesh.h" />
     <ClInclude Include="Runtime\Engine\World.h" />
@@ -267,7 +267,9 @@
     <ClInclude Include="Runtime\Render\D3DUtils.h" />
     <ClInclude Include="Runtime\Render\d3dx12.h" />
     <ClInclude Include="Runtime\Render\DirectXIncludes.h" />
+    <ClInclude Include="Runtime\Render\FrameResource.h" />
     <ClInclude Include="Runtime\Render\ID3DRenderer.h" />
+    <ClInclude Include="Runtime\Render\UploadBuffer.h" />
     <ClInclude Include="ThirdParty\Assimp\include\assimp\aabb.h" />
     <ClInclude Include="ThirdParty\Assimp\include\assimp\ai_assert.h" />
     <ClInclude Include="ThirdParty\Assimp\include\assimp\anim.h" />
@@ -551,7 +553,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
-    <ClCompile Include="Runtime\Engine\GameCamera.cpp">
+    <ClCompile Include="Runtime\Engine\GameView.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
@@ -584,6 +586,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Runtime\Render\DirectXIncludes.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Render\FrameResource.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>

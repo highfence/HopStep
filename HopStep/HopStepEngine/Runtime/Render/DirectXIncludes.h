@@ -17,6 +17,7 @@
 
 // Custom
 #include "..\..\Core\Windows\WindowsSystemIncludes.h"
+#include "Core\Misc\GenericMemory.h"
 
 // Namespace Aliasing
 namespace HopStep
@@ -27,6 +28,8 @@ namespace HopStep
 	using XMFLOAT2 = ::DirectX::XMFLOAT2;
 	using XMFLOAT3 = ::DirectX::XMFLOAT3;
 	using XMFLOAT4 = ::DirectX::XMFLOAT4;
+
+	using XMFLOAT4X4 = ::DirectX::XMFLOAT4X4;
 
 	// Microsoft namespace aliasing
 	template<class TComObject>
