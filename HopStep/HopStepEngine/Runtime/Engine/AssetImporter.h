@@ -3,6 +3,10 @@
 #include "Runtime\Render\D3DStructure.h"
 #include "assimp/scene.h"
 
+#if _DEBUG
+#pragma comment(lib, "assimp-vc143-mtd.lib")
+#endif
+
 // Namespace Aliasing
 namespace HopStep
 {
