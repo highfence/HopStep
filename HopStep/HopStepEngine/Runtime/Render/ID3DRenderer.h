@@ -9,7 +9,7 @@ namespace HopStep
 
 		virtual ~ID3DRenderer() {}
 
-		static ID3DRenderer* CreateD3DRenderer(TSharedPtr<class HGenericWindow> WindowPtr);
+		static ID3DRenderer* CreateD3DRenderer(TSharedPtr<class HGenericWindow> WindowPtr, TSharedPtr<class HGameView> CameraPtr);
 		
 		virtual bool OnInit() = 0;
 

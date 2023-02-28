@@ -5,13 +5,15 @@
 #include "..\..\Core\GenericPlatform\GenericWindow.h"
 #include "..\..\Core\Windows\WindowsWindow.h"
 #include "Runtime\Engine\AssetImporter.h"
+#include "Runtime\Engine\GameView.h"
 
 namespace HopStep
 {
-	HD3DRenderer::HD3DRenderer(TSharedPtr<HGenericWindow> AppWindowPtr)
+	HD3DRenderer::HD3DRenderer(TSharedPtr<HGenericWindow> AppWindowPtr, TSharedPtr<class HGameView> InView)
 	{
 		HCheck(AppWindowPtr);
 		AppWindow = AppWindowPtr;
+		ViewInfo = InView;
 		AspectRatio = static_cast<float>(AppWindow->GetClientWidth()) / static_cast<float>(AppWindow->GetClientHeight());
 		Viewport = CD3DX12_VIEWPORT(0.0f, 0.0f, static_cast<float>(AppWindow->GetClientWidth()), static_cast<float>(AppWindow->GetClientHeight()));
 		ScissorRect = CD3DX12_RECT(0, 0, AppWindow->GetClientWidth(), AppWindow->GetClientHeight());
@@ -30,6 +32,11 @@ namespace HopStep
 
 	void HD3DRenderer::OnUpdate()
 	{
+		XMMATRIX World = XMMATRIX(::DirectX::g_XMIdentityR0, ::DirectX::g_XMIdentityR1, ::DirectX::g_XMIdentityR2,::DirectX::g_XMIdentityR3);
+		XMMATRIX View = ViewInfo->GetViewMatrix();
+		XMMATRIX Proj = ViewInfo->GetProjectionMatrix(::DirectX::XM_PI / 3.0f, AspectRatio);
+
+		::DirectX::XMStoreFloat4x4(&SceneConstantBuffer.World, ::DirectX::XMMatrixTranspose(World));
 	}
 
 	void HD3DRenderer::OnRender()

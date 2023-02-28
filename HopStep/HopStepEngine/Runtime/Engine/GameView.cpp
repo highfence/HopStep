@@ -1,11 +1,11 @@
-#include "GameCamera.h"
+#include "GameView.h"
+#define GAME_VIEW_DEBUG 0
 
 namespace HopStep
 {
-	HGameCamera::HGameCamera() :
+	HGameView::HGameView() :
 		PressState{ },
-		InitialPosition(0, 0, 0),
-		Position(InitialPosition),
+		Position(0, 0, 0),
 		MoveSpeed(20.0f),
 		TurnSpeed(::DirectX::XM_PIDIV2),
 		Yaw(::DirectX::XM_PI),
@@ -15,13 +15,13 @@ namespace HopStep
 	{
 	}
 
-	void HGameCamera::Init(XMFLOAT3 InPosition)
+	void HGameView::Init(XMFLOAT3 InPosition)
 	{
-		InitialPosition = InPosition;
+		Position = InPosition;
 		Reset();
 	}
 
-	void HGameCamera::Update(float DeltaTime)
+	void HGameView::Update(float DeltaTime)
 	{
 		XMFLOAT3 Move(0, 0, 0);
 
@@ -38,20 +38,6 @@ namespace HopStep
 				Move.x = ::DirectX::XMVectorGetX(Vector);
 				Move.z = ::DirectX::XMVectorGetZ(Vector);
 			}
-		}
-
-		// Calculate rotate state
-		{
-			const float RotateInterval = TurnSpeed * DeltaTime;
-
-			if (PressState.Left) Yaw += RotateInterval;
-			if (PressState.Right) Yaw -= RotateInterval;
-			if (PressState.Up) Pitch += RotateInterval;
-			if (PressState.Down) Pitch -= RotateInterval;
-
-			// Preventing looking too far up or down
-			Pitch = min(Pitch, ::DirectX::XM_PIDIV4);
-			Pitch = max(-::DirectX::XM_PIDIV4, Pitch);
 		}
 
 		// Move camera to model space
@@ -71,9 +57,14 @@ namespace HopStep
 			LookDirection.y = sinf(Pitch);
 			LookDirection.z = R * cosf(Yaw);
 		}
+
+#if GAME_VIEW_DEBUG
+		HString Desc = ToString();
+		OutputDebugString(Desc.c_str());
+#endif
 	}
 
-	void HGameCamera::OnKeyDown(uint64* Key)
+	void HGameView::OnKeyDown(uint64* Key)
 	{
 		switch (reinterpret_cast<WPARAM>(Key))
 		{
@@ -93,29 +84,13 @@ namespace HopStep
 			PressState.D = true;
 			break;
 
-		case VK_LEFT:
-			PressState.Left = true;
-			break;
-
-		case VK_RIGHT:
-			PressState.Right = true;
-			break;
-
-		case VK_UP:
-			PressState.Up = true;
-			break;
-
-		case VK_DOWN:
-			PressState.Down = true;
-			break;
-
 		case VK_ESCAPE:
 			Reset();
 			break;
 		}
 	}
 
-	void HGameCamera::OnKeyUp(uint64* Key)
+	void HGameView::OnKeyUp(uint64* Key)
 	{
 		switch (reinterpret_cast<WPARAM>(Key))
 		{
@@ -134,37 +109,31 @@ namespace HopStep
 		case 'D':
 			PressState.D = false;
 			break;
-
-		case VK_LEFT:
-			PressState.Left = false;
-			break;
-
-		case VK_RIGHT:
-			PressState.Right = false;
-			break;
-
-		case VK_UP:
-			PressState.Up = false;
-			break;
-
-		case VK_DOWN:
-			PressState.Down = false;
-			break;
 		}
 
 	}
 
-	XMMATRIX HGameCamera::GetViewMatrix()
+	XMVECTOR HGameView::GetPosition() const
+	{
+		return ::DirectX::XMLoadFloat3(&Position);
+	}
+
+	XMFLOAT3 HGameView::GetPosition3f() const
+	{
+		return Position;
+	}
+
+	XMMATRIX HGameView::GetViewMatrix() const
 	{
 		return ::DirectX::XMMatrixLookToRH(XMLoadFloat3(&Position), XMLoadFloat3(&LookDirection), XMLoadFloat3(&UpDirection));
 	}
 
-	XMMATRIX HGameCamera::GetProjectionMatrix(float FOV, float AspectRatio, float NearPlane, float FarPlane)
+	XMMATRIX HGameView::GetProjectionMatrix(float FOV, float AspectRatio, float NearPlane, float FarPlane) const
 	{
 		return ::DirectX::XMMatrixPerspectiveFovRH(FOV, AspectRatio, NearPlane, FarPlane);
 	}
 
-	HString HGameCamera::ToString() const
+	HString HGameView::ToString() const
 	{
 		HString Desc;
 		Desc.append(TEXT("PressState:\n"));
@@ -172,17 +141,13 @@ namespace HopStep
 		Desc.append(std::format(TEXT("\tA: {}\n"), PressState.A ? TEXT("On") : TEXT("Off")));
 		Desc.append(std::format(TEXT("\tS: {}\n"), PressState.S ? TEXT("On") : TEXT("Off")));
 		Desc.append(std::format(TEXT("\tD: {}\n"), PressState.D ? TEXT("On") : TEXT("Off")));
-
-		Desc.append(std::format(TEXT("\tLeft: {}\n"), PressState.Left ? TEXT("On") : TEXT("Off")));
-		Desc.append(std::format(TEXT("\tRight: {}\n"), PressState.Right ? TEXT("On") : TEXT("Off")));
-		Desc.append(std::format(TEXT("\tUp: {}\n"), PressState.Up ? TEXT("On") : TEXT("Off")));
-		Desc.append(std::format(TEXT("\tDown: {}\n"), PressState.Down ? TEXT("On") : TEXT("Off")));
+		Desc.append(std::format(TEXT("\tPos: {},{},{}"), Position.x, Position.y, Position.z));
 		return Desc;
 	}
 
-	void HGameCamera::Reset()
+	void HGameView::Reset()
 	{
-		Position = InitialPosition;
+		Position = { 0, 0, 0 };
 		Yaw = ::DirectX::XM_PI;
 		Pitch = 0.0f;
 		LookDirection = { 0, 0, -1 };

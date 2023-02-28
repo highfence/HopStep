@@ -1,4 +1,5 @@
 #pragma once
+#include "CoreObject/CoreObjectExport.h"
 #include "DirectXIncludes.h"
 
 namespace HopStep
@@ -12,6 +13,8 @@ namespace HopStep
 
 	struct HMeshData
 	{
+		// HName Name;
+
 		TArray<HVertex> Vertices;
 		TArray<uint32> Indexes;
 		uint32 MaterialIndex = 0u;

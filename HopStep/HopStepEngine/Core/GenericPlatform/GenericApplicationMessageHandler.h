@@ -5,11 +5,12 @@
 
 namespace HopStep
 {
-	class IKeyHandleable
+	class IInputHandleable
 	{
 	public:
 
 		virtual void OnKeyDown(uint64* Key) = 0;
+
 		virtual void OnKeyUp(uint64* Key) = 0;
 	};
 
@@ -19,7 +20,7 @@ namespace HopStep
 
 		virtual ~HGenericApplicationMessageHandler() {};
 
-		virtual void RegistKeyHandler(TSharedPtr<IKeyHandleable> InHandler) { HCheck(false); };
+		virtual void RegistKeyHandler(TSharedPtr<IInputHandleable> InHandler) { HCheck(false); };
 
 		virtual void HandleKeyUp(uint64* Key) { HCheck(false); };
 

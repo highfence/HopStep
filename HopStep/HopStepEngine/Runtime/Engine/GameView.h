@@ -4,11 +4,11 @@
 
 namespace HopStep
 {
-	class HGameCamera : public IKeyHandleable
+	class HGameView : public IInputHandleable
 	{
 	public:
 
-		HGameCamera();
+		HGameView();
 
 		void Init(XMFLOAT3 InPosition);
 		void Update(float DeltaTime);
@@ -16,8 +16,11 @@ namespace HopStep
 		void OnKeyDown(uint64* Key);
 		void OnKeyUp(uint64* Key);
 
-		XMMATRIX GetViewMatrix();
-		XMMATRIX GetProjectionMatrix(float FOV, float AspectRatio, float NearPlane = 1.0f, float FarPlane = 1000.0f);
+		XMVECTOR GetPosition() const;
+		XMFLOAT3 GetPosition3f() const;
+
+		XMMATRIX GetViewMatrix() const;
+		XMMATRIX GetProjectionMatrix(float FOV, float AspectRatio, float NearPlane = 1.0f, float FarPlane = 1000.0f) const;
 
 		HString ToString() const;
 
@@ -32,16 +35,10 @@ namespace HopStep
 			bool A;
 			bool S;
 			bool D;
-
-			bool Left;
-			bool Right;
-			bool Up;
-			bool Down;
 		};
 
 		HKeyPressed PressState;
 
-		XMFLOAT3 InitialPosition;
 		XMFLOAT3 Position;
 
 		float MoveSpeed;

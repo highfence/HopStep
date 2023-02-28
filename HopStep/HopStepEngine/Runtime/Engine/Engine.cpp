@@ -8,7 +8,7 @@
 #include "..\..\Core\Misc\App.h"
 #include "..\..\Core\Windows\WindowsPlatformMisc.h"
 #include "..\..\Core\GenericPlatform\GenericApplication.h"
-#include "Runtime\Engine\GameCamera.h"
+#include "Runtime\Engine\GameView.h"
 #include "Core\CoreStandardIncludes.h"
 
 
@@ -20,7 +20,7 @@ namespace HopStep
 		: EngineLoop(nullptr)
 		, App(nullptr)
 		, Renderer(nullptr)
-		, Camera(nullptr)
+		, View(nullptr)
 		, GameWorld(nullptr)
 	{
 	}
@@ -51,18 +51,18 @@ namespace HopStep
 		EngineLoop = InLoop;
 		HCheck(EngineLoop);
 
-		Camera = std::make_shared<HGameCamera>();
-		HCheck(Camera.get());
+		View = std::make_shared<HGameView>();
+		HCheck(View.get());
 
 		App = HPlatformMisc::CreateApplication();
 		HCheck(App);
-		App->GetMessageHandler().get()->RegistKeyHandler(Camera);
+		App->GetMessageHandler().get()->RegistKeyHandler(View);
 
 		GameWorld = std::make_unique<HWorld>();
 		HCheck(GameWorld);
 		GameWorld->InitWorld();
 
-		Renderer = ID3DRenderer::CreateD3DRenderer(App->GetWindow());
+		Renderer = ID3DRenderer::CreateD3DRenderer(App->GetWindow(), View);
 		HCheck(Renderer);
 		Renderer->OnInit();
 	}
@@ -70,7 +70,7 @@ namespace HopStep
 	void HEngine::Tick(float Delta)
 	{
 		App->PumpMessages(Delta);
-		// OutputDebugString(Camera->ToString().c_str());
+		View->Update(Delta);
 		Renderer->OnUpdate();
 		Renderer->OnRender();
 	}

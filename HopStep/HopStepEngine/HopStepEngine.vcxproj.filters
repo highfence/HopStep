@@ -2,91 +2,91 @@
 <Project ToolsVersion="4.0">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{f9fb1960-713f-4979-a1e1-abceef25f441}</UniqueIdentifier>
+      <UniqueIdentifier>{8118347d-8295-485a-91b0-200faf8a9467}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Archive">
-      <UniqueIdentifier>{72f18553-c132-448d-9f9b-bbf37c1d2922}</UniqueIdentifier>
+      <UniqueIdentifier>{526bb766-421f-4416-a6cd-30568973989d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Container">
-      <UniqueIdentifier>{f7f6387d-f604-41ca-982a-dddd59920e30}</UniqueIdentifier>
+      <UniqueIdentifier>{2666f84f-dbf2-4e50-99f9-dd37de3b6ab3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Delegates">
-      <UniqueIdentifier>{113abaed-608e-433a-b7d7-60d335a1211f}</UniqueIdentifier>
+      <UniqueIdentifier>{23b6f042-87c4-44df-9ed4-20514dee563e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\GenericPlatform">
-      <UniqueIdentifier>{181aa25a-748d-4f46-9b39-b285629bcc80}</UniqueIdentifier>
+      <UniqueIdentifier>{260ecc27-1d1a-49b1-bf21-072d4e7cb263}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger">
-      <UniqueIdentifier>{34b82dbd-01c2-4fd0-b3a7-51999df81863}</UniqueIdentifier>
+      <UniqueIdentifier>{59cb1995-00e1-4216-87af-a4c83e762bd1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Misc">
-      <UniqueIdentifier>{d3b845b6-27b9-4f1c-8b84-717bd216aa61}</UniqueIdentifier>
+      <UniqueIdentifier>{aecdb479-854f-4066-b758-70aa454f854c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Templates">
-      <UniqueIdentifier>{9a01f9ca-79f4-484c-a255-b0be8d8554d1}</UniqueIdentifier>
+      <UniqueIdentifier>{e9197a79-a70c-417c-a406-ad83ac0ba2ba}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Windows">
-      <UniqueIdentifier>{00020f3c-f955-4275-ab30-d5ce4ff4021a}</UniqueIdentifier>
+      <UniqueIdentifier>{5a30414e-5030-4bd7-8eaa-5d1e939d24c7}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
-      <UniqueIdentifier>{77c50ba4-0022-4a47-b8d7-4a9ea4dc729b}</UniqueIdentifier>
+      <UniqueIdentifier>{3d0e4c3a-f3eb-46aa-bcb5-33a1f1aca4b3}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{f87947da-a6ab-4c5f-a284-45a3a8c119fd}</UniqueIdentifier>
+      <UniqueIdentifier>{18b2084f-da19-4e91-9274-a048f06f834a}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{633f8a18-6f0d-4400-a0c6-c6d32e01bd9a}</UniqueIdentifier>
+      <UniqueIdentifier>{ba4fb7a9-e4e8-4a97-a1d7-1a7a68cd2349}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern">
-      <UniqueIdentifier>{ba6169a8-87f9-4837-8167-25656078965d}</UniqueIdentifier>
+      <UniqueIdentifier>{c7913305-f87e-4d0d-88d2-875eddaa58d5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp">
-      <UniqueIdentifier>{427d81b1-4c1c-4cc8-8ca4-4bd0a3a89a82}</UniqueIdentifier>
+      <UniqueIdentifier>{fac0c5a7-4558-413a-85f9-fd83ee54fd46}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include">
-      <UniqueIdentifier>{7b92579a-d58b-45f6-9bfd-8cfe74a768a8}</UniqueIdentifier>
+      <UniqueIdentifier>{76d14a3d-e553-41dc-a3ac-57c7b9958a8d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include\json">
-      <UniqueIdentifier>{79781f60-94b5-4f1f-9c8a-ca92fa27c9f8}</UniqueIdentifier>
+      <UniqueIdentifier>{35d379a8-d259-410f-8418-1a059a3f5e3c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Intermediate">
-      <UniqueIdentifier>{8885c09f-19f5-4e00-8740-196a07c2cdd6}</UniqueIdentifier>
+      <UniqueIdentifier>{c5c0c7f5-5eb8-44c2-a969-eeb0174d9739}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime">
-      <UniqueIdentifier>{fd79d888-5569-4029-981a-c1a179820b34}</UniqueIdentifier>
+      <UniqueIdentifier>{787bfa3d-9be6-4f63-b99b-753fa93f4a3e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Engine">
-      <UniqueIdentifier>{db1d9fbd-604b-4366-b60b-c84446c25335}</UniqueIdentifier>
+      <UniqueIdentifier>{612bdd4f-6ecd-4a45-95f9-a9164e20a258}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Launch">
-      <UniqueIdentifier>{2061345c-e68d-4c2c-9c21-82f04efdfadf}</UniqueIdentifier>
+      <UniqueIdentifier>{4b78b5f9-2a9e-4c85-8142-4a13f238d78d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Render">
-      <UniqueIdentifier>{d59cf296-51ec-44d3-99f0-dde1a65dde3d}</UniqueIdentifier>
+      <UniqueIdentifier>{c636073d-b158-4d5f-b325-ba8fc9b4363e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Render\Shader">
-      <UniqueIdentifier>{acf57555-5538-4f6e-95be-22730d9e294d}</UniqueIdentifier>
+      <UniqueIdentifier>{3b3e8d29-a1f8-4a74-ae8b-b7103cd89ee3}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty">
-      <UniqueIdentifier>{d5770bce-41f5-4d1b-8936-a686ef680532}</UniqueIdentifier>
+      <UniqueIdentifier>{a0a7f4d8-3e2e-4176-bfe0-2844ba334850}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp">
-      <UniqueIdentifier>{9ad5097b-8d62-418e-ade1-3785453015b6}</UniqueIdentifier>
+      <UniqueIdentifier>{3144c51c-8440-4622-8eab-2cabb0e40669}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include">
-      <UniqueIdentifier>{cd5e66a8-1fb7-418c-9c84-0ddccf978820}</UniqueIdentifier>
+      <UniqueIdentifier>{66b6e91c-5f1b-4a36-b346-558265dad73a}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include\assimp">
-      <UniqueIdentifier>{1e17da4f-c7c9-4811-83e2-f48ffd608352}</UniqueIdentifier>
+      <UniqueIdentifier>{cc96f61d-576d-4362-a48c-ca4ea5459c5b}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include\assimp\Compiler">
-      <UniqueIdentifier>{5cff9733-ed4e-43b0-b13b-82dcb922def4}</UniqueIdentifier>
+      <UniqueIdentifier>{5cb7a692-c8da-4bea-b316-b11c0bee1db4}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include\assimp\port">
-      <UniqueIdentifier>{36eba302-5dbe-4a12-8d43-0b0d7aa9139a}</UniqueIdentifier>
+      <UniqueIdentifier>{d0f0dd09-da48-4c9d-801b-82ef623c758e}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include\assimp\port\AndroidJNI">
-      <UniqueIdentifier>{cd296d0b-af40-4918-87a6-5167c8d23e70}</UniqueIdentifier>
+      <UniqueIdentifier>{d9649d2c-7710-4a36-922a-3ea15a628671}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -367,7 +367,7 @@
     <ClInclude Include="Runtime\Engine\Exporter.h">
       <Filter>Runtime\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\Engine\GameCamera.h">
+    <ClInclude Include="Runtime\Engine\GameView.h">
       <Filter>Runtime\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Engine\HopStepString.h">
@@ -400,7 +400,13 @@
     <ClInclude Include="Runtime\Render\DirectXIncludes.h">
       <Filter>Runtime\Render</Filter>
     </ClInclude>
+    <ClInclude Include="Runtime\Render\FrameResource.h">
+      <Filter>Runtime\Render</Filter>
+    </ClInclude>
     <ClInclude Include="Runtime\Render\ID3DRenderer.h">
+      <Filter>Runtime\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Render\UploadBuffer.h">
       <Filter>Runtime\Render</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\Assimp\include\assimp\aabb.h">
@@ -778,7 +784,7 @@
     <ClCompile Include="Runtime\Engine\Exporter.cpp">
       <Filter>Runtime\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\Engine\GameCamera.cpp">
+    <ClCompile Include="Runtime\Engine\GameView.cpp">
       <Filter>Runtime\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Engine\HopStepString.cpp">
@@ -803,6 +809,9 @@
       <Filter>Runtime\Render</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Render\DirectXIncludes.cpp">
+      <Filter>Runtime\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Render\FrameResource.cpp">
       <Filter>Runtime\Render</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Render\ID3DRenderer.cpp">
