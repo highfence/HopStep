@@ -2,6 +2,7 @@
 #include "DirectXIncludes.h"
 #include "ID3DRenderer.h"
 #include "D3DStructure.h"
+#include "UploadBuffer.h"
 
 namespace HopStep
 {
@@ -23,15 +24,6 @@ namespace HopStep
 
 	private:
 
-		// Todo: Move to view info
-		_declspec(align(256u)) struct HSceneConstantBuffer
-		{
-			XMFLOAT4X4 World;
-			XMFLOAT4X4 WorldView;
-			XMFLOAT4X4 WorldViewProj;
-		};
-
-		HSceneConstantBuffer SceneConstantBuffer;
 		uint32 FrameCounter = 0u;
 
 		float AspectRatio = 0.0f;
@@ -52,12 +44,16 @@ namespace HopStep
 		ComPtr<ID3D12RootSignature> RootSignature;
 		ComPtr<ID3D12PipelineState> PipelineState;
 		ComPtr<ID3D12DescriptorHeap> SrvHeap;
+		ComPtr<ID3D12DescriptorHeap> CbvHeap;
+
 		CD3DX12_VIEWPORT Viewport;
 		CD3DX12_RECT ScissorRect;
 
 		ComPtr<ID3D12CommandQueue> CommandQueue;
 		ComPtr<ID3D12CommandAllocator> CommandAllocator;
 		ComPtr<ID3D12GraphicsCommandList> CommandList;
+
+		TUniquePtr<TUploadBuffer<HObjectConstantBuffer>> ObjectConstantBuffer = nullptr;
 
 		// Resources
 		ComPtr<ID3D12Resource> VertexBuffer;

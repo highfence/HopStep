@@ -1,5 +1,6 @@
 #pragma once
 #include "DirectXIncludes.h"
+#include "D3DUtils.h"
 
 namespace HopStep
 {
@@ -19,10 +20,13 @@ namespace HopStep
 				ElementByteSize = (ElementCount + 255) & ~255;
 			}
 
+			auto Property = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
+			auto Buffer = CD3DX12_RESOURCE_DESC::Buffer(ElementCount * ElementByteSize);
+
 			ThrowIfFailed(Device->CreateCommittedResource(
-				&CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD),
+				&Property,
 				D3D12_HEAP_FLAG_NONE,
-				&CD3DX12_RESOURCE_DESC::Buffer(ElementCount * ElementByteSize),
+				&Buffer,
 				D3D12_RESOURCE_STATE_GENERIC_READ,
 				nullptr,
 				IID_PPV_ARGS(&UploadBuffer)
@@ -46,10 +50,12 @@ namespace HopStep
 
 		ID3D12Resource* Resource() const { return UploadBuffer.Get(); }
 
-		void CopyData(int32 ElementIndex, const TResourceType& InData)
+		void CopyData(int32 ElementIndex, TResourceType* InData)
 		{
-			HGenericMemory::MemCpy(&MappedData[ElementIndex * ElementByteSize, &InData, sizeof(TResourceType)]);
+			HGenericMemory::MemCpy(&MappedData[ElementIndex * ElementByteSize], reinterpret_cast<void*>(InData), sizeof(TResourceType));
 		}
+
+		uint32 GetElementByteSize() const { return ElementByteSize; }
 
 	private:
 

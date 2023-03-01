@@ -35,8 +35,11 @@ namespace HopStep
 		XMMATRIX World = XMMATRIX(::DirectX::g_XMIdentityR0, ::DirectX::g_XMIdentityR1, ::DirectX::g_XMIdentityR2,::DirectX::g_XMIdentityR3);
 		XMMATRIX View = ViewInfo->GetViewMatrix();
 		XMMATRIX Proj = ViewInfo->GetProjectionMatrix(::DirectX::XM_PI / 3.0f, AspectRatio);
+		XMMATRIX WorldViewProj = World * View * Proj;
 
-		::DirectX::XMStoreFloat4x4(&SceneConstantBuffer.World, ::DirectX::XMMatrixTranspose(World));
+		HObjectConstantBuffer CB;
+		::DirectX::XMStoreFloat4x4(&CB.WorldViewProj, ::DirectX::XMMatrixTranspose(WorldViewProj));
+		ObjectConstantBuffer->CopyData(0, &CB);
 	}
 
 	void HD3DRenderer::OnRender()
@@ -140,6 +143,15 @@ namespace HopStep
 			};
 			ThrowIfFailed(Device->CreateDescriptorHeap(&SrvHeapDesc, IID_PPV_ARGS(&SrvHeap)));
 
+			D3D12_DESCRIPTOR_HEAP_DESC CbvHeapDesc =
+			{
+				.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV,
+				.NumDescriptors = 1,
+				.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE,
+				.NodeMask = 0
+			};
+			ThrowIfFailed(Device->CreateDescriptorHeap(&CbvHeapDesc, IID_PPV_ARGS(&CbvHeap)));
+
 			RtvDescriptorSize = Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 		}
 
@@ -153,6 +165,26 @@ namespace HopStep
 				Device->CreateRenderTargetView(RenderTargets[N].Get(), nullptr, RtvHandle);
 				RtvHandle.Offset(1, RtvDescriptorSize);
 			}
+		}
+
+		// Create constant buffer
+		{
+			ObjectConstantBuffer = std::make_unique<TUploadBuffer<HObjectConstantBuffer>>(Device.Get(), 1, true);
+
+			uint32 CBByteSize = ObjectConstantBuffer->GetElementByteSize();
+			D3D12_GPU_VIRTUAL_ADDRESS CBAddress = ObjectConstantBuffer->Resource()->GetGPUVirtualAddress();
+
+			// Address offset in constant buffer
+			uint32 ObjectIndex = 0u;
+			CBAddress += ObjectIndex * CBByteSize;
+
+			D3D12_CONSTANT_BUFFER_VIEW_DESC CBDesc = 
+			{
+				.BufferLocation = CBAddress,
+				.SizeInBytes = CBByteSize
+			};
+
+			Device->CreateConstantBufferView(&CBDesc, CbvHeap->GetCPUDescriptorHandleForHeapStart());
 		}
 
 		ThrowIfFailed(Device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&CommandAllocator)));
@@ -203,6 +235,7 @@ namespace HopStep
 		{
 			ComPtr<ID3DBlob> VertexShader;
 			ComPtr<ID3DBlob> PixelShader;
+			ComPtr<ID3DBlob> ErrorMsg;
 
 			uint32 ComplieFlags = 0u;
 #if defined(_DEBUG)
@@ -210,8 +243,37 @@ namespace HopStep
 #endif
 
 			HString ShaderPath = HPaths::ShaderPath().append(TEXT("shaders.hlsl"));
-			ThrowIfFailed(D3DCompileFromFile(ShaderPath.c_str(), nullptr, nullptr, "VSMain", "vs_5_0", ComplieFlags, 0, &VertexShader, nullptr));
-			ThrowIfFailed(D3DCompileFromFile(ShaderPath.c_str(), nullptr, nullptr, "PSMain", "ps_5_0", ComplieFlags, 0, &PixelShader, nullptr));
+			HRESULT ComplieResult = D3DCompileFromFile(ShaderPath.c_str(), nullptr, nullptr, "VSMain", "vs_5_0", ComplieFlags, 0, &VertexShader, &ErrorMsg);
+			if (FAILED(ComplieResult))
+			{
+				if (ErrorMsg)
+				{
+					static wchar_t szBuffer[4096];
+					_snwprintf_s(szBuffer, 4096, _TRUNCATE,
+						L"%hs",
+						(char*)ErrorMsg->GetBufferPointer());
+					OutputDebugString(szBuffer);
+					MessageBox(nullptr, szBuffer, L"Error", MB_OK);
+					ErrorMsg->Release();
+				}
+				HCheck(false);
+			}
+
+			ComplieResult = D3DCompileFromFile(ShaderPath.c_str(), nullptr, nullptr, "PSMain", "ps_5_0", ComplieFlags, 0, &PixelShader, &ErrorMsg);
+			if (FAILED(ComplieResult))
+			{
+				if (ErrorMsg)
+				{
+					static wchar_t szBuffer[4096];
+					_snwprintf_s(szBuffer, 4096, _TRUNCATE,
+						L"%hs",
+						(char*)ErrorMsg->GetBufferPointer());
+					OutputDebugString(szBuffer);
+					MessageBox(nullptr, szBuffer, L"Error", MB_OK);
+					ErrorMsg->Release();
+				}
+				HCheck(false);
+			}
 
 			D3D12_INPUT_ELEMENT_DESC InputElementDescs[] =
 			{

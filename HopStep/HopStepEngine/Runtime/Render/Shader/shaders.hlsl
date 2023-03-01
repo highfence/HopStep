@@ -4,6 +4,11 @@ struct PSInput
     float2 uv : TEXCOORD;
 };
 
+cbuffer ConstantBufferPerObject : register(b0)
+{
+    float4x4 gWorldViewProj;
+};
+
 Texture2D gTexture : register(t0);
 SamplerState gSampler : register(s0);
 
@@ -11,7 +16,7 @@ PSInput VSMain(float4 position : POSITION, float4 normal : NORMAL, float4 uv : T
 {
     PSInput result;
 
-    result.position = position;
+    result.position = mul(position, gWorldViewProj);
     result.uv = uv;
 
     return result;

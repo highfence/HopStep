@@ -19,4 +19,14 @@ namespace HopStep
 		TArray<uint32> Indexes;
 		uint32 MaterialIndex = 0u;
 	};
+
+	struct HObjectConstantBuffer
+	{
+		XMFLOAT4X4 WorldViewProj = XMFLOAT4X4(
+			1.0f, 0.0f, 0.0f, 0.0f,
+			0.0f, 1.0f, 0.0f, 0.0f,
+			0.0f, 0.0f, 1.0f, 0.0f,
+			0.0f, 0.0f, 0.0f, 1.0f
+		);
+	};
 }
