@@ -23,62 +23,46 @@ namespace HopStep
 		virtual void OnDestroy() override;
 
 	private:
+		// D3D App Layer
 
-		uint32 FrameCounter = 0u;
+		void DebugLogAdapters() const;
 
 		float AspectRatio = 0.0f;
-
-		static constexpr uint8 SwapChainBufferCount = 2;
-		static constexpr uint32 TextureWidth = 256;
-		static constexpr uint32 TextureHeight = 256;
-		static constexpr uint32 TexturePixelSize = 4;
+		static const uint32 SwapChainBufferCount = 2u;
 
 		TSharedPtr<class HGenericWindow> AppWindow;
 		TSharedPtr<class HGameView> ViewInfo;
 
-		ComPtr<ID3D12Device> Device;
-		ComPtr<IDXGIFactory4> DXGIFactory;
-		ComPtr<IDXGISwapChain3> SwapChain;
-		ComPtr<ID3D12DescriptorHeap> RtvHeap;
-		ComPtr<ID3D12Resource> RenderTargets[SwapChainBufferCount];
-		ComPtr<ID3D12RootSignature> RootSignature;
-		ComPtr<ID3D12PipelineState> PipelineState;
-		ComPtr<ID3D12DescriptorHeap> SrvHeap;
-		ComPtr<ID3D12DescriptorHeap> CbvHeap;
+		D3D12_VIEWPORT Viewport;
+		D3D12_RECT ScissorRect;
 
-		CD3DX12_VIEWPORT Viewport;
-		CD3DX12_RECT ScissorRect;
+		ComPtr<IDXGIFactory4> DXGIFactory;
+		ComPtr<ID3D12Device> Device;
+		ComPtr<IDXGISwapChain> SwapChain;
+
+		ComPtr<ID3D12Fence> Fence;
 
 		ComPtr<ID3D12CommandQueue> CommandQueue;
 		ComPtr<ID3D12CommandAllocator> CommandAllocator;
 		ComPtr<ID3D12GraphicsCommandList> CommandList;
 
+		ComPtr<ID3D12Resource> SwapChainBuffers[SwapChainBufferCount];
+
+		DXGI_FORMAT BackBufferFormat = DXGI_FORMAT_R8G8B8A8_UNORM;
+
+		ComPtr<ID3D12DescriptorHeap> RenderTargetViewHeap;
+		ComPtr<ID3D12DescriptorHeap> DepthStencilViewHeap;
+
+		uint32 RenderTargetViewDescriptorSize = 0u;
+		uint32 DepthStencilViewDescripotSize = 0u;
+		uint32 CbvSrvUavDescriptorSize = 0u;
+
+	private:
+		// Inherited App Layer
+
+		ComPtr<ID3D12DescriptorHeap> ConstantBufferViewHeap;
+		ComPtr<ID3D12RootSignature> RootSignature;
+
 		TUniquePtr<TUploadBuffer<HObjectConstantBuffer>> ObjectConstantBuffer = nullptr;
-
-		// Resources
-		ComPtr<ID3D12Resource> VertexBuffer;
-		D3D12_VERTEX_BUFFER_VIEW VertexBufferView;
-		ComPtr<ID3D12Resource> Texture;
-
-		// Synchronization
-		ComPtr<ID3D12Fence> Fence;
-		uint64 FenceValue;
-		HANDLE FenceEvent;
-
-		uint32 RtvDescriptorSize;
-
-		uint32 FrameIndex;
-
-		void InitPipeline();
-
-		void LoadAssets();
-
-		void WaitForPreviousFrame();
-
-		void PopulateCommandList();
-
-		TArray<uint8> GenerateSampleTextureData();
-
-		bool CompileShaderFromFile(const HString& FilePath, const char* ShaderEntry, const char* ShaderModel, ComPtr<ID3DBlob>& TargetShaderBlob);
 	};
 }

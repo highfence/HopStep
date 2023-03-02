@@ -16,7 +16,8 @@ PSInput VSMain(float4 position : POSITION, float4 normal : NORMAL, float4 uv : T
 {
     PSInput result;
 
-    result.position = mul(position, gWorldViewProj);
+    // result.position = mul(position, gWorldViewProj);
+    result.position = position;
     result.uv = uv;
 
     return result;
