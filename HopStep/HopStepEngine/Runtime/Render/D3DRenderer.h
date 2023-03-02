@@ -64,5 +64,10 @@ namespace HopStep
 		ComPtr<ID3D12RootSignature> RootSignature;
 
 		TUniquePtr<TUploadBuffer<HObjectConstantBuffer>> ObjectConstantBuffer = nullptr;
+
+		ComPtr<ID3DBlob> VertexShaderByteCode;
+		ComPtr<ID3DBlob> PixelShaderByteCode;
+
+		TArray<D3D12_INPUT_ELEMENT_DESC> InputLayout;
 	};
 }

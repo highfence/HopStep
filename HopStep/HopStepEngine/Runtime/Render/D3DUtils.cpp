@@ -72,4 +72,26 @@ namespace HopStep
 
 		*OutAdaptorPtr = Adaptor.Detach();
 	}
+
+	ComPtr<ID3DBlob> HRenderPipelineUtils::CompileShaderFromFile(const HString& ShaderPath, const char* EntryPoint, const char* TargetShaderModel)
+	{
+		uint32 CompileFlags = 0u;
+#if _DEBUG
+		CompileFlags = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
+#endif
+		HRESULT hr = S_OK;
+
+		ComPtr<ID3DBlob> ByteCode = nullptr;
+		ComPtr<ID3DBlob> Errors;
+		hr = D3DCompileFromFile(ShaderPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
+			EntryPoint, TargetShaderModel, CompileFlags, 0, &ByteCode, &Errors);
+
+		if (Errors != nullptr)
+		{
+			OutputDebugStringA((char*)Errors->GetBufferPointer());
+		}
+
+		ThrowIfFailed(hr);
+		return ByteCode;
+	}
 }

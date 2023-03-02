@@ -23,7 +23,10 @@ namespace HopStep
 	class HRenderPipelineUtils
 	{
 	public:
+
 		static void GetHardwareAdapter(_In_ IDXGIFactory1* FactoryPtr, _Outptr_result_maybenull_ IDXGIAdapter1** OutAdaptorPtr, bool bRequestHighPerformanceAdapter = false);
+
+		static ComPtr<ID3DBlob> CompileShaderFromFile(const HString& ShaderPath, const char* EntryPoint, const char* TargetShaderModel);
 	};
 }
 
