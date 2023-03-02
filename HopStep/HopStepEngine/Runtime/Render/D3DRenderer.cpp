@@ -237,43 +237,9 @@ namespace HopStep
 			ComPtr<ID3DBlob> PixelShader;
 			ComPtr<ID3DBlob> ErrorMsg;
 
-			uint32 ComplieFlags = 0u;
-#if defined(_DEBUG)
-			ComplieFlags = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
-#endif
-
 			HString ShaderPath = HPaths::ShaderPath().append(TEXT("shaders.hlsl"));
-			HRESULT ComplieResult = D3DCompileFromFile(ShaderPath.c_str(), nullptr, nullptr, "VSMain", "vs_5_0", ComplieFlags, 0, &VertexShader, &ErrorMsg);
-			if (FAILED(ComplieResult))
-			{
-				if (ErrorMsg)
-				{
-					static wchar_t szBuffer[4096];
-					_snwprintf_s(szBuffer, 4096, _TRUNCATE,
-						L"%hs",
-						(char*)ErrorMsg->GetBufferPointer());
-					OutputDebugString(szBuffer);
-					MessageBox(nullptr, szBuffer, L"Error", MB_OK);
-					ErrorMsg->Release();
-				}
-				HCheck(false);
-			}
-
-			ComplieResult = D3DCompileFromFile(ShaderPath.c_str(), nullptr, nullptr, "PSMain", "ps_5_0", ComplieFlags, 0, &PixelShader, &ErrorMsg);
-			if (FAILED(ComplieResult))
-			{
-				if (ErrorMsg)
-				{
-					static wchar_t szBuffer[4096];
-					_snwprintf_s(szBuffer, 4096, _TRUNCATE,
-						L"%hs",
-						(char*)ErrorMsg->GetBufferPointer());
-					OutputDebugString(szBuffer);
-					MessageBox(nullptr, szBuffer, L"Error", MB_OK);
-					ErrorMsg->Release();
-				}
-				HCheck(false);
-			}
+			HCheck(CompileShaderFromFile(ShaderPath, "VSMain", "vs_5_0", VertexShader));
+			HCheck(CompileShaderFromFile(ShaderPath, "PSMain", "ps_5_0", PixelShader));
 
 			D3D12_INPUT_ELEMENT_DESC InputElementDescs[] =
 			{
@@ -528,5 +494,34 @@ namespace HopStep
 		}
 
 		return Data;
+	}
+
+	bool HD3DRenderer::CompileShaderFromFile(const HString& FilePath, const char* ShaderEntry, const char* ShaderModel, ComPtr<ID3DBlob>& TargetShaderBlob)
+	{
+		uint32 ComplieFlags = 0u;
+#if defined(_DEBUG)
+		ComplieFlags = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
+#endif
+
+		ComPtr<ID3DBlob> ErrorMsg;
+		HRESULT ComplieResult = D3DCompileFromFile(FilePath.c_str(), nullptr, nullptr, ShaderEntry, ShaderModel, ComplieFlags, 0, &TargetShaderBlob, &ErrorMsg);
+
+		if (FAILED(ComplieResult))
+		{
+			if (ErrorMsg)
+			{
+				static wchar_t szBuffer[4096];
+				_snwprintf_s(szBuffer, 4096, _TRUNCATE,
+					L"%hs",
+					(char*)ErrorMsg->GetBufferPointer());
+				OutputDebugString(szBuffer);
+				MessageBox(nullptr, szBuffer, L"Error", MB_OK);
+				ErrorMsg->Release();
+			}
+
+			return false;
+		}
+
+		return true;
 	}
 }

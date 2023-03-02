@@ -78,5 +78,7 @@ namespace HopStep
 		void PopulateCommandList();
 
 		TArray<uint8> GenerateSampleTextureData();
+
+		bool CompileShaderFromFile(const HString& FilePath, const char* ShaderEntry, const char* ShaderModel, ComPtr<ID3DBlob>& TargetShaderBlob);
 	};
 }
