@@ -14,6 +14,8 @@
 #include <wrl.h>
 #include <wrl/client.h>
 #include "d3dx12.h"
+#include <DirectXCollision.h>
+#include <DirectXColors.h>
 
 // Custom
 #include "..\..\Core\Windows\WindowsSystemIncludes.h"
@@ -28,8 +30,13 @@ namespace HopStep
 	using XMFLOAT2 = ::DirectX::XMFLOAT2;
 	using XMFLOAT3 = ::DirectX::XMFLOAT3;
 	using XMFLOAT4 = ::DirectX::XMFLOAT4;
+	using XMVECTORF32 = ::DirectX::XMVECTORF32;
 
 	using XMFLOAT4X4 = ::DirectX::XMFLOAT4X4;
+
+	using HBoundingBox = ::DirectX::BoundingBox;
+
+	namespace HColors = ::DirectX::Colors;
 
 	// Microsoft namespace aliasing
 	template<class TComObject>

@@ -94,4 +94,53 @@ namespace HopStep
 		ThrowIfFailed(hr);
 		return ByteCode;
 	}
+
+	ComPtr<ID3D12Resource> HD3DResourceUtils::CreateDefaultBuffer(ID3D12Device* Device, ID3D12GraphicsCommandList* CommandList, const void* InitData, uint64 ByteSize, ComPtr<ID3D12Resource>& UploadBuffer)
+	{
+		ComPtr<ID3D12Resource> DefaultBuffer;
+
+		{
+			auto DefaultHeapType = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
+			auto Buffer = CD3DX12_RESOURCE_DESC::Buffer(ByteSize);
+
+			// 실제 DefaultBuffer 리소스 할당.
+			ThrowIfFailed(Device->CreateCommittedResource(
+				&DefaultHeapType,
+				D3D12_HEAP_FLAG_NONE,
+				&Buffer,
+				D3D12_RESOURCE_STATE_COMMON,
+				nullptr,
+				IID_PPV_ARGS(DefaultBuffer.GetAddressOf())
+			));
+		}
+
+		// CPU Memory를 디폴트 버퍼에 옮겨담기 위해, 중간 다리 역할을 해줄 업로드 힙을 만들자.
+		{
+			auto UploadHeapType = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
+			auto Buffer = CD3DX12_RESOURCE_DESC::Buffer(ByteSize);
+			ThrowIfFailed(Device->CreateCommittedResource(
+				&UploadHeapType,
+				D3D12_HEAP_FLAG_NONE,
+				&Buffer,
+				D3D12_RESOURCE_STATE_GENERIC_READ,
+				nullptr,
+				IID_PPV_ARGS(UploadBuffer.GetAddressOf())
+			));
+		}
+
+		// 디폴트 버퍼에 어떤 데이터를 담을 목적인지 서술
+		D3D12_SUBRESOURCE_DATA SubresourceData =
+		{
+			.pData = InitData,
+			.RowPitch = ByteSize,
+			.SlicePitch = ByteSize
+		};
+
+		// 데이터를 디폴트 버퍼에 복사하도록 예약해둔다. 하이 레벨에서는 UpdateSubresources 함수가 CPU Memory를 중간단계인 업로드 힙에 옮겨준다.
+		// 그 이후에 ID3D12CommandList::CopySubresourceRegion을 이용해 업로드 힙에서 GPU 메모리로 데이터가 옮겨질 것이다.
+		CommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(DefaultBuffer.Get(), D3D12_RESOURCE_STATE_COMMON, D3D12_RESOURCE_STATE_COPY_DEST));
+		UpdateSubresources<1>(CommandList, DefaultBuffer.Get(), UploadBuffer.Get(), 0, 0, 1, &SubresourceData);
+		CommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(DefaultBuffer.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_GENERIC_READ));
+		return DefaultBuffer;
+	}
 }

@@ -203,8 +203,7 @@ namespace HopStep
 			};
 		}
 
-		
-
+		BuildMeshResource();
 
 		return true;
 	}
@@ -249,5 +248,58 @@ namespace HopStep
 			Adapter = nullptr;
 		}
 #endif
+	}
+
+	void HD3DRenderer::BuildMeshResource()
+	{
+		TArray<HVertex> Vertices =
+		{
+			HVertex({ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT4(HColors::White) }),
+			HVertex({ XMFLOAT3(-1.0f, +1.0f, -1.0f), XMFLOAT4(HColors::Black) }),
+			HVertex({ XMFLOAT3(+1.0f, +1.0f, -1.0f), XMFLOAT4(HColors::Red) }),
+			HVertex({ XMFLOAT3(+1.0f, -1.0f, -1.0f), XMFLOAT4(HColors::Green) }),
+			HVertex({ XMFLOAT3(-1.0f, -1.0f, +1.0f), XMFLOAT4(HColors::Blue) }),
+			HVertex({ XMFLOAT3(-1.0f, +1.0f, +1.0f), XMFLOAT4(HColors::Yellow) }),
+			HVertex({ XMFLOAT3(+1.0f, +1.0f, +1.0f), XMFLOAT4(HColors::Cyan) }),
+			HVertex({ XMFLOAT3(+1.0f, -1.0f, +1.0f), XMFLOAT4(HColors::Magenta) })
+		};
+
+		TArray<uint16> Indices =
+		{
+			// front face
+			0, 1, 2,
+			0, 2, 3,
+
+			// back face
+			4, 6, 5,
+			4, 7, 6,
+
+			// left face
+			4, 5, 1,
+			4, 1, 0,
+
+			// right face
+			3, 2, 6,
+			3, 6, 7,
+
+			// top face
+			1, 5, 6,
+			1, 6, 2,
+
+			// bottom face
+			4, 0, 3,
+			4, 3, 7
+		};
+
+		const uint32 VBByteSize = (uint32)Vertices.size() * sizeof(HVertex);
+		const uint32 IBByteSize = (uint32)Indices.size() * sizeof(uint16);
+
+		MeshResource = std::make_unique<HMeshResource>();
+
+		ThrowIfFailed(D3DCreateBlob(VBByteSize, &MeshResource->VertexBufferCPU));
+		HGenericMemory::MemCpy(MeshResource->VertexBufferCPU->GetBufferPointer(), Vertices.data(), VBByteSize);
+
+		ThrowIfFailed(D3DCreateBlob(IBByteSize, &MeshResource->IndexBufferCPU));
+		HGenericMemory::MemCpy(MeshResource->IndexBufferCPU->GetBufferPointer(), Indices.data(), IBByteSize);
 	}
 }

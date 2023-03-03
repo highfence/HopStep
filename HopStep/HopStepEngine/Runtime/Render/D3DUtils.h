@@ -28,6 +28,14 @@ namespace HopStep
 
 		static ComPtr<ID3DBlob> CompileShaderFromFile(const HString& ShaderPath, const char* EntryPoint, const char* TargetShaderModel);
 	};
+
+	class HD3DResourceUtils
+	{
+	public:
+
+		static ComPtr<ID3D12Resource> CreateDefaultBuffer(ID3D12Device* Device, ID3D12GraphicsCommandList* CommandList, const void* InitData, uint64 ByteSize, ComPtr<ID3D12Resource>& UploadBuffer);;
+
+	};
 }
 
 inline HopStep::HString AnsiToHString(const std::string& Str)

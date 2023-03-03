@@ -59,6 +59,7 @@ namespace HopStep
 
 	private:
 		// Inherited App Layer
+		void BuildMeshResource();
 
 		ComPtr<ID3D12DescriptorHeap> ConstantBufferViewHeap;
 		ComPtr<ID3D12RootSignature> RootSignature;
@@ -69,5 +70,7 @@ namespace HopStep
 		ComPtr<ID3DBlob> PixelShaderByteCode;
 
 		TArray<D3D12_INPUT_ELEMENT_DESC> InputLayout;
+
+		TUniquePtr<HMeshResource> MeshResource = nullptr;
 	};
 }
