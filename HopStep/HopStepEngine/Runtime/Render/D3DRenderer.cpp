@@ -301,5 +301,7 @@ namespace HopStep
 
 		ThrowIfFailed(D3DCreateBlob(IBByteSize, &MeshResource->IndexBufferCPU));
 		HGenericMemory::MemCpy(MeshResource->IndexBufferCPU->GetBufferPointer(), Indices.data(), IBByteSize);
+
+		MeshResource->VertexBufferGPU = 
 	}
 }
