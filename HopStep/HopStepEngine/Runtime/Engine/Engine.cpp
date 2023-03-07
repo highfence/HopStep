@@ -70,7 +70,7 @@ namespace HopStep
 	void HEngine::Tick(float Delta)
 	{
 		App->PumpMessages(Delta);
-		View->Update(Delta);
+		// View->Update(Delta);
 		Renderer->OnUpdate();
 		Renderer->OnRender();
 	}

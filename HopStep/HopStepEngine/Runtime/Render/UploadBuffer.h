@@ -50,9 +50,10 @@ namespace HopStep
 
 		ID3D12Resource* Resource() const { return UploadBuffer.Get(); }
 
-		void CopyData(int32 ElementIndex, TResourceType* InData)
+		void CopyData(int32 ElementIndex, const TResourceType& InData)
 		{
-			HGenericMemory::MemCpy(&MappedData[ElementIndex * ElementByteSize], reinterpret_cast<void*>(InData), sizeof(TResourceType));
+			// HGenericMemory::MemCpy(&MappedData[ElementIndex * ElementByteSize], &InData, sizeof(TResourceType));
+			memcpy(&MappedData[ElementIndex * ElementByteSize], &InData, sizeof(TResourceType));
 		}
 
 		uint32 GetElementByteSize() const { return ElementByteSize; }
@@ -60,7 +61,7 @@ namespace HopStep
 	private:
 
 		ComPtr<ID3D12Resource> UploadBuffer;
-		HByte* MappedData;
+		BYTE* MappedData;
 
 		uint32 ElementByteSize = 0u;
 		bool bIsConstantBuffer = false;

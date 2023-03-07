@@ -264,7 +264,7 @@ namespace HopStep
 
 		HObjectConstantBuffer ObjectConstants;
 		XMStoreFloat4x4(&ObjectConstants.WorldViewProj, XMMatrixTranspose(WorldViewProjection));
-		ObjectConstantBuffer->CopyData(0, &ObjectConstants);
+		ObjectConstantBuffer->CopyData(0, ObjectConstants);
 	}
 
 	void HD3DRenderer::OnRender()
