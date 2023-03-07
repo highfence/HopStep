@@ -132,15 +132,20 @@ namespace HopStep
 		D3D12_SUBRESOURCE_DATA SubresourceData =
 		{
 			.pData = InitData,
-			.RowPitch = ByteSize,
-			.SlicePitch = ByteSize
+			.RowPitch = static_cast<LONG_PTR>(ByteSize),
+			.SlicePitch = static_cast<LONG_PTR>(ByteSize)
 		};
 
 		// 데이터를 디폴트 버퍼에 복사하도록 예약해둔다. 하이 레벨에서는 UpdateSubresources 함수가 CPU Memory를 중간단계인 업로드 힙에 옮겨준다.
 		// 그 이후에 ID3D12CommandList::CopySubresourceRegion을 이용해 업로드 힙에서 GPU 메모리로 데이터가 옮겨질 것이다.
-		CommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(DefaultBuffer.Get(), D3D12_RESOURCE_STATE_COMMON, D3D12_RESOURCE_STATE_COPY_DEST));
+		auto CommonToCopyDestTransitionBarrier = CD3DX12_RESOURCE_BARRIER::Transition(DefaultBuffer.Get(), D3D12_RESOURCE_STATE_COMMON, D3D12_RESOURCE_STATE_COPY_DEST);
+		CommandList->ResourceBarrier(1, &CommonToCopyDestTransitionBarrier);
+
 		UpdateSubresources<1>(CommandList, DefaultBuffer.Get(), UploadBuffer.Get(), 0, 0, 1, &SubresourceData);
-		CommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(DefaultBuffer.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_GENERIC_READ));
+
+		auto CopyDestToCommonTransitionBarrier = CD3DX12_RESOURCE_BARRIER::Transition(DefaultBuffer.Get(), D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_GENERIC_READ);
+		CommandList->ResourceBarrier(1, &CopyDestToCommonTransitionBarrier);
+
 		return DefaultBuffer;
 	}
 }

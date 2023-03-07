@@ -1,29 +1,31 @@
-struct PSInput
-{
-    float4 position : SV_POSITION;
-    float2 uv : TEXCOORD;
-};
-
 cbuffer ConstantBufferPerObject : register(b0)
 {
     float4x4 gWorldViewProj;
 };
 
-Texture2D gTexture : register(t0);
-SamplerState gSampler : register(s0);
-
-PSInput VSMain(float4 position : POSITION, float4 normal : NORMAL, float4 uv : TEXCOORD)
+struct VertexInput
 {
-    PSInput result;
+    float3 Position : POSITION;
+    float4 Color : COLOR;
+};
 
-    // result.position = mul(position, gWorldViewProj);
-    result.position = position;
-    result.uv = uv;
+struct PixelInput
+{
+    float4 Position : SV_POSITION;
+    float4 Color : COLOR;
+};
 
-    return result;
+PixelInput VSMain(VertexInput Input)
+{
+    PixelInput Out;
+
+    Out.Position = mul(float4(Input.Position, 1.0f), gWorldViewProj);
+    Out.Color = Input.Color;
+    
+    return Out;
 }
 
-float4 PSMain(PSInput input) : SV_TARGET
+float4 PSMain(PixelInput Input) : SV_Target
 {
-    return gTexture.Sample(gSampler, input.uv);
+    return Input.Color;
 }

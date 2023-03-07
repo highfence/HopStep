@@ -35,6 +35,22 @@ namespace HopStep
 
 		static ComPtr<ID3D12Resource> CreateDefaultBuffer(ID3D12Device* Device, ID3D12GraphicsCommandList* CommandList, const void* InitData, uint64 ByteSize, ComPtr<ID3D12Resource>& UploadBuffer);
 	};
+
+	class HD3DMathUtils
+	{
+	public:
+		static XMFLOAT4X4 Identity4x4()
+		{
+			static XMFLOAT4X4 I(
+				1.0f, 0.0f, 0.0f, 0.0f,
+				0.0f, 1.0f, 0.0f, 0.0f,
+				0.0f, 0.0f, 1.0f, 0.0f,
+				0.0f, 0.0f, 0.0f, 1.0f
+			);
+
+			return I;
+		}
+	};
 }
 
 inline HopStep::HString AnsiToHString(const std::string& Str)

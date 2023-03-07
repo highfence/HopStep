@@ -6,6 +6,7 @@
 #include "..\..\Core\Windows\WindowsWindow.h"
 #include "Runtime\Engine\AssetImporter.h"
 #include "Runtime\Engine\GameView.h"
+#include <DirectXMath.h>
 
 namespace HopStep
 {
@@ -15,6 +16,9 @@ namespace HopStep
 		, AspectRatio(static_cast<float>(AppWindowPtr->GetClientWidth()) / static_cast<float>(AppWindowPtr->GetClientHeight()))
 		, Viewport(CD3DX12_VIEWPORT(0.0f, 0.0f, static_cast<float>(AppWindowPtr->GetClientWidth()), static_cast<float>(AppWindowPtr->GetClientHeight())))
 		, ScissorRect(CD3DX12_RECT(0, 0, AppWindowPtr->GetClientWidth(), AppWindowPtr->GetClientHeight()))
+		, Theta(1.5f * ::DirectX::XM_PI)
+		, Phi(::DirectX::XM_PIDIV4)
+		, Radius(5.0f)
 	{
 	}
 
@@ -205,19 +209,266 @@ namespace HopStep
 
 		BuildMeshResource();
 
+		// Build Pipeline state object
+		{
+			D3D12_GRAPHICS_PIPELINE_STATE_DESC PSODesc = 
+			{
+				.pRootSignature = RootSignature.Get(),
+				.VS = { reinterpret_cast<BYTE*>(VertexShaderByteCode->GetBufferPointer()), VertexShaderByteCode->GetBufferSize() },
+				.PS = { reinterpret_cast<BYTE*>(PixelShaderByteCode->GetBufferPointer()), PixelShaderByteCode->GetBufferSize() },
+				.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT),
+				.SampleMask = UINT_MAX,
+				.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT),
+				.DepthStencilState = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT),
+				.InputLayout = { InputLayout.data(), (uint32)InputLayout.size() },
+				.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE,
+				.NumRenderTargets = 1,
+				.DSVFormat = DepthStencilFormat,
+				.SampleDesc = { 1, 0 },
+			};
+
+			PSODesc.RTVFormats[0] = BackBufferFormat;
+			ThrowIfFailed(Device->CreateGraphicsPipelineState(&PSODesc, IID_PPV_ARGS(&PSO)));
+		}
+
+		ThrowIfFailed(CommandList->Close());
+		ID3D12CommandList* CommandLists[] = {CommandList.Get()};
+		CommandQueue->ExecuteCommandLists(_countof(CommandLists), CommandLists);
+
+		FlushCommandQueue();
+
+		// Reset render targets
+		OnResize();
+
 		return true;
 	}
 
 	void HD3DRenderer::OnUpdate()
 	{
+		using namespace DirectX;
+
+		float x = Radius * sinf(Phi) * cosf(Theta);
+		float z = Radius * sinf(Phi) * sinf(Theta);
+		float y = Radius * cosf(Phi);
+
+		XMVECTOR Pos = XMVectorSet(x, y, z, 1.0f);
+		XMVECTOR Target = XMVectorZero();
+		XMVECTOR Up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+
+		XMMATRIX View = XMMatrixLookAtLH(Pos, Target, Up);
+		XMStoreFloat4x4(&this->View, View);
+
+		XMMATRIX World = XMLoadFloat4x4(&this->World);
+		XMMATRIX Projection = XMLoadFloat4x4(&this->Projection);
+		XMMATRIX WorldViewProjection = World * View * Projection;
+
+		HObjectConstantBuffer ObjectConstants;
+		XMStoreFloat4x4(&ObjectConstants.WorldViewProj, XMMatrixTranspose(WorldViewProjection));
+		ObjectConstantBuffer->CopyData(0, &ObjectConstants);
 	}
 
 	void HD3DRenderer::OnRender()
 	{
+		// Command Allocator의 Reset을 이용해 Command recording에 사용되는 메모리를 재사용할 수 있도록 하자.
+		// 관련된 모든 Command가 GPU에서 실행이 끝났을 때에만 Reset을 실행할 수 있다.
+		ThrowIfFailed(CommandAllocator->Reset());
+
+		// CommandList도 마찬가지로 메모리를 재사용. 
+		ThrowIfFailed(CommandList->Reset(CommandAllocator.Get(), PSO.Get()));
+
+		// 래스터라이져 단계에 사용할 수 있도록 뷰포트와 ScissorRect를 설정
+		CommandList->RSSetViewports(1, &Viewport);
+		CommandList->RSSetScissorRects(1, &ScissorRect);
+
+		// 백 버퍼에 그릴 수 있도록 렌더 타겟 상태로 만들어준다.
+		CD3DX12_RESOURCE_BARRIER PresentToRenderTargetTransitionBarrier = CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+		CommandList->ResourceBarrier(1, &PresentToRenderTargetTransitionBarrier);
+
+		D3D12_CPU_DESCRIPTOR_HANDLE BackBufferViewHandle = CurrentBackBufferView();
+		D3D12_CPU_DESCRIPTOR_HANDLE DepthStencilViewHandle = DepthStencilView();
+
+		// 백 버퍼와 뎁스 버퍼를 클리어
+		CommandList->ClearRenderTargetView(BackBufferViewHandle, HColors::LightSteelBlue, 0, nullptr);
+		CommandList->ClearDepthStencilView(DepthStencilViewHandle, D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, nullptr);
+
+		// Output Merger (출력 병합기) Render Target으로 세팅
+		CommandList->OMSetRenderTargets(1, &BackBufferViewHandle, true, &DepthStencilViewHandle);
+
+		ID3D12DescriptorHeap* DescriptorHeaps[] = { ConstantBufferViewHeap.Get() };
+		CommandList->SetDescriptorHeaps(_countof(DescriptorHeaps), DescriptorHeaps);
+
+		CommandList->SetGraphicsRootSignature(RootSignature.Get());
+
+		// Input Assembler setting
+		D3D12_VERTEX_BUFFER_VIEW VertexBufferViewHandle = MeshResource->VertexBufferView();
+		D3D12_INDEX_BUFFER_VIEW IndexBufferViewHandle = MeshResource->IndexBufferView();
+		CommandList->IASetVertexBuffers(0, 1, &VertexBufferViewHandle);
+		CommandList->IASetIndexBuffer(&IndexBufferViewHandle);
+		CommandList->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		CommandList->SetGraphicsRootDescriptorTable(0, ConstantBufferViewHeap->GetGPUDescriptorHandleForHeapStart());
+
+		// Todo: temp
+		CommandList->DrawIndexedInstanced(MeshResource->Submeshes[TEXT("Box")].IndexCount, 1u, 0u, 0u, 0u);
+
+		// 백 버퍼를 STATE_PRESENT 상태로 만들어 표시 대기 상태로 만들어준다.
+		CD3DX12_RESOURCE_BARRIER RenderTargetToPresentTransitionBarrier = CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+		CommandList->ResourceBarrier(1, &RenderTargetToPresentTransitionBarrier);
+
+		// 커맨드 기록 상태를 끝낸다.
+		ThrowIfFailed(CommandList->Close());
+
+		// CommandQueue에 Execute를 요청한다.
+		ID3D12CommandList* CommandLists[] = { CommandList.Get() };
+		CommandQueue->ExecuteCommandLists(_countof(CommandLists), CommandLists);
+
+		// 버퍼를 그려주고 스왑
+		ThrowIfFailed(SwapChain->Present(0, 0));
+		CurrentBackBufferIndex = (++CurrentBackBufferIndex) % SwapChainBufferCount;
+
+		// 커맨드가 끝나길 기다려준다. 이는 비효율적이긴 하지만 코드를 간단히 하기 위해 여기에 추가해두자.
+		// 나중에 고쳐질 예정.
+		FlushCommandQueue();
 	}
 
 	void HD3DRenderer::OnDestroy()
 	{
+	}
+
+	void HD3DRenderer::OnResize()
+	{
+		HCheck(Device);
+		HCheck(SwapChain);
+		HCheck(CommandAllocator);
+
+		FlushCommandQueue();
+
+		ThrowIfFailed(CommandList->Reset(CommandAllocator.Get(), nullptr));
+
+		for (uint32 Idx = 0u; Idx < SwapChainBufferCount; ++Idx)
+		{
+			SwapChainBuffers[Idx].Reset();
+		}
+
+		DepthStencilBuffer.Reset();
+
+		ThrowIfFailed(SwapChain->ResizeBuffers(
+			SwapChainBufferCount,
+			AppWindow->GetClientWidth(),
+			AppWindow->GetClientHeight(),
+			BackBufferFormat,
+			DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH
+		));
+
+		CurrentBackBufferIndex = 0u;
+
+		CD3DX12_CPU_DESCRIPTOR_HANDLE RenderTargetViewHeapHandle(RenderTargetViewHeap->GetCPUDescriptorHandleForHeapStart());
+		for (uint32 Idx = 0u; Idx < SwapChainBufferCount; ++Idx)
+		{
+			ThrowIfFailed(SwapChain->GetBuffer(Idx, IID_PPV_ARGS(&SwapChainBuffers[Idx])));
+			Device->CreateRenderTargetView(SwapChainBuffers[Idx].Get(), nullptr, RenderTargetViewHeapHandle);
+			RenderTargetViewHeapHandle.Offset(1, RenderTargetViewDescriptorSize);
+		}
+
+		// Create depth stencil buffer and view
+		D3D12_RESOURCE_DESC DepthStencilDesc = 
+		{
+			.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D,
+			.Alignment = 0,
+			.Width = AppWindow->GetClientWidth(),
+			.Height = AppWindow->GetClientHeight(),
+			.DepthOrArraySize = 1,
+			.MipLevels = 1,
+			.Format = DXGI_FORMAT_R24G8_TYPELESS,
+			.SampleDesc = { 1, 0 },
+			.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN,
+			.Flags = D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL,
+		};
+
+		D3D12_CLEAR_VALUE DepthStencilClearValue = 
+		{
+			.Format = DepthStencilFormat,
+			.DepthStencil = { 1.0f, 0 }
+		};
+
+		auto HeapProperties = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
+		ThrowIfFailed(Device->CreateCommittedResource(
+			&HeapProperties,
+			D3D12_HEAP_FLAG_NONE,
+			&DepthStencilDesc,
+			D3D12_RESOURCE_STATE_COMMON,
+			&DepthStencilClearValue,
+			IID_PPV_ARGS(DepthStencilBuffer.GetAddressOf())
+		));
+
+		// Create descriptor of mip level 0 of entire resource using the format of the resource
+		D3D12_DEPTH_STENCIL_VIEW_DESC DepthStencilViewDesc =
+		{
+			.Format = DepthStencilFormat,
+			.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D,
+			.Flags = D3D12_DSV_FLAG_NONE,
+			.Texture2D = D3D12_TEX2D_DSV{ 0u }
+		};
+
+		Device->CreateDepthStencilView(DepthStencilBuffer.Get(), &DepthStencilViewDesc, DepthStencilView());
+
+		auto CommonToDepthWriteTransitionBarrier = CD3DX12_RESOURCE_BARRIER::Transition(DepthStencilBuffer.Get(), D3D12_RESOURCE_STATE_COMMON, D3D12_RESOURCE_STATE_DEPTH_WRITE);
+		CommandList->ResourceBarrier(1, &CommonToDepthWriteTransitionBarrier);
+
+		ThrowIfFailed(CommandList->Close());
+		ID3D12CommandList* CommandLists[] = { CommandList.Get() };
+		CommandQueue->ExecuteCommandLists(_countof(CommandLists), CommandLists);
+
+		FlushCommandQueue();
+
+		// Update viewport and client coverage area
+		Viewport = D3D12_VIEWPORT
+		{
+			.TopLeftX = 0,
+			.TopLeftY = 0,
+			.Width = static_cast<float>(AppWindow->GetClientWidth()),
+			.Height = static_cast<float>(AppWindow->GetClientHeight()),
+			.MinDepth = 0.0f,
+			.MaxDepth = 1.0
+		};
+
+		ScissorRect = { 0, 0, (int32)AppWindow->GetClientWidth(), (int32)AppWindow->GetClientHeight()};
+	}
+
+	void HD3DRenderer::FlushCommandQueue()
+	{
+		CurrentFence++;
+
+		ThrowIfFailed(CommandQueue->Signal(Fence.Get(), CurrentFence));
+
+		if (Fence->GetCompletedValue() < CurrentFence)
+		{
+			HANDLE EventHandle = CreateEventEx(nullptr, nullptr, false, EVENT_ALL_ACCESS);
+
+			ThrowIfFailed(Fence->SetEventOnCompletion(CurrentFence, EventHandle));
+
+			WaitForSingleObject(EventHandle, INFINITE);
+			CloseHandle(EventHandle);
+		}
+	}
+
+	ID3D12Resource* HD3DRenderer::CurrentBackBuffer() const
+	{
+		return SwapChainBuffers[CurrentBackBufferIndex].Get();
+	}
+
+	D3D12_CPU_DESCRIPTOR_HANDLE HD3DRenderer::CurrentBackBufferView() const
+	{
+		return CD3DX12_CPU_DESCRIPTOR_HANDLE(
+			RenderTargetViewHeap->GetCPUDescriptorHandleForHeapStart(),
+			CurrentBackBufferIndex,
+			RenderTargetViewDescriptorSize
+		);
+	}
+
+	D3D12_CPU_DESCRIPTOR_HANDLE HD3DRenderer::DepthStencilView() const
+	{
+		return DepthStencilViewHeap->GetCPUDescriptorHandleForHeapStart();
 	}
 
 	void HD3DRenderer::DebugLogAdapters() const
@@ -302,6 +553,21 @@ namespace HopStep
 		ThrowIfFailed(D3DCreateBlob(IBByteSize, &MeshResource->IndexBufferCPU));
 		HGenericMemory::MemCpy(MeshResource->IndexBufferCPU->GetBufferPointer(), Indices.data(), IBByteSize);
 
-		MeshResource->VertexBufferGPU = 
+		MeshResource->VertexBufferGPU = HD3DResourceUtils::CreateDefaultBuffer(Device.Get(), CommandList.Get(), Vertices.data(), VBByteSize, MeshResource->VertexBufferUploader);
+		MeshResource->IndexBufferGPU = HD3DResourceUtils::CreateDefaultBuffer(Device.Get(), CommandList.Get(), Indices.data(), IBByteSize, MeshResource->IndexBufferUploader);
+
+		MeshResource->VertexByteStride = sizeof(HVertex);
+		MeshResource->VertexBufferByteSize = VBByteSize;
+		MeshResource->IndexFormat = DXGI_FORMAT_R16_UINT;
+		MeshResource->IndexBufferByteSize = IBByteSize;
+
+		HSubmeshInfo Submesh =
+		{
+			.IndexCount = { (uint32)Indices.size() },
+			.StartIndex = 0u,
+			.BaseVertex = 0u
+		};
+
+		MeshResource->Submeshes.insert(std::make_pair(TEXT("Box"), Submesh));
 	}
 }

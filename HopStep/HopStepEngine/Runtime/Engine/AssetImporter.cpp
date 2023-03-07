@@ -27,8 +27,8 @@ namespace HopStep
 				HVertex VertexData =
 				{
 					.Position = XMFLOAT3(&Mesh->mVertices[VertexIndex].x),
-					.Normal = XMFLOAT3(&Mesh->mNormals[VertexIndex].x),
-					.UV = Mesh->HasTextureCoords(0) ? XMFLOAT2(&Mesh->mTextureCoords[0][VertexIndex].x) : XMFLOAT2(0.0f, 0.0f)
+					// .Normal = XMFLOAT3(&Mesh->mNormals[VertexIndex].x),
+					// .UV = Mesh->HasTextureCoords(0) ? XMFLOAT2(&Mesh->mTextureCoords[0][VertexIndex].x) : XMFLOAT2(0.0f, 0.0f)
 				};
 
 				MeshDatas[MeshIndex].Vertices.push_back(VertexData);

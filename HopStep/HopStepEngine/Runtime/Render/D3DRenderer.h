@@ -3,6 +3,7 @@
 #include "ID3DRenderer.h"
 #include "D3DStructure.h"
 #include "UploadBuffer.h"
+#include "D3DUtils.h"
 
 namespace HopStep
 {
@@ -22,8 +23,17 @@ namespace HopStep
 
 		virtual void OnDestroy() override;
 
+		void OnResize();
+
 	private:
 		// D3D App Layer
+		void FlushCommandQueue();
+
+		ID3D12Resource* CurrentBackBuffer() const;
+
+		D3D12_CPU_DESCRIPTOR_HANDLE CurrentBackBufferView() const;
+
+		D3D12_CPU_DESCRIPTOR_HANDLE DepthStencilView() const;
 
 		void DebugLogAdapters() const;
 
@@ -34,6 +44,7 @@ namespace HopStep
 		TSharedPtr<class HGameView> ViewInfo;
 
 		D3D12_VIEWPORT Viewport;
+		// Rasterizer 단계에서 제거하지 않을 영역
 		D3D12_RECT ScissorRect;
 
 		ComPtr<IDXGIFactory4> DXGIFactory;
@@ -41,14 +52,18 @@ namespace HopStep
 		ComPtr<IDXGISwapChain> SwapChain;
 
 		ComPtr<ID3D12Fence> Fence;
+		uint64 CurrentFence = 0ull;
 
 		ComPtr<ID3D12CommandQueue> CommandQueue;
 		ComPtr<ID3D12CommandAllocator> CommandAllocator;
 		ComPtr<ID3D12GraphicsCommandList> CommandList;
 
 		ComPtr<ID3D12Resource> SwapChainBuffers[SwapChainBufferCount];
+		ComPtr<ID3D12Resource> DepthStencilBuffer;
+		uint32 CurrentBackBufferIndex = 0u;
 
 		DXGI_FORMAT BackBufferFormat = DXGI_FORMAT_R8G8B8A8_UNORM;
+		DXGI_FORMAT DepthStencilFormat = DXGI_FORMAT_D24_UNORM_S8_UINT;
 
 		ComPtr<ID3D12DescriptorHeap> RenderTargetViewHeap;
 		ComPtr<ID3D12DescriptorHeap> DepthStencilViewHeap;
@@ -72,5 +87,16 @@ namespace HopStep
 		TArray<D3D12_INPUT_ELEMENT_DESC> InputLayout;
 
 		TUniquePtr<HMeshResource> MeshResource = nullptr;
+		ComPtr<ID3D12PipelineState> PSO = nullptr;
+
+		float Theta;
+		float Phi;
+		float Radius;
+
+		XMFLOAT4X4 World = HD3DMathUtils::Identity4x4();
+		XMFLOAT4X4 View = HD3DMathUtils::Identity4x4();
+		XMFLOAT4X4 Projection = HD3DMathUtils::Identity4x4();
+
+		POINT LastMousePos;
 	};
 }
