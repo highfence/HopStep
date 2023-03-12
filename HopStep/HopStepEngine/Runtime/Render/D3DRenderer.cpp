@@ -433,6 +433,9 @@ namespace HopStep
 		};
 
 		ScissorRect = { 0, 0, (int32)AppWindow->GetClientWidth(), (int32)AppWindow->GetClientHeight()};
+
+		XMMATRIX P = ::DirectX::XMMatrixPerspectiveFovLH(0.25f * ::DirectX::XM_PI, AspectRatio, 1.0f, 1000.0f);
+		::DirectX::XMStoreFloat4x4(&Projection, P);
 	}
 
 	void HD3DRenderer::FlushCommandQueue()
