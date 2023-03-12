@@ -4,15 +4,17 @@
 #include "D3DStructure.h"
 #include "UploadBuffer.h"
 #include "D3DUtils.h"
+#include "Core/GenericPlatform/GenericApplicationMessageHandler.h"
 
 namespace HopStep
 {
-	class HD3DRenderer : public ID3DRenderer
+	class HD3DRenderer : public ID3DRenderer, public IInputHandleable
 	{
 	public:
 
 		HD3DRenderer(TSharedPtr<class HGenericWindow> AppWindowPtr, TSharedPtr<class HGameView> CameraPtr);
 
+		// ID3DRenderer interfaces
 		virtual ~HD3DRenderer();
 
 		virtual bool OnInit() override;
@@ -24,6 +26,13 @@ namespace HopStep
 		virtual void OnDestroy() override;
 
 		void OnResize();
+		// ~ID3DRenderer interfaces
+
+		// IInputHandeable interfaces
+		virtual void OnKeyDown(uint64* Key) override;
+
+		virtual void OnKeyUp(uint64* Key) override;
+		// ~IInputHandeable interfaces
 
 	private:
 		// D3D App Layer

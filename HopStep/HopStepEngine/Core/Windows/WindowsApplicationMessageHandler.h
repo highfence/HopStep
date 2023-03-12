@@ -10,9 +10,9 @@ namespace HopStep
 
 		virtual void RegistKeyHandler(TSharedPtr<IInputHandleable> InHandler);
 
-		virtual void HandleKeyUp(uint64* Key);
+		virtual void HandleKeyUp(uint64* WKey, uint64* LKey) override;
 
-		virtual void HandleKeyDown(uint64* Key);
+		virtual void HandleKeyDown(uint64* Key, uint64* LKey) override;
 
 	private:
 

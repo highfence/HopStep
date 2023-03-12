@@ -9,9 +9,9 @@ namespace HopStep
 	{
 	public:
 
-		virtual void OnKeyDown(uint64* Key) = 0;
+		virtual void OnKeyDown(uint64* WKey, uint64* LKey) = 0;
 
-		virtual void OnKeyUp(uint64* Key) = 0;
+		virtual void OnKeyUp(uint64* WKey, uint64* LKey) = 0;
 	};
 
 	class HGenericApplicationMessageHandler
@@ -22,8 +22,8 @@ namespace HopStep
 
 		virtual void RegistKeyHandler(TSharedPtr<IInputHandleable> InHandler) { HCheck(false); };
 
-		virtual void HandleKeyUp(uint64* Key) { HCheck(false); };
+		virtual void HandleKeyUp(uint64* WKey, uint64* LKey) { HCheck(false); };
 
-		virtual void HandleKeyDown(uint64* Key) { HCheck(false); };
+		virtual void HandleKeyDown(uint64* Key, uint64* LKey) { HCheck(false); };
 	};
 }

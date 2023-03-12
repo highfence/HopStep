@@ -438,6 +438,16 @@ namespace HopStep
 		::DirectX::XMStoreFloat4x4(&Projection, P);
 	}
 
+	void HD3DRenderer::OnKeyDown(uint64* Key)
+	{
+
+	}
+
+	void HD3DRenderer::OnKeyUp(uint64* Key)
+	{
+
+	}
+
 	void HD3DRenderer::FlushCommandQueue()
 	{
 		CurrentFence++;

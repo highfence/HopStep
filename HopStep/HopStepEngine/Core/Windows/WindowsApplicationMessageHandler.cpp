@@ -8,19 +8,19 @@ namespace HopStep
         Handlers.push_back(InHandler);
     }
 
-    void HWindowsApplicationMessageHandler::HandleKeyUp(uint64* Key)
+	void HWindowsApplicationMessageHandler::HandleKeyUp(uint64* WKey, uint64* LKey)  
     {
         for (TSharedPtr<IInputHandleable> Handler : Handlers)
         {
-            Handler->OnKeyUp(Key);
+            Handler->OnKeyUp(WKey, LKey);
         }
     }
 
-    void HWindowsApplicationMessageHandler::HandleKeyDown(uint64* Key)
+    void HWindowsApplicationMessageHandler::HandleKeyDown(uint64* WKey, uint64* LKey)
     {
         for (TSharedPtr<IInputHandleable> Handler : Handlers)
         {
-            Handler->OnKeyDown(Key);
+            Handler->OnKeyDown(WKey, LKey);
         }
     }
 }
