@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include "..\..\Core\CoreExport.h"
 #include "..\..\Core\Windows\WindowsPlatformMisc.h"
+#include "Runtime/Engine/World.h"
 
 namespace HopStep
 {
@@ -23,7 +24,12 @@ namespace HopStep
 
         // Engine Tick
         GEngine->UpdateTime();
-        GEngine->Tick(static_cast<float>(HApp::GetDeltaTime()));
+
+        const float DeltaTime = static_cast<float>(HApp::GetDeltaTime());
+
+        HWorld* GameWorld = GEngine->GetWorld();
+
+        GameWorld->Tick(DeltaTime);
     }
 
     void HEngineLoop::Exit()

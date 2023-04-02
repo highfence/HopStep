@@ -18,22 +18,18 @@ namespace HopStep
 
 		virtual void Init(class IEngineLoop* InLoop);
 
-		virtual void Tick(float Delta);
-
 		/*
 		 * Update HApp::DeltaTime
 		 */
 		virtual void UpdateTime();
+
+		class HWorld* GetWorld() const { return GameWorld.get(); }
 
 	protected:
 
 		class IEngineLoop* EngineLoop;
 
 		class HGenericApplication* App;
-
-		class ID3DRenderer* Renderer;
-
-		TSharedPtr<class HGameView> View;
 
 		TUniquePtr<class HWorld> GameWorld;
 	};

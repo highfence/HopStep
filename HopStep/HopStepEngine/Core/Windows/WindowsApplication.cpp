@@ -61,11 +61,17 @@ namespace HopStep
 			break;
 
 		case WM_KEYDOWN:
-			App->GetMessageHandler().get()->HandleKeyDown(reinterpret_cast<uint64*>(wParam));
+			App->GetMessageHandler().get()->HandleKeyDown(
+					reinterpret_cast<uint64*>(wParam), 
+					reinterpret_cast<uint64*>(lParam)
+				);
 			break;
 
 		case WM_KEYUP:
-			App->GetMessageHandler().get()->HandleKeyUp(reinterpret_cast<uint64*>(wParam));
+			App->GetMessageHandler().get()->HandleKeyUp(
+				reinterpret_cast<uint64*>(wParam),
+				reinterpret_cast<uint64*>(lParam)
+			);
 			break;
 
 		default:

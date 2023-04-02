@@ -14,4 +14,9 @@ namespace HopStep
 
 		return false;
 	}
+
+	void HWorld::Tick(float deltaTime)
+	{
+
+	}
 }

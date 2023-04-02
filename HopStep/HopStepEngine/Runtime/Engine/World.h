@@ -14,5 +14,11 @@ namespace HopStep
 
 		bool InitWorld();
 
+		void Tick(float deltaTime);
+
+	protected:
+
+
+
 	};
 }

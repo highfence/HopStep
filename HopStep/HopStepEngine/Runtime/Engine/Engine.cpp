@@ -19,8 +19,6 @@ namespace HopStep
 	HEngine::HEngine()
 		: EngineLoop(nullptr)
 		, App(nullptr)
-		, Renderer(nullptr)
-		, View(nullptr)
 		, GameWorld(nullptr)
 	{
 	}
@@ -31,13 +29,6 @@ namespace HopStep
 		{
 			delete App;
 			App = nullptr;
-		}
-
-		if (Renderer)
-		{
-			Renderer->OnDestroy();
-			delete Renderer;
-			Renderer = nullptr;
 		}
 	}
 
@@ -51,28 +42,14 @@ namespace HopStep
 		EngineLoop = InLoop;
 		HCheck(EngineLoop);
 
-		View = std::make_shared<HGameView>();
-		HCheck(View.get());
-
 		App = HPlatformMisc::CreateApplication();
 		HCheck(App);
-		App->GetMessageHandler().get()->RegistKeyHandler(View);
+		App->GetMessageHandler().get()->RegistKeyHandler(nullptr);
 
 		GameWorld = std::make_unique<HWorld>();
 		HCheck(GameWorld);
+		GameWorld->SetGCRoot(true);
 		GameWorld->InitWorld();
-
-		Renderer = ID3DRenderer::CreateD3DRenderer(App->GetWindow(), View);
-		HCheck(Renderer);
-		Renderer->OnInit();
-	}
-
-	void HEngine::Tick(float Delta)
-	{
-		App->PumpMessages(Delta);
-		// View->Update(Delta);
-		Renderer->OnUpdate();
-		Renderer->OnRender();
 	}
 
 	void HEngine::UpdateTime()

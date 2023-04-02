@@ -29,9 +29,9 @@ namespace HopStep
 		// ~ID3DRenderer interfaces
 
 		// IInputHandeable interfaces
-		virtual void OnKeyDown(uint64* Key) override;
+		virtual void OnKeyDown(uint64* WKey, uint64* LKey) override {};
 
-		virtual void OnKeyUp(uint64* Key) override;
+		virtual void OnKeyUp(uint64* WKey, uint64* LKey) override {};
 		// ~IInputHandeable interfaces
 
 	private:
