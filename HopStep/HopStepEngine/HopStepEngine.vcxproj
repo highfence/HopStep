@@ -186,6 +186,9 @@
     <ClInclude Include="Core\GenericPlatform\GenericWindow.h" />
     <ClInclude Include="Core\Logger\ConsoleLogger.h" />
     <ClInclude Include="Core\Logger\LoggerBase.h" />
+    <ClInclude Include="Core\Math\Rotator.h" />
+    <ClInclude Include="Core\Math\Transform.h" />
+    <ClInclude Include="Core\Math\Vector.h" />
     <ClInclude Include="Core\Misc\App.h" />
     <ClInclude Include="Core\Misc\CommandExecutable.h" />
     <ClInclude Include="Core\Misc\CommandLine.h" />
@@ -247,6 +250,7 @@
     <ClInclude Include="Extern\Jsoncpp\include\json\value.h" />
     <ClInclude Include="Extern\Jsoncpp\include\json\version.h" />
     <ClInclude Include="Extern\Jsoncpp\include\json\writer.h" />
+    <ClInclude Include="Intermediate\Actor.generated.h" />
     <ClInclude Include="Intermediate\ActorComponent.generated.h" />
     <ClInclude Include="Intermediate\Object.generated.h" />
     <ClInclude Include="Intermediate\ObjectBase.generated.h" />
@@ -255,6 +259,7 @@
     <ClInclude Include="Intermediate\SceneComponent.generated.h" />
     <ClInclude Include="Intermediate\StaticMesh.generated.h" />
     <ClInclude Include="Intermediate\World.generated.h" />
+    <ClInclude Include="Runtime\Engine\Actor.h" />
     <ClInclude Include="Runtime\Engine\ActorComponent.h" />
     <ClInclude Include="Runtime\Engine\AssetImporter.h" />
     <ClInclude Include="Runtime\Engine\Engine.h" />
@@ -526,6 +531,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
+    <ClCompile Include="Intermediate\Actor.generated.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
     <ClCompile Include="Intermediate\ActorComponent.generated.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
@@ -555,6 +564,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Intermediate\World.generated.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Engine\Actor.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>

@@ -13,3 +13,8 @@
 #include "Misc/App.h"
 #include "Misc/Paths.h"
 #include "Templates/HopStepTemplates.h"
+
+// Math includes
+#include "Math/Vector.h"
+#include "Math/Rotator.h"
+#include "Math/Transform.h"
