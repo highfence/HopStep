@@ -2,5 +2,11 @@
 
 namespace HopStep
 {
+	HSceneInterface::HSceneInterface()
+	{
+	}
 
+	HSceneInterface::~HSceneInterface()
+	{
+	}
 }
