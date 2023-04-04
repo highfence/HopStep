@@ -1,8 +1,12 @@
 #include "World.h"
-#include "..\..\Core\CoreExport.h"
+#include "Level.h"
 
 namespace HopStep
 {
+	HWorld::~HWorld()
+	{
+	}
+
 	bool HWorld::InitWorld()
 	{
 		/*

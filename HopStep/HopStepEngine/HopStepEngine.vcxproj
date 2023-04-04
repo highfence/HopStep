@@ -258,6 +258,8 @@
     <ClInclude Include="Runtime\Engine\Exporter.h" />
     <ClInclude Include="Runtime\Engine\GameView.h" />
     <ClInclude Include="Runtime\Engine\HopStepString.h" />
+    <ClInclude Include="Runtime\Engine\Level.h" />
+    <ClInclude Include="Runtime\Engine\SceneInterface.h" />
     <ClInclude Include="Runtime\Engine\StaticMesh.h" />
     <ClInclude Include="Runtime\Engine\World.h" />
     <ClInclude Include="Runtime\Launch\Launch.h" />
@@ -558,6 +560,14 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Runtime\Engine\HopStepString.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Engine\Level.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Engine\SceneInterface.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
