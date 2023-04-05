@@ -15,6 +15,12 @@ namespace HopStep
 
 		float Z;
 
+
+	public:
+
+		static const HVector ZeroVector;
+
+		static const HVector OneVector;
 	};
 
 }

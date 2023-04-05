@@ -1,6 +1,8 @@
 #pragma once
 #include "Vector.h"
 #include "Rotator.h"
+#include "Quat.h"
+#include "HopStepMath.h"
 
 namespace HopStep
 {
@@ -11,10 +13,24 @@ namespace HopStep
 	{
 	public:
 
-		HVector Location;
+		static const HTransform Identity;
 
-		HRotator Rotation;
+		HTransform(const HQuat& InRotation, const HVector& InLocation, const HVector& InScale3D = HVector::OneVector)
+			: Location{ InLocation.X, InLocation.Y, InLocation.Z, 0.0f }
+			, Rotation{ InRotation.X, InRotation.Y, InLocation.Z, InRotation.W }
+			, Scale3D{ InScale3D.X, InScale3D.Y, InScale3D.Z, 0.0f }
+		{
 
-		HVector Scale;
+		}
+
+
+	protected:
+
+		/** Translation (location) of this transformation */
+		HVectorRegister Location;
+		/** Rotation of this transformation */
+		HVectorRegister Rotation;
+		/** Scale of this transformation */
+		HVectorRegister Scale3D;
 	};
 }

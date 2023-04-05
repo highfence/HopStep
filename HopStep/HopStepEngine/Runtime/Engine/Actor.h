@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/CoreExport.h"
 #include "CoreObject/CoreObjectExport.h"
+#include "SceneComponent.h"
 #include "Intermediate/Actor.generated.h"
 
 namespace HopStep
@@ -17,53 +18,78 @@ namespace HopStep
 		DECLARE_CLASS_BODY(HActor);
 
 	public:
+
 		// AActor의 위치를 반환합니다.
 		HFUNCTION();
 		HVector GetLocation() const;
+
 		// AActor의 위치를 설정합니다.
 		HFUNCTION();
 		void SetLocation(const HVector& NewLocation);
+
 		// AActor의 회전을 반환합니다.
 		HFUNCTION();
 		HRotator GetRotation() const;
+
 		// AActor의 회전을 설정합니다.
 		HFUNCTION();
 		void SetRotation(const HRotator& NewRotation);
+
 		// AActor의 스케일을 반환합니다.
 		HFUNCTION();
 		HVector GetScale() const;
+
 		// AActor의 스케일을 설정합니다.
 		HFUNCTION();
 		void SetScale(const HVector& NewScale);
+
 		// AActor의 위치, 회전, 스케일을 설정합니다.
 		HFUNCTION();
 		void SetTransform(const HTransform& NewTransform);
+
 		// AActor의 위치, 회전, 스케일을 반환합니다.
 		HFUNCTION();
 		HTransform GetTransform() const;
+
 		// AActor의 액터 위치를 반환합니다.
 		HFUNCTION();
 		HVector GetActorLocation() const;
+		
 		// AActor의 액터 위치를 설정합니다.
 		HFUNCTION();
 		void SetActorLocation(const HVector& NewLocation);
+
 		// AActor의 액터 회전을 반환합니다.
 		HFUNCTION();
 		HRotator GetActorRotation() const;
+
 		// AActor의 액터 회전을 설정합니다.
 		HFUNCTION();
 		void SetActorRotation(const HRotator& NewRotation);
+
 		// AActor의 액터 스케일을 반환합니다.
 		HFUNCTION();
 		HVector GetActorScale() const;
+
 		// AActor의 액터 스케일을 설정합니다.
 		HFUNCTION();
 		void SetActorScale(const HVector& NewScale);
+
 		// AActor의 액터 위치, 회전, 스케일을 설정합니다.
 		HFUNCTION();
 		void SetActorTransform(const HTransform& NewTransform);
+
 		// AActor의 액터 위치, 회전, 스케일을 반환합니다.
 		HFUNCTION();
 		HTransform GetActorTransform() const;
+
+		// AActor의 루트 컴포넌트를 반환합니다.
+		HFUNCTION();
+		HSceneComponent* GetRootComponent() const;
+
+	protected:
+
+		HPROPERTY();
+		HSceneComponent* RootComponent = nullptr;
 	};
 }

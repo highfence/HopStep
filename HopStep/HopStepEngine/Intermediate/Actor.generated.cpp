@@ -6,6 +6,7 @@ using namespace HopStep;
 
 void HActor::__Fill_Class_Property_HActor(HClass* InStaticClass)
 {
+	HStructBuilder::AddProperty<HActor, HSceneComponent*, HClassProperty>(InStaticClass, TEXT("RootComponent"), &HActor::RootComponent);
 	HStructBuilder::SetSuper<HObject>(InStaticClass);
 	HStructBuilder::AddNativeFunction((HClass*)InStaticClass, &HActor::execGetLocation, TEXT("GetLocation"));
 	HStructBuilder::AddNativeFunction((HClass*)InStaticClass, &HActor::execSetLocation, TEXT("SetLocation"));
@@ -23,6 +24,7 @@ void HActor::__Fill_Class_Property_HActor(HClass* InStaticClass)
 	HStructBuilder::AddNativeFunction((HClass*)InStaticClass, &HActor::execSetActorScale, TEXT("SetActorScale"));
 	HStructBuilder::AddNativeFunction((HClass*)InStaticClass, &HActor::execSetActorTransform, TEXT("SetActorTransform"));
 	HStructBuilder::AddNativeFunction((HClass*)InStaticClass, &HActor::execGetActorTransform, TEXT("GetActorTransform"));
+	HStructBuilder::AddNativeFunction((HClass*)InStaticClass, &HActor::execGetRootComponent, TEXT("GetRootComponent"));
 }
 
 DEFINE_FUNCTION(HActor::execGetLocation)
@@ -96,6 +98,10 @@ DEFINE_FUNCTION(HActor::execSetActorTransform)
 DEFINE_FUNCTION(HActor::execGetActorTransform)
 {
 	*HFUNC_RESULT_PARAM = HFUNC_RESULT_TYPECAST(HFUNC_THIS->GetActorTransform());
+}
+DEFINE_FUNCTION(HActor::execGetRootComponent)
+{
+	*HFUNC_RESULT_PARAM = HFUNC_RESULT_TYPECAST(HFUNC_THIS->GetRootComponent());
 }
 
 IMPLEMENT_CLASS(HActor);

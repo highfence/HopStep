@@ -1,4 +1,5 @@
 #pragma once
+#include "Core/CoreExport.h"
 #include "ActorComponent.h"
 #include "Intermediate/SceneComponent.generated.h"
 
@@ -13,7 +14,17 @@ namespace HopStep
 		DECLARE_CLASS_BODY(HSceneComponent);
 
 	public:
+
 		HSceneComponent();
 		virtual ~HSceneComponent();
+
+		const HTransform& GetComponentTransform() const 
+		{
+			return ComponentToWorld; 
+		}
+
+	protected:
+
+		HTransform ComponentToWorld;
 };
 }
