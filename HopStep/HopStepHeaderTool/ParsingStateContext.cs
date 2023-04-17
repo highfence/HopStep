@@ -97,31 +97,35 @@ namespace HopStepHeaderTool
             }
             else if (State == ParsingState.WaitForProperty)
             {
-				string pattern;
+                string pattern;
+                int typeMatchIndex = 1;
+                int nameMatchIndex = 2;
 
-				if (line.StartsWith("TObjectPtr"))
+                if (line.StartsWith("TObjectPtr"))
                 {
                     pattern = @"\w+<\s*(?:class\s+)?(\w+)\s*>\s+([a-zA-Z0-9_]+)";
                 }
                 else if (line.StartsWith("TArray"))
                 {
-                    pattern = @"(\w+<\w+>)\s+([a-zA-Z0-9_]+)";
-                }
+					pattern = @"(TArray<\s*(?:class\s+)?(\w+(?:\s*\*{0,2})?)\s*>)\s+([a-zA-Z0-9_]+)";
+                    nameMatchIndex = 3;
+				}
                 else
                 {
                     pattern = @"(?:(?:class\s+)?(\w+(?:\s*\*{0,2})?))\s+([a-zA-Z0-9_]+)(?:\s*=\s*(.+?))?\s*;";
                 }
 
                 Match match = Regex.Match(line, pattern);
-
-                if (match.Success)
+                if (match.Success == false)
                 {
-                    string propertyType = match.Groups[1].Value;
-                    string propertyName = match.Groups[2].Value;
-
-                    State = ParsingState.WaitForObjectEnd;
-                    Properties.Add(new PropertyInfo { PropertyType = propertyType, Name = propertyName });
+                    throw new Exception($"Invalid property token!: {line}");
                 }
+
+                string propertyType = match.Groups[typeMatchIndex].Value;
+                string propertyName = match.Groups[nameMatchIndex].Value;
+
+                State = ParsingState.WaitForObjectEnd;
+                Properties.Add(new PropertyInfo { PropertyType = propertyType, Name = propertyName });
             }
             else if (State == ParsingState.WaitForFunction)
             {

@@ -51,7 +51,6 @@ namespace HopStepHeaderTool
             foreach (var headerPath in SolutionSchema.HeaderDirectories)
             {
                 var headerLines = File.ReadAllLines(headerPath);
-                    //.Where(line => string.IsNullOrEmpty(line) == false);
 
                 foreach (var line in headerLines)
                 {

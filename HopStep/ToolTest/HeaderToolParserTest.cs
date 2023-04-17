@@ -202,6 +202,7 @@ namespace ToolTest
         [TestCase("TArray<uint32> Indexes;", "TArray<uint32>", "Indexes")]
         [TestCase("HInnerClassTest* InnerClassPtr;", "HInnerClassTest*", "InnerClassPtr")]
         [TestCase("HSceneComponent* RootComponent = nullptr;", "HSceneComponent*", "RootComponent")]
+        [TestCase("TArray<HObject*> ObjectArrayProperty;", "TArray<HObject*>", "ObjectArrayProperty")]
         public void TestPropertyParsingTest(string line, string expectedVariableType, string expectedVariableName)
         {
             var parseContext = new ParsingStateContext();
