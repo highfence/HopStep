@@ -195,5 +195,32 @@ namespace ToolTest
             Assert.IsTrue(findObjectFunction.Params.Exists(p => p.ParamName == "InObject" && p.ParamType == "HObject*"));
             Assert.IsTrue(findObjectFunction.Params.Exists(p => p.ParamName == "ObjectName" && p.ParamType == "const HString&"));
         }
+
+        [TestCase("HLevel PersistentLevel;", "HLevel", "PersistentLevel")]
+        [TestCase("TObjectPtr<HLevel> PersistentLevel;", "HLevel", "PersistentLevel")]
+        [TestCase("TObjectPtr<class HLevel> PersistentLevel;", "HLevel", "PersistentLevel")]
+        [TestCase("TArray<uint32> Indexes;", "TArray<uint32>", "Indexes")]
+        [TestCase("HInnerClassTest* InnerClassPtr;", "HInnerClassTest*", "InnerClassPtr")]
+        [TestCase("HSceneComponent* RootComponent = nullptr;", "HSceneComponent*", "RootComponent")]
+        public void TestPropertyParsingTest(string line, string expectedVariableType, string expectedVariableName)
+        {
+            var parseContext = new ParsingStateContext();
+
+            parseContext.ParseStringLine("HCLASS();");
+            parseContext.ParseStringLine("class HObject");
+            parseContext.ParseStringLine("{");
+            parseContext.ParseStringLine("\tHPROPERTY();");
+
+            Assert.AreEqual(ParsingStateContext.ParsingState.WaitForProperty, parseContext.State);
+            parseContext.ParseStringLine(line);
+
+            Assert.AreEqual(ParsingStateContext.ParsingState.WaitForObjectEnd, parseContext.State);
+            Assert.AreEqual(1, parseContext.Properties.Count);
+            
+            var property = parseContext.Properties[0];
+
+            Assert.AreEqual(expectedVariableName, property.Name);
+            Assert.AreEqual(expectedVariableType, property.PropertyType);
+        }
     }
 }

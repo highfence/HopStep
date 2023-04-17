@@ -67,9 +67,9 @@ namespace HopStepHeaderTool
                 var baseNames = FindBaseClassNames(line);
 
                 if (string.IsNullOrEmpty(className))
-				{
+                {
                     throw new Exception($"Invalid class name input : {line}");
-				}
+                }
 
                 TypeName = className;
                 ObjectBase = baseNames;
@@ -97,16 +97,31 @@ namespace HopStepHeaderTool
             }
             else if (State == ParsingState.WaitForProperty)
             {
-                string[] tokens = line.Split(' ');
-                string[] propertyToken = tokens.Where(s => string.IsNullOrEmpty(s) == false).Select(s => s.Trim(';')).ToArray();
+				string pattern;
 
-                if (propertyToken.Length < 2)
+				if (line.StartsWith("TObjectPtr"))
                 {
-                    throw new Exception($"Invalid property token! : {line}");
+                    pattern = @"\w+<\s*(?:class\s+)?(\w+)\s*>\s+([a-zA-Z0-9_]+)";
+                }
+                else if (line.StartsWith("TArray"))
+                {
+                    pattern = @"(\w+<\w+>)\s+([a-zA-Z0-9_]+)";
+                }
+                else
+                {
+                    pattern = @"(?:(?:class\s+)?(\w+(?:\s*\*{0,2})?))\s+([a-zA-Z0-9_]+)(?:\s*=\s*(.+?))?\s*;";
                 }
 
-                State = ParsingState.WaitForObjectEnd;
-                Properties.Add(new PropertyInfo { PropertyType = propertyToken[0], Name = propertyToken[1] });
+                Match match = Regex.Match(line, pattern);
+
+                if (match.Success)
+                {
+                    string propertyType = match.Groups[1].Value;
+                    string propertyName = match.Groups[2].Value;
+
+                    State = ParsingState.WaitForObjectEnd;
+                    Properties.Add(new PropertyInfo { PropertyType = propertyType, Name = propertyName });
+                }
             }
             else if (State == ParsingState.WaitForFunction)
             {
@@ -115,7 +130,7 @@ namespace HopStepHeaderTool
                     throw new Exception($"Do not use template function for HFUNCTION : {line}");
                 }
 
-                var separator = new char[2]{ '(', ')' };
+                var separator = new char[2] { '(', ')' };
                 string[] functionSplit = line.Split(separator);
 
                 if (functionSplit.Length < 2)
@@ -145,7 +160,7 @@ namespace HopStepHeaderTool
                         var paramName = singleParam[^1];
                         var paramType = String.Join(' ', singleParam.Take(singleParam.Length - 1));
 
-                        paramInfos.Add(new FunctionInfo.FunctionParam() 
+                        paramInfos.Add(new FunctionInfo.FunctionParam()
                         {
                             ParamName = paramName,
                             ParamType = paramType
