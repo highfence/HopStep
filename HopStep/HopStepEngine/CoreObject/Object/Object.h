@@ -1,8 +1,8 @@
 #pragma once
 #include "ObjectBase.h"
-#include "..\Reflection\ReflectionMacro.h"
-#include "..\..\Core\CoreExport.h"
-#include "..\..\Intermediate\Object.generated.h"
+#include "Core\CoreExport.h"
+#include "CoreObject\Reflection\ReflectionMacro.h"
+#include "Intermediate\Object.generated.h"
 
 namespace HopStep
 {
@@ -32,3 +32,4 @@ namespace HopStep
 		bool bIsGCRoot = false;
 	};
 }
+

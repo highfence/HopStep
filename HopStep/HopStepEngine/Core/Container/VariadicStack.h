@@ -28,7 +28,7 @@ namespace HopStep
 		template <typename TType>
 		void PushByType(const TType& InValue);
 
-		template <typename TType>
+		template <typename TType> 
 		TType PopByType();
 
 		uint16 GetTopOffset() const { return CurrentOffset; }
@@ -88,7 +88,7 @@ namespace HopStep
 	}
 
 	template<int32 StackSize>
-	template<typename TType>
+	template<typename TType> 
 	inline TType HVariadicStack<StackSize>::PopByType()
 	{
 		TType Result{};

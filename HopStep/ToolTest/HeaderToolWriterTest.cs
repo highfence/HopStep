@@ -93,7 +93,6 @@ namespace ToolTest
                 string[] cppLines = File.ReadAllLines(targetCppFile);
                 var cppIndex = 0;
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"HopStep.h\"");
-                Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest.generated.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep;");
@@ -169,7 +168,6 @@ namespace ToolTest
                 string[] cppLines = File.ReadAllLines(targetCppFile);
                 int cppIndex = 0;
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"HopStep.h\"");
-                Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest3.generated.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest3.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep;");
@@ -260,7 +258,6 @@ namespace ToolTest
                 int cppIndex = 0;
 
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"HopStep.h\"");
-                Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest4.generated.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "#include \"ReflectionTest4.h\"");
                 Assert.AreEqual(cppLines[cppIndex++], "");
                 Assert.AreEqual(cppLines[cppIndex++], "using namespace HopStep;");

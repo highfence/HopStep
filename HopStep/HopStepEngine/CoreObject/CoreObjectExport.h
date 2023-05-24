@@ -17,3 +17,4 @@
 #include "Reflection/Function.h"
 #include "Reflection/Property.h"
 #include "Reflection/PrimitiveProperty.h"
+#include "Reflection/ReflectionMacro.h"

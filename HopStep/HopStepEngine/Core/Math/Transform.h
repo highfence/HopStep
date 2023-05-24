@@ -13,8 +13,6 @@ namespace HopStep
 	{
 	public:
 
-		static const HTransform Identity;
-
 		HTransform(const HQuat& InRotation, const HVector& InLocation, const HVector& InScale3D = HVector::OneVector)
 			: Location{ InLocation.X, InLocation.Y, InLocation.Z, 0.0f }
 			, Rotation{ InRotation.X, InRotation.Y, InLocation.Z, InRotation.W }
@@ -23,6 +21,24 @@ namespace HopStep
 
 		}
 
+		HTransform()
+			: Location(0.0f, 0.0f, 0.0f, 0.0f)
+			, Rotation(0.0f, 0.0f, 0.0f, 0.0f)
+			, Scale3D(0.0f, 0.0f, 0.0f, 0.0f)
+		{
+		}
+
+		static const HTransform Identity;
+
+		HVector GetLocation() const
+		{
+			return HVector(Location.V[0], Location.V[1], Location.V[2]);
+		}
+
+		HRotator GetRotation() const
+		{
+			return HRotator(Rotation.V[0], Rotation.V[1], Rotation.V[2]);
+		}
 
 	protected:
 

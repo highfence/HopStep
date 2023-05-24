@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneComponent.h"
+#include "CoreObject/CoreObjectExport.h"
 #include "Intermediate\PrimitiveComponent.generated.h"
 
 namespace HopStep
@@ -10,10 +11,11 @@ namespace HopStep
 	HCLASS();
 	class HPrimitiveComponent : public HSceneComponent
 	{
-		DECLARE_CLASS_BODY(HPrimitiveComponent);
+		DECLARE_CLASS_BODY(HPrimitiveComponent)
 
 	public:
 
-
+		virtual class HPrimitiveSceneProxy* CreateSceneProxy() = 0;
 	};
+
 }

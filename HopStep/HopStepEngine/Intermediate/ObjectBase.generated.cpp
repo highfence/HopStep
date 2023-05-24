@@ -1,5 +1,4 @@
 ﻿#include "HopStep.h"
-#include "ObjectBase.generated.h"
 #include "CoreObject\Object\ObjectBase.h"
 
 using namespace HopStep;

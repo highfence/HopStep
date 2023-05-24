@@ -70,15 +70,14 @@ namespace HopStepHeaderTool
 				WriteHeader(generatedHeaderPath, headerPath, schemasInHeader);
 
 				var generatedCppPath = Path.Combine(intermediatePath, $"{objectName}.generated.cpp");
-				WriteCpp(generatedCppPath, $"{objectName}.generated.h", schemasInHeader);
+				WriteCpp(generatedCppPath, schemasInHeader);
 			}
 		}
 
-		private void WriteCpp(string generatedCppPath, string includeHeaderPath, List<SolutionSchema.TypeInfo> schemasInHeader)
+		private void WriteCpp(string generatedCppPath, List<SolutionSchema.TypeInfo> schemasInHeader)
 		{
 			var sb = new StringBuilder();
 			sb.AppendLine($"#include \"HopStep.h\"");
-			sb.AppendLine($"#include \"{includeHeaderPath}\"");
 
 			HashSet<string> includes = new HashSet<string>();
 

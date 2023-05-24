@@ -1,7 +1,8 @@
 #pragma once
 #include "Core/CoreExport.h"
 #include "CoreObject/CoreObjectExport.h"
-#include "SceneComponent.h"
+#include "CoreObject/Reflection/ReflectionMacro.h"
+
 #include "Intermediate/Actor.generated.h"
 
 namespace HopStep
@@ -25,7 +26,7 @@ namespace HopStep
 
 		// AActor의 위치를 설정합니다.
 		HFUNCTION();
-		void SetLocation(const HVector& NewLocation);
+		bool SetLocation(const HVector& NewLocation);
 
 		// AActor의 회전을 반환합니다.
 		HFUNCTION();
@@ -85,11 +86,14 @@ namespace HopStep
 
 		// AActor의 루트 컴포넌트를 반환합니다.
 		HFUNCTION();
-		HSceneComponent* GetRootComponent() const;
+		class HSceneComponent* GetRootComponent() const;
+
+		HFUNCTION();
+		HQuat GetActorQuat() const;
 
 	protected:
 
 		HPROPERTY();
-		HSceneComponent* RootComponent = nullptr;
+		class HSceneComponent* RootComponent = nullptr;
 	};
 }

@@ -1,5 +1,4 @@
 ﻿#include "HopStep.h"
-#include "ReflectionTest.generated.h"
 #include "CoreObject\Reflection\ReflectionTest.h"
 
 using namespace HopStep;

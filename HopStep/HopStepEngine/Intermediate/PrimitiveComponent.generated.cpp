@@ -1,5 +1,4 @@
 ﻿#include "HopStep.h"
-#include "PrimitiveComponent.generated.h"
 #include "Runtime\Engine\PrimitiveComponent.h"
 
 using namespace HopStep;

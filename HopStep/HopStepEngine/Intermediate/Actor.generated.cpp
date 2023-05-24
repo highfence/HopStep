@@ -1,5 +1,4 @@
 ﻿#include "HopStep.h"
-#include "Actor.generated.h"
 #include "Runtime\Engine\Actor.h"
 
 using namespace HopStep;
@@ -25,6 +24,7 @@ void HActor::__Fill_Class_Property_HActor(HClass* InStaticClass)
 	HStructBuilder::AddNativeFunction((HClass*)InStaticClass, &HActor::execSetActorTransform, TEXT("SetActorTransform"));
 	HStructBuilder::AddNativeFunction((HClass*)InStaticClass, &HActor::execGetActorTransform, TEXT("GetActorTransform"));
 	HStructBuilder::AddNativeFunction((HClass*)InStaticClass, &HActor::execGetRootComponent, TEXT("GetRootComponent"));
+	HStructBuilder::AddNativeFunction((HClass*)InStaticClass, &HActor::execGetActorQuat, TEXT("GetActorQuat"));
 }
 
 DEFINE_FUNCTION(HActor::execGetLocation)
@@ -34,7 +34,7 @@ DEFINE_FUNCTION(HActor::execGetLocation)
 DEFINE_FUNCTION(HActor::execSetLocation)
 {
 	HFUNC_GET_FROM_FRAME(const HVector&, HFunc_Param_NewLocation);
-	HFUNC_THIS->SetLocation(HFunc_Param_NewLocation);
+	*HFUNC_RESULT_PARAM = HFUNC_RESULT_TYPECAST(HFUNC_THIS->SetLocation(HFunc_Param_NewLocation));
 }
 DEFINE_FUNCTION(HActor::execGetRotation)
 {
@@ -102,6 +102,10 @@ DEFINE_FUNCTION(HActor::execGetActorTransform)
 DEFINE_FUNCTION(HActor::execGetRootComponent)
 {
 	*HFUNC_RESULT_PARAM = HFUNC_RESULT_TYPECAST(HFUNC_THIS->GetRootComponent());
+}
+DEFINE_FUNCTION(HActor::execGetActorQuat)
+{
+	*HFUNC_RESULT_PARAM = HFUNC_RESULT_TYPECAST(HFUNC_THIS->GetActorQuat());
 }
 
 IMPLEMENT_CLASS(HActor);

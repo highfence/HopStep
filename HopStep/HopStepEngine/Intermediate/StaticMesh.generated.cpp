@@ -1,5 +1,4 @@
 ﻿#include "HopStep.h"
-#include "StaticMesh.generated.h"
 #include "Runtime\Engine\StaticMesh.h"
 
 using namespace HopStep;

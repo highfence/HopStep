@@ -2,94 +2,94 @@
 <Project ToolsVersion="4.0">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{e1cea477-d555-471e-a028-ccc6c5038622}</UniqueIdentifier>
+      <UniqueIdentifier>{1e527aa8-4057-48d5-a43b-2e0c77764885}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Archive">
-      <UniqueIdentifier>{c71fca4f-2193-412e-8f3a-a748ff3adec5}</UniqueIdentifier>
+      <UniqueIdentifier>{97f065d9-544f-46ac-89e5-5d7e9753481c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Container">
-      <UniqueIdentifier>{ff652219-e569-433c-82c6-6df838ea2d07}</UniqueIdentifier>
+      <UniqueIdentifier>{e565f3e0-e234-4cbd-928d-bf4bcea1a38c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Delegates">
-      <UniqueIdentifier>{63fdd998-0bbf-4763-b23c-7f73079d4cf8}</UniqueIdentifier>
+      <UniqueIdentifier>{20540e5c-4a13-4df3-886c-3f503c7a2a2a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\GenericPlatform">
-      <UniqueIdentifier>{885030d2-9338-4535-93e2-ac5e363be297}</UniqueIdentifier>
+      <UniqueIdentifier>{17dc33b0-fa02-4f9b-82ae-94d9f1296a67}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Logger">
-      <UniqueIdentifier>{cd458b77-86ba-48ef-8909-8cc27f61f5bd}</UniqueIdentifier>
+      <UniqueIdentifier>{3d712c85-3b01-4b9f-822f-42a9c27d4408}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Math">
-      <UniqueIdentifier>{cd25c682-45ff-49b8-863e-62647d9a9652}</UniqueIdentifier>
+      <UniqueIdentifier>{ed49a30b-537f-4a64-bf45-f0b80a8792db}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Misc">
-      <UniqueIdentifier>{f1668db4-187a-4378-b90f-b938edf553eb}</UniqueIdentifier>
+      <UniqueIdentifier>{033cb922-c2b9-469b-a168-aa790c00c0c1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Templates">
-      <UniqueIdentifier>{e20db8fc-5f09-4693-b6a4-71f155d505aa}</UniqueIdentifier>
+      <UniqueIdentifier>{78c14ced-f7ff-4ed0-a03b-251d1b07a183}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Windows">
-      <UniqueIdentifier>{c983058c-62dc-449d-8ead-aaeb5fe5872c}</UniqueIdentifier>
+      <UniqueIdentifier>{61adf26c-35dc-4b72-899c-d46e3e54d568}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject">
-      <UniqueIdentifier>{3f4e882c-99a3-48db-afb4-24feb2f6744f}</UniqueIdentifier>
+      <UniqueIdentifier>{efbfb559-72c1-43e0-b98b-d4119bab36a3}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Object">
-      <UniqueIdentifier>{4375f1a5-c7d9-4686-aa15-0414e3c0c954}</UniqueIdentifier>
+      <UniqueIdentifier>{1228a290-7d66-44c2-9a32-57b424b80d4e}</UniqueIdentifier>
     </Filter>
     <Filter Include="CoreObject\Reflection">
-      <UniqueIdentifier>{bfae379f-4957-41bf-8155-9974cac5bc72}</UniqueIdentifier>
+      <UniqueIdentifier>{68567a0d-1c26-4cdd-a457-8246c78ca606}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern">
-      <UniqueIdentifier>{8cbe5aef-2785-4483-956a-4540ef75fd3d}</UniqueIdentifier>
+      <UniqueIdentifier>{3ef91f84-9567-4dd3-b4b6-2489ca545de8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp">
-      <UniqueIdentifier>{90fcf829-766e-4a99-ab57-2e04be888c5f}</UniqueIdentifier>
+      <UniqueIdentifier>{7f1ff49f-98f2-4574-a907-e606d29ca534}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include">
-      <UniqueIdentifier>{a7327208-2da0-4a66-82b2-08568241211f}</UniqueIdentifier>
+      <UniqueIdentifier>{c0689784-5d8c-465c-80ee-7a2ba86f11ed}</UniqueIdentifier>
     </Filter>
     <Filter Include="Extern\Jsoncpp\include\json">
-      <UniqueIdentifier>{82fd6468-3631-4331-aaf3-d72a07c2effd}</UniqueIdentifier>
+      <UniqueIdentifier>{c24ad657-bc7f-4671-9595-24fd5f0f79e7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Intermediate">
-      <UniqueIdentifier>{9f34b360-b734-463a-a72a-3fb7d3f6e21f}</UniqueIdentifier>
+      <UniqueIdentifier>{f9ec2fea-5093-48f9-95bc-c05e9cdf16c9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime">
-      <UniqueIdentifier>{ebd44861-43fb-4e0b-80e8-32ee92113385}</UniqueIdentifier>
+      <UniqueIdentifier>{fcd66dbe-1189-4a5f-90ab-85d9f34c33fd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Engine">
-      <UniqueIdentifier>{9661af19-1fa6-41b7-a4d7-5690842c5482}</UniqueIdentifier>
+      <UniqueIdentifier>{23651a42-515e-4904-bd97-902ae461402a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Launch">
-      <UniqueIdentifier>{0c8d1d4e-4816-4266-90d9-d47ef632a870}</UniqueIdentifier>
+      <UniqueIdentifier>{6e3bb82a-9bd2-4294-8c27-a15b27b699a7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Render">
-      <UniqueIdentifier>{ff845596-df91-4303-b19d-db4e175befb9}</UniqueIdentifier>
+      <UniqueIdentifier>{8c1d3a0f-8ac4-45e0-8378-f9d299933f79}</UniqueIdentifier>
     </Filter>
     <Filter Include="Runtime\Render\Shader">
-      <UniqueIdentifier>{586a7137-3cfc-4d53-bb41-b8b21b80414f}</UniqueIdentifier>
+      <UniqueIdentifier>{baa287db-8fe4-4a46-b0ac-b4905cf14cef}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty">
-      <UniqueIdentifier>{87b3870f-4120-49ea-9080-ff48ed6bb4af}</UniqueIdentifier>
+      <UniqueIdentifier>{8c16ca39-fc2a-45c5-b95b-380eba25305f}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp">
-      <UniqueIdentifier>{b0c5b5b5-a4fe-4279-bfc4-fb47f369cf39}</UniqueIdentifier>
+      <UniqueIdentifier>{8635169f-dd46-46d6-ac01-34b9275fb6c5}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include">
-      <UniqueIdentifier>{65046264-6226-4918-9f53-52c103da42dd}</UniqueIdentifier>
+      <UniqueIdentifier>{d1890b46-6171-4646-b7b2-9e49b08d0b3d}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include\assimp">
-      <UniqueIdentifier>{f855b03f-b166-4991-9d5b-813c2c392e11}</UniqueIdentifier>
+      <UniqueIdentifier>{566a30a3-70b7-43dd-88a7-fc74201ba60b}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include\assimp\Compiler">
-      <UniqueIdentifier>{1953a648-4796-49a0-aeb8-86960fe98473}</UniqueIdentifier>
+      <UniqueIdentifier>{72a0677d-0d1d-45bc-868d-be9b09d4d87b}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include\assimp\port">
-      <UniqueIdentifier>{5b219952-17e2-43a4-b8d2-0a9f6871d5c6}</UniqueIdentifier>
+      <UniqueIdentifier>{d73fccb0-f335-49ff-91f6-2f0f658e190e}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\Assimp\include\assimp\port\AndroidJNI">
-      <UniqueIdentifier>{a9f84b8f-1eb1-49f0-8e52-f1207d81dfbd}</UniqueIdentifier>
+      <UniqueIdentifier>{d3ccb752-ae33-49af-b6cd-35db70bd5eb3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +212,9 @@
       <Filter>Core\Templates</Filter>
     </ClInclude>
     <ClInclude Include="Core\Templates\HopStepTemplates.h">
+      <Filter>Core\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Templates\NonReferenceType.h">
       <Filter>Core\Templates</Filter>
     </ClInclude>
     <ClInclude Include="Core\Templates\RemoveConst.h">
@@ -364,6 +367,12 @@
     <ClInclude Include="Intermediate\ActorComponent.generated.h">
       <Filter>Intermediate</Filter>
     </ClInclude>
+    <ClInclude Include="Intermediate\Level.generated.h">
+      <Filter>Intermediate</Filter>
+    </ClInclude>
+    <ClInclude Include="Intermediate\MeshComponent.generated.h">
+      <Filter>Intermediate</Filter>
+    </ClInclude>
     <ClInclude Include="Intermediate\Object.generated.h">
       <Filter>Intermediate</Filter>
     </ClInclude>
@@ -380,6 +389,9 @@
       <Filter>Intermediate</Filter>
     </ClInclude>
     <ClInclude Include="Intermediate\StaticMesh.generated.h">
+      <Filter>Intermediate</Filter>
+    </ClInclude>
+    <ClInclude Include="Intermediate\StaticMeshComponent.generated.h">
       <Filter>Intermediate</Filter>
     </ClInclude>
     <ClInclude Include="Intermediate\World.generated.h">
@@ -412,7 +424,13 @@
     <ClInclude Include="Runtime\Engine\Level.h">
       <Filter>Runtime\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Runtime\Engine\MeshComponent.h">
+      <Filter>Runtime\Engine</Filter>
+    </ClInclude>
     <ClInclude Include="Runtime\Engine\PrimitiveComponent.h">
+      <Filter>Runtime\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Engine\PrimitiveSceneProxy.h">
       <Filter>Runtime\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Engine\Scene.h">
@@ -425,6 +443,9 @@
       <Filter>Runtime\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Engine\StaticMesh.h">
+      <Filter>Runtime\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Engine\StaticMeshComponent.h">
       <Filter>Runtime\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Engine\World.h">
@@ -820,6 +841,12 @@
     <ClCompile Include="Intermediate\ActorComponent.generated.cpp">
       <Filter>Intermediate</Filter>
     </ClCompile>
+    <ClCompile Include="Intermediate\Level.generated.cpp">
+      <Filter>Intermediate</Filter>
+    </ClCompile>
+    <ClCompile Include="Intermediate\MeshComponent.generated.cpp">
+      <Filter>Intermediate</Filter>
+    </ClCompile>
     <ClCompile Include="Intermediate\Object.generated.cpp">
       <Filter>Intermediate</Filter>
     </ClCompile>
@@ -836,6 +863,9 @@
       <Filter>Intermediate</Filter>
     </ClCompile>
     <ClCompile Include="Intermediate\StaticMesh.generated.cpp">
+      <Filter>Intermediate</Filter>
+    </ClCompile>
+    <ClCompile Include="Intermediate\StaticMeshComponent.generated.cpp">
       <Filter>Intermediate</Filter>
     </ClCompile>
     <ClCompile Include="Intermediate\World.generated.cpp">
@@ -868,7 +898,13 @@
     <ClCompile Include="Runtime\Engine\Level.cpp">
       <Filter>Runtime\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Runtime\Engine\MeshComponent.cpp">
+      <Filter>Runtime\Engine</Filter>
+    </ClCompile>
     <ClCompile Include="Runtime\Engine\PrimitiveComponent.cpp">
+      <Filter>Runtime\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Engine\PrimitiveSceneProxy.cpp">
       <Filter>Runtime\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Engine\Scene.cpp">
@@ -881,6 +917,9 @@
       <Filter>Runtime\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Engine\StaticMesh.cpp">
+      <Filter>Runtime\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Engine\StaticMeshComponent.cpp">
       <Filter>Runtime\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Engine\World.cpp">

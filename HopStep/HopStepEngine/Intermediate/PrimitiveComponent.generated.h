@@ -3,7 +3,7 @@
 #include "..\CoreObject\Reflection\ReflectionMacro.h"
 #include "..\CoreObject\Reflection\Function.h"
 
-#define HopStepEngine_Runtime_Engine_PrimitiveComponent_13_Generated_Function_Declare \
+#define HopStepEngine_Runtime_Engine_PrimitiveComponent_14_Generated_Function_Declare \
 public: \
 private:
 

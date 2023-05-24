@@ -204,6 +204,7 @@
     <ClInclude Include="Core\Misc\StringUtil.h" />
     <ClInclude Include="Core\Templates\DerivedFrom.h" />
     <ClInclude Include="Core\Templates\HopStepTemplates.h" />
+    <ClInclude Include="Core\Templates\NonReferenceType.h" />
     <ClInclude Include="Core\Templates\RemoveConst.h" />
     <ClInclude Include="Core\Templates\RemoveReference.h" />
     <ClInclude Include="Core\Windows\WindowsApplication.h" />
@@ -254,12 +255,15 @@
     <ClInclude Include="Extern\Jsoncpp\include\json\writer.h" />
     <ClInclude Include="Intermediate\Actor.generated.h" />
     <ClInclude Include="Intermediate\ActorComponent.generated.h" />
+    <ClInclude Include="Intermediate\Level.generated.h" />
+    <ClInclude Include="Intermediate\MeshComponent.generated.h" />
     <ClInclude Include="Intermediate\Object.generated.h" />
     <ClInclude Include="Intermediate\ObjectBase.generated.h" />
     <ClInclude Include="Intermediate\PrimitiveComponent.generated.h" />
     <ClInclude Include="Intermediate\ReflectionTest.generated.h" />
     <ClInclude Include="Intermediate\SceneComponent.generated.h" />
     <ClInclude Include="Intermediate\StaticMesh.generated.h" />
+    <ClInclude Include="Intermediate\StaticMeshComponent.generated.h" />
     <ClInclude Include="Intermediate\World.generated.h" />
     <ClInclude Include="Runtime\Engine\Actor.h" />
     <ClInclude Include="Runtime\Engine\ActorComponent.h" />
@@ -270,11 +274,14 @@
     <ClInclude Include="Runtime\Engine\GameView.h" />
     <ClInclude Include="Runtime\Engine\HopStepString.h" />
     <ClInclude Include="Runtime\Engine\Level.h" />
+    <ClInclude Include="Runtime\Engine\MeshComponent.h" />
     <ClInclude Include="Runtime\Engine\PrimitiveComponent.h" />
+    <ClInclude Include="Runtime\Engine\PrimitiveSceneProxy.h" />
     <ClInclude Include="Runtime\Engine\Scene.h" />
     <ClInclude Include="Runtime\Engine\SceneComponent.h" />
     <ClInclude Include="Runtime\Engine\SceneInterface.h" />
     <ClInclude Include="Runtime\Engine\StaticMesh.h" />
+    <ClInclude Include="Runtime\Engine\StaticMeshComponent.h" />
     <ClInclude Include="Runtime\Engine\World.h" />
     <ClInclude Include="Runtime\Launch\Launch.h" />
     <ClInclude Include="Runtime\Launch\LaunchWindows.h" />
@@ -549,6 +556,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
+    <ClCompile Include="Intermediate\Level.generated.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Intermediate\MeshComponent.generated.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
     <ClCompile Include="Intermediate\Object.generated.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
@@ -570,6 +585,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Intermediate\StaticMesh.generated.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Intermediate\StaticMeshComponent.generated.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
@@ -613,7 +632,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
+    <ClCompile Include="Runtime\Engine\MeshComponent.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
     <ClCompile Include="Runtime\Engine\PrimitiveComponent.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Engine\PrimitiveSceneProxy.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
@@ -630,6 +657,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>
     <ClCompile Include="Runtime\Engine\StaticMesh.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    </ClCompile>
+    <ClCompile Include="Runtime\Engine\StaticMeshComponent.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     </ClCompile>

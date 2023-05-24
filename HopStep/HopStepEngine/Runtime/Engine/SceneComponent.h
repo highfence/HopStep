@@ -11,7 +11,7 @@ namespace HopStep
 	HCLASS();
 	class HSceneComponent : public HActorComponent
 	{
-		DECLARE_CLASS_BODY(HSceneComponent);
+		DECLARE_CLASS_BODY(HSceneComponent)
 
 	public:
 
@@ -23,8 +23,17 @@ namespace HopStep
 			return ComponentToWorld; 
 		}
 
-	protected:
+		HVector GetComponentLocation() const
+		{
+			return ComponentToWorld.GetLocation(); 
+		}
+
+		bool MoveComponent(const HVector& Delta, const HQuat& NewRotation);
+
+	private:
 
 		HTransform ComponentToWorld;
-};
+
+		TArray<HSceneComponent*> AttachChildren;
+	};
 }

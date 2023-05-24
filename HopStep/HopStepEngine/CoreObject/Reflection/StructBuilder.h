@@ -2,6 +2,7 @@
 #include "Core\PrimitiveTypeDefines.h"
 #include "Core\HopStepOverrides.h"
 #include "..\Object\GCInterface.h"
+#include "..\Object\ObjectPtr.h"
 #include "Property.h"
 #include "PrimitiveProperty.h"
 #include "Struct.h"
@@ -21,6 +22,9 @@ namespace HopStep
 		template <class TStructType, class TFieldType, class TPropertyType> requires HPropertyDerived<TPropertyType>
 		static void AddProperty(HStruct* InStruct, const HString& InFieldName, TFieldType TStructType::*InField);
 
+		template <class TStructType, class TFieldType, class TPropertyType> requires HPropertyDerived<TPropertyType>
+		static void AddProperty(HStruct* InStruct, const HString& InFieldName, TObjectPtr<TFieldType> TStructType::*InField);
+
 		template <class TFieldType, class TPropertyType>
 		static void IntializePropertyFlags(HProperty* Property);
 
@@ -34,6 +38,18 @@ namespace HopStep
 	inline void HStructBuilder::AddProperty(HStruct* InStruct, const HString& InFieldName, TFieldType TStructType::* InField)
 	{
 		int32 PropertyOffset = GetOffsetOf<TStructType, TFieldType>(InField);
+		int32 FieldSize = sizeof(TFieldType);
+		HString PropertyName = InFieldName;
+
+		TUniquePtr<HProperty> NewProperty = std::make_unique<TPropertyType>(PropertyName, PropertyOffset, FieldSize);
+		IntializePropertyFlags<TFieldType, TPropertyType>(NewProperty.get());
+		InStruct->Properties.push_back(std::move(NewProperty));
+	}
+
+	template<class TStructType, class TFieldType, class TPropertyType> requires HPropertyDerived<TPropertyType>
+	inline void HStructBuilder::AddProperty(HStruct* InStruct, const HString& InFieldName, TObjectPtr<TFieldType> TStructType::* InField)
+	{
+		int32 PropertyOffset = GetOffsetOf<TStructType, TObjectPtr<TFieldType>>(InField);
 		int32 FieldSize = sizeof(TFieldType);
 		HString PropertyName = InFieldName;
 

@@ -1,5 +1,4 @@
 ﻿#include "HopStep.h"
-#include "ActorComponent.generated.h"
 #include "Runtime\Engine\ActorComponent.h"
 
 using namespace HopStep;

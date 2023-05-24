@@ -3,7 +3,7 @@
 #include "..\CoreObject\Reflection\ReflectionMacro.h"
 #include "..\CoreObject\Reflection\Function.h"
 
-#define HopStepEngine_Runtime_Engine_Actor_18_Generated_Function_Declare \
+#define HopStepEngine_Runtime_Engine_Actor_19_Generated_Function_Declare \
 public: \
 	DECLARE_FUNCTION(execGetLocation); \
 	DECLARE_FUNCTION(execSetLocation); \
@@ -22,6 +22,7 @@ public: \
 	DECLARE_FUNCTION(execSetActorTransform); \
 	DECLARE_FUNCTION(execGetActorTransform); \
 	DECLARE_FUNCTION(execGetRootComponent); \
+	DECLARE_FUNCTION(execGetActorQuat); \
 private:
 
 #undef CURRENT_FILE_ID
