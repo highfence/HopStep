@@ -457,4 +457,7 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 JSON/
 
+# Custom ignore
+Intermediate/
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudio,c++
