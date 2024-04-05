@@ -4,6 +4,16 @@
 
 namespace HopStep
 {
+	class HDisplayBuffer
+	{
+	public:
+
+		TArray<uint32> FrameBuffer;
+
+		bool IsValid() const { return FrameBuffer.size() > 0; }
+		uint32* GetCanvas() { return FrameBuffer.data(); }
+	};
+
 	class HGenericApplication
 	{
 	public:
@@ -17,5 +27,9 @@ namespace HopStep
 		virtual TSharedPtr<class HGenericWindow> GetWindow() = 0;
 
 		virtual TSharedPtr<class HGenericApplicationMessageHandler> GetMessageHandler() = 0;
+
+		virtual HDisplayBuffer* GetDisplayBuffer() = 0;
+
+		virtual uint32 GetFrameNumber() = 0;
 	};
 }

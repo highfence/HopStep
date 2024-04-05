@@ -1,7 +1,8 @@
 #include "EngineLoop.h"
 #include "Engine.h"
-#include "..\..\Core\CoreExport.h"
-#include "..\..\Core\Windows\WindowsPlatformMisc.h"
+#include "Core/CoreExport.h"
+#include "Core/Windows/WindowsPlatformMisc.h"
+#include "Runtime/Engine/SceneInterface.h"
 #include "Runtime/Engine/World.h"
 
 namespace HopStep
@@ -30,6 +31,12 @@ namespace HopStep
         HWorld* GameWorld = GEngine->GetWorld();
 
         GameWorld->Tick(DeltaTime);
+
+        const HSceneInterface* RenderScene = GameWorld->GetScene();
+        if (RenderScene)
+        {
+            RenderScene->Render();
+        }
     }
 
     void HEngineLoop::Exit()

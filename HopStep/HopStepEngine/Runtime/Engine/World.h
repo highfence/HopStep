@@ -22,6 +22,8 @@ namespace HopStep
 
 		void Tick(float deltaTime);
 
+		class HSceneInterface* GetScene() const { return Scene; }
+
 	protected:
 
 		class HSceneInterface* Scene = nullptr;

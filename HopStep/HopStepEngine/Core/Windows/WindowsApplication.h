@@ -20,6 +20,10 @@ namespace HopStep
 
 		virtual TSharedPtr<HGenericApplicationMessageHandler> GetMessageHandler() override;
 
+		virtual HDisplayBuffer* GetDisplayBuffer() override;
+
+		virtual uint32 GetFrameNumber() override { return FrameNumber; }
+		
 	protected:
 
 		static LRESULT CALLBACK AppWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -29,5 +33,7 @@ namespace HopStep
 		TSharedPtr<HGenericWindow> NativeWindow;
 
 		TSharedPtr<HGenericApplicationMessageHandler> MessageHander;
+
+		uint32 FrameNumber = 0u;
 	};
 }

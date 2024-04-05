@@ -80,6 +80,11 @@ namespace HopStep
 		return 0;
 	}
 
+	HDisplayBuffer* HWindowsApplication::GetDisplayBuffer()
+	{
+		return nullptr;
+	}
+
 	TSharedPtr<HGenericWindow> HWindowsApplication::GetWindow()
 	{
 		return NativeWindow;

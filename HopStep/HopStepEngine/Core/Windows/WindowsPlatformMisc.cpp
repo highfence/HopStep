@@ -2,6 +2,7 @@
 #include "WindowsApplication.h"
 #include "WindowsWindow.h"
 #include "WindowsSystemIncludes.h"
+#include "Core/Misc/App.h"
 
 extern "C"
 {
@@ -20,6 +21,7 @@ namespace HopStep
 			App->SetWindow(Window);
 			GWindowHandle = Window->GetWindowHandle();
 		}
+		HApp::GApp = App;
 		return App;
 	}
 

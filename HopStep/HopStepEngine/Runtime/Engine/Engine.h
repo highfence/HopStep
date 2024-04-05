@@ -32,6 +32,7 @@ namespace HopStep
 		class HGenericApplication* App;
 
 		TUniquePtr<class HWorld> GameWorld;
+
 	};
 
 	/*

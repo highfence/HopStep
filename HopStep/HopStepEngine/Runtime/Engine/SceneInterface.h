@@ -6,6 +6,8 @@ namespace HopStep
 	{
 	public:
 
+		static HSceneInterface* CreateScene();
+
 		HSceneInterface();
 
 		virtual ~HSceneInterface();
@@ -13,6 +15,8 @@ namespace HopStep
 		virtual void AddPrimitive(class HPrimitiveComponent* Primitive) = 0;
 
 		virtual	void RemovePrimitive(class HPrimitiveComponent* Primitive) = 0;
+
+		virtual void Render() const = 0;
 
 	protected:
 

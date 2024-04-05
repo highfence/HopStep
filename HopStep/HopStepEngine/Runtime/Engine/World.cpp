@@ -1,4 +1,5 @@
 #include "World.h"
+#include "Runtime/Engine/SceneInterface.h"
 #include "Level.h"
 
 namespace HopStep
@@ -15,6 +16,8 @@ namespace HopStep
 		HAssetImporter Importer;
 		Importer.ImportFromFile(AssetPath);
 		*/
+
+
 
 		return false;
 	}

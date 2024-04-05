@@ -6,7 +6,7 @@ namespace HopStep
 	{
 	public:
 
-		static double GetCurrentTime();
+		static double GetCurrentAppTime();
 
 		static void SetCurrentTime(double InTime);
 
@@ -14,10 +14,15 @@ namespace HopStep
 
 		static void SetDeltaTime(double InSeconds);
 
+		static class HGenericApplication* GetApp() { return GApp; }
+
+		static class HGenericApplication* GApp;
+
 	protected:
 
 		static double CurrentTime;
 
 		static double DeltaTime;
+
 	};
 }

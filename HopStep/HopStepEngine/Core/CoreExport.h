@@ -8,6 +8,9 @@
 #include "Windows/WindowsPlatformTime.h"
 #include "Templates/HopStepTemplates.h"
 
+// Generic platfrom includes
+#include "GenericPlatform/GenericApplication.h"
+
 // Misc includes
 #include "Misc/CommandExecutable.h"
 #include "Misc/GenericMemory.h"
