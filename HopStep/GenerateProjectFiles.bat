@@ -7,6 +7,6 @@ echo MsBuild.exe: %MS_BUILD%
 %MS_BUILD% /t:Rebuild /p:Configuration=Release %~dp0\HopStepHeaderTool\HopStepHeaderTool.csproj >nul 2>&1
 %MS_BUILD% /t:Rebuild /p:Configuration=Release %~dp0\SolutionGenerator\SolutionGenerator.csproj >nul 2>&1
 
-start /B /WAIT %~dp0HopStepHeaderTool\bin\Release\netcoreapp3.1\HopStepHeaderTool.exe Solution=%~dp0HopStepEngine\ Intermediate=%~dp0HopStepEngine\Intermediate\
-start /B /WAIT %~dp0SolutionGenerator\bin\Release\netcoreapp3.1\SolutionGenerator.exe %~dp0HopStepEngine\
+start /B /WAIT %~dp0HopStepHeaderTool\bin\Release\net8.0-windows10.0.22621.0\HopStepHeaderTool.exe Solution=%~dp0HopStepEngine\ Intermediate=%~dp0HopStepEngine\Intermediate\
+start /B /WAIT %~dp0SolutionGenerator\bin\Release\net8.0-windows10.0.22621.0\SolutionGenerator.exe %~dp0HopStepEngine\
 pause
